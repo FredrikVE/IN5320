@@ -6,6 +6,7 @@ In this course, you will learn the principles and practices of application desig
 The practical work is based on individual assignments and a major group project using the APIs of the open source platform DHIS2 (www.dhis2.org). Developed at the Department of Informatics, DHIS2 is a platform widely used for health, climate health, and education management. The group projects address real-world use-cases and needs from DHIS2 users.
 
 ## Learning outcome
+
 <u>After you have completed this course you:</u><br>
 
 - will have an understanding of the socio-technical complexity related to large-scale information systems that span several use-cases and contexts.
