@@ -8,23 +8,23 @@ export default function App() {
   // ---- API params i state ----
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [searchQuery, setSearchQuery] = useState("");   // commit’et søkeord
-  const [order, setOrder] = useState("");               // f.eks. "Population:DESC"
-  const [continents, setContinents] = useState([]);     // ["Africa","Europe",...]
+  const [searchQuery, setSearchQuery] = useState("");   
+  const [order, setOrder] = useState("");               
+  const [continents, setContinents] = useState([]);     
 
-  // ---- Autosuggest / input-draft ----
-  const [searchDraft, setSearchDraft] = useState("");   // det brukeren skriver nå
+  // ---- Autosuggest ----
+  const [searchDraft, setSearchDraft] = useState("");   
   const [suggestions, setSuggestions] = useState([]);
   const [showSuggest, setShowSuggest] = useState(false);
-  const [highlightIndex, setHighlightIndex] = useState(-1); // tastaturnavigasjon
-  const [allCountries, setAllCountries] = useState([]);     // ["Norway","Sweden",...]
+  const [highlightIndex, setHighlightIndex] = useState(-1); 
+  const [allCountries, setAllCountries] = useState([]);     
 
   // ---- API-respons ----
   const [data, setData] = useState({ pager: null, results: [] });
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Hent alle land én gang for autosuggest (stabilt)
+  // Hent alle land én gang for autosuggest
   useEffect(() => {
     let alive = true;
     fetch(`${API_BASE}?paging=false&order=Country:ASC`)
@@ -34,11 +34,11 @@ export default function App() {
         const names = (j.results || []).map((r) => r.Country).filter(Boolean);
         setAllCountries(names);
       })
-      .catch(() => { /* ignorer – autosuggest blir bare tom */ });
+      .catch(() => {});
     return () => { alive = false; };
   }, []);
 
-  // Bygg URL basert på commit’et søkeord (ikke draft)
+  // Bygg URL
   const url = useMemo(() => {
     const params = new URLSearchParams();
     params.set("page", page);
@@ -49,7 +49,7 @@ export default function App() {
     return `${API_BASE}?${params.toString()}`;
   }, [page, pageSize, searchQuery, order, continents]);
 
-  // Hent tabell-data når URL endrer seg
+  // Hent tabell-data
   useEffect(() => {
     let alive = true;
     setLoading(true);
@@ -68,7 +68,7 @@ export default function App() {
     return () => { alive = false; };
   }, [url]);
 
-  // Autosuggest – lokalt filter (debounced)
+  // Autosuggest-filter
   useEffect(() => {
     const q = searchDraft.trim().toLowerCase();
     if (!q) { setSuggestions([]); return; }
@@ -77,19 +77,18 @@ export default function App() {
         .filter((name) => name.toLowerCase().includes(q))
         .slice(0, 10);
       setSuggestions(hits);
-      setHighlightIndex(-1); // reset når treffene endres
+      setHighlightIndex(-1);
     }, 150);
     return () => clearTimeout(t);
   }, [searchDraft, allCountries]);
 
-  // UI handlers
+  // Handlers
   function onSearchSubmit(e) {
     e.preventDefault();
-    const q = searchDraft.trim();
-    setSearchQuery(q);   // commit – trigge hovedkallet (tom streng = ingen filter)
+    setSearchQuery(searchDraft.trim());
     setPage(1);
     setShowSuggest(false);
-    setSearchDraft("");  // tøm inputfeltet ved Enter
+    setSearchDraft(""); 
   }
 
   function toggleContinent(c) {
@@ -100,16 +99,27 @@ export default function App() {
   }
 
   function chooseSuggestion(name) {
-    setSearchQuery(name);   // commit søk basert på forslag
-    setSearchDraft("");     // tøm inputfeltet også ved forslag
+    setSearchQuery(name);   
+    setSearchDraft("");     
     setPage(1);
     setShowSuggest(false);
     setHighlightIndex(-1);
   }
 
-  // Pagination-knapper aktiv?
+  function resetFilters() {
+    setSearchQuery("");
+    setSearchDraft("");
+    setContinents([]);
+    setOrder("");
+    setPage(1);
+  }
+
+  // Pagination-knapper
   const canPrev = data.pager?.page > 1;
   const canNext = data.pager && data.pager.page < data.pager.pageCount;
+
+  // Skal vi vise "Tilbake"-knappen?
+  const showReset = searchQuery || continents.length > 0 || order;
 
   return (
     <div className="wrap">
@@ -128,7 +138,6 @@ export default function App() {
             }}
             onKeyDown={(e) => {
               if (!showSuggest || suggestions.length === 0) return;
-
               if (e.key === "ArrowDown") {
                 e.preventDefault();
                 setHighlightIndex((prev) => (prev + 1) % suggestions.length);
@@ -140,7 +149,7 @@ export default function App() {
               } else if (e.key === "Enter") {
                 if (highlightIndex >= 0 && highlightIndex < suggestions.length) {
                   e.preventDefault();
-                  chooseSuggestion(suggestions[highlightIndex]); // tømmer felt
+                  chooseSuggestion(suggestions[highlightIndex]);
                 }
               } else if (e.key === "Escape") {
                 setShowSuggest(false);
@@ -157,7 +166,7 @@ export default function App() {
                     type="button"
                     className={idx === highlightIndex ? "active" : ""}
                     onMouseEnter={() => setHighlightIndex(idx)}
-                    onClick={() => chooseSuggestion(name)} // tømmer felt
+                    onClick={() => chooseSuggestion(name)}
                   >
                     {name}
                   </button>
@@ -166,9 +175,14 @@ export default function App() {
             </ul>
           )}
         </div>
+        {showReset && (
+          <button type="button" onClick={resetFilters} style={{ background: "#aaa", borderColor: "#aaa" }}>
+            Tilbake
+          </button>
+        )}
       </form>
 
-      {/* Continents (valgfritt i oppgaven, men nyttig) */}
+      {/* Continents */}
       <div className="row gap small">
         {["Europe", "Africa", "South America", "North America", "Oceania", "Asia"].map(
           (c) => (
