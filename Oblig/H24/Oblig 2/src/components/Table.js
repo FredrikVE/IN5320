@@ -1,3 +1,4 @@
+//src/components/Table.js
 export default function Table({ rows, loading, error }) {
   if (loading) return <p>Loading…</p>;
   if (error) return <p style={{ color: "#c33" }}>Error: {error}</p>;
