@@ -1,0 +1,58 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html, body {
+    height: 100%;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+}
+
+/* HEADER */
+.topptekst {
+    background-color: lightgray;
+    text-align: center;
+    padding: 1rem;
+    font-size: 1.5rem;
+}
+
+/* HOVEDINNHOLD - FLEXBOX */
+.container {
+    display: flex;
+    flex: 1; /* fyller alt mellom header og footer */
+}
+
+/* MENY */
+.meny {
+    background-color: green;
+    color: white;
+    width: 200px;
+    padding: 1rem;
+}
+
+.meny ul {
+    list-style-type: disc; /* kulepunkter */
+    padding-left: 1rem; /* mindre innrykk */
+    margin: 0;
+}
+
+/* INNHOLD */
+.innhold {
+    flex: 1;
+    background-color: white;
+    padding: 1rem;
+}
+
+/* FOOTER */
+.bunntekst {
+    background-color: #333;
+    color: white;
+    text-align: center;
+    padding: 1rem;
+}

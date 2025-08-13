@@ -1,0 +1,41 @@
+<!DOCTYPE html> <!-- Forteller nettleseren at dette er et HTML5-dokument -->
+<html lang="no"> <!-- Starter HTML-dokumentet, med språk satt til norsk -->
+<head>
+    <meta charset="UTF-8"> <!-- Angir tegnsett slik at æ, ø, å vises riktig -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> <!-- Gjør at siden tilpasser seg mobilskjermer -->
+    <title>Eksempel layout</title> <!-- Teksten som vises i nettleserfanen -->
+    <link rel="stylesheet" href="style.css"> <!-- Kobler til ekstern CSS-fil -->
+</head>
+
+<body> <!-- Alt innhold som skal vises på nettsiden ligger her -->
+
+    <!-- HEADER: Øverst på siden, ofte brukt til logo, tittel eller navigasjon -->
+    <header class="topptekst">
+        <h1>TITTEL</h1> <!-- Stor overskrift i headeren -->
+    </header>
+
+    <!-- CONTAINER: Holder meny til venstre og hovedinnhold til høyre -->
+    <div class="container">
+        
+        <!-- MENY: Navigasjonsfelt med punkter til venstre -->
+        <nav class="meny">
+            <ul> <!-- Ul = uordnet liste (punkter) -->
+                <li>Meny 1</li> <!-- Menypunkt 1 -->
+                <li>Meny 2</li> <!-- Menypunkt 2 -->
+                <li>Meny 3</li> <!-- Menypunkt 3 -->
+            </ul>
+        </nav>
+
+        <!-- INNHOLD: Hovedområdet på siden -->
+        <main class="innhold">
+            <p>Her er hovedinnholdet.</p> <!-- Eksempeltekst -->
+        </main>
+    </div>
+
+    <!-- FOOTER: Nederst på siden, inneholder ofte ©-info eller kontakt -->
+    <footer class="bunntekst">
+        <p>© 2025 Mitt nettsted</p>
+    </footer>
+
+</body>
+</html>
