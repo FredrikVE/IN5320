@@ -1,58 +1,58 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+* { /* Velger alle elementer på siden */
+    margin: 0; /* Fjerner standard margin */
+    padding: 0; /* Fjerner standard padding */
+    box-sizing: border-box; /* Inkluderer padding og border i elementets totale bredde/høyde */
 }
 
-html, body {
-    height: 100%;
+html, body { /* Velger både html- og body-elementene */
+    height: 100%; /* Setter høyden til å dekke hele vinduet */
 }
 
-body {
-    font-family: Arial, sans-serif;
-    display: flex;
-    flex-direction: column;
+body { /* Velger body-elementet */
+    font-family: Arial, sans-serif; /* Setter fonten til Arial, eller fallback sans-serif */
+    display: flex; /* Gjør body til en flex-container */
+    flex-direction: column; /* Plasserer barna (header, container, footer) i kolonner */
 }
 
 /* HEADER */
-.topptekst {
-    background-color: lightgray;
-    text-align: center;
-    padding: 1rem;
-    font-size: 1.5rem;
+.topptekst { /* Velger element med class="topptekst" */
+    background-color: lightgray; /* Setter bakgrunnsfargen til lys grå */
+    text-align: center; /* Sentrerer tekst horisontalt */
+    padding: 1rem; /* Legger inn polstring rundt innholdet */
+    font-size: 1.5rem; /* Øker skriftstørrelsen til 1,5 ganger standardstørrelsen */
 }
 
 /* HOVEDINNHOLD - FLEXBOX */
-.container {
-    display: flex;
-    flex: 1; /* fyller alt mellom header og footer */
+.container { /* Velger element med class="container" */
+    display: flex; /* Gjør containeren til en flex-container */
+    flex: 1; /* Får containeren til å fylle alt tilgjengelig plass mellom header og footer */
 }
 
 /* MENY */
-.meny {
-    background-color: green;
-    color: white;
-    width: 200px;
-    padding: 1rem;
+.meny { /* Velger element med class="meny" */
+    background-color: green; /* Setter grønn bakgrunn */
+    color: white; /* Setter teksten til hvit */
+    width: 200px; /* Fast bredde på menyen */
+    padding: 1rem; /* Legger polstring på innsiden */
 }
 
-.meny ul {
-    list-style-type: disc; /* kulepunkter */
-    padding-left: 1rem; /* mindre innrykk */
-    margin: 0;
+.meny ul { /* Velger ul-lister inni .meny */
+    list-style-type: disc; /* Bruker runde kulepunkter */
+    padding-left: 1rem; /* Reduserer innrykket fra standard */
+    margin: 0; /* Fjerner standard margin */
 }
 
 /* INNHOLD */
-.innhold {
-    flex: 1;
-    background-color: white;
-    padding: 1rem;
+.innhold { /* Velger element med class="innhold" */
+    flex: 1; /* Får innholdsdelen til å bruke all resterende plass ved siden av menyen */
+    background-color: white; /* Setter bakgrunn til hvit */
+    padding: 1rem; /* Legger polstring rundt teksten */
 }
 
 /* FOOTER */
-.bunntekst {
-    background-color: #333;
-    color: white;
-    text-align: center;
-    padding: 1rem;
+.bunntekst { /* Velger element med class="bunntekst" */
+    background-color: #333; /* Mørk grå bakgrunn */
+    color: white; /* Hvit tekst */
+    text-align: center; /* Sentrerer teksten horisontalt */
+    padding: 1rem; /* Legger polstring rundt teksten */
 }
