@@ -1,23 +1,16 @@
 // src/Datasets.jsx
-import { useMemo, useRef, useState } from 'react'
+import React, { useMemo, useRef, useState } from 'react'
 import { useDataQuery } from '@dhis2/app-runtime'
 import {
   NoticeBox,
   CircularLoader,
   Menu,
   MenuItem,
-  Table,
-  TableHead,
-  TableRowHead,
-  TableCellHead,
-  TableBody,
-  TableRow,
-  TableCell,
+  Table, TableHead, TableRowHead, TableCellHead,
+  TableBody, TableRow, TableCell,
 } from '@dhis2/ui'
 
-// -------- Spørringer --------
-
-// (A) Hent ALLE datasett (id, displayName, created)
+// 1) Hent ALLE datasett (id, displayName, created) – paging av
 const listQuery = {
   dataSets: {
     resource: 'dataSets',
@@ -28,11 +21,12 @@ const listQuery = {
   },
 }
 
-// (B) Hent data elements for ett dataset-id
-//     /api/dataSets/{id}?fields=dataSetElements[dataElement[displayName,id,created]]
+// 2) Hent data elements for ETT valgt dataset (valgfritt steg 7)
+//    NB: resource skal være en streng; bruk dynamisk `id`-felt.
 const dataElementsQuery = {
   dataSet: {
-    resource: ({ id }) => `dataSets/${id}`,
+    resource: 'dataSets',
+    id: ({ id }) => id,
     params: {
       fields: ['dataSetElements[dataElement[displayName,id,created]]'],
     },
@@ -41,19 +35,21 @@ const dataElementsQuery = {
 
 export default function Datasets() {
   const [selectedId, setSelectedId] = useState(null)
-  const showElements = true // sett til false om du kun vil vise metadata-tabellen
-  const cacheRef = useRef(new Map()) // enkel cache pr. dataset-id
 
-  // Hent alle datasett til venstre-lista
+  // Enkel cache for steg 6 (ikke hent om vi allerede har gjort det)
+  const cacheRef = useRef(new Map())
+
+  // Liste over datasett (venstre meny)
   const { data, loading, error } = useDataQuery(listQuery)
+  const rows = data?.dataSets?.dataSets ?? []
 
-  // Finn valgt dataset-objekt (for metadata-tabell)
+  // Finn valgt dataset-objekt (for metadata-tabell i steg 5)
   const selected = useMemo(() => {
-    if (!data?.dataSets?.dataSets || !selectedId) return null
-    return data.dataSets.dataSets.find((d) => d.id === selectedId) || null
-  }, [data, selectedId])
+    if (!rows.length || !selectedId) return null
+    return rows.find((d) => d.id === selectedId) || null
+  }, [rows, selectedId])
 
-  // Hent data elements for valgt dataset (lazy + variabler)
+  // Detaljer (data elements) for valgt dataset (steg 7)
   const {
     data: details,
     loading: detailsLoading,
@@ -61,44 +57,31 @@ export default function Datasets() {
     refetch,
   } = useDataQuery(dataElementsQuery, {
     variables: { id: selectedId || '' },
-    lazy: true,
+    lazy: true, // ikke kjør før vi ber om det
   })
 
   function onSelect(id) {
     setSelectedId(id)
-    if (showElements && !cacheRef.current.has(id)) {
+    if (!cacheRef.current.has(id)) {
       refetch({ id })
-        .then((res) => {
-          cacheRef.current.set(id, res?.dataSet) // cache hele responsen
-        })
+        .then((res) => cacheRef.current.set(id, res?.dataSet))
         .catch(() => {})
     }
   }
 
-  // Les detaljene fra cache først (om finnes)
   const cachedDetails = selectedId ? cacheRef.current.get(selectedId) : null
   const elementRows =
     cachedDetails?.dataSetElements ||
     details?.dataSet?.dataSetElements ||
     []
 
-  // ---------- Render ----------
   if (error) return <NoticeBox error title="Error">{error.message}</NoticeBox>
-  if (loading) return <CircularLoader />
-
-  const rows = data?.dataSets?.dataSets || []
+  if (loading) return <div style={{ padding: 16 }}><CircularLoader /></div>
 
   return (
-    <div
-      style={{
-        display: 'flex',
-        gap: 16,
-        alignItems: 'flex-start',
-        marginTop: 12,
-      }}
-    >
-      {/* Venstre: liste */}
-      <div style={{ width: 280 }}>
+    <div style={{ display: 'flex', gap: 16 }}>
+      {/* Venstre: liste over datasett (steg 4) */}
+      <aside style={{ width: 320 }}>
         <Menu>
           {rows.map((ds) => (
             <MenuItem
@@ -109,19 +92,20 @@ export default function Datasets() {
             />
           ))}
         </Menu>
-      </div>
+      </aside>
 
-      {/* Høyre: tabell(er) */}
-      <div style={{ flex: 1 }}>
+      {/* Høyre: tabeller (steg 5 og valgfritt 7) */}
+      <section style={{ flex: 1 }}>
         {!selectedId && (
           <NoticeBox title="Select a dataset">
             Choose a dataset from the list.
           </NoticeBox>
         )}
 
-        {selectedId && !showElements && selected && (
+        {/* Steg 5: Vis metadata for valgt dataset */}
+        {selected && (
           <>
-            <h3 style={{ margin: '0 0 8px' }}>{selected.displayName}</h3>
+            <h3 style={{ marginTop: 0 }}>{selected.displayName}</h3>
             <Table>
               <TableHead>
                 <TableRowHead>
@@ -134,21 +118,17 @@ export default function Datasets() {
                 <TableRow>
                   <TableCell>{selected.displayName}</TableCell>
                   <TableCell>{selected.id}</TableCell>
-                  <TableCell>
-                    {new Date(selected.created).toLocaleString()}
-                  </TableCell>
+                  <TableCell>{new Date(selected.created).toLocaleString()}</TableCell>
                 </TableRow>
               </TableBody>
             </Table>
           </>
         )}
 
-        {selectedId && showElements && (
+        {/* (Valgfritt) Steg 7: Vis dataElements i valgt dataset */}
+        {selected && (
           <>
-            <h3 style={{ margin: '0 0 8px' }}>
-              Data elements in dataset
-              {selected ? `: ${selected.displayName}` : ''}
-            </h3>
+            <h4 style={{ marginTop: 24 }}>Data elements in dataset</h4>
 
             {detailsError && (
               <NoticeBox error title="Error">
@@ -188,7 +168,7 @@ export default function Datasets() {
             )}
           </>
         )}
-      </div>
+      </section>
     </div>
   )
 }
