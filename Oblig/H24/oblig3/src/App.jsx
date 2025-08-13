@@ -1,3 +1,4 @@
+//src/App.jsx
 import { useState, Suspense } from 'react'
 import Navigation from './Navigation.jsx'
 import Browse from './Browse.jsx'

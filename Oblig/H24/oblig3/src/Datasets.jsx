@@ -1,5 +1,5 @@
 // src/Datasets.jsx
-import React, { useMemo, useRef, useState } from 'react'
+import { useMemo, useRef, useState } from 'react'
 import { useDataQuery } from '@dhis2/app-runtime'
 import {
   NoticeBox,

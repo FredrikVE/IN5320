@@ -1821,7 +1821,7 @@
     prop-types "^15.7.2"
     react-final-form "^6.5.3"
 
-"@dhis2/ui-icons@10.8.2":
+"@dhis2/ui-icons@^10.8.2", "@dhis2/ui-icons@10.8.2":
   version "10.8.2"
   resolved "https://registry.npmjs.org/@dhis2/ui-icons/-/ui-icons-10.8.2.tgz"
   integrity sha512-5njFzBJfUwL9ELG47xDPtaghihbtmpa8K7MHJxJL7UEmsp1INzJJwDhsZlzinJylxPW9dIbFKPY6kCNFlhCklg==

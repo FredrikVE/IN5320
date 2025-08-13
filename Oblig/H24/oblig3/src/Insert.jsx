@@ -1,86 +1,85 @@
+// src/Insert.jsx
 import {
   ReactFinalForm,
-  SingleSelectFieldFF,
   InputFieldFF,
+  SingleSelectFieldFF,
   Button,
-  composeValidators,
   hasValue,
   number,
+  composeValidators,
   NoticeBox,
-  CircularLoader,
 } from '@dhis2/ui'
 import { useDataMutation } from '@dhis2/app-runtime'
+import { useSettings } from './Settings'
 
-const DATASET_ID = 'aLpVgfXiz0f'
-const ORG_UNIT   = 'KiheEgvUZ0i'
-const PERIOD     = '2020'
-
-// Mutasjon – parametere sendes ved submit
+// Mutasjon: dataSet/period/orgUnit på toppnivå i payload
 const dataMutationQuery = {
   resource: 'dataValueSets',
   type: 'create',
-  dataSet: DATASET_ID,
-  data: ({ value, dataElement, period, orgUnit }) => ({
-    dataValues: [
-      {
-        dataElement,
-        period,
-        orgUnit,
-        value,
-      },
-    ],
+  data: ({ dataSet, period, orgUnit, dataElement, value }) => ({
+    dataSet,
+    period,
+    orgUnit,
+    dataValues: [{ dataElement, value }],
   }),
 }
 
 export default function Insert() {
-  const [mutate, { loading, error }] = useDataMutation(dataMutationQuery)
+  const [{ datasetId, orgUnit, period }] = useSettings()
+  const [mutate, { loading, error, data }] = useDataMutation(dataMutationQuery)
 
   async function onSubmit(formInput) {
     await mutate({
-      value: Number(formInput.value),
+      dataSet: datasetId,
+      period,
+      orgUnit,
       dataElement: formInput.dataElement,
-      period: PERIOD,
-      orgUnit: ORG_UNIT,
+      value: formInput.value,
     })
   }
 
   return (
-    <div style={{ padding: 16, maxWidth: 560 }}>
-      <h3 style={{ marginTop: 0 }}>Insert</h3>
-
+    <div style={{ padding: 16 }}>
       {error && <NoticeBox error title="Error">{error.message}</NoticeBox>}
-      {loading && <CircularLoader />}
+      {data && <NoticeBox title="Saved">Value saved successfully.</NoticeBox>}
 
-      <ReactFinalForm.Form onSubmit={onSubmit}>
-        {({ handleSubmit }) => (
-          <form onSubmit={handleSubmit} autoComplete="off">
-            <ReactFinalForm.Field
-              name="dataElement"
-              label="Select data element"
-              component={SingleSelectFieldFF}
-              initialValue="WUg3MYWQ7pt"
-              options={[
-                { label: 'Total Population', value: 'WUg3MYWQ7pt' },
-                { label: 'Population of women of child bearing age (WRA)', value: 'vg6pdjObxsm' },
-                { label: 'Total population < 5 years', value: 'DTtCy7Nx5jH' },
-                { label: 'Expected pregnancies', value: 'h0xKKjijTdI' },
-                { label: 'Total population < 1 year', value: 'DTVRnCGamkV' },
-              ]}
-            />
+      {/* Begrens bredden på skjemaet */}
+      <div style={{ maxWidth: 520, width: '100%' }}>
+        <ReactFinalForm.Form onSubmit={onSubmit}>
+          {({ handleSubmit }) => (
+            <form onSubmit={handleSubmit} autoComplete="off" style={{ display: 'grid', gap: 12 }}>
+              <ReactFinalForm.Field
+                component={SingleSelectFieldFF}
+                name="dataElement"
+                label="Select field"
+                initialValue="WUg3MYWQ7pt"
+                dense
+                options={[
+                  { label: 'Total Population', value: 'WUg3MYWQ7pt' },
+                  { label: 'Population of women of child bearing age (WRA)', value: 'vg6pdjObxsm' },
+                  { label: 'Total population < 5 years', value: 'DTtCy7Nx5jH' },
+                  { label: 'Expected pregnancies', value: 'h0xKKjijTdI' },
+                  { label: 'Total population < 1 year', value: 'DTVRnCGamkV' },
+                ]}
+              />
 
-            <ReactFinalForm.Field
-              name="value"
-              label="Value"
-              component={InputFieldFF}
-              validate={composeValidators(hasValue, number)}
-            />
+              <ReactFinalForm.Field
+                name="value"
+                label="Value"
+                component={InputFieldFF}
+                validate={composeValidators(hasValue, number)}
+                dense
+              />
 
-            <div style={{ marginTop: 12 }}>
-              <Button type="submit" primary>Submit</Button>
-            </div>
-          </form>
-        )}
-      </ReactFinalForm.Form>
+              <div>
+                <Button type="submit" primary disabled={loading}>
+                  {loading ? 'Saving…' : 'Submit'}
+                </Button>
+              </div>
+            </form>
+          )}
+        </ReactFinalForm.Form>
+      </div>
     </div>
   )
 }
