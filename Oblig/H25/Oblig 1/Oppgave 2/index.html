@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="no">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Valutaliste + Befolkning – Oblig 1 (JS)</title>
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <main class="wrap">
+    <h1>Currency</h1>
+
+    <form id="add-form" class="row" autocomplete="off">
+      <input id="currency-input" type="text" placeholder="Currency" />
+      <button type="submit" class="btn">Add</button>
+    </form>
+
+    <div class="row">
+      <input id="search-input" type="text" placeholder="Search" />
+    </div>
+
+    <ul id="currency-list" class="list" aria-live="polite"></ul>
+  </main>
+
+  <main class="wrap">
+    <h1>Country</h1>
+
+    <form id="country-form" class="row" autocomplete="off">
+      <input id="country-input" type="text" placeholder="Country" />
+      <button type="submit" class="btn">Add</button>
+    </form>
+
+    <div class="row">
+      <input id="country-search" type="text" placeholder="Search country" />
+      <span class="muted tip">Tallene tikker per sekund når rate er tilgjengelig.</span>
+    </div>
+
+    <ul id="country-list" class="list" aria-live="polite"></ul>
+  </main>
+
+  <script type="module" src="app.js"></script>
+</body>
+</html>
