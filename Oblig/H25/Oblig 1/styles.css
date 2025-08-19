@@ -1,164 +1,168 @@
-/* ===== Base / Reset ===== */
-*,
-*::before,
-*::after { box-sizing: border-box; }
+/* ===== Reset / Base ===== */ /* Seksjonsoverskrift */
+*, /* Velger alle elementer */
+*::before, /* …og alle ::before-pseudo-elementer */
+*::after { box-sizing: border-box; } /* …og ::after – bruker border-box-modell for alt */
 
-html:focus-within { scroll-behavior: smooth; }
+/* Rotelement for CSS-variabler (custom properties) */
+:root{ /* Starter blokken for variabler */
+  --slate-700:#334155; /* Mørk blågrå tekstfarge */
+  --slate-600:#475569; /* Litt lysere blågrå */
+  --slate-500:#64748b; /* Enda lysere blågrå (muted) */
+  --slate-300:#cbd5e1; /* Lys gråblå – brukes til streker/dekor */
 
-body {
-  margin: 0;
-  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
-  line-height: 1.55;
-  color: #0f172a;            /* slate-900 */
-  background: #f1f5f9;       /* slate-100 */
+  --card:#ffffff; /* Hvit bakgrunn for kortet */
+  --bgA:#586f83; /* blågrå toner som i bilde 2 */ /* Første bakgrunnsfarge */
+  --bgB:#6f899d; /* Andre bakgrunnsfarge for rutene */
+
+  --radius-card:40px; /* Store avrundede hjørner på kortet */
+  --radius-img-big:72px; /* Stor radius på to av bildehjørnene */
+  --shadow:0 28px 70px rgba(2,6,23,.18); /* Dyp skygge under kortet */
+  --maxw:980px; /* Maksbredde på kortet */
+} /* Slutter :root-blokk */
+
+html,body{height:100%;} /* Sørger for at høyden dekker hele vinduet */
+body{ /* Starter body-stilene */
+  margin:0; /* Fjerner standard margin rundt body */
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial; /* Skrifttype-stabel */
+  color:var(--slate-700); /* Standard tekstfarge */
+  line-height:1.55; /* Behagelig linjeavstand */
+
+  /* store blågrå ruter som bakgrunn */ /* Beskrivende kommentar */
+  background:
+    linear-gradient(0deg, var(--bgA) 50%, var(--bgB) 50%) 0 0/100% 52% no-repeat, /* Vannrett todelt felt øverst (52% høyde) */
+    linear-gradient(90deg, var(--bgA) 50%, var(--bgB) 50%) 0 100%/100% 100% no-repeat; /* Loddrett todelt felt i full høyde bak */
+  background-color:var(--bgA); /* Fallback-bakgrunnsfarge */
+} /* Slutt body */
+
+/* ===== Kortet ===== */ /* Seksjonsoverskrift */
+.resume-wrapper{ /* Ytre wrapper som sentrerer kortet */
+  min-height:100%; /* Minste høyde = full viewport */
+  display:grid; /* Bruker CSS Grid for enkel sentrering */
+  place-items:center; /* Sentrerer innhold horisontalt og vertikalt */
+  padding:40px 18px; /* Luft rundt kortet */
 }
 
-/* Color tokens (tweak freely) */
-:root{
-  --bg: #f8fafc;             /* slate-50 */
-  --panel: #ffffff;
-  --ink: #0f172a;
-  --muted: #64748b;          /* slate-500 */
-  --accent: #3b82f6;         /* blue-500 */
-  --accent-ink: #1e3a8a;
-  --ring: rgba(59,130,246,.25);
-  --radius: 16px;
-  --shadow: 0 10px 30px rgba(2, 6, 23, .08);
-  --maxw: 1100px;
+.resume-card{ /* Selve hvite kortet */
+  width:min(var(--maxw), 94vw); /* Bruk maks 980px eller 94% av viewporten */
+  background:var(--card); /* Hvit bakgrunn */
+  border-radius:var(--radius-card); /* Runde hjørner */
+  box-shadow:var(--shadow); /* Skygge */
+  padding:44px 40px 36px; /* Innvendig luft (topp/høyre/bunn) */
+  position:relative; /* Trengs for ::after-dekorasjonens absolutte posisjon */
 }
 
-/* Containers */
-.container {
-  width: min(var(--maxw), 92vw);
-  margin-inline: auto;
+/* Dekorative streker nederst, som i mal-bildet */ /* Seksjonsbeskrivelse */
+.resume-card::after{ /* Pseudo-element for bunn-dekor */
+  content:""; /* Må settes for at pseudo-elementet skal vises */
+  position:absolute; /* Plasseres relativt til kortet */
+  left:50%; /* Start midt på */
+  bottom:18px; /* 18px over kortets bunn */
+  translate:-50% 0; /* Flytt 50% tilbake for å sentrere horisontalt */
+  width:78%; /* Bredde på dekorstreken */
+  height:6px; /* Høyde/tykkelse på dekorstreken */
+  border-radius:999px; /* Helt avrundede ender */
+  background:
+    linear-gradient(90deg, transparent 0 8%, var(--slate-300) 8% 32%, transparent 32% 68%, var(--slate-300) 68% 92%, transparent 92% 100%); /* Segmentert lys gråblå strek */
+  opacity:.95; /* Litt gjennomsiktig for mykere uttrykk */
 }
 
-/* Typography */
-h1 { font-size: clamp(1.8rem, 1.2rem + 2vw, 3rem); margin: 0 0 .25rem; }
-h2 { font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); margin: 0 0 .75rem; }
-h3 { font-size: 1.05rem; margin: .25rem 0; }
-p  { margin: 0 0 .75rem; }
-.muted { color: var(--muted); }
-
-/* ===== Header ===== */
-.site-header {
-  background: linear-gradient(135deg, #0b2b4a, #2b4f68);
-  color: white;
-}
-.header-inner {
-  display: grid;
-  grid-template-columns: 1fr auto;
-  gap: 1rem;
-  align-items: center;
-  padding: 1rem 0;
-}
-.brand { text-decoration: none; color: inherit; line-height: 1.15; }
-.brand-name { display: block; font-weight: 700; letter-spacing: .3px; }
-.brand-role { display: block; font-size: .95rem; opacity: .9; }
-
-.nav { display: flex; gap: 1rem; list-style: none; margin: 0; padding: 0; }
-.nav a {
-  color: white;
-  text-decoration: none;
-  padding: .5rem .75rem;
-  border-radius: 999px;
-}
-.nav a:hover,
-.nav a:focus { background: rgba(255,255,255,.12); outline: none; }
-
-/* ===== Intro / Hero ===== */
-.intro {
-  display: grid;
-  grid-template-columns: 1.4fr .9fr;
-  gap: 2rem;
-  align-items: center;
-  background: var(--bg);
-  padding: 2rem 0 1rem;
-}
-.intro-text .tagline { color: var(--muted); margin-bottom: .35rem; }
-.intro-blurb { max-width: 55ch; }
-
-.intro-photo {
-  justify-self: end;
-  width: min(320px, 40vw);
-  aspect-ratio: 1 / 1;
-  margin: 0;
-  background: #e2e8f0;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--shadow);
-}
-.intro-photo img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  display: block;
+/* ===== Topp: navn + portrett ===== */ /* Seksjonsoverskrift */
+.top{ /* Rad med navn til venstre og bilde til høyre */
+  display:grid; /* Grid-layout */
+  grid-template-columns: 1.15fr .9fr; /* To kolonner med forhold 1.15 : 0.9 */
+  gap:28px; /* Avstand mellom kolonnene */
+  align-items:center; /* Vertikalt sentrer innhold i raden */
+  margin-bottom:10px; /* Liten bunnmargin før neste seksjon */
 }
 
-/* ===== Panels / Cards ===== */
-.panel {
-  background: var(--panel);
-  padding: 1.25rem;
-  border-radius: var(--radius);
-  box-shadow: var(--shadow);
-  margin-block: 1rem;
+.name{ /* Stilen til navnet */
+  font-size: clamp(42px, 6vw, 64px); /* Responsiv skriftstørrelse */
+  line-height:.95; /* Tettere linjehøyde for stor tittel */
+  margin:0 0 8px 0; /* Kun 8px margin under */
+  letter-spacing:.2px; /* Litt økt bokstavmellomrom */
+  color:var(--slate-700); /* Mørk blågrå farge */
+}
+.role{ /* Undertittel (rolle) */
+  margin:0; /* Fjerner standard marger */
+  font-size:clamp(18px, 2.5vw, 24px); /* Responsiv størrelse */
+  color:var(--slate-500); /* Lysere blågrå */
+  font-weight:600; /* Halvfet */
+  font-style: italic; /* matcher stilen i bildet */ /* Kursiv som i forbildet */
 }
 
-.columns {
-  display: grid;
-  grid-template-columns: 2fr 1.2fr;
-  gap: 1rem;
+.portrait{ /* Ramme rundt portrett-bildet */
+  justify-self:end; /* Skyv bildet helt til høyre i grid-kolonnen */
+  margin:0; /* Ingen ekstra marg */
+  width:min(360px, 40vw); /* Maks 360px eller 40% av viewportbredden */
+  aspect-ratio:1/1; /* Gjør rammen kvadratisk */
+  border-radius: 22px var(--radius-img-big) 22px var(--radius-img-big); /* To store diagonale hjørner */
+  overflow:hidden; /* Klipp bildet til avrundede hjørner */
+  background:#e5e7eb; /* Lys grå fallback-bakgrunn */
+}
+.portrait img{ /* Selve <img> inni portrett-rammen */
+  width:100%; height:100%; /* Fyll rammen helt */
+  object-fit:cover; display:block; /* Beskjær for å dekke, og fjern inline-gap */
 }
 
-/* Subpanels inside the right column */
-.subpanel + .subpanel { margin-top: 1rem; }
-
-.item + .item { margin-top: 1rem; }
-
-/* Project cards grid – auto fits with min width (mobile-first) */
-.cards-grid {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1rem;
-}
-.card {
-  background: var(--panel);
-  border: 1px solid #e2e8f0;
-  border-radius: 12px;
-  padding: 1rem;
-}
-.card-title { margin-top: 0; }
-
-/* Bulleted lists with nicer spacing */
-ul { padding-left: 1.2rem; }
-ul.bullets { list-style: disc; }
-ul li { margin: .35rem 0; }
-
-/* Contact */
-.contact {
-  list-style: none;
-  padding: 0;
-}
-.contact li + li { margin-top: .35rem; }
-a { color: var(--accent); }
-a:hover { color: var(--accent-ink); }
-
-/* ===== Footer ===== */
-.site-footer { padding: 2rem 0 3rem; color: var(--muted); text-align: center; }
-
-/* ===== Responsiveness ===== */
-@media (max-width: 900px) {
-  .intro { grid-template-columns: 1fr; }
-  .intro-photo { justify-self: start; width: min(280px, 70vw); }
-  .columns { grid-template-columns: 1fr; }
-  .nav { flex-wrap: wrap; justify-content: flex-end; }
+/* ===== Innhold: to kolonner ===== */ /* Seksjonsoverskrift */
+.two-col{ /* Grid for resten av innholdet */
+  display:grid; /* Aktiver grid */
+  grid-template-columns: 1fr 1fr; /* To like brede kolonner */
+  gap:38px; /* Avstand mellom kolonnene */
+  margin-top:16px; /* Litt luft over */
 }
 
-@media (max-width: 520px) {
-  .header-inner { grid-template-columns: 1fr; }
-  .brand-role { margin-bottom: .25rem; }
-  .nav { justify-content: flex-start; }
+.section + .section{ margin-top:22px; } /* Ekstra avstand mellom seksjoner i samme kolonne */
+
+.section-title{ /* Overskrifter som “WORK EXPERIENCE” */
+  display:flex; align-items:center; gap:10px; /* Horisontal layout med ikon + tekst */
+  font-size:14px; /* Liten overskrift */
+  letter-spacing:.14em; /* Stor sporing for “caps”-look */
+  text-transform:uppercase; /* Gjør teksten til versaler */
+  margin:0 0 14px 0; /* 14px under */
+  color:var(--slate-600); /* Middels blågrå farge */
+}
+.section-title .icon{ font-size:20px; } /* Litt større ikon foran tittel */
+
+.entry h3{ /* Tittel på hvert punkt (stilling/grad) */
+  margin:.25rem 0; /* Små marger over/under */
+  font-size:16px; /* Liten overskrift */
+  color:var(--slate-700); /* Mørk blågrå */
+}
+.muted{ color:var(--slate-500); margin:.15rem 0; } /* Dempet tekst (firma/år) */
+
+.bullets{ 
+  padding-left:1.1rem;  /* Innrykk til punktliste */
+  margin:0;  /* Fjern standard margin */
+}
+
+.bullets li{ 
+  margin:.35rem 0; /* Litt vertikal luft mellom punkter */
+}
+
+.contact{
+  list-style:none;  /* Fjern standard bullets */
+  padding:0;  /* Fjern standard innrykk */
+  margin:0;  /* Fjern standard margin */
+}
+
+.contact li{ 
+  margin:.35rem 0;  /* Avstand mellom kontaktlinjer */
+}
+
+a{ 
+  color:#315f86; text-decoration:none;  /* Blå lenker uten understrek som standard */
+}
+
+a:hover{ 
+  text-decoration:underline; } /* Understrek ved hover for tydelig interaksjon */
+
+/* ===== Responsivt ===== */ /* Seksjonsoverskrift for media queries */
+@media (max-width: 900px){ /* Gjelder skjermer ≤ 900px bredde */
+  .top{ grid-template-columns: 1fr; } /* Legg navn og bilde under hverandre */
+  .portrait{ justify-self:start; width:min(300px, 72vw); } /* Flytt bildet til venstre og gjør det smalere */
+}
+@media (max-width: 720px){ /* Gjelder skjermer ≤ 720px bredde */
+  .resume-card{ padding:32px 22px 26px; } /* Strammere padding på små skjermer */
+  .two-col{ grid-template-columns: 1fr; } /* Kollaps til én kolonne */
 }

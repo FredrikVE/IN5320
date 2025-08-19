@@ -3,170 +3,108 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Your Name — Portfolio</title>
+    <title>Fredrik Vogth - Eriksen CV</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- Header -->
-    <header class="site-header">
-      <div class="container header-inner">
-        <a class="brand" href="#top">
-          <span class="brand-name">Your Name</span>
-          <span class="brand-role">Your Title</span>
-        </a>
+    <!-- Hele layouten ligger inne i kortet under -->
+    <main class="resume-wrapper">
+      <article class="resume-card">
+        <!-- Topp: navn + tittel + portrett -->
+        <header class="top">
 
-        <nav id="primary-nav" aria-label="Primary">
-          <ul class="nav">
-            <li><a href="#projects">Projects</a></li>
-            <li><a href="#experience">Experience</a></li>
-            <li><a href="#education">Education</a></li>
-            <li><a href="#contact">Contact</a></li>
-          </ul>
-        </nav>
-      </div>
-    </header>
+          <!-- Overskrift med navn, rolle og bilde-->
+          <div class="nameblock">
+            <h1 class="name">Fredrik<br>Vogth - Eriksen</h1>
+            <p class="role">Frontend utvikler Yr.no</p>
+          </div>
+          
 
-    <!-- Intro / Hero -->
-    <section class="intro container" id="top">
-      <div class="intro-text">
-        <h1>Your Name</h1>
-        <p class="tagline">Your Title • City, Country</p>
-        <p class="intro-blurb">
-          Short one-sentence summary about you. Keep it focused on the value
-          you bring (e.g., “Front-end developer who loves clean UI and
-          accessible UX.”).
-        </p>
-      </div>
+          <!-- Portrettbilde -->
+          <figure class="portrait">
+            <img src="assets/me.png" alt="Portrait of Your Name" />
+          </figure>
 
-      <figure class="intro-photo">
-        <!-- Replace with your own image path -->
-        <img src="assets/me.png" alt="Portrait of Your Name" />
-      </figure>
-    </section>
+        </header>
 
-    <main class="container">
-      <!-- Projects (responsive grid auto-fits to screen width) -->
-      <section id="projects" class="panel">
-        <h2>Projects</h2>
+        <!-- Innhold: to kolonner lik bilde 2 -->
+        <section class="content two-col">
 
-        <ul class="cards-grid">
-          <li class="card">
-            <h3 class="card-title">Project One</h3>
-            <p class="muted">Role • 2024</p>
-            <p>
-              One-line impact statement. What changed for users or the
-              business? Link to <a href="#" target="_blank" rel="noopener">demo</a>
-              or <a href="#" target="_blank" rel="noopener">repo</a>.
-            </p>
-          </li>
+          <!-- Venstre kolonne -->
+          <div class="col">
+            <section class="section">
+              <h2 class="section-title"><span class="icon">💼</span> WORK EXPERIENCE</h2>
 
-          <li class="card">
-            <h3 class="card-title">Project Two</h3>
-            <p class="muted">Role • 2023</p>
-            <p>
-              Explain the problem, your contribution, and measurable results.
-            </p>
-          </li>
+              <article class="entry">
+                <h3>Frontend-utvikler Yr.no</h3>
+                <p class="muted"><em>NRK</em> 2025 - nåværende</p>
+                <p>Ansvarlig for kart</p>
+              </article>
 
-          <li class="card">
-            <h3 class="card-title">Project Three</h3>
-            <p class="muted">Role • 2023</p>
-            <p>
-              Another brief description. Keep all cards roughly similar length.
-            </p>
-          </li>
+              <article class="entry">
+                <h3>Prosjektkoordinator</h3>
+                <p class="muted"><em>Simula learning</em> 2022 - 2023</p>
+                <p>Ansvarlig for utvikling av kurs, salg av kurs til bedriftskunder og koordinering av kursgjennomføring</p>
+              </article>
+            </section>
 
-          <li class="card">
-            <h3 class="card-title">Project Four</h3>
-            <p class="muted">Role • 2022</p>
-            <p>
-              Optional fourth card to show the grid reflow on wider screens.
-            </p>
-          </li>
-        </ul>
-      </section>
+            <section class="section">
+              <h2 class="section-title"><span class="icon">🎓</span> LAST EDUCATION</h2>
 
-      <!-- Two-column content (collapses to one column on small screens) -->
-      <div class="columns">
-        <section id="experience" class="panel">
-          <h2>Work Experience</h2>
+              <article class="entry">
+                <h3>Informatikk: Digital økonomi og ledelse (Master)</h3>
+                <p class="muted">Univesitetet i Oslo (UiO)</p>
+                <p class="muted">2025 – pågående</p>
+              </article>
 
-          <article class="item">
-            <h3>Your Position</h3>
-            <p class="muted">Your Company • 2022–2025</p>
-            <ul>
-              <li>Lead feature X from concept to launch (impact metric).</li>
-              <li>Collaborated with Y team to improve Z by NN%.</li>
-              <li>Stack/tools used: A, B, C.</li>
+              <article class="entry">
+                <h3>Informatikk: Digital økonomi og ledelse (Bachelor UiO)</h3>
+                <p class="muted">Univesitetet i Oslo (UiO)</p>
+                <p class="muted">2020 - 2025</p>
+              </article>
+            </section>
+          </div>
+
+          <!-- Høyre -->
+          <div class="col">
+
+            <section class="section">
+              <h2 class="section-title"><span class="icon">⚙️</span> SKILLS</h2>
+              <ul class="bullets">
+                <li>Kan kombinere tekniske ferdigheter med forettningsforståelse</li>
+                <li>Teknisk kompetanse innen programmering, maskinlæring og databaser</li>
+                <li>Smidig utviklingsmetodikk</li>
+                <li>God kommunikasjons- og formidlingsevne </li>
+                <li>Forståelse for mikroøkonomi, makroøkonomi, strategi og markedsføring</li>
+              </ul>
+            </section>
+
+           <section class="section">
+            <h2 class="section-title"><span class="icon">🛠️</span> SOFTWARE</h2>
+            <ul class="bullets">
+                <li><strong>Programmering:</strong> Python, Java, Kotlin, TypeScript, C#, React Native</li>
+                <li><strong>Databaser:</strong> PostgreSQL</li>
+                <li><strong>Software testing:</strong> Playwright, SonarQube</li>
+                <li><strong>Dataformater:</strong> JSON, XML</li>
+                <li><strong>Webutvikling:</strong> HTML, CSS, React (grunnleggende)</li>
+                <li><strong>Analyse &amp; visualisering:</strong> Matematikk, Databricks, Matplotlib, Power BI</li>
+                <li><strong>Førerkort:</strong> Klasse B</li>
             </ul>
-          </article>
+            </section>
 
-          <article class="item">
-            <h3>Previous Position</h3>
-            <p class="muted">Another Company • 2019–2022</p>
-            <ul>
-              <li>Owned module X; reduced load time from 1.2s to 600ms.</li>
-              <li>Mentored 2 juniors; introduced code review checklist.</li>
-            </ul>
-          </article>
+
+            <section class="section">
+              <h2 class="section-title"><span class="icon">👤</span> CONTACT DETAILS</h2>
+              <ul class="contact">
+                <li>✉️ <a href="mailto:fredrikvogth@hotmail.com">fredrikvogth@hotmail.com</a></li>
+                <li>📞 <a href="tel:+4790787923">90787923</a></li>
+                <li>📍 Steinspranget 20, Oslo</li>
+              </ul>
+            </section>
+          </div>
         </section>
-
-        <aside class="panel">
-          <section id="skills" class="subpanel">
-            <h2>Skills</h2>
-            <ul class="bullets">
-              <li>Accessible, responsive UI</li>
-              <li>Semantic HTML, modern CSS</li>
-              <li>JavaScript (ES6+)</li>
-              <li>Version control (Git)</li>
-              <li>Soft skills: comms, teamwork</li>
-            </ul>
-          </section>
-
-          <section id="software" class="subpanel">
-            <h2>Software</h2>
-            <ul class="bullets">
-              <li>VS Code</li>
-              <li>Figma</li>
-              <li>Chrome DevTools</li>
-              <li>Photoshop / Affinity</li>
-            </ul>
-          </section>
-
-          <section id="education" class="subpanel">
-            <h2>Education</h2>
-            <article class="item">
-              <h3>Your Degree / Major</h3>
-              <p class="muted">University Name • 2019–2022</p>
-            </article>
-            <article class="item">
-              <h3>Earlier Degree / Course</h3>
-              <p class="muted">Institution • 2016–2019</p>
-            </article>
-          </section>
-
-          <section id="contact" class="subpanel">
-            <h2>Contact</h2>
-            <ul class="contact">
-              <li><a href="mailto:hello@example.com">hello@example.com</a></li>
-              <li><a href="tel:+11234567890">+1 123-456-7890</a></li>
-              <li>City, Country</li>
-              <li><a href="#" target="_blank" rel="noopener">linkedin.com/in/yourname</a></li>
-              <li><a href="#" target="_blank" rel="noopener">github.com/yourname</a></li>
-            </ul>
-          </section>
-        </aside>
-      </div>
+      </article>
     </main>
-
-    <footer class="site-footer">
-      <div class="container">
-        <small>© <span id="year">2025</span> Your Name</small>
-      </div>
-    </footer>
-
-    <!-- Tiny, optional JS-free year updater fallback (not required). -->
-    <noscript></noscript>
   </body>
 </html>
