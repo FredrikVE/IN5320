@@ -1,22 +1,172 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Your Name — Portfolio</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
 
-    <header>
-        <!-- her skal du ha en header -->
+  <body>
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <span class="brand-name">Your Name</span>
+          <span class="brand-role">Your Title</span>
+        </a>
+
+        <nav id="primary-nav" aria-label="Primary">
+          <ul class="nav">
+            <li><a href="#projects">Projects</a></li>
+            <li><a href="#experience">Experience</a></li>
+            <li><a href="#education">Education</a></li>
+            <li><a href="#contact">Contact</a></li>
+          </ul>
+        </nav>
+      </div>
     </header>
 
-    <footer>
-        <!-- her skal du ha en footer -->
+    <!-- Intro / Hero -->
+    <section class="intro container" id="top">
+      <div class="intro-text">
+        <h1>Your Name</h1>
+        <p class="tagline">Your Title • City, Country</p>
+        <p class="intro-blurb">
+          Short one-sentence summary about you. Keep it focused on the value
+          you bring (e.g., “Front-end developer who loves clean UI and
+          accessible UX.”).
+        </p>
+      </div>
+
+      <figure class="intro-photo">
+        <!-- Replace with your own image path -->
+        <img src="assets/me.png" alt="Portrait of Your Name" />
+      </figure>
+    </section>
+
+    <main class="container">
+      <!-- Projects (responsive grid auto-fits to screen width) -->
+      <section id="projects" class="panel">
+        <h2>Projects</h2>
+
+        <ul class="cards-grid">
+          <li class="card">
+            <h3 class="card-title">Project One</h3>
+            <p class="muted">Role • 2024</p>
+            <p>
+              One-line impact statement. What changed for users or the
+              business? Link to <a href="#" target="_blank" rel="noopener">demo</a>
+              or <a href="#" target="_blank" rel="noopener">repo</a>.
+            </p>
+          </li>
+
+          <li class="card">
+            <h3 class="card-title">Project Two</h3>
+            <p class="muted">Role • 2023</p>
+            <p>
+              Explain the problem, your contribution, and measurable results.
+            </p>
+          </li>
+
+          <li class="card">
+            <h3 class="card-title">Project Three</h3>
+            <p class="muted">Role • 2023</p>
+            <p>
+              Another brief description. Keep all cards roughly similar length.
+            </p>
+          </li>
+
+          <li class="card">
+            <h3 class="card-title">Project Four</h3>
+            <p class="muted">Role • 2022</p>
+            <p>
+              Optional fourth card to show the grid reflow on wider screens.
+            </p>
+          </li>
+        </ul>
+      </section>
+
+      <!-- Two-column content (collapses to one column on small screens) -->
+      <div class="columns">
+        <section id="experience" class="panel">
+          <h2>Work Experience</h2>
+
+          <article class="item">
+            <h3>Your Position</h3>
+            <p class="muted">Your Company • 2022–2025</p>
+            <ul>
+              <li>Lead feature X from concept to launch (impact metric).</li>
+              <li>Collaborated with Y team to improve Z by NN%.</li>
+              <li>Stack/tools used: A, B, C.</li>
+            </ul>
+          </article>
+
+          <article class="item">
+            <h3>Previous Position</h3>
+            <p class="muted">Another Company • 2019–2022</p>
+            <ul>
+              <li>Owned module X; reduced load time from 1.2s to 600ms.</li>
+              <li>Mentored 2 juniors; introduced code review checklist.</li>
+            </ul>
+          </article>
+        </section>
+
+        <aside class="panel">
+          <section id="skills" class="subpanel">
+            <h2>Skills</h2>
+            <ul class="bullets">
+              <li>Accessible, responsive UI</li>
+              <li>Semantic HTML, modern CSS</li>
+              <li>JavaScript (ES6+)</li>
+              <li>Version control (Git)</li>
+              <li>Soft skills: comms, teamwork</li>
+            </ul>
+          </section>
+
+          <section id="software" class="subpanel">
+            <h2>Software</h2>
+            <ul class="bullets">
+              <li>VS Code</li>
+              <li>Figma</li>
+              <li>Chrome DevTools</li>
+              <li>Photoshop / Affinity</li>
+            </ul>
+          </section>
+
+          <section id="education" class="subpanel">
+            <h2>Education</h2>
+            <article class="item">
+              <h3>Your Degree / Major</h3>
+              <p class="muted">University Name • 2019–2022</p>
+            </article>
+            <article class="item">
+              <h3>Earlier Degree / Course</h3>
+              <p class="muted">Institution • 2016–2019</p>
+            </article>
+          </section>
+
+          <section id="contact" class="subpanel">
+            <h2>Contact</h2>
+            <ul class="contact">
+              <li><a href="mailto:hello@example.com">hello@example.com</a></li>
+              <li><a href="tel:+11234567890">+1 123-456-7890</a></li>
+              <li>City, Country</li>
+              <li><a href="#" target="_blank" rel="noopener">linkedin.com/in/yourname</a></li>
+              <li><a href="#" target="_blank" rel="noopener">github.com/yourname</a></li>
+            </ul>
+          </section>
+        </aside>
+      </div>
+    </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year">2025</span> Your Name</small>
+      </div>
     </footer>
-    
-</body>
+
+    <!-- Tiny, optional JS-free year updater fallback (not required). -->
+    <noscript></noscript>
+  </body>
 </html>
-
-
-<!-- https://dhis2-app-course.ifi.uio.no/learn/mandatory-exercises/individual/one/part-one/ -->
