@@ -1,110 +1,192 @@
 <!doctype html>
-<html lang="en">
+<html lang="no">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Fredrik Vogth - Eriksen CV</title>
+    <title>Fredrik Vogth-Eriksen — CV</title>
     <link rel="stylesheet" href="styles.css" />
   </head>
 
   <body>
-    <!-- Hele layouten ligger inne i kortet under -->
+    <!-- Header -->
+    <header class="site-header">
+      <div class="container header-inner">
+        <a class="brand" href="#top">
+          <img class="avatar" src="assets/me.png" alt="Portrett av Fredrik Vogth-Eriksen" />
+          <div>
+            <span class="brand-name">Fredrik Vogth-Eriksen</span>
+            <span class="brand-role">Frontend-utvikler</span>
+          </div>
+        </a>
+
+        <nav id="primary-nav" aria-label="Hovedmeny">
+          <ul class="nav">
+            <li><a href="#skills">Kompetanse</a></li>
+            <li><a href="#projects">Prosjekter</a></li>
+            <li><a href="#courses">Kurs</a></li>
+            <li><a href="#experience">Erfaring</a></li>
+            <li><a href="#education">Utdanning</a></li>
+            <li><a href="#contact">Kontakt</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+
+    <!-- Hele innholdet ligger i et stort kort -->
     <main class="resume-wrapper">
-      <article class="resume-card">
-        <!-- Topp: navn + tittel + portrett -->
-        <header class="top">
-
-          <!-- Overskrift med navn, rolle og bilde-->
-          <div class="nameblock">
-            <h1 class="name">Fredrik<br>Vogth - Eriksen</h1>
-            <p class="role">Frontend utvikler Yr.no</p>
+      <article class="resume-card" id="top">
+        <!-- Topp: navn + portrett -->
+        <section class="top">
+          <div class="top-left">
+            <h1 class="name">Fredrik Vogth-Eriksen</h1>
+            <p class="tagline">Masterstudent UiO</p>
           </div>
-          
 
-          <!-- Portrettbilde -->
           <figure class="portrait">
-            <img src="assets/me.png" alt="Portrait of Your Name" />
+            <img src="assets/me.png" alt="Portrett av Fredrik Vogth-Eriksen" />
           </figure>
+        </section>
 
-        </header>
+        <!-- Nøkkelkompetanse -->
+        <section id="skills" class="panel">
+          <h2>Nøkkelkompetanse</h2>
+          <ul class="bullets two-col">
+            <li>Kombinerer tekniske ferdigheter med forretningsforståelse</li>
+            <li>Kompetanse innen programmering, maskinlæring og databaser</li>
+            <li>Smidig utviklingsmetodikk (Scrum, Kanban)</li>
+            <li>Gode kommunikasjons- og formidlingsevner</li>
+            <li>Forståelse for mikroøkonomi, makroøkonomi, strategi og markedsføring</li>
+          </ul>
+        </section>
 
-        <!-- Innhold: to kolonner lik bilde 2 -->
-        <section class="content two-col">
+        <!-- Prosjekter -->
+        <section id="projects" class="panel">
+          <h2>Prosjekter</h2>
+          <ul class="cards-grid">
+            <li class="card">
+              <h3 class="card-title">Værmeldings-app</h3>
+              <p class="muted">2025</p>
+              <p>React Native, MapLibre og OpenCage Geocoder. Læringsprosjekt for mobilkart.</p>
+            </li>
+            <li class="card">
+              <h3 class="card-title">HavSus</h3>
+              <p class="muted">2024</p>
+              <p>Android-app i Kotlin/Jetpack Compose med Gradle og Mapbox for havaktivitet.</p>
+            </li>
+          </ul>
+        </section>
 
-          <!-- Venstre kolonne -->
-          <div class="col">
-            <section class="section">
-              <h2 class="section-title"><span class="icon">💼</span> WORK EXPERIENCE</h2>
+        <!-- Kurs & sertifisering -->
+        <section id="courses" class="panel">
+          <h2>Kurs &amp; sertifisering</h2>
+          <ul class="cards-grid">
+            <li class="card">
+              <h3 class="card-title">Databricks – Get Started with SQL Analytics &amp; BI</h3>
+              <p class="muted">Pågående</p>
+              <p>Grunnleggende kurs med fokus på SQL-analyse, BI og dataanalyseprosesser.</p>
+            </li>
+            <li class="card">
+              <h3 class="card-title">Microsoft AZ-900</h3>
+              <p class="muted">Planlagt • Høst 2025</p>
+              <p>Microsoft Certified: Azure Fundamentals.</p>
+            </li>
+            <li class="card">
+              <h3 class="card-title">ISTQB CTFL</h3>
+              <p class="muted">Planlagt • Høst 2025</p>
+              <p>Certified Tester – Foundation Level.</p>
+            </li>
+          </ul>
+        </section>
 
-              <article class="entry">
-                <h3>Frontend-utvikler Yr.no</h3>
-                <p class="muted"><em>NRK</em> 2025 - nåværende</p>
-                <p>Ansvarlig for kart</p>
-              </article>
-
-              <article class="entry">
-                <h3>Prosjektkoordinator</h3>
-                <p class="muted"><em>Simula learning</em> 2022 - 2023</p>
-                <p>Ansvarlig for utvikling av kurs, salg av kurs til bedriftskunder og koordinering av kursgjennomføring</p>
-              </article>
-            </section>
-
-            <section class="section">
-              <h2 class="section-title"><span class="icon">🎓</span> LAST EDUCATION</h2>
-
-              <article class="entry">
-                <h3>Informatikk: Digital økonomi og ledelse (Master)</h3>
-                <p class="muted">Univesitetet i Oslo (UiO)</p>
-                <p class="muted">2025 – pågående</p>
-              </article>
-
-              <article class="entry">
-                <h3>Informatikk: Digital økonomi og ledelse (Bachelor UiO)</h3>
-                <p class="muted">Univesitetet i Oslo (UiO)</p>
-                <p class="muted">2020 - 2025</p>
-              </article>
-            </section>
-          </div>
-
-          <!-- Høyre -->
-          <div class="col">
-
-            <section class="section">
-              <h2 class="section-title"><span class="icon">⚙️</span> SKILLS</h2>
-              <ul class="bullets">
-                <li>Kan kombinere tekniske ferdigheter med forettningsforståelse</li>
-                <li>Teknisk kompetanse innen programmering, maskinlæring og databaser</li>
-                <li>Smidig utviklingsmetodikk</li>
-                <li>God kommunikasjons- og formidlingsevne </li>
-                <li>Forståelse for mikroøkonomi, makroøkonomi, strategi og markedsføring</li>
-              </ul>
-            </section>
-
-           <section class="section">
-            <h2 class="section-title"><span class="icon">🛠️</span> SOFTWARE</h2>
-            <ul class="bullets">
-                <li><strong>Programmering:</strong> Python, Java, Kotlin, TypeScript, C#, React Native</li>
-                <li><strong>Databaser:</strong> PostgreSQL</li>
-                <li><strong>Software testing:</strong> Playwright, SonarQube</li>
-                <li><strong>Dataformater:</strong> JSON, XML</li>
-                <li><strong>Webutvikling:</strong> HTML, CSS, React (grunnleggende)</li>
-                <li><strong>Analyse &amp; visualisering:</strong> Matematikk, Databricks, Matplotlib, Power BI</li>
-                <li><strong>Førerkort:</strong> Klasse B</li>
+        <!-- FULL BREDDE: hver seksjon under hverandre -->
+        <section id="experience" class="panel">
+          <h2>Arbeidserfaring</h2>
+          <article class="item">
+            <h3>Prosjektkoordinator – Simula Learning</h3>
+            <p class="muted">2022–2023</p>
+            <ul>
+              <li>Utvikling av undervisningsopplegg i Python for lærere.</li>
+              <li>Salg av videreutdanningskurs til skoleeiere og næringsliv.</li>
+              <li>Koordinering av kurs og personal.</li>
             </ul>
-            </section>
+          </article>
 
+          <article class="item">
+            <h3>Realfagslærer – Bekkelaget skole</h3>
+            <p class="muted">2016–2020</p>
+            <ul>
+              <li>Kursholder og utvikler av god pedagogisk praksis for iPad i klasserommet.</li>
+              <li>Rådgiver for effektiv bruk av IKT på arbeidsplassen.</li>
+              <li>Ressursperson for realfag; ansvar for naturfag (6–7) samt kjemikalier/utstyr.</li>
+              <li>Spesialundervisning for elever med dysleksi.</li>
+            </ul>
+          </article>
 
-            <section class="section">
-              <h2 class="section-title"><span class="icon">👤</span> CONTACT DETAILS</h2>
-              <ul class="contact">
-                <li>✉️ <a href="mailto:fredrikvogth@hotmail.com">fredrikvogth@hotmail.com</a></li>
-                <li>📞 <a href="tel:+4790787923">90787923</a></li>
-                <li>📍 Steinspranget 20, Oslo</li>
-              </ul>
-            </section>
-          </div>
+          <article class="item">
+            <h3>Annen arbeidserfaring</h3>
+            <p class="muted">2005–2016</p>
+            <p>Kan oppgis på forespørsel.</p>
+          </article>
+        </section>
+
+        <section id="software" class="panel">
+          <h2>Teknologi</h2>
+          <ul class="bullets">
+            <li><strong>Programmering:</strong> Python, Java, Kotlin, TypeScript, C#, React Native</li>
+            <li><strong>Databaser:</strong> PostgreSQL</li>
+            <li><strong>Software testing:</strong> Playwright, SonarQube</li>
+            <li><strong>Smidig metodikk:</strong> Scrum, Kanban</li>
+            <li><strong>Dataformater:</strong> JSON, XML</li>
+            <li><strong>Webutvikling:</strong> HTML, CSS, React (grunnleggende)</li>
+            <li><strong>Analyse &amp; visualisering:</strong> Matematikk, Databricks, Matplotlib, Power BI</li>
+            <li><strong>Førerkort:</strong> Klasse B</li>
+          </ul>
+        </section>
+
+        <section id="education" class="panel">
+          <h2>Utdanning</h2>
+          <article class="item">
+            <h3>Informatikk: Digital økonomi og ledelse (Bachelor)</h3>
+            <p class="muted">Universitetet i Oslo (UiO) • 2021–2025</p>
+            <p class="muted">Utvalgte emner: IN2000 Software Engineering (prosjekt), IN3050 Maskinlæring,
+              IN3240 Software testing, IN1010 Objektorientert programmering, IN2090 Databaser med SQL</p>
+          </article>
+          <article class="item">
+            <h3>Enkeltemner i matematikk og informatikk</h3>
+            <p class="muted">Universitetet i Oslo (UiO) • 2020–2021</p>
+            <p class="muted">MAT1110 Kalkulus og lineær algebra, MAT-INF1100 Modellering og beregninger</p>
+          </article>
+          <article class="item">
+            <h3>Allmennlærer/adjunkt</h3>
+            <p class="muted">Høgskolen i Oslo og Akershus (HiOA) • 2009–2013</p>
+            <p class="muted">Fordypning i naturfag og matematikk</p>
+          </article>
+        </section>
+
+        <section id="languages" class="panel">
+          <h2>Språk</h2>
+          <ul class="bullets">
+            <li>Norsk – flytende, skriftlig og muntlig</li>
+            <li>Engelsk – flytende, skriftlig og muntlig</li>
+          </ul>
+        </section>
+
+        <section id="contact" class="panel">
+          <h2>Kontakt</h2>
+          <ul class="contact">
+            <li><a href="mailto:fredrikvogth@hotmail.com">fredrikvogth@hotmail.com</a></li>
+            <li><a href="tel:+4790787923">+47 907 87 923</a></li>
+            <li>Steinspranget 20, 1156 Oslo</li>
+            <li>Født: 26.09.1986</li>
+          </ul>
         </section>
       </article>
     </main>
+
+    <footer class="site-footer">
+      <div class="container">
+        <small>© <span id="year">2025</span> Fredrik Vogth-Eriksen</small>
+      </div>
+    </footer>
   </body>
 </html>
