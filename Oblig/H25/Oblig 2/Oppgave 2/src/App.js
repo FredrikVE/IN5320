@@ -3,6 +3,7 @@ import "./App.css";
 import Table from "./Table.js";
 import Search from "./Search.js";
 import PageSize from "./PageSize.js";
+import Pagination from "./Pagination.js";
 
 //import { size } from "mathjs";
 
@@ -31,6 +32,11 @@ function App() {
     setPageNumber(1); //reset til første side når størrelse endres
   }
 
+  //del 4 handlePageChange
+  const handlePageChange = (newPage) => {
+    setPageNumber(newPage);
+  };
+ 
   useEffect(() => {
     // All parameters are appended to this URL.
     //let apiQuery = "https://dhis2-app-course-api.ifi.uio.no/api?";
@@ -59,6 +65,7 @@ function App() {
       <Search onSearch={handleSearch}/>
       <PageSize onPageSizeChange={handlePageSizeChange}/>
       <Table apiData={apiData} />
+      <Pagination apiData={apiData} onPageChange={handlePageChange}/>
     </div>
   );
 }
