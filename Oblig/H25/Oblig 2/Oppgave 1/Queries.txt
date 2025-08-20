@@ -1,0 +1,44 @@
+IN5320 - Mandatory Assignment 2
+Part 1: API-queries in postman
+
+Subtasks:
+
+1) Write a query that searches for countries with the letter "a" in its name.
+https://dhis2-app-course.ifi.uio.no/api?search=a
+
+2) Write a query that searches for countries with a space in its name.
+https://dhis2-app-course.ifi.uio.no/api?search=%20
+
+3) Write a query that returns all countries in a single request.
+https://dhis2-app-course.ifi.uio.no/api?paging=false
+
+4) Write a query that returns 20 countries.
+https://dhis2-app-course.ifi.uio.no/api?pageSize=20
+
+5) Write a query that returns data about just Norway.
+https://dhis2-app-course.ifi.uio.no/api?Country=Norway
+
+6) Write a query that returns data about just African countries.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Africa
+
+7) Write a query that returns data about African, South American and Oceanian countries.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Africa,South%20America,Oceania
+
+8) Write a query that returns the 25 largest countries by population.
+https://dhis2-app-course.ifi.uio.no/api?order=Population:DESC&pageSize=25
+
+9) Write a query that returns the 10 fastest growing countries in Africa.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Africa&order=PopulationGrowth:DESC&pageSize=10
+
+10) Write a query that returns the 6-10th largest countries in Europe.
+https://dhis2-app-course.ifi.uio.no/api?Continent=Europe&order=Population:DESC&pageSize=5&page=2
+
+11) Write a query that returns all countries whose name contains "ma", that are located in North America, Europe or Africa, sorted from smallest population to largest.
+https://dhis2-app-course.ifi.uio.no/api?search=ma&Continent=North%20America,Europe,Africa&order=Population:ASC
+
+12) North America, Europe or Africa sorted from smallest population to largest.
+https://dhis2-app-course.ifi.uio.no/api?Continent=North%20America,Europe,Africa&order=Population:ASC
+
+
+Bibliography:
+W3schools. (2025). HTML URL Encoding Reference. Retrieved from https://www.w3schools.com/tags/ref_urlencode.ASP
