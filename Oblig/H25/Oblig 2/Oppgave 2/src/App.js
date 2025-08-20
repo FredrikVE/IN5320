@@ -63,8 +63,8 @@ function App() {
     <div className="App">
       <h1>Country lookup</h1>
       <Search onSearch={handleSearch}/>
-      <PageSize onPageSizeChange={handlePageSizeChange}/>
       <Table apiData={apiData} />
+      <PageSize onPageSizeChange={handlePageSizeChange}/>
       <Pagination apiData={apiData} onPageChange={handlePageChange}/>
     </div>
   );
