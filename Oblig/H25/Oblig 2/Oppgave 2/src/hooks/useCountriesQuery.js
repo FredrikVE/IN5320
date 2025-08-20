@@ -2,7 +2,7 @@
 import { useEffect, useMemo, useState } from "react";
 import { buildCountriesUrl } from "../data/countriesApi";
 
-export function useCountriesQuery({ page, pageSize, search, continents }) {
+export function useCountriesQuery({ page, pageSize, search, continents, order }) {
   const [state, setState] = useState({
     data: { pager: null, results: [] },
     loading: false,
@@ -11,8 +11,8 @@ export function useCountriesQuery({ page, pageSize, search, continents }) {
 
   // Bygg URL basert på props – memoiser så vi ikke fetcher unødvendig
   const url = useMemo(
-    () => buildCountriesUrl({ page, pageSize, search, continents }),
-    [page, pageSize, search, continents]
+    () => buildCountriesUrl({ page, pageSize, search, continents, order }),
+    [page, pageSize, search, continents, order]
   );
 
   useEffect(() => {

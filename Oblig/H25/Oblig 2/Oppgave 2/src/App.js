@@ -13,14 +13,17 @@ function App() {
   const [pageNumber, setPageNumber] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [continents, setContinents] = useState([]);
+  const [order, setOrder] = useState("");
 
   // HENT DATA via hook (erstatter hele useEffect-delen din)
   const { data: apiData, loading, error } = useCountriesQuery({
     page: pageNumber,
     pageSize,
     search: searchQuery,
-    continents
+    continents,
+    order //utvide med sortering
   });
+
 
   // Callback som Search-komponenten kan bruke
   const handleSearch = (query) => {
@@ -54,7 +57,17 @@ function App() {
       <ContinentFilter selected={continents} onToggle={handleToggleContinent} />
       <PageSize onPageSizeChange={handlePageSizeChange}/>
       {/* Du kan la Table bruke loading/error, eller beholde som før */}
-      <Table apiData={apiData} loading={loading} error={error} />
+      <Table 
+      apiData={apiData} 
+      loading={loading} 
+      error={error} 
+      sortOrder={order}
+      onSort={(val) => {
+        setOrder(val);
+        setPageNumber(1); //start alltid på side 1 når sortering endres
+
+      }}
+      />
       <Pagination apiData={apiData} onPageChange={handlePageChange}/>
     </div>
   );
