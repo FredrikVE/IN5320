@@ -14,7 +14,7 @@ function Pagination({ apiData, onPageChange }) { // Funksjonskomponent som får 
         <button onClick={() => onPageChange(page - 1)}>Previous</button> // Klikk kaller parent-callback med forrige side.
       )}
 
-      <span> Page {page} of {pageCount} </span> // Liten statusindikator: "Page X of Y".
+      <span> Page {page} of {pageCount} </span>
 
       {page < pageCount && (              // Betinget rendering: Vis "Next" kun når vi ikke er på siste side.
         <button onClick={() => onPageChange(page + 1)}>Next</button>     // Klikk kaller parent-callback med neste side.
