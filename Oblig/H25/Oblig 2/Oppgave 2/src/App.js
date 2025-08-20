@@ -6,11 +6,6 @@ import PageSize from "./PageSize.js";
 import Pagination from "./Pagination.js";
 import ContinentFilter from "./ContinentFilter.js";
 function App() {
-  /* Create state:
-        - apiData: List containing dictionaries of countries from API.
-        - searchQuery: The query parameter that should be added to &search=
-        - pageNumber: The page that is requested
-  */
 
   const [apiData, setApiData] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // Default = No search query
