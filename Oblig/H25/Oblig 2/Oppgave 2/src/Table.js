@@ -1,3 +1,6 @@
+import { index } from "mathjs";
+
+//src/Table.js
 function Table(props) {
   console.log(props.apiData);
 
@@ -6,9 +9,29 @@ function Table(props) {
     return <p>Loading...</p>;
   } else {
     // Write your code here:
-    return <table>
+    return (
+       <table>
+        <thead>
+          <tr>
+            <th>Country</th>
+            <th>Continent</th>
+            <th>Population</th>
+            <th>Population Growth</th>
+          </tr>
+        </thead>
 
-    </table>;
+        <tbody>
+          {props.apiData.results.map((country, index) => (
+            <tr key={index}>
+              <td>{country.Country}</td>
+              <td>{country.Continent}</td>
+              <td>{country.Population}</td>
+              <td>{country.PopulationGrowth}</td>
+            </tr>
+          ))}
+        </tbody>
+       </table>
+    );
   }
 }
 

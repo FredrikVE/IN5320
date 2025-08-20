@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import "./App.css";
 import Table from "./Table.js";
+import Search from "./Search.js";
 
 function App() {
   /* Create state:
@@ -12,6 +13,12 @@ function App() {
   const [apiData, setApiData] = useState([]);
   const [searchQuery, setSearchQuery] = useState(""); // Default = No search query
   const [pageNumber, setPageNumber] = useState(1); //Default = Page 1
+
+   // Callback som Search-komponenten kan bruke
+  const handleSearch = (query) => {
+    setSearchQuery(query);
+    setPageNumber(1); // Resett til første side når nytt søk gjøres
+  };
 
   useEffect(() => {
     // All parameters are appended to this URL.
@@ -40,6 +47,7 @@ function App() {
   return (
     <div className="App">
       <h1>Country lookup</h1>
+      <Search onSearch={handleSearch}></Search>
       <Table apiData={apiData} />
     </div>
   );
