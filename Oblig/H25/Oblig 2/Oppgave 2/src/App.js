@@ -10,12 +10,14 @@ function App() {
   */
 
   const [apiData, setApiData] = useState([]);
-  const [searchQuery, setSearchQuery] = useState(); // Default = No search query
+  const [searchQuery, setSearchQuery] = useState(""); // Default = No search query
   const [pageNumber, setPageNumber] = useState(1); //Default = Page 1
 
   useEffect(() => {
     // All parameters are appended to this URL.
-    let apiQuery = "https://dhis2-app-course-api.ifi.uio.no/api?";
+    //let apiQuery = "https://dhis2-app-course-api.ifi.uio.no/api?";
+    let apiQuery = "https://dhis2-app-course.ifi.uio.no/api?";    //fjen -api fra url for å unngå kræsj
+
 
     // If searchQuery isn't empty add &search=searchQuery to the API request.
     if (searchQuery) {
