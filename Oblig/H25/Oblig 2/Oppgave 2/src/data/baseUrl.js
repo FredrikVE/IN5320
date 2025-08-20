@@ -1,1 +1,1 @@
-export const BASE_URL = "https://dhis2-app-course.ifi.uio.no/api";
+export const API_BASE = "https://dhis2-app-course.ifi.uio.no/api";

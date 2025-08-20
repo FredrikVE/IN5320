@@ -1,38 +1,29 @@
-import { index } from "mathjs";
-
-//src/Table.js
+// src/Table.js
 function Table(props) {
-  console.log(props.apiData);
+  const { apiData, loading, error } = props;
 
-  if (!props.apiData.results) {
-    // If the API request isn't completed return "loading...""
+  if (loading) return <p>Loading...</p>;
+  if (error) return <p style={{ color: "#c33" }}>Error: {error}</p>;
+
+  if (!apiData?.results) {
     return <p>Loading...</p>;
-  } else {
-    // Write your code here:
-    return (
-       <table>
-        <thead>
-          <tr>
-            <th>Country</th>
-            <th>Continent</th>
-            <th>Population</th>
-            <th>Population Growth</th>
-          </tr>
-        </thead>
-
-        <tbody>
-          {props.apiData.results.map((country, index) => (
-            <tr key={index}>
-              <td>{country.Country}</td>
-              <td>{country.Continent}</td>
-              <td>{country.Population}</td>
-              <td>{country.PopulationGrowth}</td>
-            </tr>
-          ))}
-        </tbody>
-       </table>
-    );
   }
+
+  return (
+    <table>
+      <thead>...</thead>
+      <tbody>
+        {apiData.results.map((country, index) => (
+          <tr key={index}>
+            <td>{country.Country}</td>
+            <td>{country.Continent}</td>
+            <td>{country.Population}</td>
+            <td>{country.PopulationGrowth}</td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  );
 }
 
 export default Table;
