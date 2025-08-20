@@ -1,29 +1,26 @@
-import React from "react";
+// src/Pagination.js
 
-function Pagination({ apiData, onPageChange }) {
-  if (!apiData || !apiData.page || !apiData.totalPages) {
-    return null; // Ikke vis noe før data er lastet
-  }
+import React from "react";                 // Importerer React slik at vi kan skrive JSX.
+
+function Pagination({ apiData, onPageChange }) { // Funksjonskomponent som får data fra API og en callback for å endre side.
+  const pager = apiData?.pager;           // Hent ut "pager"-objektet fra responsen (?. = optional chaining i tilfelle apiData er undefined).
+  if (!pager) return null;                // Guard: Hvis pager ikke finnes ennå (før fetch er ferdig), ikke render noe.
+
+  const { page, pageCount } = pager;      // Destrukturer gjeldende side og totalt antall sider fra pager.
 
   return (
     <div>
-      {/* Forrige side knapp, vises kun hvis vi ikke er på side 1 */}
-      {apiData.page > 1 && (
-        <button onClick={() => onPageChange(apiData.page - 1)}>
-          Previous
-        </button>
+      {page > 1 && (                      // Betinget rendering: Vis "Previous" kun når vi er etter side 1.
+        <button onClick={() => onPageChange(page - 1)}>Previous</button> // Klikk kaller parent-callback med forrige side.
       )}
 
-      <span> Page {apiData.page} of {apiData.totalPages} </span>
+      <span> Page {page} of {pageCount} </span> // Liten statusindikator: "Page X of Y".
 
-      {/* Neste side knapp, vises kun hvis vi ikke er på siste side */}
-      {apiData.page < apiData.totalPages && (
-        <button onClick={() => onPageChange(apiData.page + 1)}>
-          Next
-        </button>
+      {page < pageCount && (              // Betinget rendering: Vis "Next" kun når vi ikke er på siste side.
+        <button onClick={() => onPageChange(page + 1)}>Next</button>     // Klikk kaller parent-callback med neste side.
       )}
     </div>
   );
 }
 
-export default Pagination;
+export default Pagination;                // Eksporter komponenten så App.js kan bruke den.
