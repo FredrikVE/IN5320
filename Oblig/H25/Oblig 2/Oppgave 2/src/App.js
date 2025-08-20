@@ -1,13 +1,10 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import Table from "./Table.js";
 import Search from "./Search.js";
 import PageSize from "./PageSize.js";
 import Pagination from "./Pagination.js";
 import ContinentFilter from "./ContinentFilter.js";
-
-//import { size } from "mathjs";
-
 function App() {
   /* Create state:
         - apiData: List containing dictionaries of countries from API.
