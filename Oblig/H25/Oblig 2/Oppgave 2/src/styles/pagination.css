@@ -1,0 +1,20 @@
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: .75rem;
+  margin-bottom: 1rem;
+}
+.pagination span { font-weight: 500; }
+.pagination-btn {
+  padding: .4rem .9rem;
+  border-radius: 6px;
+  border: 1px solid #0a6;
+  background: #0a6;
+  color: #fff;
+  font-size: .9rem;
+  cursor: pointer;
+  transition: background .2s, transform .1s;
+}
+.pagination-btn:hover { background: #0c7; }
+.pagination-btn:active { transform: scale(0.97); }

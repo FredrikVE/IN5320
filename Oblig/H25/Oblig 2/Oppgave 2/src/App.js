@@ -1,5 +1,4 @@
 import { useState } from "react";
-import "./styles/App.css";
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
@@ -23,7 +22,7 @@ export default function App() {
   const { data, loading, error } = useCountrySearch(params);
 
 
-  // Toggle ett kontinent
+  // Toggle ett kontinent. Funksjonen sendes inn i ContnentFilter.js der name kommer inn i parameteret.
   function toggleContinent(name) {
     setPage(1); // start på side 1 når filtre endres
     
@@ -48,17 +47,18 @@ export default function App() {
       {/* SearchBar */}
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
 
-      <ContinentFilter
-        selected={continents}
-        onToggle={toggleContinent}
-      />
+      <div className="filters-row">
+        {/* kontinentfilter */}
+        <ContinentFilter
+          selected={continents}
+          onToggle={toggleContinent}
+        />
 
-      <div className="table-controls">
         {/* Sorteringsfelt */}
         <SortSelect 
           value={order}
           onChange={(val) => {
-            setOrder(val); 
+            setOrder(val);
             setPage(1); 
           }}
         />

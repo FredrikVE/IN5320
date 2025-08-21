@@ -1,0 +1,12 @@
+.infoTable {
+  margin: 1rem auto;        /* sentrer tabellen */
+  width: 80%;               /* match øvrige kontroll-linjer */
+  border-collapse: collapse;
+}
+.infoTable th,
+.infoTable td {
+  padding: .5rem .6rem;
+  border: 1px solid #eee;
+  text-align: left;
+}
+.infoTable thead th { background: #fafafa; }

@@ -1,0 +1,47 @@
+/* Én felles rad for ContinentFilter + Sort + PageSize */
+.filters-row{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;          /* bryter pent på små skjermer */
+  width: 80%;
+  margin: 0 auto 1rem;      /* sentrert + luft under */
+}
+
+/* ContinentFilter til venstre – kan bruke resten av bredden */
+.continent-filter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: .5rem;
+  justify-content: flex-start;
+  flex: 1 1 auto;
+  margin: 0;
+  width: auto;
+}
+.continent-filter label {
+  display: flex;
+  align-items: center;
+  gap: .25rem;
+}
+
+/* SortSelect og PageSize – små grupper */
+.sort-select,
+.page-size{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  margin: 0;
+}
+
+/* Ens stil på begge select’ene */
+.sort-select select,
+.page-size select{
+  padding: .4rem .6rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+  background: #fff;
+  cursor: pointer;
+  font-size: .95rem;
+}
+.sort-select select:hover,
+.page-size select:hover{ border-color: #0a6; }

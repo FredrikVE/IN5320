@@ -1,0 +1,14 @@
+.searchbar {
+  display: flex;
+  gap: .5rem;
+  margin: 1rem auto;        /* sentrer boksen */
+  width: 80%;               /* samme bredde som tabellen */
+  justify-content: flex-start;
+}
+.searchbar input {
+  flex: 1;
+  max-width: 300px;         /* valgfritt: begrens bredde */
+  padding: .5rem .6rem;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
