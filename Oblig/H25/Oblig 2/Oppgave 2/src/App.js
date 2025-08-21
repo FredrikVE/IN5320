@@ -53,7 +53,10 @@ export default function App() {
   return (
     //Definerer en app-div som container for css-styling
     <div className="App">
-      <h1>World Population by Country</h1>
+      <h1 className="app-title">World Population by Country</h1>
+      <p className="app-subtitle">
+        Search countries, filter by continent, and sort by clicking the column headers.
+      </p>
 
       {/* SearchBar */}
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
@@ -63,15 +66,6 @@ export default function App() {
         <ContinentFilter
           selected={continents}
           onToggle={toggleContinent}
-        />
-
-        {/* Dropdownmeny med antall elementer per side */}
-        <PageSize
-          value={pageSize}
-          onChange={(n) => { 
-            setPageSize(n); 
-            setPage(1);   // tilbake til side 1
-          }}
         />
       </div>
 
@@ -89,6 +83,15 @@ export default function App() {
         onPrev={() => setPage(page => Math.max(1, page - 1))}
         onNext={() => setPage(page => page + 1)}
       />
+
+        {/* Dropdownmeny med antall elementer per side */}
+        <PageSize
+          value={pageSize}
+          onChange={(n) => { 
+            setPageSize(n); 
+            setPage(1);   // tilbake til side 1
+          }}
+        />
     </div>
   );
 }

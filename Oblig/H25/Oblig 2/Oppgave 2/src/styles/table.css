@@ -1,60 +1,72 @@
-/* Wrapper med scroll på små skjermer + pen kant */
+/* Wrapper with scroll on small screens + subtle frame */
 .table-wrap{
   width: 80%;
   margin: 1rem auto;
-  overflow-x: auto;                 /* viktig for mobil */
+  overflow-x: auto;                 /* important for mobile */
   border: 1px solid #eee;
   border-radius: 12px;
   background: #fff;
   box-shadow: 0 2px 10px rgba(0,0,0,.04);
 }
 
-/* Tabellgrunnlag */
+/* Status / empty / error messages centered inside the wrapper */
+.table-wrap .table-status,
+.table-wrap .table-empty,
+.table-wrap .table-error{
+  margin: 1rem;
+  padding: 1rem;
+  text-align: center;
+}
+.table-wrap .table-status,
+.table-wrap .table-empty{
+  color: #555;
+}
+.table-wrap .table-error{
+  color: #7a1111;
+  background: #ffecec;
+  border: 1px solid #f0b8b8;
+  border-radius: 8px;
+}
+
+/* Base table */
 .infoTable{
   width: 100%;
   border-collapse: collapse;
-  font-variant-numeric: tabular-nums;  /* kolonner med tall står pent */
+  font-variant-numeric: tabular-nums;  /* prettier numeric columns */
 }
 
-/* Head */
+/* Header cells */
 .infoTable thead th{
-  position: sticky;     /* sticky header ved scroll i wrapper */
+  position: sticky;     /* sticky header when wrapper scrolls */
   top: 0;
   z-index: 1;
   background: #fafafa;
   color: #222;
   text-align: left;
   border-bottom: 1px solid #eee;
+
+  /* Let the button own the padding so headers align with cells */
+  padding: 0;
 }
 
-/* Celler */
+/* Body and default cell padding */
 .infoTable th,
 .infoTable td{
   padding: .6rem .75rem;
   border-bottom: 1px solid #eee;
+  vertical-align: middle;
 }
 
-/* Tallkolonner høyrejustert (3. og 4. kolonne) */
-.infoTable td:nth-child(3),
-.infoTable td:nth-child(4){
-  text-align: right;
-}
-
-/* Zebra + hover + fokus i body */
-.infoTable tbody tr:nth-child(even){ background: #fcfcfd; }
-.infoTable tbody tr:hover{ background: #f4fbff; }
-.infoTable tbody tr:focus-within{
-  outline: 2px solid #0a6;
-  outline-offset: -2px;
-  background: #eefcf5;
-}
-
-/* Klikkbare kolonneoverskrifter (knappen inni th) */
+/* Clickable header button inside <th> */
 .th-btn{
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-  padding: .25rem .35rem;
+
+  /* make whole header cell clickable and match <td> padding */
+  width: 100%;
+  padding: .6rem .75rem;
+
   font: inherit;
   color: inherit;
   background: none;
@@ -64,12 +76,37 @@
 }
 .th-btn:hover{ background: #f0f0f0; }
 .th-btn:focus-visible{
-  outline: 2px solid #0a6;
+  outline: 2px solid var(--accent, #0a6);
   outline-offset: 2px;
 }
 .th-caret{ opacity: .65; font-size: .85em; }
 
-/* Skjermleser-hjelpeklasse (fra utilities.css, her i tilfelle du trenger) */
+/* Right-align numeric columns (3rd and 4th) */
+.infoTable td:nth-child(3),
+.infoTable td:nth-child(4){
+  text-align: right;
+}
+.infoTable thead th:nth-child(3) .th-btn,
+.infoTable thead th:nth-child(4) .th-btn{
+  justify-content: flex-end; /* place label + caret to the right */
+}
+
+/* Zebra + hover + focus */
+.infoTable tbody tr:nth-child(even){ background: #fcfcfd; }
+.infoTable tbody tr:hover{ background: #f4fbff; }
+.infoTable tbody tr:focus-within{
+  outline: 2px solid var(--accent, #0a6);
+  outline-offset: -2px;
+  background: #eefcf5;
+}
+
+/* Optional: row header if you use <th scope="row"> for first column */
+.infoTable tbody th[scope="row"]{
+  font-weight: 600;
+  text-align: left;
+}
+
+/* Screen-reader helper (keep in utilities if you have one) */
 .sr-only{
   position: absolute;
   width: 1px;

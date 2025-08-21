@@ -4,9 +4,10 @@ import "./styles/base.css";
 import "./styles/utilities.css";
 import "./styles/table.css";
 import "./styles/searchbar.css";
-import "./styles/searchfilters.css";
+import "./styles/continentfilter.css";
 import "./styles/pagination.css";
-import "./styles/app.css"
+import "./styles/pagesize.css";
+import "./styles/app.css";
 import App from './App';
 
 ReactDOM.render(

@@ -2,3 +2,42 @@
   padding-bottom: 2rem;
   padding-top: 2rem;
 }
+
+
+/* App-container: litt luft oppe/nede */
+.App {
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+}
+
+/* Samme venstrekant/bredde som tabell/filtre */
+.page-header {
+  width: 80%;
+  margin: 0 auto 1rem;
+  text-align: center; /* bytt til left om du vil flukte med tabellen */
+}
+
+/* Tittel: responsiv, høy kontrast */
+.app-title {
+  margin: 0 0 .25rem;
+  font-weight: 800;
+  line-height: 1.15;
+  color: #111;
+  font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
+  padding-bottom: 1rem;
+}
+
+/* Undertittel: roligere farge, god lesbarhet */
+.app-subtitle {
+  margin: .5rem auto 0;
+  color: #555;
+  max-width: 70ch;
+  font-size: 1rem;
+  text-align: center;
+  padding-bottom: 1rem;
+}
+
+/* Små skjermer: litt mindre accent-strek */
+@media (max-width: 480px){
+  .app-title::after { width: 56px; height: 4px; }
+}

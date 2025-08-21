@@ -9,18 +9,21 @@ const ALL_CONTINENTS = [
 
 export default function ContinentFilter({ selected, onToggle }) {
   return (
-    <div className="continent-filter">
-      <legend>Continents</legend>
-      {ALL_CONTINENTS.map((c) => (
-        <label key={c}>
-          <input
-            type="checkbox"
-            checked={selected.includes(c)}
-            onChange={() => onToggle(c)}
-          />
-          {c}
-        </label>
-      ))}
-    </div>
+    <fieldset className="continent-filter">
+      <div className="checks">
+        {ALL_CONTINENTS.map(function (c) {
+          return (
+            <label key={c} className="check">
+              <input
+                type="checkbox"
+                checked={selected.includes(c)}
+                onChange={function(){ onToggle(c); }}
+              />
+              {c}
+            </label>
+          );
+        })}
+      </div>
+    </fieldset>
   );
 }

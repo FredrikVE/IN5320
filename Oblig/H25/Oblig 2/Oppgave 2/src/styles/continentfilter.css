@@ -1,0 +1,55 @@
+/* Fjern boksen rundt fieldset/legend */
+.continent-filter{
+  border: none !important;     /* slå ned UA-border */
+  background: transparent;     /* i tilfelle UA gir bakgrunn */
+  padding: 0;
+  margin: 0 auto .75rem;
+}
+
+/* Valgfritt: normaliser legend litt */
+.continent-filter legend{
+  padding: 0;
+  margin-bottom: .5rem;
+  font-weight: 700;
+  color: #111;
+}
+
+/* Resten kan stå som før */
+.checks{
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: .75rem 1rem;
+}
+.check{
+  display: inline-flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .25rem .5rem;
+  min-height: 40px;
+  border-radius: 8px;
+  border: 1px solid transparent;
+  background: transparent;
+}
+.check:hover{ 
+  background:#f6f7f8; 
+  border-color:#e7e7e7; 
+}
+
+
+.check:focus-within{ 
+  outline:2px solid var(--accent, #0a6);
+  outline-offset:2px;
+}
+
+/* PERSISTENT stil for avhukede valg */
+.check:has(input:checked){
+  border-color: var(--accent, #0a6);
+  background: #eefcf5;
+}
+
+.check input{ 
+  width:18px; 
+  height:18px; 
+  accent-color:var(--accent, #0a6); 
+}

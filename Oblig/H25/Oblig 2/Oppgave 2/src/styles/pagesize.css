@@ -1,0 +1,28 @@
+.page-size{
+  display: flex;
+  align-items: center;
+  justify-content: center;     /* ← sentrer */
+  gap: .5rem;
+  width: 80%;
+  margin: .5rem auto 1.25rem;  /* luft over/under */
+  text-align: center;
+}
+
+.page-size label{
+  font-weight: 600;
+  color: #444;
+}
+
+.page-size select{
+  min-height: 40px;
+  padding: 8px 10px;
+  border-radius: 10px;
+  border: 2px solid #d0d7de;
+  background: #fff;
+  font-size: .95rem;
+}
+.page-size select:focus-visible{
+  outline: 3px solid var(--accent, #0a6);
+  outline-offset: 2px;
+  border-color: var(--accent, #0a6);
+}
