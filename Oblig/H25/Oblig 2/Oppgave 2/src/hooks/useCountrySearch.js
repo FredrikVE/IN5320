@@ -1,8 +1,8 @@
 // src/hooks/useCountriesQuery.js
 import { useEffect, useState } from "react";
-import { buildCountriesUrl } from "../data/countriesApi";
+import { buildSearchParametersURL } from "../data/urlParameterBuilder";
 
-// Custom hook som henter data om land fra API basert på søkeparametere
+// Lager en "customhook" som henter data om land fra API basert på søkeparametere
 export function useCountrySearch({ page, pageSize, search, continents, order }) {
   
   const [data, setData] = useState({ pager: null, results: [] });
@@ -20,7 +20,7 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
       setError("");
 
       try {
-        const url = buildCountriesUrl({ page, pageSize, search, continents, order }); // Lag URL med aktuelle kombinasjoner av av søkeparametere
+        const url = buildSearchParametersURL({ page, pageSize, search, continents, order }); // Lag URL med aktuelle kombinasjoner av av søkeparametere
         const res = await fetch(url, { signal });  // Gjør HTTP-kall og send avbrytingssignal
         
         if (!res.ok) throw new Error(`HTTP ${res.status}`); // Kast eventuell HTTP-feil inn i catch-blokken

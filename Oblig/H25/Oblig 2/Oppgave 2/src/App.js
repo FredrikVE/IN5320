@@ -6,16 +6,17 @@ import SearchBar from "./components/SearchBar";
 import { useCountrySearch } from "./hooks/useCountrySearch";
 
 export default function App() {
-  // ÉN sannhet: UI-defaults bor her
+  // Statevariabler
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [continents, setContinents] = useState([]);
   const [order, setOrder] = useState("");
 
+  // Søkeparametere
   const params = { page, pageSize, search, continents, order };
 
-  // Henter {data, loading, error} fra hooken; fetch trigges når 'params' endres
+  // Henter {data, loading, error} med cutom-hooken som trigges når 'params' endres
   const { data, loading, error } = useCountrySearch(params);
 
   return (
