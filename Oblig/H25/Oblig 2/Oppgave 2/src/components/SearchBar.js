@@ -9,7 +9,7 @@ export default function SearchBar( { onSearch } ) {
     };
 
     return (
-        <form onSubmit={handleSubmit}>
+        <form onSubmit={handleSubmit} className="searchbar">
             <input 
             type="text"
             value={inputValue}

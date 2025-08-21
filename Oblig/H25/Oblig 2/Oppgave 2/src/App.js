@@ -1,5 +1,5 @@
 import { useState } from "react";
-import "./App.css";
+import "./styles/App.css";
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
