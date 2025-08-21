@@ -1,17 +1,56 @@
-.infoTable {
-  margin: 1rem auto;        /* sentrer tabellen */
-  width: 80%;               /* match øvrige kontroll-linjer */
-  border-collapse: collapse;
-}
-.infoTable th,
-.infoTable td {
-  padding: .5rem .6rem;
+/* Wrapper med scroll på små skjermer + pen kant */
+.table-wrap{
+  width: 80%;
+  margin: 1rem auto;
+  overflow-x: auto;                 /* viktig for mobil */
   border: 1px solid #eee;
-  text-align: left;
+  border-radius: 12px;
+  background: #fff;
+  box-shadow: 0 2px 10px rgba(0,0,0,.04);
 }
-.infoTable thead th { background: #fafafa; }
 
-.th-btn {
+/* Tabellgrunnlag */
+.infoTable{
+  width: 100%;
+  border-collapse: collapse;
+  font-variant-numeric: tabular-nums;  /* kolonner med tall står pent */
+}
+
+/* Head */
+.infoTable thead th{
+  position: sticky;     /* sticky header ved scroll i wrapper */
+  top: 0;
+  z-index: 1;
+  background: #fafafa;
+  color: #222;
+  text-align: left;
+  border-bottom: 1px solid #eee;
+}
+
+/* Celler */
+.infoTable th,
+.infoTable td{
+  padding: .6rem .75rem;
+  border-bottom: 1px solid #eee;
+}
+
+/* Tallkolonner høyrejustert (3. og 4. kolonne) */
+.infoTable td:nth-child(3),
+.infoTable td:nth-child(4){
+  text-align: right;
+}
+
+/* Zebra + hover + fokus i body */
+.infoTable tbody tr:nth-child(even){ background: #fcfcfd; }
+.infoTable tbody tr:hover{ background: #f4fbff; }
+.infoTable tbody tr:focus-within{
+  outline: 2px solid #0a6;
+  outline-offset: -2px;
+  background: #eefcf5;
+}
+
+/* Klikkbare kolonneoverskrifter (knappen inni th) */
+.th-btn{
   display: inline-flex;
   align-items: center;
   gap: .35rem;
@@ -23,6 +62,22 @@
   cursor: pointer;
   border-radius: 6px;
 }
-.th-btn:hover { background: #f2f2f2; }
-.th-btn:focus-visible { outline: 2px solid #0a6; outline-offset: 2px; }
-.th-caret { opacity: .6; font-size: .85em; }
+.th-btn:hover{ background: #f0f0f0; }
+.th-btn:focus-visible{
+  outline: 2px solid #0a6;
+  outline-offset: 2px;
+}
+.th-caret{ opacity: .65; font-size: .85em; }
+
+/* Skjermleser-hjelpeklasse (fra utilities.css, her i tilfelle du trenger) */
+.sr-only{
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+  border: 0;
+}
