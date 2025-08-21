@@ -1,6 +1,6 @@
 export default function SortSelect({ value, onChange }) {
   return (
-    <label>
+    <label className="sort-select">
       Sort:
       <select value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="">(none)</option>

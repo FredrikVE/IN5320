@@ -7,7 +7,7 @@ export default function Pagination({ pager, onPrev, onNext }) {
     <nav className="pagination">
       {/* Vis bare "Previous" når vi ikke er på første side */}
       {page > 1 && (
-        <button onClick={onPrev} aria-label="Previous page">
+        <button className="pagination-btn" onClick={onPrev} aria-label="Previous page">
           <span aria-hidden="true">&lsaquo;</span> Previous
         </button>
       )}
@@ -17,7 +17,7 @@ export default function Pagination({ pager, onPrev, onNext }) {
 
       {/* Vis kun "Next" når vi ikke er på siste side */}
       {page < pageCount && (
-        <button onClick={onNext} aria-label="Next page">
+        <button className="pagination-btn" onClick={onNext} aria-label="Next page">
           Next <span aria-hidden="true">&rsaquo;</span>
         </button>
       )}

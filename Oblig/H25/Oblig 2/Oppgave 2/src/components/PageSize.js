@@ -1,6 +1,6 @@
 export default function PageSize({ value, onChange }) {
   return (
-    <label>
+    <label className="page-size">
       Results per page:{" "}
       <select
         value={value}

@@ -41,8 +41,9 @@ export default function App() {
   }
 
   return (
+    //Definerer en app-div som container for css-styling
     <div className="App">
-      <h1>Country lookup</h1>
+      <h1>World Population by Country</h1>
 
       {/* SearchBar */}
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
@@ -52,14 +53,25 @@ export default function App() {
         onToggle={toggleContinent}
       />
 
-      {/* Sorteringsfelt */}
-      <SortSelect 
-        value={order}
-        onChange={(val) => {
-          setOrder(val); 
-          setPage(1); 
-        }}
-      />
+      <div className="table-controls">
+        {/* Sorteringsfelt */}
+        <SortSelect 
+          value={order}
+          onChange={(val) => {
+            setOrder(val); 
+            setPage(1); 
+          }}
+        />
+
+        {/* Dropdownmeny med antall elementer per side */}
+        <PageSize
+          value={pageSize}
+          onChange={(n) => { 
+            setPageSize(n); 
+            setPage(1);   // tilbake til side 1
+          }}
+        />
+      </div>
 
       {/* Tabell */}
       <Table rows={data.results} loading={loading} error={error} />
@@ -70,16 +82,6 @@ export default function App() {
         onPrev={() => setPage(page => Math.max(1, page - 1))}
         onNext={() => setPage(page => page + 1)}
       />
-      
-       {/* Dropdownmeny med antall elementer per side */}
-       <PageSize
-        value={pageSize}
-        onChange={(n) => { 
-          setPageSize(n); 
-          setPage(1);   // tilbake til side 1
-        }}
-      />
-
     </div>
   );
 }
