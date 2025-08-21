@@ -1,24 +1,24 @@
 import { useState } from "react";
 
+export default function Search( { onSearch } ) {
+    const [inputValue, setInputValue ] = useState("");
 
-function Search( { onSearch } ) {
-    const [inputValue, setInputValue] = useState("");
 
-    const handleClick = () => {
-        onSearch(inputValue);       //kaller callback fra App.js
+    const handleSubmit = (e) => {
+        e.preventDefault(); // hindre reload
+        onSearch(inputValue);    // sender verdien tilbake til App
     };
 
-    return(
-        <div>
+
+    return (
+        <form onSubmit={handleSubmit}>
             <input 
-                type="text"
-                value={inputValue}
-                onChange={(e) => setInputValue(e.target.value)}
-                placeholder="Search for country..."
+            type="text"
+            value={inputValue}
+            onChange={(e)=> setInputValue(e.target.value)} //oppdater state for hvert tastetrykk
+            placeholder="Search country..."
             />
-            <button onClick={handleClick}>Search</button>
-        </div>
+            <button type="submit">Search</button>
+        </form>
     );
 }
-
-export default Search;

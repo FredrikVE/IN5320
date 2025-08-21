@@ -1,45 +1,46 @@
 // src/hooks/useCountriesQuery.js
-import { useEffect, useMemo, useState } from "react";
-import { buildCountriesUrl } from "../data/countriesApi";
+import { useEffect, useMemo, useState } from "react";              // React-hooks
+import { buildCountriesUrl } from "../data/countriesApi";          // Lager API-URL ut fra parametere
 
+// Custom hook som henter land-data fra API
 export function useCountriesQuery({ page, pageSize, search, continents, order }) {
-  const [state, setState] = useState({
-    data: { pager: null, results: [] },
-    loading: false,
-    error: ""
-  });
 
-  // Bygg URL basert på props – memoiser så vi ikke fetcher unødvendig
-  const url = useMemo(
-    () => buildCountriesUrl({ page, pageSize, search, continents, order }),
-    [page, pageSize, search, continents, order]
+  // Statevariabler
+  const [data, setData] = useState({ pager: null, results: [] });  // API-data (pager + resultater)
+  const [loading, setLoading] = useState(false);                    // Lasteindikator
+  const [error, setError] = useState("");                           // Evt. feilmelding
+
+  // Bygg URL kun når input-parameterne endres (unngår unødige fetch-kall)
+  const url = useMemo(() => buildCountriesUrl({ page, pageSize, search, continents, order }),
+    [page, pageSize, search, continents, order]                     // Avhengigheter
   );
 
+  // Hent data hver gang URL endres
   useEffect(() => {
-    let alive = true;
-    setState(s => ({ ...s, loading: true, error: "" }));
+    let ignore = false; // Beskytter mot state-oppdatering etter unmount
+    setLoading(true);
+    setError("");      // Nullstill gammel feil før ny henting
 
     fetch(url)
-      .then(r => r.ok ? r.json() : Promise.reject(new Error(`HTTP ${r.status}`)))
-      .then(json => {
-        if (!alive) return;
-        setState({
-          data: { pager: json.pager, results: json.results ?? [] },
-          loading: false,
-          error: ""
-        });
+      .then((res) => {
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);        // Løft HTTP-feil inn i .catch
+        return res.json();                                         // Parse JSON-respons
       })
-      .catch(err => {
-        if (!alive) return;
-        setState({
-          data: { pager: null, results: [] },
-          loading: false,
-          error: err.message || "Fetch error"
-        });
+      .then((json) => {
+        if (!ignore)                                               // Oppdater kun hvis komponenten fortsatt er “live”
+          setData({ pager: json.pager, results: json.results ?? [] }); // Fallback til tom array hvis results mangler
+      })
+      .catch((err) => {
+        if (!ignore) setError(err.message || "Fetch error");       // Lagre feilmelding i state
+      })
+      .finally(() => {
+        if (!ignore) setLoading(false);                            // Slå av loading uansett utfall
       });
 
-    return () => { alive = false; };
+    return () => { 
+      ignore = true; 
+    };                               // Cleanup: markér som avbrutt ved unmount
   }, [url]);
 
-  return state; // { data, loading, error }
+  return { data, loading, error };                                  // Eksponer hookens state til forbruker
 }
