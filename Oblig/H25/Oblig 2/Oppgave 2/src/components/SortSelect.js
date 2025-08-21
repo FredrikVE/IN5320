@@ -1,8 +1,8 @@
 export default function SortSelect({ value, onChange }) {
   return (
-    <label className="sort-select">
-      Sort:
-      <select value={value} onChange={(e) => onChange(e.target.value)}>
+    <div className="sort-select">
+      <label htmlFor="sort-order">Sort:</label>
+      <select id="sort-order" value={value} onChange={(e) => onChange(e.target.value)}>
         <option value="">(none)</option>
         <option value="Country:ASC">Country ↑</option>
         <option value="Country:DESC">Country ↓</option>
@@ -11,6 +11,6 @@ export default function SortSelect({ value, onChange }) {
         <option value="PopulationGrowth:ASC">Growth ↑</option>
         <option value="PopulationGrowth:DESC">Growth ↓</option>
       </select>
-    </label>
+    </div>
   );
 }

@@ -10,6 +10,7 @@ const ALL_CONTINENTS = [
 export default function ContinentFilter({ selected, onToggle }) {
   return (
     <div className="continent-filter">
+      <legend>Continents</legend>
       {ALL_CONTINENTS.map((c) => (
         <label key={c}>
           <input
