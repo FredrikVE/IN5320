@@ -3,6 +3,8 @@ import { useState } from "react";
 import "./App.css";
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
+import PageSize from "./components/PageSize";
+import Pagination from "./components/Pagination"
 import { useCountrySearch } from "./hooks/useCountrySearch";
 
 export default function App() {
@@ -24,6 +26,18 @@ export default function App() {
       <h1>Country lookup</h1>
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
       <Table rows={data.results} loading={loading} error={error} />
+
+      <Pagination
+        pager={data.pager}
+        onPrev={() => setPage(p => Math.max(1, p - 1))}
+        onNext={() => setPage(p => p + 1)}
+      />
+      
+       <PageSize
+        value={pageSize}
+        onChange={(n) => { setPageSize(n); setPage(1); }} // endre antall per side → tilbake til side 1
+      />
+
     </div>
   );
 }

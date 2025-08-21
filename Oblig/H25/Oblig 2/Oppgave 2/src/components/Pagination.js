@@ -1,26 +1,29 @@
-// src/Pagination.js
+// src/components/Pagination.js
+export default function Pagination({ pager, onPrev, onNext }) {
+  if (!pager) return null;                        // Ingen pager enda ⇒ ikke render noe
 
-import React from "react";                 // Importerer React slik at vi kan skrive JSX.
-
-function Pagination({ apiData, onPageChange }) { // Funksjonskomponent som får data fra API og en callback for å endre side.
-  const pager = apiData?.pager;           // Hent ut "pager"-objektet fra responsen (?. = optional chaining i tilfelle apiData er undefined).
-  if (!pager) return null;                // Guard: Hvis pager ikke finnes ennå (før fetch er ferdig), ikke render noe.
-
-  const { page, pageCount } = pager;      // Destrukturer gjeldende side og totalt antall sider fra pager.
+  const { page, pageCount } = pager;              // Nåværende side og totalt antall sider
 
   return (
-    <div>
-      {page > 1 && (                      // Betinget rendering: Vis "Previous" kun når vi er etter side 1.
-        <button onClick={() => onPageChange(page - 1)}>Previous</button> // Klikk kaller parent-callback med forrige side.
+    <nav className="pagination">
+      {/* Vis bare "Previous" når vi ikke er på første side */}
+      {page > 1 && (
+        <button onClick={onPrev} aria-label="Previous page">
+          <span aria-hidden="true">&lsaquo;</span> Previous
+        </button>
       )}
 
-      <span> Page {page} of {pageCount} </span>
+      {/* Melding som viser hvilken side som vises (f.eks. "Page 1 of 22") */}
+      <span>Page {page} of {pageCount}</span>
 
-      {page < pageCount && (              // Betinget rendering: Vis "Next" kun når vi ikke er på siste side.
-        <button onClick={() => onPageChange(page + 1)}>Next</button>     // Klikk kaller parent-callback med neste side.
+      {/* Vis kun "Next" når vi ikke er på siste side */}
+      {page < pageCount && (
+        <button onClick={onNext} aria-label="Next page">
+          Next <span aria-hidden="true">&rsaquo;</span>
+        </button>
       )}
-    </div>
+    </nav>
   );
 }
 
-export default Pagination;                // Eksporter komponenten så App.js kan bruke den.
+//NB! &rsaquo; og &lsaquo; er høyre og venstre-pil-ikon inne i next- og previousknappene

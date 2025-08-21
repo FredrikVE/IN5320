@@ -1,20 +1,16 @@
-import React from "react";
-
-function PageSize({ onPageSizeChange }) {
-  const handleChange = (event) => {
-    onPageSizeChange(Number(event.target.value));
-  };
-
+// src/components/PageSize.js
+export default function PageSize({ value, onChange }) {
   return (
-    <div>
-      <label htmlFor="pageSize">Results per page: </label>
-      <select id="pageSize" onChange={handleChange} defaultValue={10}>
+    <label>
+      Results per page:{" "}
+      <select
+        value={value}
+        onChange={(e) => onChange(Number(e.target.value))} // gi tallet videre
+      >
         <option value={10}>10</option>
         <option value={20}>20</option>
         <option value={50}>50</option>
       </select>
-    </div>
+    </label>
   );
 }
-
-export default PageSize;
