@@ -1,45 +1,28 @@
 // src/App.js
 import { useState } from "react";
 import "./App.css";
-
-import Table from "./components/Table.js";
-import Search from "./components/Search.js";
-import PageSize from "./components/PageSize.js";
-import Pagination from "./components/Pagination.js";
-import ContinentFilter from "./components/ContinentFilter.js";
-import { useCountriesQuery } from "./hooks/useCountriesQuery";
+import Table from "./components/Table";
+import SearchBar from "./components/SearchBar";
+import { useCountrySearch } from "./hooks/useCountrySearch";
 
 export default function App() {
-  const [searchQuery, setSearchQuery] = useState("");
-  const [pageNumber, setPageNumber] = useState(1);
+  // ÉN sannhet: UI-defaults bor her
+  const [search, setSearch] = useState("");
+  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
   const [continents, setContinents] = useState([]);
   const [order, setOrder] = useState("");
 
-  // HENT DATA via hook (erstatter hele useEffect-delen din)
-  const { data, loading, error } = useCountriesQuery({
-    page: pageNumber, 
-    pageSize, 
-    search: searchQuery, 
-    continents, 
-    order //utvide med sortering
-  });
+  const params = { page, pageSize, search, continents, order };
 
-  const handleSearch = (query) => {
-    setSearchQuery(query);
-    setPageNumber(1); //start på side 1 ved nutt søk
-
-  };
+  // Henter {data, loading, error} fra hooken; fetch trigges når 'params' endres
+  const { data, loading, error } = useCountrySearch(params);
 
   return (
     <div className="App">
       <h1>Country lookup</h1>
-      <Search onSearch={handleSearch}/>
-      <Table 
-        rows={data.results} 
-        loading={loading} 
-        error={error} 
-      />
+      <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
+      <Table rows={data.results} loading={loading} error={error} />
     </div>
   );
 }
