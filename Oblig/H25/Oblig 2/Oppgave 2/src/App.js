@@ -1,4 +1,3 @@
-// src/App.js
 import { useState } from "react";
 import "./App.css";
 import Table from "./components/Table";
@@ -7,6 +6,7 @@ import PageSize from "./components/PageSize";
 import Pagination from "./components/Pagination"
 import { useCountrySearch } from "./hooks/useCountrySearch";
 import SortSelect from "./components/SortSelect";
+import ContinentFilter from "./components/ContinentFilter";
 
 export default function App() {
   // Statevariabler
@@ -22,12 +22,35 @@ export default function App() {
   // Henter {data, loading, error} med cutom-hooken som trigges når 'params' endres
   const { data, loading, error } = useCountrySearch(params);
 
+
+  // Toggle ett kontinent
+  function toggleContinent(name) {
+    setPage(1); // start på side 1 når filtre endres
+    
+    // Lag en kopi, finn index, legg til eller fjern
+    var list = continents.slice();
+    var i = list.indexOf(name);
+
+    if (i === -1) {
+      list.push(name);
+    } 
+    else {
+      list.splice(i, 1);
+    }
+    setContinents(list);
+  }
+
   return (
     <div className="App">
       <h1>Country lookup</h1>
 
       {/* SearchBar */}
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
+
+      <ContinentFilter
+        selected={continents}
+        onToggle={toggleContinent}
+      />
 
       {/* Sorteringsfelt */}
       <SortSelect 
@@ -44,8 +67,8 @@ export default function App() {
       {/* Sidevelger med next og previousknapp */}
       <Pagination
         pager={data.pager}
-        onPrev={() => setPage(p => Math.max(1, p - 1))}
-        onNext={() => setPage(p => p + 1)}
+        onPrev={() => setPage(page => Math.max(1, page - 1))}
+        onNext={() => setPage(page => page + 1)}
       />
       
        {/* Dropdownmeny med antall elementer per side */}

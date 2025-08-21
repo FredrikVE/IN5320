@@ -1,19 +1,17 @@
-import React from "react";
-
 const ALL_CONTINENTS = [
   "Europe",
   "Africa",
   "South America",
   "North America",
   "Oceania",
-  "Asia",
+  "Asia"
 ];
 
-function ContinentFilter({ selected, onToggle }) {
+export default function ContinentFilter({ selected, onToggle }) {
   return (
-    <div style={{ textAlign: "center", margin: "6px 0" }}>
+    <div>
       {ALL_CONTINENTS.map((c) => (
-        <label key={c} style={{ marginRight: 8 }}>
+        <label key={c}>
           <input
             type="checkbox"
             checked={selected.includes(c)}
@@ -25,5 +23,3 @@ function ContinentFilter({ selected, onToggle }) {
     </div>
   );
 }
-
-export default ContinentFilter;

@@ -1,4 +1,3 @@
-// src/components/Pagination.js
 export default function Pagination({ pager, onPrev, onNext }) {
   if (!pager) return null;                        // Ingen pager enda ⇒ ikke render noe
 

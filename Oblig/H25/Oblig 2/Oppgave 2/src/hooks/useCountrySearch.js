@@ -1,4 +1,3 @@
-// src/hooks/useCountriesQuery.js
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
 
