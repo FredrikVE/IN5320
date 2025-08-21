@@ -7,7 +7,6 @@ import PageSize from "./components/PageSize";
 import Pagination from "./components/Pagination"
 import { useCountrySearch } from "./hooks/useCountrySearch";
 import SortSelect from "./components/SortSelect";
-import { or } from "mathjs";
 
 export default function App() {
   // Statevariabler
