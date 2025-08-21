@@ -6,6 +6,8 @@ import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
 import Pagination from "./components/Pagination"
 import { useCountrySearch } from "./hooks/useCountrySearch";
+import SortSelect from "./components/SortSelect";
+import { or } from "mathjs";
 
 export default function App() {
   // Statevariabler
@@ -25,6 +27,10 @@ export default function App() {
     <div className="App">
       <h1>Country lookup</h1>
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
+      <SortSelect 
+        value={order}
+        onChange={(val) => {setOrder(val); setPage(1); }}
+      />
       <Table rows={data.results} loading={loading} error={error} />
 
       <Pagination
