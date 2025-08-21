@@ -1,34 +1,66 @@
-export default function Table({ rows, loading, error }) {
+export default function Table({ rows, loading, error, order, onSort }) {
   if (loading) return <p>Loading…</p>;
   if (error) return <p style={{ color: "#c33" }}>Error: {error}</p>;
   if (!rows || rows.length === 0) return <p>No results.</p>;
 
-  // Omdanner tall fra string med Intl for å få riktige skilletegn og desimaler
-  const formatPopulation = new Intl.NumberFormat(); // Konverterer populasjon til heltall
-  const formatPopulationGrowth = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 }); // 0–2 desimaler for vekst
+  var activeKey = null;
+  var dir = null;
+  if (order) {
+    var parts = order.split(":");
+    activeKey = parts[0];
+    dir = parts[1];
+  }
+
+  function handleSortClick(e) {
+    var key = e.currentTarget.getAttribute("data-key");
+    onSort(key);
+  }
+
+  function renderHeader(key, label) {
+    var isActive = activeKey === key;
+    var aria = isActive ? (dir === "ASC" ? "ascending" : "descending") : "none";
+    var symbol = isActive ? (dir === "ASC" ? "▲" : "▼") : "↕";
+
+    return (
+      <th scope="col" aria-sort={aria}>
+        <button
+          type="button"
+          className="th-btn"
+          data-key={key}
+          onClick={handleSortClick}
+        >
+          <span className="th-label">{label}</span>
+          <span className="th-caret" aria-hidden="true">{symbol}</span>
+        </button>
+      </th>
+    );
+  }
+
+  // Formattere
+  var formatPopulation = new Intl.NumberFormat();
+  var formatPopulationGrowth = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
 
   return (
     <table className="infoTable">
       <thead>
         <tr>
-          {/* scope="col" forteller skjermlesere at dette er kolonneoverskrifter */}
-          <th scope="col">Country</th>
-          <th scope="col">Continent</th>
-          <th scope="col">Population</th>
-          <th scope="col">Population Growth</th>
+          {renderHeader("Country", "Country")}
+          {renderHeader("Continent", "Continent")}
+          {renderHeader("Population", "Population")}
+          {renderHeader("PopulationGrowth", "Population Growth")}
         </tr>
       </thead>
       <tbody>
-
-        {/* Lager én <tr> per land med formaterte verdier fra API */}
-        {rows.map((row) => (
-          <tr key={row.CountryCode}>
-            <td>{row.Country}</td>
-            <td>{row.Continent}</td>
-            <td>{formatPopulation.format(Number(row.Population))}</td>
-            <td>{formatPopulationGrowth.format(Number(row.PopulationGrowth))}</td>
-          </tr>
-        ))}
+        {rows.map(function (row) {
+          return (
+            <tr key={row.CountryCode}>
+              <td>{row.Country}</td>
+              <td>{row.Continent}</td>
+              <td>{formatPopulation.format(Number(row.Population))}</td>
+              <td>{formatPopulationGrowth.format(Number(row.PopulationGrowth))}</td>
+            </tr>
+          );
+        })}
       </tbody>
     </table>
   );

@@ -4,7 +4,6 @@ import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
 import Pagination from "./components/Pagination"
 import { useCountrySearch } from "./hooks/useCountrySearch";
-import SortSelect from "./components/SortSelect";
 import ContinentFilter from "./components/ContinentFilter";
 
 export default function App() {
@@ -38,6 +37,18 @@ export default function App() {
     }
     setContinents(list);
   }
+  
+  function handleHeaderSort(key) {
+    var nextDir = "ASC";
+    if (order) {
+      var parts = order.split(":");
+      if (parts[0] === key && parts[1] === "ASC") {
+        nextDir = "DESC";
+      }
+    }
+    setOrder(key + ":" + nextDir);
+    setPage(1);
+  }
 
   return (
     //Definerer en app-div som container for css-styling
@@ -54,15 +65,6 @@ export default function App() {
           onToggle={toggleContinent}
         />
 
-        {/* Sorteringsfelt */}
-        <SortSelect 
-          value={order}
-          onChange={(val) => {
-            setOrder(val);
-            setPage(1); 
-          }}
-        />
-
         {/* Dropdownmeny med antall elementer per side */}
         <PageSize
           value={pageSize}
@@ -74,7 +76,12 @@ export default function App() {
       </div>
 
       {/* Tabell */}
-      <Table rows={data.results} loading={loading} error={error} />
+      <Table 
+        rows={data.results} 
+        loading={loading} 
+        error={error}
+        onSort={handleHeaderSort}     //send handler for header-klikk
+      />
 
       {/* Sidevelger med next og previousknapp */}
       <Pagination
