@@ -1,0 +1,23 @@
+
+.wrapper {
+  display: grid;
+  grid-template-areas:
+    "header  header"
+    "sidebar content"
+    "footer  footer";
+  grid-template-columns: 150px 1fr;
+  grid-template-rows: 100px auto 100px; /* auto i midten → vokser med innhold */
+  gap: 8px;
+  padding: 16px;
+}
+
+#header   { grid-area: header;  background:#d33; }
+#sidebar  { grid-area: sidebar; background:#29f; }
+#content  { grid-area: content; background:#e7902f; }
+#footer   { grid-area: footer;  background:#3a3; }
+
+#header, #sidebar, #content, #footer {
+  color:#fff;
+  padding:24px;
+  outline:2px solid #274;
+}
