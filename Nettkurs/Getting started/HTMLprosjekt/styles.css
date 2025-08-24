@@ -1,0 +1,59 @@
+body {
+    margin: 10px;                          /* Avstand rundt hele body (ytterkant) */
+    font-family: Arial, Helvetica, sans-serif; /* Skrifttype som brukes i teksten */
+    line-height: 1.5;                      /* Linjeavstand: 1,5 ganger skriftstørrelsen */
+    padding-top: 64px;                     /* Ekstra plass på toppen (så innholdet ikke skjules bak nav-baren) */
+    padding-bottom: 56px;                  /* Ekstra plass nederst (så innholdet ikke skjules bak footer) */
+}
+
+nav {
+    position: fixed;                       /* Gjør at navigasjonen holder seg fast på toppen av skjermen */
+    top: 0;                                /* Plasseres helt øverst */
+    left: 0;                               /* Starter helt til venstre */
+    right: 0;                              /* Slutter helt til høyre (fyller hele bredden) */
+    height: 64px;                          /* Høyden på topplinjen (appbar) */
+    background: #222;                      /* Mørk bakgrunnsfarge (nesten svart) */
+    color: white;                          /* Tekstfarge: hvit */
+    display: flex;                         /* Bruker flexbox for å ordne innholdet horisontalt */
+    align-items: center;                   /* Sentrerer innholdet vertikalt */
+    justify-content: space-between;        /* Plasserer innholdet til venstre og høyre med luft imellom */
+    padding: 0 16px;                       /* 16px luft på venstre og høyre side */
+}
+
+nav h1 {
+    margin: 0;                             /* Fjerner standard margin rundt overskriften */
+    font-size: 1.2rem;                     /* Setter overskriftstørrelsen til 1,2 ganger standard tekst */
+}
+
+nav ul {
+    list-style: none;                      /* Fjerner standard punktmerking på listeelementer */
+    display: flex;                         /* Viser listeelementene ved siden av hverandre (horisontalt) */
+    gap: 1rem;                             /* Lager mellomrom (ca. 16px) mellom lenkene */
+    margin: 0;                             /* Fjerner standard margin rundt listen */
+    padding: 0;                            /* Fjerner standard innrykk (padding) */
+}
+
+nav a {
+    color: white;                          /* Lenker i navigasjonen blir hvite */
+    text-decoration: none;                 /* Fjerner understreking på lenkene */
+}
+
+main {
+    max-width: 800px;                      /* Maks bredde på innholdet (blir smalere på store skjermer) */
+    margin: 24px auto;                     /* 24px luft oppe/nede + auto gjør at innholdet sentreres horisontalt */
+    padding: 0 16px;                       /* 16px luft på venstre/høyre inni main */
+}
+
+footer {
+    position: fixed;                       /* Gjør at footeren holder seg fast nederst på skjermen */
+    bottom: 0;                             /* Plasseres helt nederst */
+    left: 0;                               /* Starter helt til venstre */
+    right: 0;                              /* Slutter helt til høyre (fyller hele bredden) */
+    height: 56px;                          /* Høyden på footer-linjen */
+    background: #eee;                      /* Lys grå bakgrunn */
+    display: flex;                         /* Bruker flexbox for å ordne innholdet */
+    justify-content: center;               /* Sentrerer innholdet horisontalt */
+    align-items: center;                   /* Sentrerer innholdet vertikalt */
+    font-size: 1rem;                       /* Setter skriftstørrelsen (standard størrelse) */
+    color: #555;                           /* Setter tekstfargen til grå (#555) */
+}
