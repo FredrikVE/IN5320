@@ -1,0 +1,42 @@
+form {
+    display: flex;
+    flex-direction: column; /*stabler form-elementer i kolonne (under hverandre) */
+    gap: 12px;
+    max-width: 320px;
+    margin: 40px auto;
+    font-family: 'Courier New', Courier, monospace;
+    
+}
+
+input {
+    border-radius: 10px;
+    padding: 6px;
+    font-size: 1rem;
+}
+
+
+label {
+    font-weight: bold;
+}
+
+#picture {
+    display: flex;
+    flex-direction: column;
+}
+
+
+button {
+    padding: 8px;
+    background-color: #444;
+    color: white;
+    border-radius: 10px;
+    cursor: pointer;
+    font-family: inherit;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+button:hover {
+    background-color:  #60b400;
+}
+
