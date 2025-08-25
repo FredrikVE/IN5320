@@ -1,0 +1,82 @@
+* README for Oblig 3
+
+Denne oppgaven er en DHIS2-applikasjon utviklet i forbindelse med obligatorisk oppgave 3 i IN5320.
+
+** Kjøring av programmet
+
+Forutsetter at Node.js, Yarn og DHIS2-avhengigheter er installert (se seksjonen om *Installasjon* under).
+
+1. Åpne et nytt terminalvindu.  
+   Start DHIS2-proxyen med kommandoen:
+   #+begin_src bash
+   npx dhis-portal --target=https://data.research.dhis2.org/in5320/
+   #+end_src
+   Dette setter opp en lokal proxy på *http://localhost:9999/* som håndterer kommunikasjonen med DHIS2-instansen.
+
+2. Åpne et nytt terminalvindu, og gå inn i prosjektmappen:
+   #+begin_src bash
+   cd Oblig3
+   #+end_src
+
+3. Start utviklingsserveren:
+   #+begin_src bash
+   yarn start
+   #+end_src
+   Dette kjører applikasjonen på *http://localhost:3000/*.
+
+4. Åpne nettleseren din og gå til:
+   - Applikasjon: http://localhost:3000  
+   - Proxy (DHIS2-server): http://localhost:9999
+
+   Logg inn i applikasjonen med:
+   - **Server-URL:** http://localhost:9999  
+   - **Brukernavn:** admin  
+   - **Passord:** district  
+
+** Installasjon
+
+*** Forutsetninger
+- [Node.js](https://nodejs.org/) (LTS anbefalt)  
+- [Yarn](https://yarnpkg.com/)  
+- Internett-tilkobling for å hente avhengigheter
+
+*** Installer DHIS2-avhengigheter
+DHIS2 CLI gir kommandoene vi trenger for å utvikle og kjøre DHIS2-applikasjoner.
+
+**** Lokal installasjon
+#+begin_src bash
+yarn add --dev @dhis2/cli-app-scripts
+#+end_src
+
+**** Global installasjon
+#+begin_src bash
+yarn global add @dhis2/cli
+#+end_src
+
+Etter en global installasjon, sjekk at `d2`-kommandoen fungerer:
+#+begin_src bash
+d2 --version
+#+end_src
+
+*** Initialisere en ny app
+Lag en tom mappe for applikasjonen din, åpne den i ønsket editor og kjør:
+
+#+begin_src bash
+d2 app scripts init myfirstapp
+#+end_src
+
+På Windows kan det være nødvendig med ekstra oppsett hvis `d2` ikke gjenkjennes.  
+Init-kommandoen setter opp et prosjekt basert på *create-react-app*, ferdig konfigurert med DHIS2-pakker.
+
+*** Starte applikasjonen
+Etter at init er ferdig:
+
+#+begin_src bash
+cd myfirstapp
+yarn start
+#+end_src
+
+Når du åpner http://localhost:3000 i nettleseren, skal du se innloggingsskjermen til DHIS2.
+
+#+CAPTION: DHIS2 innloggingsskjermen
+[[file:login.png]]
