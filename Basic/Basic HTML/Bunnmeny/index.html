@@ -1,26 +1,32 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="no">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home page</title>
-    <link rel="stylesheet" href="styles.css">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Home page</title>
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
 
-    <div class="innpakning">
-        <div class="topptekst">Overskrift</div>
-        <div class="meny">Her kan du lage en meny</div>
-        <div class="innhold">
-            Hovedinnhold
-        </div>
+  <div class="innpakning">
+    <header class="topptekst">
+      <h1>Overskrift</h1>
+    </header>
 
-        <div class="footer-div">
-            Footer-meny
-        </div>
+    <div class="content-area">
+      <nav class="meny" aria-label="Hovedmeny">
+        Her kan du lage en meny
+      </nav>
+
+      <main class="innhold" id="main">
+        Hovedinnhold
+      </main>
     </div>
 
+    <footer class="footer-div" role="contentinfo">
+      Footer-meny
+    </footer>
+  </div>
 
-    
 </body>
 </html>
