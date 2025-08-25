@@ -3,7 +3,7 @@ import { useEffect, useState } from "react"
 import { NoticeBox } from "@dhis2/ui"
 import { useDataSets } from "../hooks/useDataSets"
 import DatasetsList from "./DatasetsList"
-import DatasetDetailsTable from "./DatasetTable"
+import DatasetDetailsView from "./DatasetDetailsView"
 import styles from "../styles/datasets.module.css"
 
 export default function Datasets() {
@@ -20,7 +20,7 @@ export default function Datasets() {
     if (loading) return <span>Loading...</span>
     if (error) return <span>ERROR: {error.message}</span>
 
-    const selected = dataSets.find((d) => d.id === selectedId) || null
+    const selected = dataSets.find(d => d.id === selectedId) || null
 
     return (
         <>
@@ -41,7 +41,7 @@ export default function Datasets() {
                             Choose a dataset from the list.
                         </NoticeBox>
                     ) : (
-                        <DatasetDetailsTable dataset={selected} />
+                        <DatasetDetailsView dataset={selected} />
                     )}
                 </section>
             </div>
