@@ -1,5 +1,4 @@
 //src/components/Navigation.js
-import React from "react"
 import { TabBar, Tab } from "@dhis2/ui"
 
 export default function Navigation({ current, setCurrent }) {
