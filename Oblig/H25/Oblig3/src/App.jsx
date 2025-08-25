@@ -8,7 +8,7 @@ import { CircularLoader, Center } from "@dhis2/ui"
 import classes from "./styles/App.module.css"
 
 export default function MyApp() {
-  const [tab, setTab] = useState("browse")
+  const [tab, setTab] = useState("datasets")
 
   return (
     <>
@@ -18,9 +18,9 @@ export default function MyApp() {
       {/* sideinnhold under faner */}
       <div className={classes.page}>
         <Suspense fallback={<Center><CircularLoader /></Center>}>
+          {tab === "datasets" && <Datasets />}
           {tab === "browse"   && <Browse />}
           {tab === "insert"   && <Insert />}
-          {tab === "datasets" && <Datasets />}
         </Suspense>
       </div>
     </>
