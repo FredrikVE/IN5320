@@ -1,0 +1,42 @@
+/* src/styles/datasets.module.css */
+.page {
+  padding: 12px 24px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+.title {
+  margin: 8px 0 12px;
+  line-height: 1.2;
+}
+
+.split {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.sidebar {
+  width: 300px;
+  flex: 0 0 300px;
+  position: sticky;
+  top: 56px;                     /* under faneraden */
+  max-height: calc(100vh - 80px);
+  overflow: auto;
+}
+
+.content {
+  flex: 1;
+  min-width: 0;
+}
+
+.panel {
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.06);
+  border-radius: 10px;
+  padding: 8px 10px;
+}
+
+.panel :global(.menu) {          /* valgfritt: gjør meny litt tettere */
+  --dhis2-u-density: compact;
+}

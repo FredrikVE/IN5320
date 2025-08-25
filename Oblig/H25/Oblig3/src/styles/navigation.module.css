@@ -1,9 +1,10 @@
 /* src/styles/navigation.module.css */
 .stickyTabs {
     position: sticky;
-    top: 0;                 /* legger fanene helt under den blå headeren */
-    z-index: 10;            /* over innholdet */
-    background: #fff;       /* samme bakgrunn som appen */
-    padding: 8px 0;         /* litt luft rundt fanene */
-    border-bottom: 1px solid rgba(0,0,0,0.08); /* subtil linje som matcher header-stil */
+    top: 0;
+    z-index: 10;
+    background: #fff;
+    padding: 8px 0;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+    box-shadow: 0 1px 0 rgba(0,0,0,0.03);
 }
