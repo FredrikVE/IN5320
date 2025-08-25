@@ -1,5 +1,4 @@
 // src/components/Navigation.jsx
-import React from "react"
 import { TabBar, Tab } from "@dhis2/ui"
 import styles from "../styles/navigation.module.css"
 

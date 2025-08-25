@@ -1,7 +1,7 @@
 // src/components/Datasets.jsx
-import React, { useState } from "react"
+import { useEffect, useState } from "react"
 import { NoticeBox } from "@dhis2/ui"
-import { useDataSets } from "../hooks/useDataSets"   // fra forrige steg
+import { useDataSets } from "../hooks/useDataSets"
 import DatasetsList from "./DatasetsList"
 import DatasetDetailsTable from "./DatasetTable"
 import styles from "../styles/datasets.module.css"
@@ -9,13 +9,21 @@ import styles from "../styles/datasets.module.css"
 export default function Datasets() {
     const { loading, error, dataSets } = useDataSets()
     const [selectedId, setSelectedId] = useState(null)
-    const selected = dataSets.find(d => d.id === selectedId) || null
+
+    // Velg første dataset automatisk når data er lastet
+    useEffect(() => {
+        if (!selectedId && dataSets.length) {
+            setSelectedId(dataSets[0].id)
+        }
+    }, [dataSets, selectedId])
 
     if (loading) return <span>Loading...</span>
-    if (error)   return <span>ERROR: {error.message}</span>
+    if (error) return <span>ERROR: {error.message}</span>
+
+    const selected = dataSets.find((d) => d.id === selectedId) || null
 
     return (
-        <div className={styles.page}>
+        <>
             <h1 className={styles.title}>Datasets</h1>
 
             <div className={styles.split}>
@@ -29,14 +37,14 @@ export default function Datasets() {
 
                 <section className={`${styles.content} ${styles.panel}`}>
                     {!selected ? (
-                        <NoticeBox title="Velg et dataset">
-                            Klikk et dataset i listen for å vise detaljer her.
+                        <NoticeBox title="Select a dataset">
+                            Choose a dataset from the list.
                         </NoticeBox>
                     ) : (
                         <DatasetDetailsTable dataset={selected} />
                     )}
                 </section>
             </div>
-        </div>
+        </>
     )
 }
