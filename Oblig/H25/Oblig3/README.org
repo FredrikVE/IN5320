@@ -58,12 +58,14 @@ Etter en global installasjon, sjekk at `d2`-kommandoen fungerer:
 d2 --version
 #+end_src
 
-*** Initialisere en ny app
+*** Opprette nytt app-prosjekt
 Lag en tom mappe for applikasjonen din, åpne den i ønsket editor og kjør:
 
 #+begin_src bash
-d2 app scripts init myfirstapp
+d2 app scripts init <-- navn på mitt prosjekt -->
 #+end_src
+
+Da opprettes en ny mappe med alt nødvendig for ditt DHIS2-prosjekt (Med unntak av node.js og yarn).
 
 På Windows kan det være nødvendig med ekstra oppsett hvis `d2` ikke gjenkjennes.  
 Init-kommandoen setter opp et prosjekt basert på *create-react-app*, ferdig konfigurert med DHIS2-pakker.
