@@ -1,0 +1,36 @@
+.mat {
+    background-color: beige;
+}
+
+#løk {
+    background-color: bisque;
+
+}
+
+#kiwi {
+    background: green;
+    color: white;
+}
+
+#banan {
+    background-color: yellow;
+    color: black
+}
+
+
+#eple {
+    background-color: pink;
+    color: brown;
+}
+
+#burger {
+    animation: burgerFlip 2s infinite;
+}
+
+@keyframes burgerFlip {
+    0% { background-color: red; }
+    33% { background-color: yellow; }
+    66% { background-color: rgb(0, 128, 128); }
+    100% { background-color: blue;}
+    
+}
