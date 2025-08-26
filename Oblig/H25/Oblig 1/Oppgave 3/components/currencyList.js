@@ -1,5 +1,7 @@
-//src/components/currencyList.js
-export function addCurrency(listEl, text) {
+// /components/currencyList.js
+export function addCurrency(listEl, item, { onDelete } = {}) {
+  const text = typeof item === "string" ? item : item.label;
+
   const li = document.createElement("li");
   li.className = "currency-item";
 
@@ -11,13 +13,14 @@ export function addCurrency(listEl, text) {
   delBtn.type = "button";
   delBtn.className = "delete-btn";
   delBtn.setAttribute("aria-label", `Delete ${text}`);
-  delBtn.textContent = "×"; // kan byttes til ikon senere
+  delBtn.textContent = "X";
 
   delBtn.addEventListener("click", () => {
+    onDelete?.(item);
     li.remove();
   });
 
   li.append(label, delBtn);
   listEl.appendChild(li);
-  return li; // nyttig videre
+  return li;
 }
