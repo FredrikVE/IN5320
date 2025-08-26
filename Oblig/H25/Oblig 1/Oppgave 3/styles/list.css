@@ -1,0 +1,15 @@
+/* styles/list.css */
+
+ul { 
+    list-style: none; 
+    padding: 0; margin: 0; 
+    display: grid; 
+    gap: .5rem;
+}
+
+li {
+  padding: .7rem .9rem;
+  border: 1px solid #e4e7ec;
+  border-radius: 12px;
+  background: #fafbfc;
+}

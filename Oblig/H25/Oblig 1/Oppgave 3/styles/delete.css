@@ -1,0 +1,28 @@
+/* styles/delete.css */
+.currency-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: .75rem;
+}
+
+.currency-label {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.delete-btn {
+  border: 0;
+  border-radius: 10px;
+  padding: .35rem .6rem;
+  background: #ef4444;
+  color: #ffffff;
+  cursor: pointer;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.delete-btn:hover { background: #dc2626; }
+.delete-btn:active { transform: translateY(1px); }
+.delete-btn:focus { outline: 2px solid #7aa7ff; outline-offset: 2px; }
