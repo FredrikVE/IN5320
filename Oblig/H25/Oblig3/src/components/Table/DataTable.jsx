@@ -1,5 +1,4 @@
 // src/components/Table/DataTable.jsx
-
 import { NoticeBox, CircularLoader } from "@dhis2/ui"
 import { useDataElements } from "../../hooks/useDataElements"
 import DatasetMetadataTable from "./MetaDataTable"
