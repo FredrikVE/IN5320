@@ -1,3 +1,4 @@
+//src/lib/search.js
 export function startsWithWord(element, searchWord) {
   if (!searchWord) return true; // tomt søk = alt matcher
   return element.toLowerCase().startsWith(searchWord.toLowerCase());

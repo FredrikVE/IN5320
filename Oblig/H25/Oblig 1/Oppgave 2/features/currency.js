@@ -1,53 +1,66 @@
+//src/features/currency.js
 import { filterList } from "../lib/search.js";
+import { must } from "../lib/dom.js";
+import { initCurrenciesRepo, getCurrencies, addCurrency, removeCurrency } from "../data/currencyRepository.js";
 
 export function initCurrency() {
-  let currencies = ["Euro", "Norwegian Kroner", "Canadian Dollar", "Ukrainian Hryvnia", "Australian Dollar"];
+  var DEFAULTS = ["Euro", "Norwegian Kroner", "Canadian Dollar", "Ukrainian Hryvnia", "Australian Dollar"];
 
-  const listEl        = document.getElementById("currency-list");
-  const addForm       = document.getElementById("add-form");
-  const currencyInput = document.getElementById("currency-input");
-  const searchInput   = document.getElementById("search-input");
+  var listEl        = must("currency-list");
+  var addForm       = must("add-form");
+  var currencyInput = must("currency-input");
+  var searchInput   = must("search-input");
 
-  function render(list) {
-    listEl.innerHTML = "";
-    list.forEach(name => {
-      const li = document.createElement("li");
+  initCurrenciesRepo(DEFAULTS);
+
+  function render() {
+    var all = getCurrencies();
+    var q = (searchInput.value || "").trim();
+    var list = filterList(all, q);
+
+    var frag = document.createDocumentFragment();
+    var i;
+    for (i = 0; i < list.length; i++) {
+      var name = list[i];
+      var li = document.createElement("li");
       li.className = "item";
-
-      const title = document.createElement("p");
-      title.className = "item-title";
-      title.textContent = name;
-
-      const del = document.createElement("button");
-      del.className = "delete";
-      del.type = "button";
-      del.setAttribute("aria-label", `Delete ${name}`);
-      del.textContent = "X";
-
-      del.addEventListener("click", () => {
-        const idx = currencies.indexOf(name);
-        if (idx > -1) currencies.splice(idx, 1);
-        render(filterList(currencies, searchInput.value.trim()));
-      });
-
-      li.append(title, del);
-      listEl.appendChild(li);
-    });
+      li.dataset.name = name;
+      li.innerHTML =
+        '<p class="item-title">' + name + '</p>' +
+        '<button class="delete" type="button" aria-label="Delete ' + name + '">X</button>';
+      frag.appendChild(li);
+    }
+    listEl.innerHTML = "";
+    listEl.appendChild(frag);
   }
 
-  addForm?.addEventListener("submit", (e) => {
+  addForm.addEventListener("submit", function (e) {
     e.preventDefault();
-    const value = currencyInput.value.trim();
+    var value = (currencyInput.value || "").trim();
     if (!value) return;
-    currencies.push(value);
+    addCurrency(value);        // repo håndterer duplikater
     currencyInput.value = "";
-    render(filterList(currencies, searchInput.value.trim()));
+    render();
     currencyInput.focus();
   });
 
-  searchInput?.addEventListener("input", () => {
-    render(filterList(currencies, searchInput.value.trim()));
+  searchInput.addEventListener("input", function () {
+    render();
   });
 
-  render(currencies);
+  listEl.addEventListener("click", function (e) {
+    var target = e.target;
+    if (!(target instanceof Element)) return;
+    var btn = target.closest(".delete");
+    if (!btn) return;
+
+    var li = btn.closest("li");
+    var name = li && li.dataset ? li.dataset.name : null;
+    if (!name) return;
+
+    removeCurrency(name);
+    render();
+  });
+
+  render();
 }

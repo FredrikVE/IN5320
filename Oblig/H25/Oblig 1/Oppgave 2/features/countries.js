@@ -1,93 +1,119 @@
+//src/features/countries.js
 import { startsWithWord } from "../lib/search.js";
-import { getCountryData } from "../data/datasource.js";
+import { must } from "../lib/dom.js";
+import { getCountryData } from "../data/countriesRepository.js";
 
 export function initCountries() {
-  let countries = [];
-  let tickTimer = null;
+  function fmt(n) { return Math.round(n).toLocaleString("no-NO"); }
 
-  const countryForm   = document.getElementById("country-form");
-  const countryInput  = document.getElementById("country-input");
-  const countrySearch = document.getElementById("country-search");
-  const countryListEl = document.getElementById("country-list");
+  var form   = must("country-form");
+  var input  = must("country-input");
+  var search = must("country-search");
+  var listEl = must("country-list");
 
-  const fmt = n => Math.round(n).toLocaleString("no-NO");
+  var state = { items: [], filter: "", timer: null };
 
-  function filterCountryList(list, searchWord){
-    return list.filter(x => startsWithWord(x.name, searchWord));
-  }
-
-  function render(list){
-    countryListEl.innerHTML = "";
-    list.forEach(({ name, population, ratePerSec }) => {
-      const li = document.createElement("li");
-      li.className = "item";
-
-      const title = document.createElement("p");
-      title.className = "item-title";
-      const badge = ratePerSec === 0
-        ? ""
-        : `<span class="badge ${ratePerSec < 0 ? "neg" : ""}">
-             ${ratePerSec < 0 ? "−" : "+"}${Math.abs(ratePerSec).toFixed(2)}/s
-           </span>`;
-      title.innerHTML = `<strong>${name}</strong> — <span class="pop">${fmt(population)}</span> ${badge}`;
-
-      const del = document.createElement("button");
-      del.className = "delete";
-      del.type = "button";
-      del.textContent = "X";
-      del.setAttribute("aria-label", `Delete ${name}`);
-
-      del.addEventListener("click", () => {
-        countries = countries.filter(c => c.name !== name);
-        if (countries.length === 0 && tickTimer){
-          clearInterval(tickTimer);
-          tickTimer = null;
-        }
-        render(filterCountryList(countries, countrySearch.value.trim()));
-      });
-
-      li.append(title, del);
-      countryListEl.appendChild(li);
+  function render() {
+    var frag = document.createDocumentFragment();
+    var filtered = state.items.filter(function (x) {
+      return startsWithWord(x.name, state.filter);
     });
+
+    for (var i = 0; i < filtered.length; i++) {
+      var item = filtered[i];
+      var li = document.createElement("li");
+      li.className = "item";
+      li.dataset.name = item.name;
+
+      var badge = "";
+      if (item.ratePerSec) {
+        badge =
+          '<span class="badge ' + (item.ratePerSec < 0 ? "neg" : "") + '">' +
+          (item.ratePerSec < 0 ? "−" : "+") + Math.abs(item.ratePerSec).toFixed(2) +
+          '/s</span>';
+      }
+
+      li.innerHTML =
+        '<p class="item-title">' +
+          '<strong>' + item.name + '</strong> — ' +
+          '<span class="pop">' + fmt(item.population) + '</span> ' +
+          badge +
+        '</p>' +
+        '<button class="delete" type="button" aria-label="Delete ' + item.name + '">X</button>';
+
+      frag.appendChild(li);
+    }
+
+    listEl.innerHTML = "";
+    listEl.appendChild(frag);
   }
 
-  function ensureTicker(){
-    if (tickTimer) return;
-    tickTimer = setInterval(() => {
-      if (countries.length === 0) return;
-      countries.forEach(c => { c.population += c.ratePerSec; });
-      render(filterCountryList(countries, countrySearch.value.trim()));
+  function startTicker() {
+    if (state.timer || state.items.length === 0) return;
+    state.timer = setInterval(function () {
+      var i;
+      for (i = 0; i < state.items.length; i++) {
+        state.items[i].population += state.items[i].ratePerSec;
+      }
+      render();
     }, 1000);
   }
 
-  // Legg til land
-  countryForm?.addEventListener("submit", async (e) => {
+  function stopTickerIfEmpty() {
+    if (state.items.length === 0 && state.timer) {
+      clearInterval(state.timer);
+      state.timer = null;
+    }
+  }
+
+  // legg til land – én try/catch pga repository kaster ved feil
+  form.addEventListener("submit", function (e) {
     e.preventDefault();
-    const q = countryInput.value.trim();
+    var q = input.value.trim();
     if (!q) return;
 
-    const result = await getCountryData(q); // navn, population, rate/sek
-    if (!result) {
-      alert("Ukjent land (eller API-feil). Prøv et annet navn.");
-      return;
+    // unngå duplikater
+    var lower = q.toLowerCase();
+    for (var i = 0; i < state.items.length; i++) {
+      if (state.items[i].name.toLowerCase() === lower) {
+        input.value = "";
+        render();
+        return;
+      }
     }
 
-    // Unngå duplikater
-    if (countries.some(c => c.name.toLowerCase() === result.name.toLowerCase())) {
-      countryInput.value = "";
-      render(filterCountryList(countries, countrySearch.value.trim()));
-      return;
-    }
-
-    countries.push(result);
-    countryInput.value = "";
-    render(filterCountryList(countries, countrySearch.value.trim()));
-    ensureTicker();
-    countryInput.focus();
+    getCountryData(q)
+      .then(function (result) {
+        state.items.push(result);
+        input.value = "";
+        render();
+        startTicker();
+        input.focus();
+      })
+      .catch(function (err) {
+        alert("Ukjent land eller API-feil (" + err.message + "). Prøv et annet navn.");
+      });
   });
 
-  // Søk i land
-  countrySearch?.addEventListener("input", () => {
-    render(filterCountryList(countries, countrySearch.value.trim()));
+  // søk
+  search.addEventListener("input", function () {
+    state.filter = search.value.trim();
+    render();
+  });
+
+  // slett (uten srcElement)
+  listEl.addEventListener("click", function (e) {
+    var target = e.target;
+    if (!(target instanceof Element)) return;
+    var btn = target.closest(".delete");
+    if (!btn) return;
+
+    var li = btn.closest("li");
+    var name = li && li.dataset ? li.dataset.name : null;
+    if (!name) return;
+
+    state.items = state.items.filter(function (c) { return c.name !== name; });
+    render();
+    stopTickerIfEmpty();
   });
 }
