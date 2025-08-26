@@ -5,7 +5,9 @@ export const dataElementsQuery = {
         id: ({ id }) => id,
         params: {
             fields: [
-                "id",
+                //"id",
+                //'displayName',
+                //'created',
                 "dataSetElements[dataElement[id,displayName,created]]"
             ],
         },

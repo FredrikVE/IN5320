@@ -5,6 +5,7 @@ export const dataSetsQuery = {
         params: {
             fields: ["id", "displayName", "created"],
             paging: false,
+            order: 'asc:displayName',   // stabil rekkefølge
         },
     },
 }
