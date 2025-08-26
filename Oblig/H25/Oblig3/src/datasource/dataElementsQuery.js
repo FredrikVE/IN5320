@@ -7,7 +7,7 @@ export const dataElementsQuery = {
             fields: [
                 //"id",
                 //'displayName',
-                //'created',
+                'created',
                 "dataSetElements[dataElement[id,displayName,created]]"
             ],
         },

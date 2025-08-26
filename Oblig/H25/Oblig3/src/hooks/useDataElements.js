@@ -1,13 +1,12 @@
 // src/hooks/useDataElements.js
-import { useEffect, useMemo } from "react"
+import { useEffect } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
 import { dataElementsQuery as query } from "../datasource/dataElementsQuery"
-import { sortElements } from "../utils/sortElements"
 
 export function useDataElements(dataSetId) {
     const { data, loading, error, refetch } = useDataQuery(query, {
         variables: { id: "" }, // dummy ved init
-        lazy: true,            // alltid lazy
+        lazy: true,
     })
 
     // Hent data når id endrer seg
@@ -17,9 +16,7 @@ export function useDataElements(dataSetId) {
         }
     }, [dataSetId, refetch])
 
-    const elements = useMemo(function () {
-        return sortElements(data)
-    }, [data])
+    const elements = data?.dataSet?.dataSetElements ?? []
 
     return {
         loading,
