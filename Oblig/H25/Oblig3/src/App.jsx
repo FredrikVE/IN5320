@@ -1,9 +1,9 @@
 // src/App.jsx
 import { useState, Suspense } from "react"
 import Navigation from "./components/Navigation.jsx"
-import Browse from "./components/Browse.jsx"
-import Insert from "./components/Insert.jsx"
-import Datasets from "./components/Datasets.jsx"
+import Browse from "./components/NavigationTabs/Browse.jsx"
+import Insert from "./components/NavigationTabs/Insert.jsx"
+import Datasets from "./components/NavigationTabs/Datasets.jsx"
 import { CircularLoader, Center } from "@dhis2/ui"
 import classes from "./styles/App.module.css"
 

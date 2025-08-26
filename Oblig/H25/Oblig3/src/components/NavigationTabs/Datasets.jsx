@@ -1,10 +1,10 @@
 // src/components/Datasets.jsx
 import { useEffect, useState } from "react"
 import { NoticeBox } from "@dhis2/ui"
-import { useDataSets } from "../hooks/useDataSets"
-import DatasetsList from "./DatasetsList"
-import DatasetDetailsView from "./DatasetDetailsView"
-import styles from "../styles/datasets.module.css"
+import { useDataSets } from "../../hooks/useDataSets"
+import DatasetsList from "../DatasetsList"
+import DataTable from "../Table/DataTable"
+import styles from "../../styles/datasets.module.css"
 
 export default function Datasets() {
     const { loading, error, dataSets } = useDataSets()
@@ -41,7 +41,7 @@ export default function Datasets() {
                             Choose a dataset from the list.
                         </NoticeBox>
                     ) : (
-                        <DatasetDetailsView dataset={selected} />
+                        <DataTable dataset={selected} />
                     )}
                 </section>
             </div>

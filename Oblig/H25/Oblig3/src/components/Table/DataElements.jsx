@@ -1,8 +1,10 @@
-// src/components/DataElementsTable.jsx
+// src/components/Table/DataElements.jsx
 import {
   Table, TableHead, TableRowHead, TableCellHead,
   TableBody, TableRow, TableCell
 } from "@dhis2/ui"
+
+import { formatDateTime } from "../../utils/formatDate"
 
 export default function DataElementsTable({ elements = [] }) {
   if (!elements.length) return null
@@ -21,9 +23,7 @@ export default function DataElementsTable({ elements = [] }) {
             <TableCell>{e.dataElement.displayName}</TableCell>
             <TableCell>{e.dataElement.id}</TableCell>
             <TableCell>
-              {e.dataElement.created
-                ? new Date(e.dataElement.created).toLocaleString()
-                : "—"}
+              {formatDateTime(e.dataElement.created)}
             </TableCell>
           </TableRow>
         ))}

@@ -1,11 +1,11 @@
-// src/components/DatasetDetailsView.jsx
-import React from "react"
-import { NoticeBox, CircularLoader } from "@dhis2/ui"
-import { useDataElements } from "../hooks/useDataElements"
-import DatasetMetadataTable from "./DatasetMetadataTable"
-import DataElementsTable from "./DataElementsTable"
+// src/components/Table/DataTable.jsx
 
-export default function DatasetDetailsView({ dataset }) {
+import { NoticeBox, CircularLoader } from "@dhis2/ui"
+import { useDataElements } from "../../hooks/useDataElements"
+import DatasetMetadataTable from "./MetaDataTable"
+import DataElementsTable from "./DataElements"
+
+export default function DataTable({ dataset }) {
   if (!dataset) return null
 
   const { loading, error, elements } = useDataElements(dataset.id)

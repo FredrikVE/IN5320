@@ -1,8 +1,9 @@
-// src/components/DatasetMetadataTable.jsx
+// src/components/Table/MetaDataTable.jsx
 import {
   Table, TableHead, TableRowHead, TableCellHead,
   TableBody, TableRow, TableCell
 } from "@dhis2/ui"
+import { formatDateTime } from "../../utils/formatDate"
 
 export default function DatasetMetadataTable({ dataset }) {
   if (!dataset) return null
@@ -20,7 +21,7 @@ export default function DatasetMetadataTable({ dataset }) {
           <TableCell>{dataset.displayName}</TableCell>
           <TableCell>{dataset.id}</TableCell>
           <TableCell>
-            {dataset.created ? new Date(dataset.created).toLocaleString() : "—"}
+            {formatDateTime(dataset.created)}
           </TableCell>
         </TableRow>
       </TableBody>
