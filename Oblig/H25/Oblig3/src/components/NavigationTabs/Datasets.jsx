@@ -1,4 +1,4 @@
-// src/components/Datasets.jsx
+// src/components/NavigationTabs/Datasets.jsx
 import { useEffect, useState } from "react"
 import { NoticeBox } from "@dhis2/ui"
 import { useDataSets } from "../../hooks/useDataSets"

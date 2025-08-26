@@ -1,4 +1,4 @@
-//src/components/Browse.jsx
+//src/components/NavigationTabs/Browse.jsx
 import { NoticeBox } from "@dhis2/ui"
 
 export default function Browse() {

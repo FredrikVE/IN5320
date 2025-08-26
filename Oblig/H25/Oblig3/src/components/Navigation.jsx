@@ -9,7 +9,6 @@ export default function Navigation({ current, setCurrent }) {
                 <Tab selected={current === "datasets"} onClick={() => setCurrent("datasets")}>Datasets</Tab>
                 <Tab selected={current === "browse"} onClick={() => setCurrent("browse")}>Browse</Tab>
                 <Tab selected={current === "insert"} onClick={() => setCurrent("insert")}>Insert</Tab>
-                
             </TabBar>
         </div>
     )
