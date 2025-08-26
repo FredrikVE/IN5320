@@ -1,47 +1,30 @@
 // src/hooks/useDataElements.js
-import { useEffect, useState } from "react"
+import { useEffect, useMemo } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
 import { dataElementsQuery as query } from "../datasource/dataElementsQuery"
-
-const cache = new Map()
-export const clearDataElementsCache = () => cache.clear()
+import { sortElements } from "../utils/sortElements"
 
 export function useDataElements(dataSetId) {
-  const [fromCache, setFromCache] = useState(() => cache.get(dataSetId) || null)
-  const skipNetwork = !dataSetId || !!fromCache
+    const { data, loading, error, refetch } = useDataQuery(query, {
+        variables: { id: "" }, // dummy ved init
+        lazy: true,            // alltid lazy
+    })
 
-  const { data, loading, error, refetch } = useDataQuery(query, {
-    variables: { id: dataSetId || "" },
-    lazy: skipNetwork,
-  })
+    // Hent data når id endrer seg
+    useEffect(() => {
+        if (dataSetId) {
+            refetch({ id: dataSetId }).catch(() => {})
+        }
+    }, [dataSetId, refetch])
 
-  useEffect(() => {
-    if (!dataSetId) { setFromCache(null); return }
-    const hit = cache.get(dataSetId)
-    if (hit) { setFromCache(hit); return }
-    setFromCache(null)
-    refetch({ id: dataSetId }).catch(() => {})
-  }, [dataSetId, refetch])
+    const elements = useMemo(function () {
+        return sortElements(data)
+    }, [data])
 
-  // Cache under id-en fra responsen (sikrer riktig nøkkel)
-  useEffect(() => {
-    const ds = data?.dataSet
-    const respId = ds?.id
-    if (respId && !cache.has(respId)) {
-      cache.set(respId, ds)
-      if (respId === dataSetId) setFromCache(ds)
+    return {
+        loading,
+        error,
+        elements,
+        hasData: elements.length > 0,
     }
-  }, [data, dataSetId])
-
-  const elements =
-    fromCache?.dataSetElements ??
-    data?.dataSet?.dataSetElements ??
-    []
-
-  return {
-    loading: skipNetwork ? false : loading,
-    error,
-    elements,
-    hasData: elements.length > 0,
-  }
 }
