@@ -14,7 +14,9 @@
   <link rel="stylesheet" href="styles/accessibility.css">
   <link rel="stylesheet" href="styles/delete.css">
   <link rel="stylesheet" href="styles/search.css">
-  
+  <link rel="stylesheet" href="styles/countrysearch.css">
+  <link rel="stylesheet" href="styles/countryinput.css">
+
 </head>
 <body>
   <main class="container">
@@ -35,6 +37,22 @@
 
     <!-- List -->
     <ul id="currencyList" aria-live="polite"></ul>
+
+    <!-- Country feature -->
+    <h2>Country</h2>
+
+    <div class="controls">
+      <label class="sr-only" for="countryInput">Country</label>
+      <input id="countryInput" type="text" placeholder="Country" autocomplete="off" />
+      <button id="addCountryBtn" type="button" aria-label="Add country">Add</button>
+    </div>
+
+    <div class="controls">
+      <label class="sr-only" for="countrySearchInput">Search</label>
+      <input id="countrySearchInput" type="text" placeholder="Search" autocomplete="off" />
+    </div>
+
+    <ul id="countryList" aria-live="polite"></ul>
   </main>
 
   <!-- Main entry -->
