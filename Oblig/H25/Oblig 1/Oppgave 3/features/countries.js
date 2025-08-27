@@ -1,4 +1,4 @@
-// src/features/countries.js
+//src/features/countries.js
 import { addCurrency as addListItem } from "../components/currencyList.js";
 import { startsWithIgnoreCase } from "../utils/search.js";
 import { formatPopulation } from "../utils/numberFormat.js";

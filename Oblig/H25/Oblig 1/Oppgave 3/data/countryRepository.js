@@ -28,7 +28,10 @@ export class CountryRepository {
    */
   async getPopulationToday(countryInput) {
     const normalized = await this.resolveCountryName(countryInput);
-    if (!normalized) return { ok: false, reason: "unknown-country" };
+    
+    if (!normalized) {
+      return { ok: false, reason: "unknown-country" };
+    }
 
     const raw = await this.ds.getTodayAndTomorrow(normalized);
     const arr = raw?.total_population;
