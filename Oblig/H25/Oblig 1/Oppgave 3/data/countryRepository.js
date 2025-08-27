@@ -1,4 +1,5 @@
-import { PopulationDataSource } from "../datasources/populationDataSource.js";
+//src/data/countryRepository.js
+import { PopulationDataSource } from "./populationDataSource.js";
 
 export class CountryRepository {
   constructor(ds = new PopulationDataSource()) {

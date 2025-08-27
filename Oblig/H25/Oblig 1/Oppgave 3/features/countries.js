@@ -1,8 +1,8 @@
 //src/features/countries.js
 import { addCurrency as addListItem } from "../components/currencyList.js";
 import { startsWithIgnoreCase } from "../utils/search.js";
-import { formatPopulation } from "../utils/format.js";
-import { CountryRepository } from "../repositories/countryRepository.js";
+import { formatPopulation } from "../utils/numberFormat.js";
+import { CountryRepository } from "../data/countryRepository.js";
 import { createIdGenerator } from "../utils/generateStateID.js"; // hvis du vil ID-er her også
 
 export function initCountries({ genId = createIdGenerator("country") } = {}) {
