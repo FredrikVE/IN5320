@@ -1,0 +1,13 @@
+src/
+  data/
+    countriesDatasource.js
+    countriesRepository.js      // Model/Repository
+  features/
+    countryFormat.js            // domene-spesifikk formatering
+    countryPresenter.js         // Presenter -> VM
+    countries.js                // Controller (state + events)
+  components/
+    countriesView.js            // View (DOM)
+  utils/
+    search.js
+    dom.js
