@@ -1,4 +1,4 @@
-import { addCurrency } from "../components/currencyList.js";
+import { addCurrency } from "../components/currency/currencyList.js";
 import { startsWithWord } from "../utils/search.js";
 import { handleAddCurrency } from "../handlers/addCurrency.js";
 import { handleDeleteCurrency } from "../handlers/deleteCurrency.js";

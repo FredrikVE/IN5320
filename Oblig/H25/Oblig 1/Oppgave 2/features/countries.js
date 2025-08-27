@@ -1,8 +1,8 @@
 // src/features/countries.js
 import { must } from "../utils/dom.js"
 import { getCountryData } from "../data/countriesRepository.js"
-import { renderList } from "../components/countriesView.js"
-import { startTickerIfNeeded, clearTickerIfNoItems } from "../components/growthTicker.js"
+import { renderList } from "../components/countries/countriesView.js"
+import { startTickerIfNeeded, clearTickerIfNoItems } from "../components/countries/growthTicker.js"
 import { checkInput } from "../utils/checkInput.js"
 import { addCountry } from "../utils/addCountry.js"
 

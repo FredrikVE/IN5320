@@ -1,5 +1,5 @@
 // src/components/countriesView.js
-import { startsWithWord } from "../utils/search.js"
+import { startsWithWord } from "../../utils/search.js"
 import { CountryItem } from "./CountryItem.js"
 
 export function renderList(listEl, items = [], filter = "") {
