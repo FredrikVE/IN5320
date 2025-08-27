@@ -1,5 +1,5 @@
 // src/components/countriesView.js
-import { startsWithWord } from "../lib/search.js"
+import { startsWithWord } from "../utils/search.js"
 
 const nf = new Intl.NumberFormat("nb-NO", { maximumFractionDigits: 0 })
 const fmt = (n) => nf.format(Math.round(Number.isFinite(n) ? n : 0))
