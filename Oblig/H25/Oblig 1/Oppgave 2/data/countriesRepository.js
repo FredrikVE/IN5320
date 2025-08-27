@@ -1,5 +1,5 @@
 //src/data/countriesRepository.js
-import { fetchCountryRaw, fetchPopTodayTomorrowRaw } from "./datasource.js";
+import { fetchCountryRaw, fetchPopTodayTomorrowRaw } from "./countriesDatasource.js";
 
 const SECONDS_PER_DAY = 86400;
 

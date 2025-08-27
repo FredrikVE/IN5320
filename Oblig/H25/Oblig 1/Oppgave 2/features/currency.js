@@ -1,66 +1,35 @@
-//src/features/currency.js
-import { filterList } from "../lib/search.js";
-import { must } from "../lib/dom.js";
-import { initCurrenciesRepo, getCurrencies, addCurrency, removeCurrency } from "../data/currencyRepository.js";
+import { addCurrency } from "../components/currencyList.js";
+import { startsWithWord } from "../lib/search.js";
+import { handleAddCurrency } from "../handlers/addCurrency.js";
+import { handleDeleteCurrency } from "../handlers/deleteCurrency.js";
 
 export function initCurrency() {
-  var DEFAULTS = ["Euro", "Norwegian Kroner", "Canadian Dollar", "Ukrainian Hryvnia", "Australian Dollar"];
+  const input  = document.getElementById("currency-input");
+  const form   = document.getElementById("add-form");
+  const search = document.getElementById("search-input");
+  const list   = document.getElementById("currency-list");
+  if (!input || !form || !list || !search) return;
 
-  var listEl        = must("currency-list");
-  var addForm       = must("add-form");
-  var currencyInput = must("currency-input");
-  var searchInput   = must("search-input");
-
-  initCurrenciesRepo(DEFAULTS);
+  const state = { items: [] };
 
   function render() {
-    var all = getCurrencies();
-    var q = (searchInput.value || "").trim();
-    var list = filterList(all, q);
-
-    var frag = document.createDocumentFragment();
-    var i;
-    for (i = 0; i < list.length; i++) {
-      var name = list[i];
-      var li = document.createElement("li");
-      li.className = "item";
-      li.dataset.name = name;
-      li.innerHTML =
-        '<p class="item-title">' + name + '</p>' +
-        '<button class="delete" type="button" aria-label="Delete ' + name + '">X</button>';
-      frag.appendChild(li);
-    }
-    listEl.innerHTML = "";
-    listEl.appendChild(frag);
+    const term = search.value || "";
+    list.innerHTML = "";
+    state.items
+      .filter(it => startsWithWord(it.label, term))
+      .forEach(it =>
+        addCurrency(list, it, {
+          onDelete: (item) => handleDeleteCurrency(item, state, render),
+        })
+      );
   }
 
-  addForm.addEventListener("submit", function (e) {
+  form.addEventListener("submit", (e) => {
     e.preventDefault();
-    var value = (currencyInput.value || "").trim();
-    if (!value) return;
-    addCurrency(value);        // repo håndterer duplikater
-    currencyInput.value = "";
-    render();
-    currencyInput.focus();
+    search.value = ""; // ellers kan ny post skjules av filteret
+    handleAddCurrency(input, state, render); // ingen genId
   });
 
-  searchInput.addEventListener("input", function () {
-    render();
-  });
-
-  listEl.addEventListener("click", function (e) {
-    var target = e.target;
-    if (!(target instanceof Element)) return;
-    var btn = target.closest(".delete");
-    if (!btn) return;
-
-    var li = btn.closest("li");
-    var name = li && li.dataset ? li.dataset.name : null;
-    if (!name) return;
-
-    removeCurrency(name);
-    render();
-  });
-
+  search.addEventListener("input", render);
   render();
 }
