@@ -20,8 +20,8 @@ export function initCountries() {
   form.addEventListener("submit", async (e) => {
     e.preventDefault()
     try {
-      const q = checkInput(input.value, state.items) // valider input
-      await addCountry(state, q, render, {
+      const query = checkInput(input.value, state.items) // valider input
+      await addCountry(state, query, render, {
         getCountryData,
         startTicker: startTickerIfNeeded,
       }) // legg inn land
