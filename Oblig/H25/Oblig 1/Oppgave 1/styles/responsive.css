@@ -1,0 +1,16 @@
+/* Responsivt topp */
+@media (max-width: 900px){
+  .top{ grid-template-columns:1fr; }
+  .portrait{ justify-self:start; width:min(300px, 72vw); }
+}
+
+/* Breakpoint for to-spalter-liste */
+@media (max-width: 720px){
+  .bullets.two-col{ columns:1; }
+}
+
+/* Header-tilpasning på små skjermer */
+@media (max-width: 520px){
+  .header-inner{ grid-template-columns:1fr; }
+  .nav{ justify-content:flex-start; }
+}

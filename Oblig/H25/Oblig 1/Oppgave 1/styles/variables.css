@@ -1,0 +1,13 @@
+:root{
+  --panel:#ffffff;
+  --ink:#0f172a;
+  --muted:#64748b;
+  --accent:#3b82f6;
+  --accent-ink:#1e3a8a;
+  --radius:16px;
+  --shadow:0 8px 24px rgba(0,0,0,.06); /* bare på portrettet */
+  --maxw:1100px;
+
+  --radius-card:40px;
+  --radius-img-big:72px;
+}

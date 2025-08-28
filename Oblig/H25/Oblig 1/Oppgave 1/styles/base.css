@@ -1,0 +1,52 @@
+body{
+  margin:0;
+  font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+  line-height:1.55;
+  color:var(--ink);
+
+  /* Lys bakgrunn uten rutenett */
+  background:
+    radial-gradient(60rem 32rem at -10% -10%, #e9f2ff 0, transparent 70%),
+    radial-gradient(55rem 30rem at 110% -10%, #eaf8f1 0, transparent 70%),
+    radial-gradient(50rem 28rem at 50% 120%,  #f4ecff 0, transparent 75%),
+    linear-gradient(180deg, #f7fafc, #eef3f8);
+}
+
+/* Containers */
+.container { 
+  width:min(var(--maxw), 92vw); 
+  margin-inline:auto; 
+}
+
+/* Typography */
+h1 { 
+  font-size: clamp(2rem, 1.4rem + 2.4vw, 3.2rem);
+   margin:0 0 .25rem; 
+  }
+
+h2 { 
+  font-size: clamp(1.25rem, 1rem + 1vw, 1.6rem); 
+  margin:0 0 .75rem; 
+}
+
+h3 { 
+  font-size: 1.05rem; 
+  margin:.25rem 0; 
+}
+
+p  { 
+  margin:0 0 .75rem; 
+}
+
+.muted { 
+  color: var(--muted); 
+}
+
+/* Globale lenker */
+a{ 
+  color:var(--accent); 
+}
+
+a:hover{ 
+  color:var(--accent-ink); 
+}

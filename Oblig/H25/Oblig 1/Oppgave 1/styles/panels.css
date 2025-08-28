@@ -1,0 +1,11 @@
+/* ===== Paneler ===== */
+.panel{
+  background:#fff;
+  padding:1.25rem;
+  border-radius:var(--radius);
+  box-shadow:none;
+  margin-block:1rem;
+  border:1px solid #e6edf5;
+}
+
+.item + .item{ margin-top:1rem; }

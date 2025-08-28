@@ -1,0 +1,17 @@
+/* ===== Kort ===== */
+.resume-wrapper{
+  min-height: calc(100vh - 56px);
+  display:grid;
+  place-items:center;
+  padding:40px 16px;
+}
+
+.resume-card{
+  width:min(var(--maxw), 96vw);
+  background:var(--panel);
+  border-radius:var(--radius-card);
+  box-shadow:none;
+  border:1px solid rgba(15,23,42,.06);
+  padding:44px 40px 36px;
+  position:relative;
+}
