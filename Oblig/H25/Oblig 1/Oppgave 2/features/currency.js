@@ -1,35 +1,65 @@
-import { addCurrency } from "../components/currency/currencyList.js";
-import { startsWithWord } from "../utils/search.js";
-import { handleAddCurrency } from "../handlers/addCurrency.js";
-import { handleDeleteCurrency } from "../handlers/deleteCurrency.js";
+// src/features/currency.js
+import { currencySearch } from "../utils/currencySearch.js";
+import { CurrencyItem } from "../components/CurrencyItem.js";
 
 export function initCurrency() {
-  const input  = document.getElementById("currency-input");
   const form   = document.getElementById("add-form");
+  const input  = document.getElementById("currency-input");
   const search = document.getElementById("search-input");
-  const list   = document.getElementById("currency-list");
-  if (!input || !form || !list || !search) return;
+  const listEl = document.getElementById("currency-list");
 
-  const state = { items: [] };
+  // Gjør ingenting hvis markup mangler
+  if (!form || !input || !search || !listEl) return;
+
+  const state = { items: [], filter: "" };
 
   function render() {
-    const term = search.value || "";
-    list.innerHTML = "";
-    state.items
-      .filter(it => startsWithWord(it.label, term))
-      .forEach(it =>
-        addCurrency(list, it, {
-          onDelete: (item) => handleDeleteCurrency(item, state, render),
-        })
-      );
+    const frag = document.createDocumentFragment();
+    const filtered = state.filter
+      ? state.items.filter(it => currencySearch(it.name, state.filter))
+      : state.items;
+
+    for (const it of filtered) {
+      frag.appendChild(CurrencyItem(it.name));
+    }
+    listEl.replaceChildren(frag);
   }
 
+  // add
   form.addEventListener("submit", (e) => {
     e.preventDefault();
-    search.value = ""; // ellers kan ny post skjules av filteret
-    handleAddCurrency(input, state, render); // ingen genId
+    const q = input.value.trim();
+    if (!q) return;
+
+    // duplikatsjekk (case-insensitive)
+    if (state.items.some(it => it.name.toLowerCase() === q.toLowerCase())) {
+      input.select();
+      return;
+    }
+
+    search.value = ""; // unngå at ny post skjules av filter
+    state.items.push({ name: q });
+    input.value = "";
+    input.focus();
+    state.filter = "";
+    render();
   });
 
-  search.addEventListener("input", render);
+  // search
+  search.addEventListener("input", () => {
+    state.filter = search.value.trim();
+    render();
+  });
+
+  // delete via event delegation
+  listEl.addEventListener("click", (e) => {
+    const btn  = e.target.closest?.(".delete");
+    const name = btn?.closest("li")?.dataset?.name;
+    if (!name) return;
+
+    state.items = state.items.filter(it => it.name !== name);
+    render();
+  });
+
   render();
 }

@@ -3,8 +3,18 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Valutaliste + Befolkning – Oblig 1 (JS)</title>
-  <link rel="stylesheet" href="styles.css" />
+  <title>Oblig 1 - del 2</title>
+
+   <!-- importerer modulariserte CSS-filer -->
+  <link rel="stylesheet" href="styles/base.css">
+  <link rel="stylesheet" href="styles/layout.css">
+  <link rel="stylesheet" href="styles/inputs.css">
+  <link rel="stylesheet" href="styles/buttons.css">
+  <link rel="stylesheet" href="styles/list.css">
+  <link rel="stylesheet" href="styles/delete.css">
+  <link rel="stylesheet" href="styles/badges.css">
+  <link rel="stylesheet" href="styles/accessibility.css">
+
 </head>
 <body>
   <main class="wrap">
@@ -32,7 +42,6 @@
 
     <div class="row">
       <input id="country-search" type="text" placeholder="Search country" />
-      <span class="muted tip">Tallene tikker per sekund når rate er tilgjengelig.</span>
     </div>
 
     <ul id="country-list" class="list" aria-live="polite"></ul>
