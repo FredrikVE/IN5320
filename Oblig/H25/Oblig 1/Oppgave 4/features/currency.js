@@ -1,12 +1,15 @@
-import { must } from "../utils/dom.js";
+// src/features/currency.js
 import { startsWithWord } from "../utils/search.js";
 import { CurrencyItem } from "../components/CurrencyItem.js";
 
 export function initCurrency() {
-  const input  = must("currency-input");
-  const form   = must("add-form");
-  const search = must("search-input");
-  const listEl = must("currency-list");
+  const form   = document.getElementById("add-form");
+  const input  = document.getElementById("currency-input");
+  const search = document.getElementById("search-input");
+  const listEl = document.getElementById("currency-list");
+
+  // Gjør ingenting hvis markup mangler
+  if (!form || !input || !search || !listEl) return;
 
   const state = { items: [], filter: "" };
 
@@ -55,6 +58,7 @@ export function initCurrency() {
     const li = btn.closest("li");
     const name = li?.dataset?.name;
     if (!name) return;
+
     state.items = state.items.filter(it => it.name !== name);
     render();
   });

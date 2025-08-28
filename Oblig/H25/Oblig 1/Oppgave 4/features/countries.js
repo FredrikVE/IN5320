@@ -1,14 +1,16 @@
 // src/features/countries.js
-import { must } from "../utils/dom.js";
 import { startsWithWord } from "../utils/search.js";
 import { CountryItem } from "../components/CountryItem.js";
 import { getCountryData } from "../data/countriesRepository.js";
 
 export function initCountries() {
-  const form   = must("country-form");
-  const input  = must("country-input");
-  const search = must("country-search");
-  const listEl = must("country-list");
+  const form   = document.getElementById("country-form");
+  const input  = document.getElementById("country-input");
+  const search = document.getElementById("country-search");
+  const listEl = document.getElementById("country-list");
+
+  // Enkel guard: gjør ingenting hvis markup mangler (samme stil som currency)
+  if (!form || !input || !search || !listEl) return;
 
   const state = { items: [], filter: "", timer: null };
 
@@ -22,7 +24,6 @@ export function initCountries() {
       render();
     }, 1000);
   }
-
   function stopTickerIfEmpty() {
     if (state.items.length === 0 && state.timer) {
       clearInterval(state.timer);
@@ -37,20 +38,17 @@ export function initCountries() {
       : state.items;
 
     for (const it of filtered) {
-      // Speil growthRatePerSec til ratePerSec for bakoverkompatibilitet
       const viewItem = { ...it, ratePerSec: it.growthRatePerSec ?? it.ratePerSec ?? 0 };
       frag.appendChild(CountryItem(viewItem));
     }
     listEl.replaceChildren(frag);
   }
 
-  // add
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const q = input.value.trim();
     if (!q) return;
 
-    // duplikatsjekk (case-insensitive)
     if (state.items.some(it => it.name.toLowerCase() === q.toLowerCase())) {
       input.value = "";
       render();
@@ -58,14 +56,14 @@ export function initCountries() {
     }
 
     try {
-      const item = await getCountryData(q); // henter via repository
+      const item = await getCountryData(q);
       state.items.push(item);
       input.value = "";
       input.focus();
       render();
       ensureTicker();
     } catch (err) {
-      const code = err?.message; // repoet kaster Error("COUNTRY_NOT_SUPPORTED")/ "EMPTY_QUERY"
+      const code = err?.message;
       if (code === "COUNTRY_NOT_SUPPORTED") {
         alert("Ukjent land (eller API returnerte tomt svar). Prøv et annet navn.");
       } else if (code === "EMPTY_QUERY") {
@@ -76,13 +74,11 @@ export function initCountries() {
     }
   });
 
-  // search
   search.addEventListener("input", () => {
     state.filter = search.value.trim();
     render();
   });
 
-  // delete via event delegation
   listEl.addEventListener("click", (e) => {
     const btn = e.target instanceof Element ? e.target.closest(".delete") : null;
     if (!btn) return;
