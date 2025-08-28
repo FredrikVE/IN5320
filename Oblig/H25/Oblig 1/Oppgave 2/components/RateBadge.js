@@ -1,8 +1,8 @@
-export function RateBadge(growthRatePerSec) {
-  if (!growthRatePerSec) return null; // skjul 0/null
+export function RateBadge(rate) {
+  //if (!rate) return null;                    // skjul 0/null
+  const neg  = rate < 0;
   const span = document.createElement("span");
-  span.className = "badge" + (growthRatePerSec < 0 ? " neg" : "");
-  const sign = growthRatePerSec < 0 ? "−" : "+";
-  span.textContent = `${sign}${Math.abs(growthRatePerSec).toFixed(2)}/s`;
+  span.className = `badge${neg ? " neg" : ""}`;
+  span.textContent = `${neg ? "−" : "+"}${Math.abs(rate).toFixed(2)}/s`;
   return span;
 }

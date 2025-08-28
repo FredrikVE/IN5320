@@ -1,7 +1,6 @@
 import { formatPopulationNumber } from "../utils/populationNumberFormat.js";
 import { RateBadge } from "./RateBadge.js";
 
-
 export function CountryItem({ name, population, growthRatePerSec: growthRatePerSec }) {
   const li = document.createElement("li");
   li.className = "item";
