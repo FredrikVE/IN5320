@@ -10,7 +10,8 @@ export function initCountries() {
   const input  = document.getElementById("country-input");
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
-  if (!form || !input || !search || !listEl) return;
+  
+  //if (!form || !input || !search || !listEl) return;
 
   // fjernet filter fra state
   const state = { items: [] };

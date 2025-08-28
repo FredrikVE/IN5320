@@ -9,18 +9,19 @@ export function initCurrency() {
   const listEl = document.getElementById("currency-list");
 
   // Gjør ingenting hvis markup mangler
-  if (!form || !input || !search || !listEl) return;
+  //if (!form || !input || !search || !listEl) return;
 
-  const state = { items: [], filter: "" };
+  // Fjernet filter fra state
+  const state = { items: [] };
 
   function render() {
+    const searchText = search.value.trim();                // les søkeverdi direkte
     const frag = document.createDocumentFragment();
-    const filtered = state.filter
-      ? state.items.filter(it => currencySearch(it.name, state.filter))
-      : state.items;
 
-    for (const it of filtered) {
-      frag.appendChild(CurrencyItem(it.name));
+    for (const it of state.items) {
+      if (!searchText || currencySearch(it.name, searchText)) {
+        frag.appendChild(CurrencyItem(it.name));
+      }
     }
     listEl.replaceChildren(frag);
   }
@@ -37,19 +38,14 @@ export function initCurrency() {
       return;
     }
 
-    search.value = ""; // unngå at ny post skjules av filter
     state.items.push({ name: q });
     input.value = "";
     input.focus();
-    state.filter = "";
     render();
   });
 
-  // search
-  search.addEventListener("input", () => {
-    state.filter = search.value.trim();
-    render();
-  });
+  // search – ingen state, bare re-render
+  search.addEventListener("input", render);
 
   // delete via event delegation
   listEl.addEventListener("click", (e) => {
