@@ -4,7 +4,7 @@ import { currencySearch } from "../utils/currencySearch.js";                   /
 import { CountryItem } from "../components/CountryItem.js";                    // Bygger ett <li>-element for et land
 import { getCountryData } from "../data/countriesRepository.js";               // Henter/normaliserer data fra API
 import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js"; // Start/stop “tikkende” oppdatering
-import { toTitleCase } from "../utils/toTitleCase.js";                         // ← riktig filnavn
+import { toTitleCase } from "../utils/toTitleCase.js";                         // Normaliser input til Title Case
 
 export function initCountries() {                                              // Eksporterer init-funksjonen – kjøres når feature skal settes opp
   const form   = document.getElementById("country-form");                      // Henter <form> for å legge til land
@@ -32,17 +32,14 @@ export function initCountries() {                                              /
     const query = toTitleCase(input.value);                                    // ← normaliser input til Title Case
     if (!query) return;                                                        // Ignorer tom innsendelse
 
-    // Duplikatsjekk: case-insensitiv
-    const qLower = query.toLowerCase();
-    const namesLower = state.items.map(it => (it.name || "").toLowerCase());
-    if (namesLower.includes(qLower)) {
-      input.value = "";
-      render();
+    // Duplikatsjekk (case-insensitiv)
+    if (state.items.some(it => (it.name || "").toLowerCase() === query.toLowerCase())) {
+      input.select();                                                          // Marker teksten så brukeren ser at det allerede finnes
       return;
     }
 
     try {                                                                      // Prøver å hente data for landet via repository (kan feile)
-      const item = await getCountryData(query);                                // ← bruk normalisert input
+      const item = await getCountryData(query);                                // Søk etter data med toTitleCase-input
       if (!item) return;
       state.items.push(item);                                                  // Legger landet inn i state-listen
       input.value = "";                                                        // Tøm inputfeltet
@@ -60,18 +57,19 @@ export function initCountries() {                                              /
   search.addEventListener("input", () => {                                     // Lytter på endringer i søkefeltet
     state.filter = search.value.trim();                                        // Oppdaterer filter i state (trimmer mellomrom)
     render();                                                                  // Re-render for å vise/skjule elementer basert på nytt søk
-  });                                                                          // Slutt på input-lytter
+  });
+  // Slutt på input-lytter
+  
+  listEl.addEventListener("click", (e) => {
+    const btn  = e.target.closest?.(".delete");
+    const name = btn?.closest("li")?.dataset?.name;
+    if (!name) return;
+    
+    state.items = state.items.filter(it => it.name !== name);
+    render();
+    stopTickerIfEmpty(state);
+  });                  
+  // Slutt på click-lytter
 
-  listEl.addEventListener("click", (e) => {                                    // Event delegation: lytter ett sted for alle klikk i listen
-    const del = e.target instanceof Element ? e.target.closest(".delete") : null; // Finn nærmeste .delete-knapp fra klikket element (om noen)
-    if (!del) return;                                                          // Hvis ikke slett-knapp, gjør ingenting
-    const name = del.closest("li")?.dataset?.name;                             // Hent landenavnet via data-attributt på <li>
-    if (!name) return;                                                         // Sikkerhetssjekk: avbryt hvis navn mangler
-
-    state.items = state.items.filter(it => it.name !== name);                  // Fjern landet fra state-listen
-    render();                                                                  // Tegn listen på nytt uten det slettede elementet
-    stopTickerIfEmpty(state);                                                  // Stopp tikkeren hvis listen nå er tom (rydder opp timer)
-  });                                                                          // Slutt på click-lytter
-
-  render();                                                                    // Første render: vis (tom) liste ved init
-}                                                                              // Slutt på initCountries()
+  render(); // Første render: vis (tom) liste ved init
+}

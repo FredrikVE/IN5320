@@ -53,10 +53,8 @@ export function initCurrency() {
 
   // delete via event delegation
   listEl.addEventListener("click", (e) => {
-    const btn = e.target instanceof Element ? e.target.closest(".delete") : null;
-    if (!btn) return;
-    const li = btn.closest("li");
-    const name = li?.dataset?.name;
+    const btn  = e.target.closest?.(".delete");
+    const name = btn?.closest("li")?.dataset?.name;
     if (!name) return;
 
     state.items = state.items.filter(it => it.name !== name);
