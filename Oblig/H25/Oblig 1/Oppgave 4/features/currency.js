@@ -1,5 +1,5 @@
 // src/features/currency.js
-import { startsWithWord } from "../utils/search.js";
+import { currencySearch } from "../utils/currencySearch.js";
 import { CurrencyItem } from "../components/CurrencyItem.js";
 
 export function initCurrency() {
@@ -16,7 +16,7 @@ export function initCurrency() {
   function render() {
     const frag = document.createDocumentFragment();
     const filtered = state.filter
-      ? state.items.filter(it => startsWithWord(it.name, state.filter))
+      ? state.items.filter(it => currencySearch(it.name, state.filter))
       : state.items;
 
     for (const it of filtered) {

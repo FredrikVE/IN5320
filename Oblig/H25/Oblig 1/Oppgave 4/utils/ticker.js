@@ -1,12 +1,17 @@
 // src/utils/ticker.js
-export function ensureTicker(state, render, intervalMs = 1000) {
+export function startPopulationTicker(state, render) {
   if (state.timer || state.items.length === 0) return;
-  state.timer = setInterval(() => {
-    for (const it of state.items) {
-      it.population += it.growthRatePerSec || 0;
+
+  function tick() {
+    for (var i = 0; i < state.items.length; i++) {
+      var item = state.items[i];
+      item.population += item.growthRatePerSec; // ingen || 0
     }
     render();
-  }, intervalMs);
+  }
+
+  const delay = 1000; 
+  state.timer = setInterval(tick, delay);
 }
 
 export function stopTickerIfEmpty(state) {

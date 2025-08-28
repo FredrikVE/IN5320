@@ -1,4 +1,4 @@
-export function startsWithWord(element, searchWord) {
+export function currencySearch(element, searchWord) {
   const e = String(element || "").toLowerCase();
   const s = String(searchWord || "").toLowerCase();
   if (!s) return true;
