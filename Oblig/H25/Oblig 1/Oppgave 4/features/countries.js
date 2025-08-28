@@ -2,6 +2,7 @@
 import { startsWithWord } from "../utils/search.js";
 import { CountryItem } from "../components/CountryItem.js";
 import { getCountryData } from "../data/countriesRepository.js";
+import { ensureTicker, stopTickerIfEmpty } from "../utils/ticker.js";
 
 export function initCountries() {
   const form   = document.getElementById("country-form");
@@ -9,27 +10,9 @@ export function initCountries() {
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
 
-  // Enkel guard: gjør ingenting hvis markup mangler (samme stil som currency)
   if (!form || !input || !search || !listEl) return;
 
   const state = { items: [], filter: "", timer: null };
-
-  function ensureTicker() {
-    if (state.timer || state.items.length === 0) return;
-    state.timer = setInterval(() => {
-      for (const it of state.items) {
-        const rate = (it.growthRatePerSec ?? it.ratePerSec ?? 0);
-        it.population += rate;
-      }
-      render();
-    }, 1000);
-  }
-  function stopTickerIfEmpty() {
-    if (state.items.length === 0 && state.timer) {
-      clearInterval(state.timer);
-      state.timer = null;
-    }
-  }
 
   function render() {
     const frag = document.createDocumentFragment();
@@ -38,8 +21,8 @@ export function initCountries() {
       : state.items;
 
     for (const it of filtered) {
-      const viewItem = { ...it, ratePerSec: it.growthRatePerSec ?? it.ratePerSec ?? 0 };
-      frag.appendChild(CountryItem(viewItem));
+      // CountryItem kan lese growthRatePerSec direkte
+      frag.appendChild(CountryItem(it));
     }
     listEl.replaceChildren(frag);
   }
@@ -61,11 +44,11 @@ export function initCountries() {
       input.value = "";
       input.focus();
       render();
-      ensureTicker();
+      ensureTicker(state, render); // bruker utils/ticker
     } catch (err) {
       const code = err?.message;
       if (code === "COUNTRY_NOT_SUPPORTED") {
-        alert("Ukjent land (eller API returnerte tomt svar). Prøv et annet navn.");
+        alert("Ukjent land. Prøv et annet navn.");
       } else if (code === "EMPTY_QUERY") {
         // ignorer
       } else {
@@ -88,7 +71,7 @@ export function initCountries() {
 
     state.items = state.items.filter(it => it.name !== name);
     render();
-    stopTickerIfEmpty();
+    stopTickerIfEmpty(state); // bruker utils/ticker
   });
 
   render();
