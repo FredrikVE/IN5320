@@ -17,16 +17,16 @@ export function initCountries() {
 
   function render() {
     // les filter direkte fra DOM (tom streng hvis ikke skrevet noe)
-    const filter = search.value.trim();
-    const frag = document.createDocumentFragment();
+    const searchText = search.value.trim();
+    const listFragment = document.createDocumentFragment();
 
     for (let i = 0; i < state.items.length; i++) {
       const it = state.items[i];
-      if (currencySearch(it.name, filter)) {
-        frag.appendChild(CountryItem(it));
+      if (currencySearch(it.name, searchText)) {
+        listFragment.appendChild(CountryItem(it));
       }
     }
-    listEl.replaceChildren(frag);
+    listEl.replaceChildren(listFragment);
   }
 
   form.addEventListener("submit", async (e) => {
@@ -36,7 +36,7 @@ export function initCountries() {
     if (!query) return;
 
     // duplikatsjekk (case-insensitiv)
-    if (state.items.some(it => (it.name || "").toLowerCase() === query.toLowerCase())) {
+    if (state.items.some(it => (it.name).toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
@@ -60,8 +60,8 @@ export function initCountries() {
   //ingen state-oppdatering; bare trigge re-render når brukeren skriver
   search.addEventListener("input", render);
 
-  listEl.addEventListener("click", (e) => {
-    const btn  = e.target.closest?.(".delete");
+  listEl.addEventListener("click", (listelement) => {
+    const btn  = listelement.target.closest?.(".delete");
     const name = btn?.closest("li")?.dataset?.name;
     if (!name) return;
 
