@@ -1,4 +1,4 @@
-//src/lib/search.js
+//src/utils/search.js
 export function startsWithWord(element, searchWord) {
   const e = String(element ?? "").toLowerCase();
   const s = String(searchWord ?? "").toLowerCase();

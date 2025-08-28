@@ -1,4 +1,4 @@
-//src/lib/dom.js
+//src/utils/dom.js
 // Kaster hvis elementet mangler → ingen "if (el)" i UI
 export function must(id) {
   var el = document.getElementById(id);
