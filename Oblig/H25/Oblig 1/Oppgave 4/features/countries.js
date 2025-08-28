@@ -9,51 +9,37 @@ export function initCountries() {
   const input  = document.getElementById("country-input");
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
-
   if (!form || !input || !search || !listEl) return;
 
   const state = { items: [], filter: "", timer: null };
 
-  function render() {
-    const frag = document.createDocumentFragment();
-    const filtered = state.filter
-      ? state.items.filter(it => startsWithWord(it.name, state.filter))
-      : state.items;
-
-    for (const it of filtered) {
-      // CountryItem kan lese growthRatePerSec direkte
-      frag.appendChild(CountryItem(it));
-    }
-    listEl.replaceChildren(frag);
-  }
+  const render = () => {
+    const nodes = state.items
+      .filter(it => startsWithWord(it.name, state.filter))
+      .map(CountryItem);
+    listEl.replaceChildren(...nodes);
+  };
 
   form.addEventListener("submit", async (e) => {
     e.preventDefault();
     const q = input.value.trim();
     if (!q) return;
-
     if (state.items.some(it => it.name.toLowerCase() === q.toLowerCase())) {
       input.value = "";
       render();
       return;
     }
-
     try {
       const item = await getCountryData(q);
       state.items.push(item);
       input.value = "";
       input.focus();
       render();
-      ensureTicker(state, render); // bruker utils/ticker
+      ensureTicker(state, render);
     } catch (err) {
-      const code = err?.message;
-      if (code === "COUNTRY_NOT_SUPPORTED") {
-        alert("Ukjent land. Prøv et annet navn.");
-      } else if (code === "EMPTY_QUERY") {
-        // ignorer
-      } else {
-        alert("Kunne ikke hente data fra API-et akkurat nå. Prøv igjen.");
-      }
+      const msg = err?.message;
+      if (msg === "COUNTRY_NOT_SUPPORTED") alert("Ukjent land. Prøv et annet navn.");
+      else if (msg !== "EMPTY_QUERY") alert("Kunne ikke hente data fra API-et akkurat nå. Prøv igjen.");
     }
   });
 
@@ -63,15 +49,14 @@ export function initCountries() {
   });
 
   listEl.addEventListener("click", (e) => {
-    const btn = e.target instanceof Element ? e.target.closest(".delete") : null;
-    if (!btn) return;
-    const li = btn.closest("li");
-    const name = li?.dataset?.name;
+    const del = e.target instanceof Element ? e.target.closest(".delete") : null;
+    if (!del) return;
+    const name = del.closest("li")?.dataset?.name;
     if (!name) return;
 
     state.items = state.items.filter(it => it.name !== name);
     render();
-    stopTickerIfEmpty(state); // bruker utils/ticker
+    stopTickerIfEmpty(state);
   });
 
   render();
