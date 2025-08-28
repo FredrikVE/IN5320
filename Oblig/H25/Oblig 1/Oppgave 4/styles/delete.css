@@ -1,0 +1,11 @@
+/* Slett-knapp (liten, rød) */
+.delete {
+  padding: 6px 10px;
+  border: 1px solid #c00;
+  background: #c00;
+  color: #fff;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.delete:hover { opacity: 0.9; }
