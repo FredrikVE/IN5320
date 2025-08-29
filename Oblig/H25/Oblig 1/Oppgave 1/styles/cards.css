@@ -1,16 +1,20 @@
 /* styles/cards.css */
 .cards-grid{
-  list-style:none; margin:0; padding:0;
-  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap:1rem;
+  list-style: none;                                   /* Fjern punktmarkører på <ul>/<ol> */
+  margin: 0;                                          /* Nullstill standard marg */
+  padding: 0;                                         /* Nullstill standard padding */
+  display: grid;                                      /* Bruk CSS Grid for å legge kort i rader/kolonner */
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Lag så mange kolonner som får plass; */
+  gap: 1rem;                                          /* Avstand mellom kortene (rad og kolonne) */
 }
+
 .card{
-  background:#fff; 
-  border:1px solid #e6edf5; 
-  border-radius:12px; 
-  padding:1rem;
+  background: var(--panel);                           /* Kortets bakgrunn er --panel-farge */
+  border: 1px solid var(--border);                    /* kortet arver gloal border-farge */
+  border-radius: var(--radius);                       /* setter border-radius fra global variabel */
+  padding: 1rem;                                      /* Innvendig luft rundt innholdet i kortet */
 }
 
 .card-title{ 
-  margin-top:0; 
+  margin-top: 0;                                      /* Fjern ekstra toppmarg på første overskrift i kortet */
 }

@@ -1,8 +1,10 @@
 /* styles.contact.css */
 .contact{ 
-    list-style:none; padding:0; 
+    list-style:none; 
+    padding:0; 
+    margin: 0;
 }
 
-.contact li + li{ 
+.contact li + li{ /* for alle liste-elementer unntatt det første */
     margin-top:.35rem; 
 }

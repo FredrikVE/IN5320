@@ -1,11 +1,12 @@
 /* styles/panels.css */
 .panel{
-  background:#fff;
+  background:var(--panel);
   padding:1.25rem;
   border-radius:var(--radius);
-  box-shadow:none;
   margin-block:1rem;
-  border:1px solid #e6edf5;
+  border:1px solid var(--border);
 }
 
-.item + .item{ margin-top:1rem; }
+.item + .item{ 
+  margin-top:1rem; 
+}
