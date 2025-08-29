@@ -1,4 +1,4 @@
-/* Responsivt topp */
+/* styles/responsive.css */
 @media (max-width: 900px){
   .top{ grid-template-columns:1fr; }
   .portrait{ justify-self:start; width:min(300px, 72vw); }
