@@ -1,3 +1,4 @@
+// src/data/Ratebadge.js
 export function RateBadge(rate) {
   const neg  = rate < 0;
   const span = document.createElement("span");

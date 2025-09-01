@@ -13,8 +13,10 @@ export async function getCountryData(countryName) {
     throw new Error("COUNTRY_NOT_SUPPORTED"); // returnerer tom/feil ved ukjent land
   }
 
-  const today = Number(arr[0]?.population) || 0;
-  const tomorrow = Number(arr[1]?.population) || 0;
+  //const today = Number(arr[0]?.population) || 0;
+  //const tomorrow = Number(arr[1]?.population) || 0;
+  const today = Number(arr[0].population);
+  const tomorrow = Number(arr[1].population);
 
   return {
     name: query,

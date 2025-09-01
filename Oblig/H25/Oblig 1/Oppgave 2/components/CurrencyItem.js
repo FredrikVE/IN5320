@@ -1,3 +1,4 @@
+//src/components/CurrencyItem.js
 export function CurrencyItem(name) {
   const li = document.createElement("li");
   li.className = "item";

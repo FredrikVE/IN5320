@@ -1,3 +1,4 @@
+/*src/styles/accessibility.css*/
 /* Skjermleser-vennlig: skjul visuelt, behold for AT */
 .sr-only {
   position: absolute !important;
