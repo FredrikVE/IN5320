@@ -1,5 +1,4 @@
-/*src/styles/badges.css*/
-/* Små statusmerker */
+/* Små statusmerker som viser befolkningsvekst i realtime */
 .badge {
   display: inline-block;
   font-size: 0.75rem;

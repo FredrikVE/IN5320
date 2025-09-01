@@ -1,5 +1,3 @@
-/*src/styles/base.css*/
-/* Grunnoppsett */
 * { 
     box-sizing: border-box; 
 }
@@ -17,6 +15,6 @@ h1 {
     font-size: 1.5rem; 
 }
 
-/* Dempet hjelpetekst */
-.muted { color: #666; }
-.tip { font-size: 0.9rem; }
+.tip { 
+  font-size: 0.9rem; 
+}

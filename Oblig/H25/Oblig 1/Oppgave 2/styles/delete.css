@@ -1,5 +1,3 @@
-/*src/styles/delete.css*/
-/* Slett-knapp (liten, rød) */
 .delete {
   padding: 6px 10px;
   border: 1px solid #c00;
@@ -9,4 +7,6 @@
   cursor: pointer;
 }
 
-.delete:hover { opacity: 0.9; }
+.delete:hover { 
+  opacity: 0.9; 
+}

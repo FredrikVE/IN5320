@@ -10,5 +10,5 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #06f; /* enkel fokusfarge */
+  border-color: #06f; /* blå ramme rundt inputfelt når de er i bruk */
 }
