@@ -1,12 +1,32 @@
 /* styles/panels.css */
-.panel{
-  background:var(--panel);
-  padding:1.25rem;
-  border-radius:var(--radius);
-  margin-block:1rem;
-  border:1px solid var(--border);
+.panel {
+  padding: 1.25rem;
+  border-radius: var(--radius);
+  margin-block: 1rem;
 }
 
-.item + .item{ 
-  margin-top:1rem; 
+/* Tittel og årstall rett ved siden av hverandre */
+.item-head {
+  display: flex;
+  align-items: baseline;
+  gap: .75rem;        /* avstand mellom tittel og år */
+  flex-wrap: wrap;    /* årstall kan hoppe ned på smale skjermer */
+}
+
+/* Subhead under tittel: institusjon */
+.item .school{
+  margin: .15rem 0 0;
+  font-weight: 600;
+  font-size: 1rem;
+  color: var(--muted);
+}
+
+
+.item-head h3,
+.item-head p {
+  margin: 0;
+}
+
+.item-head p {
+  white-space: nowrap; /* hold 2016–2020 på én linje */
 }

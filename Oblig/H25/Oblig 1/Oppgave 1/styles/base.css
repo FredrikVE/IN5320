@@ -1,12 +1,12 @@
 /* styles/base.css */
+
+/* Grunnoppsett */
 body{
   margin:0;
   font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
   line-height:1.55;
   color:var(--ink);
-
-  /* Lys bakgrunn uten rutenett */
-  background-color: var(--page-bg); /* bruker global variabel */
+  background-color: var(--page-bg); /* lys sidebakgrunn */
 }
 
 /* Containere */
@@ -46,7 +46,7 @@ p{
   color:var(--muted);
 }
 
-/* Lenkestil – scoped til innholdet, så header kan arve hvitt */
+/* Lenker – kun inne i main (header arver hvitt) */
 main a{
   color:var(--accent);
   text-decoration-thickness: 1px;
@@ -60,4 +60,31 @@ main a:hover{
 main a:focus-visible{
   outline:2px solid currentColor;
   outline-offset:2px;
+}
+
+/* Felles «surface» for kort/panel/kortside.
+   (Fjern tilsvarende background/border fra cards.css, panels.css, resume.css.) */
+.card,
+.panel,
+.resume-card{
+  background: var(--panel);
+  border: 1px solid var(--border);
+}
+
+/* Tilgjengelighet: skip-link som blir synlig ved fokus */
+.visually-hidden-focusable{
+  position:absolute;
+  left:-9999px; top:auto;
+  width:1px; height:1px;
+  overflow:hidden;
+}
+
+.visually-hidden-focusable:focus{
+  position:static;
+  width:auto; height:auto;
+  padding:.5rem .75rem;
+  background:#fff;
+  outline:2px solid currentColor;
+  outline-offset:2px;
+  border-radius:8px;
 }

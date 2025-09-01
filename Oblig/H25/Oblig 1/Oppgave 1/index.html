@@ -4,6 +4,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fredrik Vogth-Eriksen — CV</title>
+    <meta name="description" content="CV for Fredrik Vogth-Eriksen — masterstudent i digital økonomi og ledelse (UiO), aspirerende frontend-utvikler. Prosjekter, kompetanse, erfaring og kontakt." />
 
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/variables.css">
@@ -20,22 +21,23 @@
   </head>
 
   <body>
+    <!-- Skip-link for tastaturnavigasjon -->
+    <a href="#top" class="visually-hidden-focusable">Hopp til innhold</a>
+
     <!-- Header -->
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top">
-          
-          <!-- Juster størrelse på bildet og gjør decoding async for å gi bedre responsivitet -->
+          <!-- Avatar: liten, ikke-kritisk → lazy -->
           <img 
-          class="avatar" 
-          src="assets/me.png" 
-          alt="Portrett av Fredrik Vogth-Eriksen"
-          width="40" height="40"
-          decoding="async" 
+            class="avatar" 
+            src="assets/me.png" 
+            alt="Portrett av Fredrik Vogth-Eriksen"
+            width="40" height="40"
+            decoding="async"
+            loading="lazy" 
           />
-
           <div>
-
             <span class="brand-name">Fredrik Vogth-Eriksen</span>
           </div>
         </a>
@@ -66,7 +68,12 @@
           </div>
 
           <figure class="portrait">
-            <img src="assets/me.png" alt="Portrett av Fredrik Vogth-Eriksen" />
+            <img 
+              src="assets/me.png" 
+              alt="Portrett av Fredrik Vogth-Eriksen" 
+              decoding="async" 
+              fetchpriority="high" 
+            />
           </figure>
         </section>
 
@@ -124,9 +131,12 @@
         <!-- FULL BREDDE: hver seksjon under hverandre -->
         <section id="experience" class="panel">
           <h2>Arbeidserfaring</h2>
+
           <article class="item">
-            <h3>Prosjektkoordinator – Simula Learning</h3>
-            <p class="muted">2022–2023</p>
+            <div class="item-head">
+              <h3>Prosjektkoordinator – Simula Learning</h3>
+              <p class="muted">2022–2023</p>
+            </div>
             <ul class="bullets muted">
               <li>Utvikling av undervisningsopplegg i Python for lærere.</li>
               <li>Salg av videreutdanningskurs til skoleeiere og næringsliv.</li>
@@ -135,8 +145,10 @@
           </article>
 
           <article class="item">
-            <h3>Realfagslærer – Bekkelaget skole</h3>
-            <p class="muted">2016–2020</p>
+            <div class="item-head">
+              <h3>Realfagslærer – Bekkelaget skole</h3>
+              <p class="muted">2016–2020</p>
+            </div>
             <ul class="bullets muted">
               <li>Kursholder og utvikler av god pedagogisk praksis for iPad i klasserommet.</li>
               <li>Rådgiver for effektiv bruk av IKT på arbeidsplassen.</li>
@@ -146,8 +158,10 @@
           </article>
 
           <article class="item">
-            <h3>Annen arbeidserfaring</h3>
-            <p class="muted">2005–2016</p>
+            <div class="item-head">
+              <h3>Annen arbeidserfaring</h3>
+              <p class="muted">2005–2016</p>
+            </div>
             <p class="muted">Kan oppgis på forespørsel.</p>
           </article>
         </section>
@@ -167,11 +181,15 @@
         </section>
 
         <section id="education" class="panel">
-
           <h2>Utdanning</h2>
+
           <article class="item">
-            <h3>Informatikk: Digital økonomi og ledelse (Bachelor)</h3>
-            <p class="muted">Universitetet i Oslo (UiO) 2021–2025</p>
+            <div class="item-head">
+              <h3>Informatikk: Digital økonomi og ledelse (Bachelor)</h3>
+              <p class="muted">2021–2025</p>
+            </div>
+            <p class="school">Universitetet i Oslo (UiO)</p>
+            <br>
             <p class="muted"><strong>Utvalgte emner:</strong></p> 
             <ul class="bullets muted">
               <li>IN2000 Software Engineering (prosjekt)</li>
@@ -183,8 +201,12 @@
           </article>
 
           <article class="item">
-            <h3>Enkeltemner i matematikk og informatikk</h3>
-            <p class="muted">Universitetet i Oslo (UiO) 2020–2021</p>
+            <div class="item-head">
+              <h3>Enkeltemner i matematikk og informatikk</h3>
+              <p class="muted">2020–2021</p>
+            </div>
+            <p class="school">Universitetet i Oslo (UiO)</p>
+            <br>
             <p class="muted"><strong>Utvalgte emner:</strong></p>
             <ul class="bullets muted">
               <li>MAT1110 Kalkulus og lineær algebra</li>
@@ -193,10 +215,14 @@
           </article>
 
           <article class="item">
-            <h3>Allmennlærer/adjunkt</h3>
-            <p class="muted">Høgskolen i Oslo og Akershus (HiOA) 2009–2013</p>
-            <ul>
-              <li class="bullets muted">Fordypning i naturfag og matematikk</li>
+            <div class="item-head">
+              <h3>Allmennlærer/adjunkt</h3>
+              <p class="muted">2009–2013</p>
+            </div>
+            <p class="school">Høyskolen i Oslo og Akershus (HiOA)</p>
+            <br>
+            <ul class="bullets muted">
+              <li>Fordypning i naturfag og matematikk</li>
             </ul>
           </article>
         </section>
@@ -226,5 +252,10 @@
         <small>© <span id="year">2025</span> Fredrik Vogth-Eriksen</small>
       </div>
     </footer>
+
+    <!-- Oppdater årstall automatisk -->
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
   </body>
 </html>

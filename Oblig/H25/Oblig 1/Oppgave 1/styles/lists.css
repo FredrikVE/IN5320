@@ -1,19 +1,27 @@
 /* styles/lists.css */
+
 ul{ 
-    padding-left:1.2rem; 
-    margin: 0 0 .75rem;
+  padding-left:1.2rem; 
+  margin: 0 0 .75rem;
 }
 
 ul.bullets{ 
-    list-style:disc; 
+  list-style:disc; 
 }
 
 ul li{ 
-    margin:.35rem 0; 
+  margin:.35rem 0; 
 }
 
-/* Nøkkelkompetanse i to spalter (brede skjermer) */
+/* Mobile first: én kolonne */
 .bullets.two-col{ 
-    columns:2; 
-    column-gap:2rem; 
+  columns: 1; 
+}
+
+/* ≥768px: to kolonner */
+@media (min-width: 768px){
+  .bullets.two-col{ 
+    columns: 2; 
+    column-gap: 2rem; 
+  }
 }
