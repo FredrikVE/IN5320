@@ -1,6 +1,7 @@
 /* styles/footer.css */
 .site-footer{ 
-    padding:2rem 0 3rem; 
-    color:var(--muted); 
-    text-align:center; 
+    padding-top: 2rem;
+    padding-bottom: 3rem;
+    color:var(--muted); /*gir global muted farge på footertekst*/
+    text-align:center; /* sentrerer tekst */
 }

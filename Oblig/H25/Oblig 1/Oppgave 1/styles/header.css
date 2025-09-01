@@ -7,18 +7,18 @@
 
 .header-inner{
   display:grid;
-  grid-template-columns: 1fr;       /* mobil: brand over nav */
   gap:1rem;
   align-items:center;
-  padding:.75rem 0;
+  padding-block:.75rem;
 }
 
-.brand{
+.site-home{
   display:flex;
   align-items:center;
   gap:.75rem;
   text-decoration:none;
   color:inherit;
+  justify-self: center;           /* < 856px: sentrer lenka i griden */
 }
 
 .avatar-icon{
@@ -29,8 +29,7 @@
   box-shadow:0 0 0 2px rgba(255,255,255,.35);
 }
 
-.brand-name{
-  display:block;
+.site-name{
   font-weight:700;
   letter-spacing:.3px;
   line-height:1.1;
@@ -38,11 +37,11 @@
 
 .nav{
   display:flex;
-  gap:.5rem;                        /* litt tettere på mobil */
+  gap:.5rem;                      /* litt tettere på mobil */
   list-style:none;
   margin:0;
   padding:0;
-  justify-content:flex-start;
+  justify-content: center;        /* < 856px: sentrer menyen */
   flex-wrap:wrap;
 }
 
@@ -53,8 +52,7 @@
   color:inherit;
 }
 
-.nav a:hover,
-.nav a:focus-visible{
+.nav a:is(:hover, :focus-visible){
   background:rgba(255,255,255,.12);
 }
 
@@ -63,8 +61,19 @@
   outline-offset:2px;
 }
 
-/* ≥856px: to kolonner + ikke wrap */
+/* ≥856px: to kolonner + venstreplassert site-home, nav uten wrap */
 @media (min-width: 856px){
-  .header-inner{ grid-template-columns: 1fr auto; }
-  .nav{ flex-wrap: nowrap; gap: 1rem; }
+  .header-inner{ 
+    grid-template-columns: 1fr auto;
+  }
+
+  .site-home{
+    justify-self: start;          /* >= 856px: venstre i sin kolonne */
+  }
+
+  .nav{ 
+    flex-wrap: nowrap;
+    gap: 1rem;
+    justify-content: flex-start;  /* venstrejuster menyelementene */
+  }
 }

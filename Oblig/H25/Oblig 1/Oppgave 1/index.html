@@ -1,5 +1,5 @@
 <!doctype html>
-<html lang="no">
+<html lang="nb">
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -23,10 +23,13 @@
   </head>
 
   <body>
+    <!-- Hopp-lenke for tastaturnavigasjon -->
+    <a href="#main" class="visually-hidden-focusable">Hopp til hovedinnhold</a>
+
     <!-- Header med klikkbare navigerinselementer -->
     <header class="site-header">
       <div class="container header-inner">
-        <a class="brand" href="#top">
+        <a class="site-home" href="#top">
           <!-- Et lite bilde som avatar-ikon -->
           <img 
             class="avatar-icon" 
@@ -36,9 +39,7 @@
             decoding="async"
             fetchpriority="high"
           />
-          <div>
-            <span class="brand-name">Fredrik Vogth-Eriksen</span>
-          </div>
+          <span class="site-name">Fredrik Vogth-Eriksen</span>
         </a>
 
         <!-- Klikkbare navigerings-elementer -->
@@ -56,7 +57,7 @@
     </header>
 
     <!-- Hele innholdet ligger i et stort kort -->
-    <main class="resume-wrapper">
+    <main id="main" class="resume-wrapper">
       
       <!-- article-elementet er ytterste kortet som omslutter hovedinnholdet i CV-en -->
       <article class="resume-card" id="top">
@@ -64,7 +65,7 @@
         <!-- Topseksjon med porttrettbilde, navn og tagline-beskrivelse -->
         <section class="top">
           <div class="top-left">
-            <h1 class="name">Fredrik Vogth-Eriksen</h1>
+            <h1>Fredrik Vogth-Eriksen</h1>
             <p class="tagline">Masterstudent</p>
             <p class="tagline">Digital økonomi og ledelse (UiO)</p>
             <p class="tagline">Aspirerende frontend-utvikler</p>
@@ -75,7 +76,8 @@
               src="assets/me.png" 
               alt="Hovedbilde i CV" 
               decoding="async" 
-              fetchpriority="high" 
+              fetchpriority="high"
+              width="600" height="600"
             />
           </figure>
         </section>
@@ -170,7 +172,7 @@
         </section>
 
         <!-- Oversikt over beherskede teknologier -->
-        <section id="software" class="panel">
+        <section class="panel">
           <h2>Teknologi</h2>
           <ul class="bullets muted">
             <li><strong>Programmering:</strong> Python, Java, Kotlin, TypeScript, C#, React Native</li>
@@ -197,7 +199,9 @@
 
             <p class="muted"><strong>Utvalgte emner:</strong></p> 
             <ul class="bullets muted">
-              <li>IN2000 Software Engineering (prosjekt)</li>
+              <li>IN5320 Utvikling i plattformøkosystemer</li>
+              <li>IN2000 Software engineering (prosjekt)</li>
+              <li>IN2010 Algoritmer og datastrukturer</li>
               <li>IN3050 Maskinlæring</li>
               <li>IN3240 Software testing</li>
               <li>IN1010 Objektorientert programmering</li>
@@ -234,7 +238,7 @@
         </section>
 
         <!-- Seksjon for beherskete språk -->
-        <section id="languages" class="panel">
+        <section class="panel">
           <h2>Språk</h2>
           <ul class="bullets muted">
             <li>Norsk – flytende, skriftlig og muntlig</li>
@@ -259,12 +263,17 @@
     <!-- main-element slutt -->
     </main>
 
-    <!-- Footer med copyrigth for 2025 -->
+    <!-- Footer med navn, copyright og år -->
     <footer class="site-footer">
       <div class="container">
-        <small>© <span id="year">2025</span> Fredrik Vogth-Eriksen</small>
+        <small>© <span id="year"></span> Fredrik Vogth-Eriksen</small>
       </div>
     </footer>
+
+    <!-- Script-tag med inline javascript kode som automatisk oppdaterer år i footer -->
+    <script>
+      document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
 
   </body>
 </html>
