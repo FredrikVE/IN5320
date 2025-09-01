@@ -37,11 +37,11 @@
 
 .nav{
   display:flex;
-  gap:.5rem;                      /* litt tettere på mobil */
+  gap:.5rem;
   list-style:none;
   margin:0;
   padding:0;
-  justify-content: center;        /* < 856px: sentrer menyen */
+  justify-content: center;  /* navigeringsmenyen sentreres nå mindre enn 856px*/
   flex-wrap:wrap;
 }
 
