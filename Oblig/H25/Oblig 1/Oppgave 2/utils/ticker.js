@@ -8,6 +8,7 @@ export function startPopulationTicker(state, render) {
     for (const item of state.items) {
       const prev = Math.round(item.population);
       item.population += item.growthRatePerSec;
+      
       if (Math.round(item.population) !== prev) {
         changed = true;
       }
