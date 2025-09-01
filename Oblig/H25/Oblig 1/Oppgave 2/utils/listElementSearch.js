@@ -1,8 +1,15 @@
 //src/utils/currencySearch.js
-export function listElementSearch(inputElement, searchInput) {
-  const listElement  = String(inputElement).trim().toLowerCase();
-  const query = String(searchInput).trim().toLowerCase();
+export function listElementSearch(inputList, searchInput) {
+  const query = searchInput.trim().toLowerCase();
+  const result = [];
 
-  //hvis liste-elementet starter på søkeinput, returneres true
-  return listElement.startsWith(query);
+  for (const i of inputList) {
+    if (i.toLowerCase().startsWith(query)) {
+      result.push(i);
+    }
+  }
+  return result;
 }
+
+
+

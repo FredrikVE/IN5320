@@ -6,20 +6,20 @@ export function initCurrency() {
   const form   = document.getElementById("add-form");
   const input  = document.getElementById("currency-input");
   const search = document.getElementById("search-input");
-  const listEl = document.getElementById("currency-list");
+  const listElement = document.getElementById("currency-list");
 
   let currencyList = [];
 
   function render() {
-    const searchText = search.value.trim();
+    const searchText = search.value.trim(); // trimmes i util hvis du ønsker, ellers legg på .trim()
     const listFragment = document.createDocumentFragment();
-    
-    for (const currency of currencyList) {
-      if (listElementSearch(currency.name, searchText)) {
-        listFragment.appendChild(CurrencyItem(currency.name));
-      }
+    const searchResults = listElementSearch(currencyList, searchText);
+
+    // Legge til søkresultater som currencyItem og 
+    for (const currency of searchResults) {
+      listFragment.appendChild(CurrencyItem(currency));
     }
-    listEl.replaceChildren(listFragment);
+    listElement.replaceChildren(listFragment);
   }
 
   // add
@@ -28,12 +28,12 @@ export function initCurrency() {
     const query = input.value.trim();
     if (!query) return;
 
-    if (currencyList.some(it => it.name.toLowerCase() === query.toLowerCase())) {
+    if (currencyList.some(it => it.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
 
-    currencyList.push({ name: query });
+    currencyList.push(query);
     input.value = "";
     input.focus();
     render();
@@ -43,7 +43,7 @@ export function initCurrency() {
   search.addEventListener("input", render);
 
   // delete via event delegation
-  listEl.addEventListener("click", (event) => {
+  listElement.addEventListener("click", (event) => {
     const btn = event.target.closest(".delete");
     if (!btn) return;
 
@@ -53,10 +53,7 @@ export function initCurrency() {
     const { name } = li.dataset;
     if (!name) return;
 
-    currencyList = currencyList.filter(it => it.name !== name);
+    currencyList = currencyList.filter(it => it !== name);
     render();
   });
-
-  // init-render
-  render();
 }

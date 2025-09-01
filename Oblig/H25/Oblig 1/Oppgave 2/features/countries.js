@@ -11,18 +11,19 @@ export function initCountries() {
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
 
-  // fjernet filter fra state
+  // En state med items fra API-et
   const state = { items: [] };
 
   function render() {
     // les filter direkte fra DOM (tom streng hvis ikke skrevet noe)
     const searchText = search.value.trim();
     const listFragment = document.createDocumentFragment();
+    const countries = state.items.map(it => it.name);
+    const searchResults = listElementSearch(countries, searchText);
 
-    for (let i = 0; i < state.items.length; i++) {
-      const it = state.items[i];
-      if (listElementSearch(it.name, searchText)) {
-        listFragment.appendChild(CountryItem(it));
+    for (const country of state.items) {
+      if (searchResults.includes(country.name)) {
+        listFragment.appendChild(CountryItem(country));
       }
     }
     listEl.replaceChildren(listFragment);
@@ -31,7 +32,7 @@ export function initCountries() {
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
-    const query = toTitleCase(input.value);
+    const query = toTitleCase(input.value.trim());
     if (!query) return;
 
     // duplikatsjekk (case-insensitiv)
@@ -77,7 +78,4 @@ export function initCountries() {
     render();
     stopTickerIfEmpty(state);
   });
-
-  // init-render (synk UI ved oppstart)
-  render();
 }
