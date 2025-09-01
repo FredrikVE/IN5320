@@ -71,7 +71,7 @@ main a:focus-visible{
 
 .visually-hidden-focusable{
   position: absolute;
-  top: 8px; left: 8px;    /* plasser her */
+  top: 8px; left: 8px;
   transform: translateY(-120%);  /* skyv opp og “skjul” */
 }
 .visually-hidden-focusable:focus{
