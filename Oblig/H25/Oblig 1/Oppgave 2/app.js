@@ -1,6 +1,6 @@
 //src/app.js
-import { currencies } from "./features/currency";
-import { countries } from "./features/countries";
+import { currencies } from "./features/currency.js";
+import { countries } from "./features/countries.js";
 
 window.addEventListener("DOMContentLoaded", () => {
   currencies();
