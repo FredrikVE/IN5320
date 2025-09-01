@@ -1,7 +1,7 @@
 /*src/styles/accessibility.css*/
 /* Skjermleser-vennlig: skjul visuelt, behold for AT */
 .sr-only {
-  position: absolute !important;
+/*position: absolute !important;*/
   width: 1px; height: 1px;
   padding: 0; margin: -1px;
   overflow: hidden;

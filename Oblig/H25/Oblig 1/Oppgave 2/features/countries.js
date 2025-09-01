@@ -35,7 +35,7 @@ export function countries() {
     const query = toTitleCase(input.value.trim());
     if (!query) return;
 
-    // duplikatsjekk (case-insensitiv)
+    // duplikatsjekk
     if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;

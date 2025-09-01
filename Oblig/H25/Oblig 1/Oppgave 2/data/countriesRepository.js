@@ -10,6 +10,8 @@ export async function getCountryData(countryName) {
   const population = await fetchPopTodayTomorrowRaw(query);
   const populationArray = population?.total_population;
 
+  //hvis datastrukutren har lengde mindre enn to, betyr det at landet ikke finnes.
+  //antar at alle lande som finnes har et today og et tomorrow-element
   if (!Array.isArray(populationArray) || populationArray.length < 2) {
     throw new Error("COUNTRY_NOT_SUPPORTED"); // returnerer tom/feil ved ukjent land
   }
