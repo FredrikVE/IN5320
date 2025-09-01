@@ -15,10 +15,10 @@
 .site-home{
   display:flex;
   align-items:center;
+  justify-self: center;   /* senter avatar-ikon når bredde mindre enn 856px */
   gap:.75rem;
   text-decoration:none;
-  color:inherit;
-  justify-self: center;           /* < 856px: sentrer lenka i griden */
+  color:inherit;  
 }
 
 .avatar-icon{
@@ -61,14 +61,14 @@
   outline-offset:2px;
 }
 
-/* ≥856px: to kolonner + venstreplassert site-home, nav uten wrap */
+/* Når bredde er over 856px legges avatar-ikon og navigeringslenker side om side */
 @media (min-width: 856px){
   .header-inner{ 
     grid-template-columns: 1fr auto;
   }
 
   .site-home{
-    justify-self: start;          /* >= 856px: venstre i sin kolonne */
+    justify-self: start; /* Hvis bredere enn 856px, er avatar-ikon kant-til-kant med ytterste kort */
   }
 
   .nav{ 
