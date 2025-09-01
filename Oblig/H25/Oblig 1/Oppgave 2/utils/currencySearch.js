@@ -1,7 +1,8 @@
 //src/utils/currencySearch.js
-export function currencySearch(element, searchWord) {
-  const e = String(element || "").toLowerCase();
-  const s = String(searchWord || "").toLowerCase();
-  if (!s) return true;
-  return e.startsWith(s);
+export function currencySearch(listelement, searchInput) {
+  const currency  = String(listelement).trim().toLowerCase();
+  const query = String(searchInput).trim().toLowerCase();
+
+  //hvis liste-elementet starter på søkeinput, returneres true
+  return currency.startsWith(query);
 }

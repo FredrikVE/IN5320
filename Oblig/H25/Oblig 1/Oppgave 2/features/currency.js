@@ -8,18 +8,18 @@ export function initCurrency() {
   const search = document.getElementById("search-input");
   const listEl = document.getElementById("currency-list");
 
-  const state = { items: [] };
+  let currencyList = [];
 
   function render() {
-    const searchText = search.value.trim();                // les søkeverdi direkte
-    const frag = document.createDocumentFragment();
-
-    for (const it of state.items) {
-      if (currencySearch(it.name, searchText)) {
-        frag.appendChild(CurrencyItem(it.name));
+    const searchText = search.value.trim();
+    const listFragment = document.createDocumentFragment();
+    
+    for (const currency of currencyList) {
+      if (currencySearch(currency.name, searchText)) {
+        listFragment.appendChild(CurrencyItem(currency.name));
       }
     }
-    listEl.replaceChildren(frag);
+    listEl.replaceChildren(listFragment);
   }
 
   // add
@@ -28,13 +28,12 @@ export function initCurrency() {
     const query = input.value.trim();
     if (!query) return;
 
-    // duplikatsjekk (case-insensitive)
-    if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
+    if (currencyList.some(it => it.name.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
 
-    state.items.push({ name: query });
+    currencyList.push({ name: query });
     input.value = "";
     input.focus();
     render();
@@ -54,9 +53,10 @@ export function initCurrency() {
     const { name } = li.dataset;
     if (!name) return;
 
-    state.items = state.items.filter(it => it.name !== name);
+    currencyList = currencyList.filter(it => it.name !== name);
     render();
   });
 
+  // init-render
   render();
 }
