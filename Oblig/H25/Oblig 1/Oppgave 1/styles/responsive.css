@@ -2,17 +2,38 @@
 
 /* Strammere layout ved lav vindushøyde */
 @media (max-height: 700px){
-  .resume-wrapper{ padding-block: 16px; }
-  .resume-card{ padding: 28px 24px; }
-  .top{ gap: 16px; }
-  .portrait{ width: min(280px, 34vw); }
+  .resume-wrapper{ 
+    padding-block: 16px; 
+  }
+
+  .resume-card{ 
+    padding: 28px 24px; 
+  }
+
+  .top{
+     gap: 16px; 
+    }
+
+  .portrait{ 
+    width: min(280px, 34vw);
+  }
 }
 
 @media (max-height: 700px) and (min-width: 768px){
   .portrait{ width: min(260px, 32vw); }
 }
 
-
+/* Penere formatering for veldig brede skjermer.
+Det ytterste "hovedkortet" utvider seg med skjermen,
+mens kortene og innholdet stopper etter 1100px */
 @media (min-width: 1280px){
-  :root{ --maxw: 1580px; }
+  :root{ --maxw: 1560px; }  /* stopp for ytteste "hovedkort" */
+
+  /* SAMME innholdsramme for top, paneler og kort-grid */
+  .resume-card > .top,
+  .resume-card > .panel,
+  .resume-card > .cards-grid{
+    max-width: 1100px;          /* stopp for sideinnhold */
+    margin-inline: auto;
+  }
 }
