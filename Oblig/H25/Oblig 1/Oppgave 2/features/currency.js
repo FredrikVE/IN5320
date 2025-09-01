@@ -1,5 +1,5 @@
 // src/features/currency.js
-import { currencySearch } from "../utils/currencySearch.js";
+import { listElementSearch } from "../utils/listElementSearch.js";
 import { CurrencyItem } from "../components/CurrencyItem.js";
 
 export function initCurrency() {
@@ -15,7 +15,7 @@ export function initCurrency() {
     const listFragment = document.createDocumentFragment();
     
     for (const currency of currencyList) {
-      if (currencySearch(currency.name, searchText)) {
+      if (listElementSearch(currency.name, searchText)) {
         listFragment.appendChild(CurrencyItem(currency.name));
       }
     }

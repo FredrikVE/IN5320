@@ -1,5 +1,5 @@
 // src/features/countries.js
-import { currencySearch } from "../utils/currencySearch.js";
+import { listElementSearch } from "../utils/listElementSearch.js";
 import { CountryItem } from "../components/CountryItem.js";
 import { getCountryData } from "../data/countriesRepository.js";
 import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js";
@@ -21,7 +21,7 @@ export function initCountries() {
 
     for (let i = 0; i < state.items.length; i++) {
       const it = state.items[i];
-      if (currencySearch(it.name, searchText)) {
+      if (listElementSearch(it.name, searchText)) {
         listFragment.appendChild(CountryItem(it));
       }
     }
