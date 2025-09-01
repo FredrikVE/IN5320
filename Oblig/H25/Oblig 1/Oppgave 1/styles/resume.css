@@ -8,9 +8,7 @@
 
 .resume-card{
   width: min(var(--maxw), var(--page-w));
-  background:var(--panel);
   border-radius:var(--radius-card);
-  border:1px solid var(--border);
   padding:44px 40px 36px;
   position:relative;
 }

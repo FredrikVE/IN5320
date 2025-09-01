@@ -9,8 +9,6 @@
 }
 
 .card{
-  background: var(--panel);                           /* Kortets bakgrunn er --panel-farge */
-  border: 1px solid var(--border);                    /* kortet arver gloal border-farge */
   border-radius: var(--radius);                       /* setter border-radius fra global variabel */
   padding: 1rem;                                      /* Innvendig luft rundt innholdet i kortet */
 }

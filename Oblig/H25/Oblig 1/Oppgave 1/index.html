@@ -4,8 +4,10 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Fredrik Vogth-Eriksen — CV</title>
-    <meta name="description" content="CV for Fredrik Vogth-Eriksen — masterstudent i digital økonomi og ledelse (UiO), aspirerende frontend-utvikler. Prosjekter, kompetanse, erfaring og kontakt." />
 
+    <meta name="description" content="CV for Fredrik Vogth-Eriksen"/>
+
+    <!-- Import av modulariserte stilark fra styles-mappa -->
     <link rel="stylesheet" href="styles/reset.css">
     <link rel="stylesheet" href="styles/variables.css">
     <link rel="stylesheet" href="styles/base.css">
@@ -21,27 +23,25 @@
   </head>
 
   <body>
-    <!-- Skip-link for tastaturnavigasjon -->
-    <a href="#top" class="visually-hidden-focusable">Hopp til innhold</a>
-
-    <!-- Header -->
+    <!-- Header med klikkbare navigerinselementer -->
     <header class="site-header">
       <div class="container header-inner">
         <a class="brand" href="#top">
-          <!-- Avatar: liten, ikke-kritisk → lazy -->
+          <!-- Et lite bilde som avatar-ikon -->
           <img 
-            class="avatar" 
+            class="avatar-icon" 
             src="assets/me.png" 
-            alt="Portrett av Fredrik Vogth-Eriksen"
+            alt="Portrettikon"
             width="40" height="40"
             decoding="async"
-            loading="lazy" 
+            fetchpriority="high"
           />
           <div>
             <span class="brand-name">Fredrik Vogth-Eriksen</span>
           </div>
         </a>
 
+        <!-- Klikkbare navigerings-elementer -->
         <nav aria-label="Hovedmeny">
           <ul class="nav">
             <li><a href="#skills">Kompetanse</a></li>
@@ -57,8 +57,11 @@
 
     <!-- Hele innholdet ligger i et stort kort -->
     <main class="resume-wrapper">
+      
+      <!-- article-elementet er ytterste kortet som omslutter hovedinnholdet i CV-en -->
       <article class="resume-card" id="top">
-        <!-- Topp: navn + portrett -->
+
+        <!-- Topseksjon med porttrettbilde, navn og tagline-beskrivelse -->
         <section class="top">
           <div class="top-left">
             <h1 class="name">Fredrik Vogth-Eriksen</h1>
@@ -70,14 +73,14 @@
           <figure class="portrait">
             <img 
               src="assets/me.png" 
-              alt="Portrett av Fredrik Vogth-Eriksen" 
+              alt="Hovedbilde i CV" 
               decoding="async" 
               fetchpriority="high" 
             />
           </figure>
         </section>
 
-        <!-- Nøkkelkompetanse -->
+        <!-- Seksjon med nøkkelkompetanse -->
         <section id="skills" class="panel">
           <h2>Nøkkelkompetanse</h2>
           <ul class="bullets two-col muted">
@@ -89,7 +92,7 @@
           </ul>
         </section>
 
-        <!-- Prosjekter -->
+        <!-- Seksjon med prosjekter og prosjektbeskrivelse -->
         <section id="projects" class="panel">
           <h2>Prosjekter</h2>
           <ul class="cards-grid">
@@ -106,7 +109,7 @@
           </ul>
         </section>
 
-        <!-- Kurs & sertifisering -->
+        <!-- Seksjon med kurs & sertifisering -->
         <section id="courses" class="panel">
           <h2>Kurs og sertifisering</h2>
           <ul class="cards-grid">
@@ -128,7 +131,7 @@
           </ul>
         </section>
 
-        <!-- FULL BREDDE: hver seksjon under hverandre -->
+        <!-- Seksjon for arbeidserfaring -->
         <section id="experience" class="panel">
           <h2>Arbeidserfaring</h2>
 
@@ -166,6 +169,7 @@
           </article>
         </section>
 
+        <!-- Oversikt over beherskede teknologier -->
         <section id="software" class="panel">
           <h2>Teknologi</h2>
           <ul class="bullets muted">
@@ -180,6 +184,7 @@
           </ul>
         </section>
 
+        <!-- Seksjon for utdanningskort -->
         <section id="education" class="panel">
           <h2>Utdanning</h2>
 
@@ -228,6 +233,7 @@
           </article>
         </section>
 
+        <!-- Seksjon for beherskete språk -->
         <section id="languages" class="panel">
           <h2>Språk</h2>
           <ul class="bullets muted">
@@ -236,6 +242,7 @@
           </ul>
         </section>
 
+        <!-- Seksjon for kontaktinformasjon -->
         <section id="contact" class="panel">
           <h2>Kontakt</h2>
           <ul class="contact">
@@ -245,9 +252,14 @@
             <li class="muted">Født: 26.09.1986</li>
           </ul>
         </section>
+      
+      <!-- Hovedkort slutt-->
       </article>
+    
+    <!-- main-element slutt -->
     </main>
 
+    <!-- Footer med copyrigth for 2025 -->
     <footer class="site-footer">
       <div class="container">
         <small>© <span id="year">2025</span> Fredrik Vogth-Eriksen</small>

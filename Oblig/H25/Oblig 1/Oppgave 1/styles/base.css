@@ -72,6 +72,7 @@ main a:focus-visible{
 }
 
 /* Tilgjengelighet: skip-link som blir synlig ved fokus */
+/*
 .visually-hidden-focusable{
   position:absolute;
   left:-9999px; top:auto;
@@ -88,3 +89,18 @@ main a:focus-visible{
   outline-offset:2px;
   border-radius:8px;
 }
+  */
+
+
+
+.visually-hidden-focusable{
+  position: absolute;
+  top: 8px; left: 8px;    /* plasser her */
+  transform: translateY(-120%);  /* skyv opp og “skjul” */
+}
+.visually-hidden-focusable:focus{
+  transform: none;        /* tilbake til 8px fra toppen → synlig */
+}
+
+
+
