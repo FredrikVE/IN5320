@@ -25,6 +25,7 @@
       <div class="container header-inner">
         <a class="brand" href="#top">
           
+          <!-- Juster størrelse på bildet og gjør decoding async for å gi bedre responsivitet -->
           <img 
           class="avatar" 
           src="assets/me.png" 
@@ -34,6 +35,7 @@
           />
 
           <div>
+
             <span class="brand-name">Fredrik Vogth-Eriksen</span>
           </div>
         </a>
@@ -71,7 +73,7 @@
         <!-- Nøkkelkompetanse -->
         <section id="skills" class="panel">
           <h2>Nøkkelkompetanse</h2>
-          <ul class="bullets two-col">
+          <ul class="bullets two-col muted">
             <li>Kombinerer tekniske ferdigheter med forretningsforståelse</li>
             <li>Kompetanse innen programmering, maskinlæring og databaser</li>
             <li>Smidig utviklingsmetodikk (Scrum, Kanban)</li>
@@ -87,34 +89,34 @@
             <li class="card">
               <h3 class="card-title">Værmeldings-app</h3>
               <p class="muted">2025</p>
-              <p>React Native, MapLibre og OpenCage Geocoder. Læringsprosjekt for mobilkart.</p>
+              <p class="muted">React Native, MapLibre og OpenCage Geocoder. Læringsprosjekt for mobilkart.</p>
             </li>
             <li class="card">
               <h3 class="card-title">HavSus</h3>
               <p class="muted">2024</p>
-              <p>Android-app i Kotlin/Jetpack Compose med Gradle og Mapbox for havaktivitet.</p>
+              <p class="muted">Android-app i Kotlin/Jetpack Compose med Gradle og Mapbox for havaktivitet.</p>
             </li>
           </ul>
         </section>
 
         <!-- Kurs & sertifisering -->
         <section id="courses" class="panel">
-          <h2>Kurs &amp; sertifisering</h2>
+          <h2>Kurs og sertifisering</h2>
           <ul class="cards-grid">
             <li class="card">
               <h3 class="card-title">Databricks – Get Started with SQL Analytics &amp; BI</h3>
               <p class="muted">Pågående</p>
-              <p>Grunnleggende kurs med fokus på SQL-analyse, BI og dataanalyseprosesser.</p>
+              <p class="muted">Grunnleggende kurs med fokus på SQL-analyse, BI og dataanalyseprosesser.</p>
             </li>
             <li class="card">
               <h3 class="card-title">Microsoft AZ-900</h3>
-              <p class="muted">Planlagt • Høst 2025</p>
-              <p>Microsoft Certified: Azure Fundamentals.</p>
+              <p class="muted">Planlagt - Høst 2025</p>
+              <p class="muted">Microsoft Certified: Azure Fundamentals.</p>
             </li>
             <li class="card">
               <h3 class="card-title">ISTQB CTFL</h3>
-              <p class="muted">Planlagt • Høst 2025</p>
-              <p>Certified Tester – Foundation Level.</p>
+              <p class="muted">Planlagt - Høst 2025</p>
+              <p class="muted">Certified Tester – Foundation Level.</p>
             </li>
           </ul>
         </section>
@@ -125,7 +127,7 @@
           <article class="item">
             <h3>Prosjektkoordinator – Simula Learning</h3>
             <p class="muted">2022–2023</p>
-            <ul>
+            <ul class="bullets muted">
               <li>Utvikling av undervisningsopplegg i Python for lærere.</li>
               <li>Salg av videreutdanningskurs til skoleeiere og næringsliv.</li>
               <li>Koordinering av kurs og personal.</li>
@@ -135,7 +137,7 @@
           <article class="item">
             <h3>Realfagslærer – Bekkelaget skole</h3>
             <p class="muted">2016–2020</p>
-            <ul>
+            <ul class="bullets muted">
               <li>Kursholder og utvikler av god pedagogisk praksis for iPad i klasserommet.</li>
               <li>Rådgiver for effektiv bruk av IKT på arbeidsplassen.</li>
               <li>Ressursperson for realfag; ansvar for naturfag (6–7) samt kjemikalier/utstyr.</li>
@@ -146,47 +148,62 @@
           <article class="item">
             <h3>Annen arbeidserfaring</h3>
             <p class="muted">2005–2016</p>
-            <p>Kan oppgis på forespørsel.</p>
+            <p class="muted">Kan oppgis på forespørsel.</p>
           </article>
         </section>
 
         <section id="software" class="panel">
           <h2>Teknologi</h2>
-          <ul class="bullets">
+          <ul class="bullets muted">
             <li><strong>Programmering:</strong> Python, Java, Kotlin, TypeScript, C#, React Native</li>
             <li><strong>Databaser:</strong> PostgreSQL</li>
             <li><strong>Software testing:</strong> Playwright, SonarQube</li>
             <li><strong>Smidig metodikk:</strong> Scrum, Kanban</li>
             <li><strong>Dataformater:</strong> JSON, XML</li>
             <li><strong>Webutvikling:</strong> HTML, CSS, React (grunnleggende)</li>
-            <li><strong>Analyse &amp; visualisering:</strong> Matematikk, Databricks, Matplotlib, Power BI</li>
+            <li><strong>Analyse og visualisering:</strong> Matematikk, Databricks, Matplotlib, Power BI</li>
             <li><strong>Førerkort:</strong> Klasse B</li>
           </ul>
         </section>
 
         <section id="education" class="panel">
+
           <h2>Utdanning</h2>
           <article class="item">
             <h3>Informatikk: Digital økonomi og ledelse (Bachelor)</h3>
-            <p class="muted">Universitetet i Oslo (UiO) • 2021–2025</p>
-            <p class="muted">Utvalgte emner: IN2000 Software Engineering (prosjekt), IN3050 Maskinlæring,
-              IN3240 Software testing, IN1010 Objektorientert programmering, IN2090 Databaser med SQL</p>
+            <p class="muted">Universitetet i Oslo (UiO) 2021–2025</p>
+            <p class="muted"><strong>Utvalgte emner:</strong></p> 
+            <ul class="bullets muted">
+              <li>IN2000 Software Engineering (prosjekt)</li>
+              <li>IN3050 Maskinlæring</li>
+              <li>IN3240 Software testing</li>
+              <li>IN1010 Objektorientert programmering</li>
+              <li>IN2090 Databaser med SQL</li>
+            </ul>
           </article>
+
           <article class="item">
             <h3>Enkeltemner i matematikk og informatikk</h3>
-            <p class="muted">Universitetet i Oslo (UiO) • 2020–2021</p>
-            <p class="muted">MAT1110 Kalkulus og lineær algebra, MAT-INF1100 Modellering og beregninger</p>
+            <p class="muted">Universitetet i Oslo (UiO) 2020–2021</p>
+            <p class="muted"><strong>Utvalgte emner:</strong></p>
+            <ul class="bullets muted">
+              <li>MAT1110 Kalkulus og lineær algebra</li>
+              <li>MAT-INF1100 Modellering og beregninger</li>
+            </ul>
           </article>
+
           <article class="item">
             <h3>Allmennlærer/adjunkt</h3>
-            <p class="muted">Høgskolen i Oslo og Akershus (HiOA) • 2009–2013</p>
-            <p class="muted">Fordypning i naturfag og matematikk</p>
+            <p class="muted">Høgskolen i Oslo og Akershus (HiOA) 2009–2013</p>
+            <ul>
+              <li class="bullets muted">Fordypning i naturfag og matematikk</li>
+            </ul>
           </article>
         </section>
 
         <section id="languages" class="panel">
           <h2>Språk</h2>
-          <ul class="bullets">
+          <ul class="bullets muted">
             <li>Norsk – flytende, skriftlig og muntlig</li>
             <li>Engelsk – flytende, skriftlig og muntlig</li>
           </ul>
@@ -197,8 +214,8 @@
           <ul class="contact">
             <li><a href="mailto:fredrikvogth@hotmail.com">fredrikvogth@hotmail.com</a></li>
             <li><a href="tel:+4790787923">+47 907 87 923</a></li>
-            <li>Steinspranget 20, 1156 Oslo</li>
-            <li>Født: 26.09.1986</li>
+            <li class="muted">Steinspranget 20, 1156 Oslo</li>
+            <li class="muted">Født: 26.09.1986</li>
           </ul>
         </section>
       </article>
