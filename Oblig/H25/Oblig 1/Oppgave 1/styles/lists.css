@@ -12,14 +12,14 @@ ul li{
   margin:.35rem 0; 
 }
 
-/* Mobile first: én kolonne */
-.bullets.two-col{ 
-  columns: 1; 
+/* Formatering for smale skjermer */
+.bullets.key-competencies{ 
+  columns: 1;       /*Hvis skjermbredden er smalere enn 768 px så har nøkkelkompetansen én kolonne*/
 }
 
-/* ≥768px: to kolonner */
+/* Når skjermbredden er større enn768px: deles nøkkelkompetansen inn to kolonner */
 @media (min-width: 768px){
-  .bullets.two-col{ 
+  .bullets.key-competencies{ 
     columns: 2; 
     column-gap: 2rem; 
   }
