@@ -10,8 +10,6 @@ export function initCountries() {
   const input  = document.getElementById("country-input");
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
-  
-  //if (!form || !input || !search || !listEl) return;
 
   // fjernet filter fra state
   const state = { items: [] };
@@ -30,14 +28,14 @@ export function initCountries() {
     listEl.replaceChildren(listFragment);
   }
 
-  form.addEventListener("submit", async (e) => {
-    e.preventDefault();
+  form.addEventListener("submit", async (event) => {
+    event.preventDefault();
 
     const query = toTitleCase(input.value);
     if (!query) return;
 
     // duplikatsjekk (case-insensitiv)
-    if (state.items.some(it => (it.name).toLowerCase() === query.toLowerCase())) {
+    if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
@@ -51,19 +49,28 @@ export function initCountries() {
       input.focus();
       render();
       startPopulationTicker(state, render);
-    } catch (err) {
-      if (err?.message === "COUNTRY_NOT_SUPPORTED") {
+
+    } 
+    catch (error) {
+      if (error?.message === "COUNTRY_NOT_SUPPORTED") {
         alert("Ukjent land. Prøv et annet navn.");
+      } else {
+        console.error(error);
       }
     }
   });
 
-  //ingen state-oppdatering; bare trigge re-render når brukeren skriver
+  // ingen state-oppdatering; bare trigge re-render når brukeren skriver
   search.addEventListener("input", render);
 
-  listEl.addEventListener("click", (listelement) => {
-    const btn  = listelement.target.closest?.(".delete");
-    const name = btn?.closest("li")?.dataset?.name;
+  listEl.addEventListener("click", (event) => {
+    const btn = event.target.closest(".delete");
+    if (!btn) return;
+
+    const li = btn.closest("li");
+    if (!li) return;
+
+    const { name } = li.dataset;
     if (!name) return;
 
     state.items = state.items.filter(it => it.name !== name);
@@ -71,5 +78,6 @@ export function initCountries() {
     stopTickerIfEmpty(state);
   });
 
+  // init-render (synk UI ved oppstart)
   render();
 }

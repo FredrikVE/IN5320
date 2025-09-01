@@ -8,10 +8,6 @@ export function initCurrency() {
   const search = document.getElementById("search-input");
   const listEl = document.getElementById("currency-list");
 
-  // Gjør ingenting hvis markup mangler
-  //if (!form || !input || !search || !listEl) return;
-
-  // Fjernet filter fra state
   const state = { items: [] };
 
   function render() {
@@ -19,7 +15,7 @@ export function initCurrency() {
     const frag = document.createDocumentFragment();
 
     for (const it of state.items) {
-      if (!searchText || currencySearch(it.name, searchText)) {
+      if (currencySearch(it.name, searchText)) {
         frag.appendChild(CurrencyItem(it.name));
       }
     }
@@ -27,18 +23,18 @@ export function initCurrency() {
   }
 
   // add
-  form.addEventListener("submit", (e) => {
-    e.preventDefault();
-    const q = input.value.trim();
-    if (!q) return;
+  form.addEventListener("submit", (event) => {
+    event.preventDefault();
+    const query = input.value.trim();
+    if (!query) return;
 
     // duplikatsjekk (case-insensitive)
-    if (state.items.some(it => it.name.toLowerCase() === q.toLowerCase())) {
+    if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
 
-    state.items.push({ name: q });
+    state.items.push({ name: query });
     input.value = "";
     input.focus();
     render();
@@ -48,9 +44,14 @@ export function initCurrency() {
   search.addEventListener("input", render);
 
   // delete via event delegation
-  listEl.addEventListener("click", (e) => {
-    const btn  = e.target.closest?.(".delete");
-    const name = btn?.closest("li")?.dataset?.name;
+  listEl.addEventListener("click", (event) => {
+    const btn = event.target.closest(".delete");
+    if (!btn) return;
+
+    const li = btn.closest("li");
+    if (!li) return;
+
+    const { name } = li.dataset;
     if (!name) return;
 
     state.items = state.items.filter(it => it.name !== name);
