@@ -1,13 +1,13 @@
 // src/features/countries.js
 import { listElementSearch } from "../utils/listElementSearch.js";
-import { CountryItem } from "../components/CountryItem.js";
+import { CountryItem } from "../components/countryItem.js";
 import { getCountryData } from "../data/countriesRepository.js";
 import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js";
 import { toTitleCase } from "../utils/toTitleCase.js";
 
-export function initCountries() {
-  const form   = document.getElementById("country-form");
-  const input  = document.getElementById("country-input");
+export function countries() {
+  const form = document.getElementById("country-form");
+  const input = document.getElementById("country-input");
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
 

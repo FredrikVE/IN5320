@@ -7,16 +7,15 @@ export async function getCountryData(countryName) {
   const query = String(countryName ?? "").trim();
   if (!query) return null; // tom input: ikke kall API, bare no-op
 
-  const pop = await fetchPopTodayTomorrowRaw(query);
-  const arr = pop?.total_population;
-  if (!Array.isArray(arr) || arr.length < 2) {
+  const population = await fetchPopTodayTomorrowRaw(query);
+  const populationArray = population?.total_population;
+
+  if (!Array.isArray(populationArray) || populationArray.length < 2) {
     throw new Error("COUNTRY_NOT_SUPPORTED"); // returnerer tom/feil ved ukjent land
   }
 
-  //const today = Number(arr[0]?.population) || 0;
-  //const tomorrow = Number(arr[1]?.population) || 0;
-  const today = Number(arr[0].population);
-  const tomorrow = Number(arr[1].population);
+  const today = Number(populationArray[0].population);
+  const tomorrow = Number(populationArray[1].population);
 
   return {
     name: query,

@@ -1,10 +1,10 @@
 // src/features/currency.js
 import { listElementSearch } from "../utils/listElementSearch.js";
-import { CurrencyItem } from "../components/CurrencyItem.js";
+import { CurrencyItem } from "../components/currencyItem.js";
 
-export function initCurrency() {
-  const form   = document.getElementById("add-form");
-  const input  = document.getElementById("currency-input");
+export function currencies() {
+  const form = document.getElementById("add-form");
+  const input = document.getElementById("currency-input");
   const search = document.getElementById("search-input");
   const listElement = document.getElementById("currency-list");
 

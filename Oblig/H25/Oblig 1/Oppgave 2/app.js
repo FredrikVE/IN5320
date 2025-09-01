@@ -1,8 +1,8 @@
 //src/app.js
-import { initCurrency }  from "./features/currency.js";
-import { initCountries } from "./features/countries.js";
+import { currencies } from "./features/currency";
+import { countries } from "./features/countries";
 
 window.addEventListener("DOMContentLoaded", () => {
-  initCurrency();
-  initCountries();
+  currencies();
+  countries();
 });

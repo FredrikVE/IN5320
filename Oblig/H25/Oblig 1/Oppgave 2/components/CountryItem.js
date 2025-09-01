@@ -1,6 +1,6 @@
 //src/components/CountryItem.js
 import { formatPopulationNumber } from "../utils/populationNumberFormat.js";
-import { RateBadge } from "./RateBadge.js";
+import { RateBadge } from "./rateBadge.js";
 
 export function CountryItem({ name, population, growthRatePerSec }) {
   const li = document.createElement("li");
