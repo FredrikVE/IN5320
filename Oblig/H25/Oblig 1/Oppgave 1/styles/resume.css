@@ -1,4 +1,3 @@
-/* styles/resume.css */
 .resume-wrapper{
   min-height: calc(100svh - var(--header-h));
   display:grid;

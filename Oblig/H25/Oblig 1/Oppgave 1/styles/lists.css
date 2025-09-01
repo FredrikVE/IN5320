@@ -1,11 +1,10 @@
-/* styles/lists.css */
 ul{ 
   padding-left:1.2rem; 
   margin: 0 0 .75rem;
 }
 
 ul.bullets{ 
-  list-style:disc; 
+  list-style:disc; /* kulepunkt på liste-elementer*/
 }
 
 ul li{ 
