@@ -25,9 +25,8 @@ export function currencies() {
   // add
   form.addEventListener("submit", (event) => {
     event.preventDefault();
-    const query = input.value.trim();
-    if (!query) return;
 
+    const query = input.value.trim();
     if (currencyList.some(it => it.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
@@ -45,14 +44,8 @@ export function currencies() {
   // delete via event delegation
   listElement.addEventListener("click", (event) => {
     const btn = event.target.closest(".delete");
-    if (!btn) return;
-
     const li = btn.closest("li");
-    if (!li) return;
-
     const { name } = li.dataset;
-    if (!name) return;
-
     currencyList = currencyList.filter(it => it !== name);
     render();
   });
