@@ -8,5 +8,5 @@ input[type="text"] {
 }
 
 input[type="text"]:focus {
-  border-color: #06f; /* blå ramme rundt inputfelt når de er i bruk */
+  border-color: #06f;
 }
