@@ -1,4 +1,3 @@
-//src/utils/currencySearch.js
 export function listElementSearch(inputList, searchInput) {
   const query = searchInput.trim().toLowerCase();
   const result = [];

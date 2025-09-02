@@ -1,5 +1,3 @@
-// src/data/Ratebadge.js
-// src/data/RateBadge.js
 export function RateBadge(rate) {
   const span = document.createElement("span");
   let sign;

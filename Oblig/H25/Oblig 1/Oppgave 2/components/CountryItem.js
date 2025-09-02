@@ -1,4 +1,3 @@
-//src/components/CountryItem.js
 import { formatPopulationNumber } from "../utils/populationNumberFormat.js";
 import { RateBadge } from "./rateBadge.js";
 

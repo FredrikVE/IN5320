@@ -1,4 +1,3 @@
-// src/features/countries.js
 import { listElementSearch } from "../utils/listElementSearch.js";
 import { CountryItem } from "../components/countryItem.js";
 import { CountriesRepository } from "../data/countriesRepository.js";

@@ -1,4 +1,3 @@
-//src/components/CurrencyItem.js
 export function CurrencyItem(name) {
 
    // Oppretter <li>-element og tildeler styling klasse som brukes i list.css

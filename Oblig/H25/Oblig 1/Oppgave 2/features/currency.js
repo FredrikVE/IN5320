@@ -1,4 +1,3 @@
-// src/features/currency.js
 import { listElementSearch } from "../utils/listElementSearch.js";
 import { CurrencyItem } from "../components/currencyItem.js";
 

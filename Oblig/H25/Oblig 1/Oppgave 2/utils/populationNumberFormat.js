@@ -1,4 +1,3 @@
-//src/utils/populationNumberFormat.js
 /**
  * Formatterer et befolkningstall for visning (norsk locale).
  * - Runder til heltall

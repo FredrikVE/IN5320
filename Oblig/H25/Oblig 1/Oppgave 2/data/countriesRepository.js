@@ -1,4 +1,3 @@
-// src/data/countriesRepository.js
 import { CountriesDatasource } from "./countriesDatasource.js";
 
 export class CountriesRepository {

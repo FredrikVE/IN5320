@@ -1,4 +1,3 @@
-// src/utils/ticker.js
 export function startPopulationTicker(state, render) {
   if (state.timer || state.items.length === 0) return;
 

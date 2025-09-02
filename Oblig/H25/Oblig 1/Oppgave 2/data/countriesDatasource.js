@@ -1,4 +1,3 @@
-// src/data/datasource.js
 const BASE_URL = "https://d6wn6bmjj722w.population.io/1.0/"
 
 
