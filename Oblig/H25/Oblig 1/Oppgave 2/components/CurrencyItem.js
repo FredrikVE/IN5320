@@ -11,7 +11,7 @@ export function CurrencyItem(name) {
   const btn = document.createElement("button");
   btn.type = "button";
   btn.className = "delete";
-  btn.setAttribute("aria-label", `Delete ${name}`);
+  btn.setAttribute("title" ,`Delete ${name}`);
   btn.textContent = "X";
 
   li.append(title, btn);
