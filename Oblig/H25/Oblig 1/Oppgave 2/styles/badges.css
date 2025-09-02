@@ -1,15 +1,14 @@
-/* Små statusmerker som viser befolkningsvekst i realtime */
 .badge {
   display: inline-block;
   font-size: 0.75rem;
   padding: 2px 6px;
   border-radius: 999px;
   margin-left: 6px;
-  background: #eef; /* lys blålig */
+  background: #eef;
   color: #223;
 }
 
 .badge.neg {
-  background: #fee; /* lys rødlig */
+  background: #fee;
   color: #900;
 }
