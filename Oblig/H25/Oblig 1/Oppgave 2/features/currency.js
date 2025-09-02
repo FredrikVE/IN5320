@@ -11,7 +11,7 @@ export function currencies() {
   // Tom liste som lagrer valutaene som legges inn
   let currencyList = [];
 
-  function render() {
+  function updateCurrencyList() {
     const searchText = search.value.trim(); // trimmes i util hvis du ønsker, ellers legg på .trim()
     const listFragment = document.createDocumentFragment();
     const searchResults = listElementSearch(currencyList, searchText);
@@ -35,14 +35,14 @@ export function currencies() {
     }
 
     // Hvis ikke duplikat, legges input inn i currecyList
-    currencyList.push(query);
-    input.value = "";
-    input.focus();
-    render();
+    currencyList.push(query);  //legger inn resultat i liste.
+    input.value = "";          //nullstiller inputfelt etter bruk
+    input.focus();             //flytter markøren tilbake til start etter bruk
+    updateCurrencyList(); 
   });
 
   // Event-listener for søkefelt
-  search.addEventListener("input", render);
+  search.addEventListener("input", updateCurrencyList);
 
   // Event-listerner for delete ved klikk på X-knapp
   listElement.addEventListener("click", (event) => {
@@ -50,6 +50,6 @@ export function currencies() {
     const li = btn.closest("li");
     const { name } = li.dataset;
     currencyList = currencyList.filter(it => it !== name);
-    render();
+    updateCurrencyList();
   });
 }

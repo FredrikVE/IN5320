@@ -17,7 +17,7 @@ export function countries() {
   // En state med items fra API-et
   const state = { items: [] };
 
-  function render() {
+  function updateCountryList() {
     // les filter direkte fra DOM (tom streng hvis ikke skrevet noe)
     const searchText = search.value.trim();
     const listFragment = document.createDocumentFragment();
@@ -44,14 +44,17 @@ export function countries() {
       return;
     }
 
+    // try/catch-blokk for å lytte etter eventuelle feilmelinger fra CountriesRepository()
     try {
       const item = await countriesRepository.getCountryData(query);
-      state.items.push(item);
-      input.value = "";
-      input.focus();
-      render();
-      startPopulationTicker(state, render);
+      state.items.push(item);   // legger inn resultat i liste.
+      input.value = "";         // nullstiller inputfelt etter bruk
+      input.focus();            // flytter markøren tilbake til start etter bruk
+      updateCountryList();      // Oppdaterer listas innhold slik at det rendres inn på siden
+      startPopulationTicker(state, updateCountryList); // Starter tickerfunksjonen som teller befolkningsøkning
     }
+
+    // Fanger eventuelle feil og viser en alert til bruker dersom land ikke finnes
     catch (error) {
       if (error?.message === "COUNTRY_NOT_SUPPORTED") {
         alert("Ukjent land. Prøv et annet navn.");
@@ -60,14 +63,14 @@ export function countries() {
   });
 
   // ingen state-oppdatering; bare trigge re-render når brukeren skriver
-  search.addEventListener("input", render);
+  search.addEventListener("input", updateCountryList);
 
   listEl.addEventListener("click", (event) => {
-    const btn = event.target.closest(".delete");
-    const li = btn.closest("li");
-    const { name } = li.dataset;
-    state.items = state.items.filter(it => it.name !== name);
-    render();
-    stopTickerIfEmpty(state);
+    const btn = event.target.closest(".delete");                  // Finner nærmeste element med klassen .delete
+    const li = btn.closest("li");                                 // Finner <li>-elementet som knappen ligger inni
+    const { name } = li.dataset;                                  // Leser ut landnavnet vi lagret i data-name på <li>
+    state.items = state.items.filter(it => it.name !== name);     // Fjerner landet fra state ved å filtrere bort matchet navn
+    updateCountryList();     // Oppdaterer lista etter sletting
+    stopTickerIfEmpty(state); // stopper tickeren hvis lista er tom
   });
 }
