@@ -3,6 +3,8 @@ import { listElementSearch } from "../utils/listElementSearch.js";
 import { CurrencyItem } from "../components/currencyItem.js";
 
 export function currencies() {
+
+  // Henter referanser fra HTML-dokumentene for bruk i js-koden
   const form = document.getElementById("add-form");
   const input = document.getElementById("currency-input");
   const search = document.getElementById("search-input");
@@ -12,13 +14,13 @@ export function currencies() {
   let currencyList = [];
 
   function updateCurrencyList() {
-    const searchText = search.value.trim(); // trimmes i util hvis du ønsker, ellers legg på .trim()
-    const listFragment = document.createDocumentFragment();
-    const searchResults = listElementSearch(currencyList, searchText);
+    const searchText = search.value.trim(); // Henter inputtekst for søking. Trimmer bort whitespace.
+    const listFragment = document.createDocumentFragment(); // Lager en usynlig beholder i minnet der vi bygger <li> før de settes inn
+    const searchResults = listElementSearch(currencyList, searchText); //søk etter elementer lagt til i lista
 
     // Legger til søkresultater som currencyItem
-    for (const currency of searchResults) {
-      listFragment.appendChild(CurrencyItem(currency));
+    for (const currency of searchResults) {              // Løp igjennom alle land i state-lista
+      listFragment.appendChild(CurrencyItem(currency)); // Bygg <li> for landet og legg det i DocumentFragment
     }
     listElement.replaceChildren(listFragment);
   }
