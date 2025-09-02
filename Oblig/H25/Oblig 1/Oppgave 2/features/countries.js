@@ -11,7 +11,8 @@ export function countries() {
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
 
-  const countriesRepository = new CountriesRepository(); // én instans
+  //oppretter nytt repository som henter data fra API
+  const countriesRepository = new CountriesRepository();
 
   // En state med items fra API-et
   const state = { items: [] };
