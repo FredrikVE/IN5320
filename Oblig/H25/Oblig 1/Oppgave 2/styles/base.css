@@ -4,12 +4,11 @@
 
 body {
   margin: 0;
-  font-family: Arial, sans-serif; /* enkel fontstack */
-  background: #f2f2f2;            /* lys grå bakgrunn */
-  color: #222;                    /* mørk tekst */
+  font-family: Arial, sans-serif;
+  background: #f2f2f2;
+  color: #222;
 }
 
-/* Titler */
 h1 { 
     margin: 0 0 12px; 
     font-size: 1.5rem; 
