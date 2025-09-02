@@ -32,12 +32,13 @@ export function countries() {
     listEl.replaceChildren(listFragment);
   }
 
+  // Event-listerner for Add country-knapp
   form.addEventListener("submit", async (event) => {
     event.preventDefault();
 
     const query = toTitleCase(input.value.trim());
 
-    // duplikatsjekk
+    // Duplikatsjekk. Samme land skal kun legges til én gang
     if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;

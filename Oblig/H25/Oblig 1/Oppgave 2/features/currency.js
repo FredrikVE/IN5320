@@ -8,6 +8,7 @@ export function currencies() {
   const search = document.getElementById("search-input");
   const listElement = document.getElementById("currency-list");
 
+  // Tom liste som lagrer valutaene som legges inn
   let currencyList = [];
 
   function render() {
@@ -22,26 +23,28 @@ export function currencies() {
     listElement.replaceChildren(listFragment);
   }
 
-  // add
+  // Event-listerner for Add currency-knapp
   form.addEventListener("submit", (event) => {
     event.preventDefault();
 
+    // Duplikatsjekk. Samme valuta skal kun legges til én gang
     const query = input.value.trim();
     if (currencyList.some(it => it.toLowerCase() === query.toLowerCase())) {
       input.select();
       return;
     }
 
+    // Hvis ikke duplikat, legges input inn i currecyList
     currencyList.push(query);
     input.value = "";
     input.focus();
     render();
   });
 
-  // search – ingen state, bare re-render
+  // Event-listener for søkefelt
   search.addEventListener("input", render);
 
-  // delete via event delegation
+  // Event-listerner for delete ved klikk på X-knapp
   listElement.addEventListener("click", (event) => {
     const btn = event.target.closest(".delete");
     const li = btn.closest("li");
