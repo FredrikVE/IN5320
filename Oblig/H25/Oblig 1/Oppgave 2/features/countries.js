@@ -1,7 +1,6 @@
 // src/features/countries.js
 import { listElementSearch } from "../utils/listElementSearch.js";
 import { CountryItem } from "../components/countryItem.js";
-//import { getCountryData } from "../data/countriesRepository.js";
 import { CountriesRepository } from "../data/countriesRepository.js";
 import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js";
 import { toTitleCase } from "../utils/toTitleCase.js";
