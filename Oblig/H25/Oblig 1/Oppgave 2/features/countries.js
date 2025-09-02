@@ -54,13 +54,11 @@ export function countries() {
       render();
       startPopulationTicker(state, render);
 
-    } 
+    }
     catch (error) {
       if (error?.message === "COUNTRY_NOT_SUPPORTED") {
         alert("Ukjent land. Prøv et annet navn.");
-      } else {
-        console.error(error);
-      }
+      } 
     }
   });
 
