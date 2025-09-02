@@ -16,7 +16,7 @@ export function currencies() {
     const listFragment = document.createDocumentFragment();
     const searchResults = listElementSearch(currencyList, searchText);
 
-    // Legge til søkresultater som currencyItem og 
+    // Legger til søkresultater som currencyItem
     for (const currency of searchResults) {
       listFragment.appendChild(CurrencyItem(currency));
     }
@@ -46,10 +46,11 @@ export function currencies() {
 
   // Event-listerner for delete ved klikk på X-knapp
   listElement.addEventListener("click", (event) => {
-    const btn = event.target.closest(".delete");
-    const li = btn.closest("li");
-    const { name } = li.dataset;
-    currencyList = currencyList.filter(it => it !== name);
-    updateCurrencyList();
+    const btn = event.target.closest(".delete");       // Finner nærmeste button-element (inkl. seg selv) som matcher selektoren ".delete".
+    const li = btn.closest("li");                      // Finner <li>-elementet i DOM-treet fra knappen vi trykket på.
+    const { name } = li.dataset;                      // Henter ut valutanavnet i <li>-taggen. Dette brukes til å slette med filter
+    const newList = currencyList.filter(it => it !== name); // Fjerner slettet element ved å filtrer det bort fr gammel liste
+    currencyList = newList;                                 // Oppdaterer gammel liste til å være den nye filtrerte listen
+    updateCurrencyList();                                   // Oppdaterer lista etter sletting
   });
 }

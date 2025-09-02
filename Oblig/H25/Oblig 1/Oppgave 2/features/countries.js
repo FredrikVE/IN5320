@@ -66,9 +66,9 @@ export function countries() {
   search.addEventListener("input", updateCountryList);
 
   listEl.addEventListener("click", (event) => {
-    const btn = event.target.closest(".delete");                  // Finner nærmeste element med klassen .delete
-    const li = btn.closest("li");                                 // Finner <li>-elementet som knappen ligger inni
-    const { name } = li.dataset;                                  // Leser ut landnavnet vi lagret i data-name på <li>
+    const btn = event.target.closest(".delete");    // Finner nærmeste button-element (inkl. seg selv) som matcher selektoren ".delete".
+    const li = btn.closest("li");                   // Finner <li>-elementet i DOM-treet fra knappen vi trykket på.
+    const { name } = li.dataset;                    // Henter ut landet i <li>-taggen. Dette brukes til å slette med filter
     const newList = state.items.filter(it => it.name !== name);     // Fjerner slettet element ved å filtrer det bort fr gammel liste
     state.items = newList;                                          // Oppdaterer gammel liste til å være den nye filtrerte listen
     updateCountryList();     // Oppdaterer lista etter sletting
