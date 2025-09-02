@@ -36,7 +36,6 @@ export function countries() {
     event.preventDefault();
 
     const query = toTitleCase(input.value.trim());
-    //if (!query) return;
 
     // duplikatsjekk
     if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
@@ -46,14 +45,11 @@ export function countries() {
 
     try {
       const item = await countriesRepository.getCountryData(query);
-      //if (!item) return;
       state.items.push(item);
-
       input.value = "";
       input.focus();
       render();
       startPopulationTicker(state, render);
-
     }
     catch (error) {
       if (error?.message === "COUNTRY_NOT_SUPPORTED") {
@@ -67,14 +63,8 @@ export function countries() {
 
   listEl.addEventListener("click", (event) => {
     const btn = event.target.closest(".delete");
-    if (!btn) return;
-
     const li = btn.closest("li");
-    if (!li) return;
-
     const { name } = li.dataset;
-    if (!name) return;
-
     state.items = state.items.filter(it => it.name !== name);
     render();
     stopTickerIfEmpty(state);
