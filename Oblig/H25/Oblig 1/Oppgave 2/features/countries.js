@@ -69,7 +69,8 @@ export function countries() {
     const btn = event.target.closest(".delete");                  // Finner nærmeste element med klassen .delete
     const li = btn.closest("li");                                 // Finner <li>-elementet som knappen ligger inni
     const { name } = li.dataset;                                  // Leser ut landnavnet vi lagret i data-name på <li>
-    state.items = state.items.filter(it => it.name !== name);     // Fjerner landet fra state ved å filtrere bort matchet navn
+    const newList = state.items.filter(it => it.name !== name);     // Fjerner slettet element ved å filtrer det bort fr gammel liste
+    state.items = newList;                                          // Oppdaterer gammel liste til å være den nye filtrerte listen
     updateCountryList();     // Oppdaterer lista etter sletting
     stopTickerIfEmpty(state); // stopper tickeren hvis lista er tom
   });
