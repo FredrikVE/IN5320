@@ -1,7 +1,8 @@
 // src/features/countries.js
 import { listElementSearch } from "../utils/listElementSearch.js";
 import { CountryItem } from "../components/countryItem.js";
-import { getCountryData } from "../data/countriesRepository.js";
+//import { getCountryData } from "../data/countriesRepository.js";
+import { CountriesRepository } from "../data/countriesRepository.js";
 import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js";
 import { toTitleCase } from "../utils/toTitleCase.js";
 
@@ -10,6 +11,8 @@ export function countries() {
   const input = document.getElementById("country-input");
   const search = document.getElementById("country-search");
   const listEl = document.getElementById("country-list");
+
+  const countriesRepository = new CountriesRepository(); // én instans
 
   // En state med items fra API-et
   const state = { items: [] };
@@ -33,7 +36,7 @@ export function countries() {
     event.preventDefault();
 
     const query = toTitleCase(input.value.trim());
-    if (!query) return;
+    //if (!query) return;
 
     // duplikatsjekk
     if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
@@ -42,8 +45,8 @@ export function countries() {
     }
 
     try {
-      const item = await getCountryData(query);
-      if (!item) return;
+      const item = await countriesRepository.getCountryData(query);
+      //if (!item) return;
       state.items.push(item);
 
       input.value = "";

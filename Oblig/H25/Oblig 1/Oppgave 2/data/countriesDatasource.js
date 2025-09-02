@@ -1,21 +1,25 @@
 // src/data/datasource.js
 const BASE_URL = "https://d6wn6bmjj722w.population.io/1.0/"
 
-/** Hent JSON, returner null ved feil */
-async function getJSON(path) {
-  try {
-    const res = await fetch(BASE_URL + path)
-    if (!res.ok) return null
-    return await res.json()
-  } 
+
+export class CountriesDatasource {
+
+  /** Hent JSON fra API, returner null ved feil */
+  async getAPIRequest(path) {
+    const request = await fetch(BASE_URL + path);
+    
+    if (!request.ok) {
+      console.warn(`[countries] ${request.status} ${path}`);
+      return null;
+    }
+    return request.json();
+  }
   
-  catch {
-    return null
+  /** hent dagens og morgendagens populasjon for et land */
+  fetchPopTodayTomorrowRaw(countryName) {
+    const name = encodeURIComponent(countryName);
+    const result = this.getAPIRequest(`population/${name}/today-and-tomorrow/?format=json`);
+    return result;
   }
 }
 
-/** hent dagens og morgendagens populasjon for et land */
-export function fetchPopTodayTomorrowRaw(countryName) {
-  const name = encodeURIComponent(countryName)
-  return getJSON(`population/${name}/today-and-tomorrow/?format=json`)
-}
