@@ -1,26 +1,34 @@
-// Starter en ticker som oppdaterer befolkningen til alle items
-export function startPopulationTicker(state, updateFunction) {
-  // Hvis en timer allerede kjører, eller det ikke finnes noen items, gjør ingenting
-  if (state.timer || state.items.length === 0) return;
-
-  // Funksjon som kjører hver "tick" (dvs. hvert intervall)
-  function tick() {
-    // Gå gjennom alle items i state
-    for (const item of state.items) {
-      item.population += item.growthRatePerSec;   // øk befolkningen med vekstraten
-    }
-    updateFunction();
+export class PopulationTicker {
+  constructor(itemsMap) {
+    this.items = itemsMap;   // Map<string, Country>
+    this.timer = null;
+    this.running = false;
   }
 
+  isRunning() {
+    return this.running;
+  }
 
-  const delayinterval = 1000;                  // intervall i millisekunder (1 sekund)
-  state.timer = setInterval(tick, delayinterval); // start timeren og lagre referansen i state
-}
+  start(timerId) {
+    if (this.running) return;
+    this.timer = timerId;
+    this.running = true;
+    console.log("ticker running: ", this.running);
+    console.log("timer: ", this.timer)
+  }
 
-// Stopper tickeren hvis det ikke finnes flere items
-export function stopTickerIfEmpty(state) {
-  if (state.items.length === 0 && state.timer) {  // Sjekk at det ikke finnes items og at det finnes en aktiv timer
-    clearInterval(state.timer); // stopp timeren
-    state.timer = null;         // nullstill referansen
+  stop() {
+    if (!this.running) return;
+    clearInterval(this.timer);
+    this.timer = null;
+    this.running = false;
+    console.log("ticker running: ", this.running);
+    console.log("timer: ", this.timer)
+  }
+
+  tick() {
+    for (const item of this.items.values()) {
+      item.population += item.growthRatePerSec;
+    }
   }
 }

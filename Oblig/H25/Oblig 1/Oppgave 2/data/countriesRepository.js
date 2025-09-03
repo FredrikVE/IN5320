@@ -1,10 +1,8 @@
-import { CountriesDatasource } from "./countriesDatasource.js";
-
 export class CountriesRepository {
 
   #DAY_SECONDS = 86_400;
 
-  constructor(datasource = new CountriesDatasource()) {
+  constructor(datasource) {
     this.datasource = datasource;
   }
 

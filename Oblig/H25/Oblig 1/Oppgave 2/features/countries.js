@@ -1,79 +1,109 @@
 import { listElementSearch } from "../utils/listElementSearch.js";
 import { CountryItem } from "../components/countryItem.js";
-import { CountriesRepository } from "../data/countriesRepository.js";
-import { startPopulationTicker, stopTickerIfEmpty } from "../utils/ticker.js";
+import { PopulationTicker } from "../utils/ticker.js";
 import { toTitleCase } from "../utils/toTitleCase.js";
 
-export function countries() {
+export class Countries {
+  constructor(countriesRepository) {
+    this.repository = countriesRepository;
 
-  // Henter referanser fra HTML-dokumentene for bruk i js-koden
-  const form = document.getElementById("country-form");
-  const input = document.getElementById("country-input");
-  const search = document.getElementById("country-search");
-  const listEl = document.getElementById("country-list");
+    // Bruk Map for å unngå duplikater i lista
+    this.items = new Map(); // key: name.toLowerCase(), value: country object
 
-  //oppretter nytt repository som henter data fra API
-  const countriesRepository = new CountriesRepository();
+    // DOM
+    this.form = document.getElementById("country-form");
+    this.input = document.getElementById("country-input");
+    this.search = document.getElementById("country-search");
+    this.listEl = document.getElementById("country-list");
 
-  // En state med items fra API-et.
-  const state = { items: [] };
+    // Ticking
+    this.tickInterval = 1000;
+    this.updateInterval = null;
+    this.ticker = new PopulationTicker(this.items);
 
-  function updateCountryList() {
-    // les filter direkte fra DOM (tom streng hvis ikke skrevet noe)
-    const searchText = search.value.trim();  // Henter inputtekst for søking. Trimmer bort whitespace.
-    const listFragment = document.createDocumentFragment(); // Lager en usynlig beholder i minnet der vi bygger <li> før de settes inn
-    const countries = state.items.map(it => it.name); // Henter navnene på landene i state.items
-    const searchResults = listElementSearch(countries, searchText);  //søk etter elementer lagt til i lista
-
-    // Løp igjennom alle land i state-lista
-    for (const country of state.items) { 
-      if (searchResults.includes(country.name)) {  // Hvis søkeresultatet er i søketreffet
-        listFragment.appendChild(CountryItem(country)); // Bygg <li> for landet og legg det i DocumentFragment
-      }
-    }
-    listEl.replaceChildren(listFragment); //tømmer lista og legger inn oppdatert liste for hver gang
+    this.setupEventListeners();
+    this.updateCountryList();
   }
 
-  // Event-listerner for Add country-knapp
-  form.addEventListener("submit", async (event) => {
+  setupEventListeners() {
+    this.form.addEventListener("submit", (event) => this.onSubmit(event));
+    this.search.addEventListener("input", () => this.updateCountryList());
+    this.listEl.addEventListener("click", (event) => this.onDeleteClick(event));
+  }
+
+  startTicker() {
+    if (this.updateInterval) return; // Hvis ticker allerede i gang, ikke forstyrr
+
+    if (!this.ticker.isRunning()) {
+      // Sett i gang oppdateringsintervall
+      this.updateInterval = setInterval(() => {
+        this.ticker.tick();           // oppdater data
+        this.updateCountryList();     // render
+      }, this.tickInterval);
+
+      // Send timerId inn som parameter til tickeren
+      this.ticker.start(this.updateInterval);
+    }
+  }
+
+  updateCountryList() {
+    const searchText = this.search.value.trim();
+    const listFragment = document.createDocumentFragment();
+
+    // listElementSearch forventer en array av navn
+    const countries = Array.from(this.items.values(), it => it.name);
+    const searchResults = listElementSearch(countries, searchText);
+
+    for (const item of this.items.values()) {
+      if (searchResults.includes(item.name)) {
+        listFragment.appendChild(CountryItem(item));
+      }
+    }
+    this.listEl.replaceChildren(listFragment);
+  }
+
+  async onSubmit(event) {
     event.preventDefault();
+    const query = toTitleCase(this.input.value.trim());
+    const key = query.toLowerCase();
 
-    const query = toTitleCase(input.value.trim()); //Konverter input til titleCase før input
-
-    // Duplikatsjekk. Sjekker om samme land allerede finnnes i lista.
-    if (state.items.some(it => it.name.toLowerCase() === query.toLowerCase())) {
-      input.select();
+    // Duplikatsjekk via Map
+    if (this.items.has(key)) {
+      this.input.select();
       return;
     }
 
-    // try/catch-blokk for å lytte etter eventuelle feilmelinger fra CountriesRepository()
     try {
-      const item = await countriesRepository.getCountryData(query);
-      state.items.push(item);   // legger inn resultat i liste.
-      input.value = "";         // nullstiller inputfelt etter bruk
-      input.focus();            // flytter markøren tilbake til start etter bruk
-      updateCountryList();      // Oppdaterer listas innhold slik at det rendres inn på siden
-      startPopulationTicker(state, updateCountryList); // Starter tickerfunksjonen som teller befolkningsøkning
-    }
-
-    // Fanger eventuelle feil og viser en alert til bruker dersom land ikke finnes
+      const item = await this.repository.getCountryData(query);
+      this.items.set(item.name.toLowerCase(), item); // legg inn
+      this.input.value = "";
+      this.input.focus();
+      this.updateCountryList();
+      this.startTicker(); // starter hvis ikke i gang
+    } 
+    
     catch (error) {
       if (error?.message === "COUNTRY_NOT_SUPPORTED") {
         alert("Ukjent land. Prøv et annet navn.");
-      } 
+      }
     }
-  });
+  }
 
-  // ingen state-oppdatering; bare trigge re-render når brukeren skriver
-  search.addEventListener("input", updateCountryList);
+  onDeleteClick(event) {
+    const btn = event.target.closest(".delete");
+    if (!btn) return; // liten guard i tilfelle klikk andre steder
 
-  listEl.addEventListener("click", (event) => {
-    const btn = event.target.closest(".delete");    // Finner nærmeste button-element (inkl. seg selv) som matcher selektoren ".delete".
-    const li = btn.closest("li");                   // Finner <li>-elementet i DOM-treet fra knappen vi trykket på.
-    const { name } = li.dataset;                    // Henter ut landet i <li>-taggen. Dette brukes til å slette med filter
-    const newList = state.items.filter(it => it.name !== name);     // Fjerner slettet element ved å filtrer det bort fr gammel liste
-    state.items = newList;                                          // Oppdaterer gammel liste til å være den nye filtrerte listen
-    updateCountryList();     // Oppdaterer lista etter sletting
-    stopTickerIfEmpty(state); // stopper tickeren hvis lista er tom
-  });
+    const li = btn.closest("li");
+    if (!li) return;
+
+    const { name } = li.dataset;          // antatt display-navn
+    this.items.delete(name.toLowerCase());
+
+    this.updateCountryList();
+
+    if (this.items.size === 0) {
+      this.ticker.stop();                 // stopp tickeren hvis lista er tom
+      this.updateInterval = null;         // nullstill vår referanse
+    }
+  }
 }
