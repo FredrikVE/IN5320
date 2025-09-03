@@ -16,8 +16,6 @@ export class Countries {
     this.listEl = document.getElementById("country-list");
 
     // Ticking
-    this.tickInterval = 1000;
-    this.updateInterval = null;
     this.ticker = new PopulationTicker(this.items);
 
     this.setupEventListeners();
@@ -31,19 +29,8 @@ export class Countries {
   }
 
   startTicker() {
-    if (this.updateInterval) return;               // allerede i gang
-
-    // Hvis this.updateInterval er null, er ikke tickeren startet
-    // Da skal oppdateringsintervallet settes og tickeren startes
-    this.updateInterval = setInterval(() => {
-      this.ticker.tick();                        // oppdater data
-      this.updateCountryList();                  // render
-    }, this.tickInterval);
-
-    // Start tickeren og send inn uppdateringsintervall
-    // oppdateringsintervallet sendes med får .stop() skal kunne bruke clearInterval()
-    this.ticker.start(this.updateInterval);
-    
+    if (this.ticker.timer) return;
+    this.ticker.start(() => this.updateCountryList());
   }
 
   updateCountryList() {
@@ -101,7 +88,6 @@ export class Countries {
 
     if (this.items.size === 0) {          // Hvis det ikke er flere land i lista, stopp tickeren
       this.ticker.stop();                 // stopp ticker
-      this.updateInterval = null;        // nullstill oppdateringsintervall med ID
     }
   }
 }
