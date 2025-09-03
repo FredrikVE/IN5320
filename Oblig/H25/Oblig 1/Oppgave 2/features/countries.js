@@ -6,7 +6,7 @@ import { toTitleCase } from "../utils/toTitleCase.js";
 export class Countries {
   constructor(countriesRepository) {
     this.repository = countriesRepository;    // oppdaterer instansvariablen med riktig repository fra parameter
-    this.items = new Map();                   // oppretter et map for å lagre land fra API uten duplikater.
+    this.items = new Map();                   // oppretter et HashMap for å lagre land fra API uten duplikater.
 
     // Henter referanser fra HTML-dokumentene for bruk i js-koden
     this.form = document.getElementById("country-form");
