@@ -7,8 +7,7 @@ export class Countries {
   constructor(countriesRepository) {
     this.repository = countriesRepository;
 
-    // Bruk Map for å unngå duplikater i lista
-    this.items = new Map(); // key: name.toLowerCase(), value: country object
+    this.items = new Map();
 
     // DOM
     this.form = document.getElementById("country-form");
@@ -32,25 +31,25 @@ export class Countries {
   }
 
   startTicker() {
-    if (this.updateInterval) return; // Hvis ticker allerede i gang, ikke forstyrr
+    if (this.updateInterval) return;               // allerede i gang
 
-    if (!this.ticker.isRunning()) {
-      // Sett i gang oppdateringsintervall
-      this.updateInterval = setInterval(() => {
-        this.ticker.tick();           // oppdater data
-        this.updateCountryList();     // render
-      }, this.tickInterval);
+    // Hvis this.updateInterval er null, er ikke tickeren startet
+    // Da skal oppdateringsintervallet settes og tickeren startes
+    this.updateInterval = setInterval(() => {
+      this.ticker.tick();                        // oppdater data
+      this.updateCountryList();                  // render
+    }, this.tickInterval);
 
-      // Send timerId inn som parameter til tickeren
-      this.ticker.start(this.updateInterval);
-    }
+    // Start tickeren og send inn uppdateringsintervall
+    // oppdateringsintervallet sendes med får .stop() skal kunne bruke clearInterval()
+    this.ticker.start(this.updateInterval);
+    
   }
 
   updateCountryList() {
     const searchText = this.search.value.trim();
     const listFragment = document.createDocumentFragment();
 
-    // listElementSearch forventer en array av navn
     const countries = Array.from(this.items.values(), it => it.name);
     const searchResults = listElementSearch(countries, searchText);
 
@@ -67,7 +66,6 @@ export class Countries {
     const query = toTitleCase(this.input.value.trim());
     const key = query.toLowerCase();
 
-    // Duplikatsjekk via Map
     if (this.items.has(key)) {
       this.input.select();
       return;
@@ -75,11 +73,11 @@ export class Countries {
 
     try {
       const item = await this.repository.getCountryData(query);
-      this.items.set(item.name.toLowerCase(), item); // legg inn
+      this.items.set(item.name.toLowerCase(), item);
       this.input.value = "";
       this.input.focus();
       this.updateCountryList();
-      this.startTicker(); // starter hvis ikke i gang
+      this.startTicker();
     } 
     
     catch (error) {
@@ -91,19 +89,19 @@ export class Countries {
 
   onDeleteClick(event) {
     const btn = event.target.closest(".delete");
-    if (!btn) return; // liten guard i tilfelle klikk andre steder
+    if (!btn) return;
 
     const li = btn.closest("li");
     if (!li) return;
 
-    const { name } = li.dataset;          // antatt display-navn
+    const { name } = li.dataset;
     this.items.delete(name.toLowerCase());
 
-    this.updateCountryList();
+    this.updateCountryList();              // Oppdater lista med land etter sletting
 
-    if (this.items.size === 0) {
-      this.ticker.stop();                 // stopp tickeren hvis lista er tom
-      this.updateInterval = null;         // nullstill vår referanse
+    if (this.items.size === 0) {          // Hvis det ikke er flere land i lista, stopp tickeren
+      this.ticker.stop();                 // stopp ticker
+      this.updateInterval = null;        // nullstill oppdateringsintervall med ID
     }
   }
 }
