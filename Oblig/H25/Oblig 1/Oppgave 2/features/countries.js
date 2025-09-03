@@ -44,7 +44,7 @@ export class Countries {
     // Løp igjennom alle land og legg inn resultater i lista under søkefeltet
     for (const item of this.items.values()) {
       if (searchResults.includes(item.name)) {        
-        listFragment.appendChild(CountryItem(item)); // Bygger <li>-elementer for valuta og legger det i DocumentFragment
+        listFragment.appendChild(CountryItem(item)); // Bygger <li>-elementer for land og legger det i DocumentFragment
       }
     }
     this.listEl.replaceChildren(listFragment);  // Tømmer lista og legger inn oppdatert liste etter iterering
