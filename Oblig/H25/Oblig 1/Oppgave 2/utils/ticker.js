@@ -11,7 +11,7 @@ export class PopulationTicker {
     this.tick(updateCountryList);
   }
 
-  // Metode som stopper timer og resetter intervallet og timeren
+  // Metode som stopper timer og rydder intervallet og resetter timeren
   stop() {
     clearInterval(this.timer);
     this.timer = null;
