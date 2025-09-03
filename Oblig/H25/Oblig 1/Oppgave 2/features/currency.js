@@ -26,7 +26,7 @@ export class Currencies {
     const searchResults = listElementSearch(this.currencyList, searchText); // Søk etter elementer lagt til i lista
 
     // Legger til søkresultater som CurrencyItem
-    for (const currency of searchResults) {             // Løper igjennom alle valutaene i state-lista
+    for (const currency of searchResults) {             // Løper igjennom alle valutaene i currencylista
       listFragment.appendChild(CurrencyItem(currency)); // Bygger <li>-elementer for valuta og legger det i DocumentFragment
     }
 
@@ -52,7 +52,11 @@ export class Currencies {
 
   onDeleteClick(event) {
     const btn = event.target.closest(".delete"); // Finner nærmeste button-element (inkl. seg selv) som matcher selektoren ".delete".
+    if (!btn) return;                            // Hvis bruker trykker på andre ting enn btn, så returneres det. Dette er for å ikke få masse "hidden clicks" i consollen
+
     const li = btn.closest("li");                // Finner <li>-elementet i DOM-treet fra knappen vi trykket på.
+    if (!li) return;                              // Forhindrer "hidden clicks" om bruker trykker på noe annet enn <li>-elementer.
+
     const { name } = li.dataset;                 // Henter ut valutanavnet i <li>-taggen. Dette brukes til å slette med filter
     const newList = this.currencyList.filter(it => it !== name); // Fjerner slettet element ved å filtrere det bort fra gammel liste
     this.currencyList = newList;                 // Oppdaterer gammel liste til å være den nye filtrerte listen
