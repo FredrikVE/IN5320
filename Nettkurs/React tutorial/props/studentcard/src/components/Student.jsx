@@ -20,8 +20,7 @@ export default function Student({ name, age, isStudent}) {
                 <span>{ isStudent ? "Yes" : "No" }</span> 
             </p>
         </div>
-);
-
+    );
 }
 
 
