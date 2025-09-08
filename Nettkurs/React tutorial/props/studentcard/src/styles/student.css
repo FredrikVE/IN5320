@@ -1,0 +1,13 @@
+.student {
+    border: 1px solid black;
+    padding: 10px;
+
+    /* Flexbox*/
+    display: flex;
+    flex-direction: column; /* Stabler under hverandre*/
+    align-items: stretch;
+    width: 200px;
+
+    /* Mellomrom mellom kort med margin */
+    margin: 10px;
+}
