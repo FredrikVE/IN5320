@@ -1,9 +1,18 @@
-import Clock from './Clock';
-import './styles/App.css';
+import { useState } from "react";
+import Clock from "./Clock";
+import "./styles/App.css";
 
 function App() {
+  const [showClock, setShowClock] = useState(true);
+
   return (
-    <Clock />
+    <div>
+      <button onClick={() => setShowClock(!showClock)}>
+        {showClock ? "Hide Clock" : "Show Clock"}
+      </button>
+
+      {showClock && <Clock />}
+    </div>
   );
 }
 

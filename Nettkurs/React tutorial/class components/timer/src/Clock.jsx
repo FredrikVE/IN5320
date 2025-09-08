@@ -1,6 +1,6 @@
 import React from "react";
 
-export default class Clock extends React.Component {
+class Clock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {date: new Date()};
@@ -9,10 +9,12 @@ export default class Clock extends React.Component {
 
     // componentDidMount() brukes i stedet for useEffect()
     componentDidMount() {
+        console.log("Clock mounted ⏰");
         this.timerID = setInterval( () => this.tick(), 1000)
     }
 
     componentWillUnmount() {
+        console.log("Clock will unmount 🛑");
         clearInterval(this.timerID)
     }
 
@@ -27,3 +29,4 @@ export default class Clock extends React.Component {
     }
 }
 
+export default Clock;
