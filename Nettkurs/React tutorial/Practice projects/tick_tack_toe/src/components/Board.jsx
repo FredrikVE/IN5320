@@ -27,6 +27,10 @@ export default function Board( props ) {
         status = `Winner: ${winner}`;
     }
 
+    else if (!props.squares.includes(null)) {
+        status = "No one wins.. Press restart";
+    }
+
     else {
         status = `Next player: ${props.xIsNext ? "X" : "O" }`
     }
