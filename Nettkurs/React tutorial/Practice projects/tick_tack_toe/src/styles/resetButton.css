@@ -5,13 +5,14 @@
   font-weight: bold;
   border-radius: 6px;
   border: 2px solid #444;
-  background: #ffffff;
+  background: #2e7bd2;
+  color: #f0f0f0;
   cursor: pointer;
   transition: all 0.2s ease;
 }
 
 .restart-btn:hover {
-  background: #f0f0f0;
+  background: #4e91dd;
   transform: scale(1.05);
 }
 
