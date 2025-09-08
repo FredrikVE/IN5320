@@ -1,11 +1,10 @@
 import React from "react";
 
-class Clock extends React.Component {
+export default class Clock extends React.Component {
     constructor(props) {
         super(props);
         this.state = {date: new Date()};
     }
-
 
     // componentDidMount() brukes i stedet for useEffect()
     componentDidMount() {
@@ -28,5 +27,3 @@ class Clock extends React.Component {
         return <h2> {this.state.date.toLocaleTimeString() } </h2>
     }
 }
-
-export default Clock;
