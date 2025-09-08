@@ -1,0 +1,36 @@
+.counter-row {
+  display: flex;
+  align-items: center;  /* knappene og tallet på linje */
+  margin-bottom: 20px;  /* luft ned til Reset-knappen */
+}
+
+button {
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+#counter-value {
+  font-weight: bold;
+}
+
+#increase-btn {
+  background-color: green;
+  color: white;
+}
+
+#decrease-btn {
+  background-color: red;
+  color: white;
+}
+
+.reset-btn {
+  background-color: blue;
+  color: white;
+}
+
+span {
+  font-size: 2rem;
+  margin: 0 15px;
+  display: inline-block;
+}
