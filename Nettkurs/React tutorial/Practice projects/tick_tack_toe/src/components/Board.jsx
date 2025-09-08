@@ -26,9 +26,11 @@ export default function Board( props ) {
     if (winner) {
         status = `Winner: ${winner}`;
     }
+
     else {
         status = `Next player: ${props.xIsNext ? "X" : "O" }`
     }
+
 
     return (
         <>
