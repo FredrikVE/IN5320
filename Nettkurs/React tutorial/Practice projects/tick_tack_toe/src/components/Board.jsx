@@ -1,4 +1,5 @@
 //src/components/Board.jsx
+import "../styles/Board.css"
 import calculateWinner from "../utils/ calculateWinner";
 import Square from "./Square";
 

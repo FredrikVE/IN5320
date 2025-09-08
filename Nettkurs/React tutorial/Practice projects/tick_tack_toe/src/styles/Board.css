@@ -1,0 +1,70 @@
+/* Container for status text */
+.status {
+  margin-bottom: 16px;
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #333;
+  text-align: center;
+}
+
+/* Each row of the board */
+.board-row {
+  display: flex;
+  justify-content: center;
+}
+
+/* Each square (button) */
+.square {
+  background: #fff;
+  border: 2px solid #444;
+  border-radius: 8px;
+  font-size: 2rem;
+  font-weight: bold;
+  line-height: 1;
+  height: 80px;
+  width: 80px;
+  margin: 4px;
+  padding: 0;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+/* Hover and active states */
+.square:hover {
+  background: #f0f0f0;
+}
+
+.square:active {
+  background: #ddd;
+}
+
+/* Game container for centering */
+.game {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-top: 40px;
+  gap: 24px;
+}
+
+/* Sidebar with history */
+.game-info {
+  font-family: sans-serif;
+  font-size: 0.9rem;
+}
+.game-info ol {
+  padding-left: 20px;
+}
+.game-info button {
+  margin-bottom: 6px;
+  padding: 4px 8px;
+  border-radius: 4px;
+  border: 1px solid #888;
+  background: #fafafa;
+  cursor: pointer;
+  transition: background 0.2s;
+}
+.game-info button:hover {
+  background: #eee;
+}
