@@ -19,12 +19,15 @@ class Counter extends React.Component {
 
   render() {
     return (
-      <>
-        <span>{this.state.count}</span>
-        <button onClick={() => this.changeCount(1)}>+</button>
-        <button onClick={() => this.changeCount(-1)}>-</button>
-        <button onClick={() => this.resetCount()}>Reset</button>
-      </>
+      <div className="app-container" >
+        <div className="counter-row">
+          <button id="increase-btn" onClick={() => this.changeCount(1)}>+</button>
+          <span id="counter-value">{this.state.count}</span>
+          <button id="decrease-btn" onClick={() => this.changeCount(-1)}>-</button>
+        </div>
+        
+        <button className="reset-btn" onClick={() => this.resetCount()}>Reset</button>
+      </div>
     )
   }
 }

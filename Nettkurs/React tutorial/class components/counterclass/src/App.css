@@ -1,38 +1,44 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+.app-container {
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  flex-direction: column;   /* legg radene under hverandre */
+  justify-content: center;  /* senter vertikalt */
+  align-items: center;      /* senter horisontalt */
+  height: 100vh;            /* fyll hele skjermhøyden */
+}
+
+.counter-row {
+  display: flex;
+  align-items: center;  /* knappene og tallet på linje */
+  margin-bottom: 20px;  /* luft ned til Reset-knappen */
+}
+
+button {
+  font-size: 2rem;
+  padding: 10px 20px;
+  border-radius: 20px;
+}
+
+#counter-value {
+  font-weight: bold;
+}
+
+#increase-btn {
+  background-color: green;
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+#decrease-btn {
+  background-color: red;
+  color: white;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+.reset-btn {
+  background-color: blue;
+  color: white;
+}
+
+span {
+  font-size: 2rem;
+  margin: 0 15px;
+  display: inline-block;
 }
