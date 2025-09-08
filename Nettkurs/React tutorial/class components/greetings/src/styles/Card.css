@@ -1,0 +1,14 @@
+.row {
+  background-color: #e9f0f4;
+  padding: 10px;
+  margin-bottom: 10px;
+}
+
+.row-label {
+  font-size: 0.9rem;
+  color: gray;
+}
+
+.row-value {
+  font-weight: bold;
+}
