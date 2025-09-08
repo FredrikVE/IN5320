@@ -1,8 +1,9 @@
-import './App.css';
+import MyComponent from "./MyComponent.jsx"
+import './App.css'; 
 
 function App() {
   return (
-    <h1>Hello world</h1>
+    <MyComponent />
   );
 }
 
