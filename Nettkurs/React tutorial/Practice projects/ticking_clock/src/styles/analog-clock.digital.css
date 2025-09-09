@@ -1,0 +1,16 @@
+/* digital klokke inne i sirkelen */
+.digital {
+  position: absolute;
+  bottom: var(--digital-bottom);
+  left: 50%;
+  transform: translateX(-50%);
+  font-family: monospace;
+  font-size: var(--digital-font);
+  font-weight: bold;
+  background: rgba(255, 255, 255, 0.2);
+  padding: var(--digital-pad-v) var(--digital-pad-h);
+  border-radius: var(--digital-radius);
+  color: #facc15; /* gul */
+  text-shadow: 1px 1px 2px #000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+}

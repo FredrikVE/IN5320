@@ -1,14 +1,12 @@
-import  { useState, useEffect } from "react";
-import "../styles/AnalogClock.css";
+import { useState, useEffect } from "react";
+import ClockNumbers from "../components/ClockNumbers";
+import ClockTicks from "../components/ClockTicks";
 
 function AnalogClock() {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
-    const timer = setInterval(() => {
-      setTime(new Date());
-    }, 1000);
-
+    const timer = setInterval(() => setTime(new Date()), 1000);
     return () => clearInterval(timer);
   }, []);
 
@@ -16,22 +14,23 @@ function AnalogClock() {
   const minutes = time.getMinutes();
   const hours = time.getHours();
 
-  // regn ut rotasjonene til viserne
-  const secondDeg = seconds * 6; // 360 / 60
-  const minuteDeg = minutes * 6 + seconds * 0.1; // litt bevegelse per sekund
-  const hourDeg = (hours % 12) * 30 + minutes * 0.5; // 360 / 12
+  const secondDeg = seconds * 6;
+  const minuteDeg = minutes * 6 + seconds * 0.1;
+  const hourDeg = (hours % 12) * 30 + minutes * 0.5;
 
   return (
     <div className="analog-container">
       <div className="clock">
-        <div className="hand hour" style={{ transform: `rotate(${hourDeg}deg)` }} />
-        <div className="hand minute" style={{ transform: `rotate(${minuteDeg}deg)` }} />
-        <div className="hand second" style={{ transform: `rotate(${secondDeg}deg)` }} />
-        <div className="center-dot" />
+        <ClockNumbers />
+        <ClockTicks />
 
-        <div className="digital">
-          {time.toLocaleTimeString()}
-        </div>
+        {/* visere */}
+        <div className="hand hour"   style={{ transform: `translateX(-50%) rotate(${hourDeg}deg)` }} />
+        <div className="hand minute" style={{ transform: `translateX(-50%) rotate(${minuteDeg}deg)` }} />
+        <div className="hand second" style={{ transform: `translateX(-50%) rotate(${secondDeg}deg)` }} />
+
+        <div className="center-dot" />
+        <div className="digital">{time.toLocaleTimeString()}</div>
       </div>
     </div>
   );

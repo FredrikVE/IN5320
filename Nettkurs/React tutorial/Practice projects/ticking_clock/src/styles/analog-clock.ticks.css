@@ -1,0 +1,16 @@
+/* stiplet ring */
+.tick {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: var(--tick-w);
+  height: var(--tick-h);
+  background: rgba(255, 255, 255, 0.5);
+  transform-origin: center;
+  border-radius: 1px;
+}
+
+.tick.big {
+  height: var(--tick-big-h);
+  background: #fff;
+}

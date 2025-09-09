@@ -1,0 +1,30 @@
+/* visere */
+.hand {
+  position: absolute;
+  bottom: 50%;
+  left: 50%;
+  transform-origin: bottom;
+}
+
+.hand.hour {
+  width: var(--hour-w);
+  height: var(--hour-h);
+  background: white;
+  border-radius: 3px;
+  box-shadow: 0 0 6px rgba(0, 0, 0, 0.6);
+}
+
+.hand.minute {
+  width: var(--minute-w);
+  height: var(--minute-h);
+  background: #f1f1f1;
+  border-radius: 2px;
+  box-shadow: 0 0 4px rgba(0, 0, 0, 0.5);
+}
+
+.hand.second {
+  width: var(--second-w);
+  height: var(--second-h);
+  background: #facc15; /* gul */
+  box-shadow: 0 0 6px rgba(250, 204, 21, 0.8);
+}

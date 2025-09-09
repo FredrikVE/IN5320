@@ -1,0 +1,126 @@
+/* styles/analog-clock.vars.css
+   Notasjon:
+   R  = --size / 2  (faktisk radius i px)
+   D0 = referansediameter (unitless)
+   R0 = D0 / 2      (unitless)
+   B  = border-tykkelse, Th = liten tick-høyde, Tbig = Th * (14/8)
+
+   Digital bottom formel:
+   bottom = R - ( r_num - H/2 - m ),  der H = font + 2*padV
+*/
+
+.clock {
+  /* ==== 1) STØRRELSE ==== */
+  --D0: 400;                         /* referansediameter (unitless) */
+  --R0: calc(var(--D0) / 2);         /* unitless */
+  --size: calc(var(--D0) * 1px);     /* px */
+  --R:    calc(var(--R0) * 1px);     /* px */
+
+  /* ==== 2) BASISVERDIER @ R0 (unitless px) ==== */
+  --B0: 6;           /* border */
+  --Th0: 8;         /* liten tick-høyde */
+  --Tbig0: 14;      /* stor tick-høyde */
+  --tickW0: 2;
+
+  /* visertykkelser (px @ R0) */
+  --WHour0: 6; 
+  --WMin0: 4; 
+  --WSec0: 2;
+
+  /* gap (px @ R0) */
+  --gapNum0: 8;  
+  --gapSec0: 15; 
+  --gapMin0: 35; 
+  --gapHour0: 65;
+
+  /* senterdot (px @ R0) */
+  --dotSize0: 14; 
+  --dotBorder0: 3;
+
+  /* ==== 3) DIGITAL-DISPLAY PARAMETRE @ R0 (unitless px) ==== */
+  --DigitalFont0:   26;   /* ønsket fontstørrelse ved D0 */
+  --DigitalPadV0:   10;   /* vertikal padding ved D0 */
+  --DigitalPadH0:   20;   /* horisontal padding ved D0 */
+  --DigitalCorner0: 8.8;  /* hjørneradius ved D0 (bruk 8.0 om du vil) */
+  --DigitalMargin0: 10;   /* m: ekstra luft fra talleringen */
+
+  /* ==== 4) FORHOLD (unitless) AVLEDET FRA R0 ==== */
+  --ratioBorder:      calc(var(--B0)       / var(--R0));
+  --ratioTickHeight:  calc(var(--Th0)      / var(--R0));
+  --ratioTickWidth:   calc(var(--tickW0)   / var(--R0));
+  --ratioTbigMult:    calc(var(--Tbig0)    / var(--Th0));
+
+  --ratioWHour:       calc(var(--WHour0)   / var(--R0));
+  --ratioWMin:        calc(var(--WMin0)    / var(--R0));
+  --ratioWSec:        calc(var(--WSec0)    / var(--R0));
+
+  --ratioGapNum:      calc(var(--gapNum0)  / var(--R0));
+  --ratioGapSec:      calc(var(--gapSec0)  / var(--R0));
+  --ratioGapMin:      calc(var(--gapMin0)  / var(--R0));
+  --ratioGapHour:     calc(var(--gapHour0) / var(--R0));
+
+  --ratioDotSize:     calc(var(--dotSize0)   / var(--R0));
+  --ratioDotBorder:   calc(var(--dotBorder0) / var(--R0));
+
+  /* Digital (forhold vs R) */
+  --ratioDigitalFont:   calc(var(--DigitalFont0)   / var(--R0));
+  --ratioDigitalPadV:   calc(var(--DigitalPadV0)   / var(--R0));
+  --ratioDigitalPadH:   calc(var(--DigitalPadH0)   / var(--R0));
+  --ratioDigitalRadius: calc(var(--DigitalCorner0) / var(--R0));
+  --ratioDigitalMargin: calc(var(--DigitalMargin0) / var(--R0));
+
+  /* ==== 5) FAKTISKE LENGDER I PX ==== */
+  /* Ticks/visere/dot */
+  --B:        calc(var(--R) * var(--ratioBorder));
+  --Th:       calc(var(--R) * var(--ratioTickHeight));
+  --Tbig:     calc(var(--Th) * var(--ratioTbigMult));
+  --tick-w:   calc(var(--R) * var(--ratioTickWidth));
+
+  --W-hour:   calc(var(--R) * var(--ratioWHour));
+  --W-minute: calc(var(--R) * var(--ratioWMin));
+  --W-second: calc(var(--R) * var(--ratioWSec));
+
+  --gap-num:  calc(var(--R) * var(--ratioGapNum));
+  --gap-sec:  calc(var(--R) * var(--ratioGapSec));
+  --gap-min:  calc(var(--R) * var(--ratioGapMin));
+  --gap-hour: calc(var(--R) * var(--ratioGapHour));
+
+  --dot-size:   calc(var(--R) * var(--ratioDotSize));
+  --dot-border: calc(var(--R) * var(--ratioDotBorder));
+
+  /* ==== 6) GEOMETRI FOR RINGER ==== */
+  /* r_tick = (R - B) - Th/2 */
+  --r-tick: calc((var(--R) - var(--B)) - (var(--Th) / 2));
+  /* r_num  = r_tick - Tbig/2 - gap_num */
+  --r-num:  calc(var(--r-tick) - (var(--Tbig) / 2) - var(--gap-num));
+
+  /* ==== 7) DIGITAL-DISPLAY (PX) + FORMEL FOR BOTTOM ==== */
+  --digital-font:   clamp(14px, calc(var(--R) * var(--ratioDigitalFont)), 28px);
+  --digital-pad-v:  calc(var(--R) * var(--ratioDigitalPadV));
+  --digital-pad-h:  calc(var(--R) * var(--ratioDigitalPadH));
+  --digital-radius: calc(var(--R) * var(--ratioDigitalRadius));
+  --m:              calc(var(--R) * var(--ratioDigitalMargin));
+
+  /* H = font + 2·padV */
+  --digital-height: calc(var(--digital-font) + (2 * var(--digital-pad-v)));
+
+  /* bottom = R − ( r_num − H/2 − m ) */
+  --digital-bottom: calc(var(--R) - (var(--r-num) - (var(--digital-height) / 2) - var(--m)));
+
+  /* ==== 8) ALIASER TIL ØVRIG CSS ==== */
+  --border:     var(--B);
+  --tick-h:     var(--Th);
+  --tick-big-h: var(--Tbig);
+
+  --hour-w:     var(--W-hour);
+  --hour-h:     var(--L-hour);
+  --minute-w:   var(--W-minute);
+  --minute-h:   var(--L-min);
+  --second-w:   var(--W-second);
+  --second-h:   var(--L-sec);
+  
+  /* viserlengder (px) avledet fra r_num og gap */
+  --L-sec:  calc(var(--r-num) - var(--gap-sec));
+  --L-min:  calc(var(--r-num) - var(--gap-min));
+  --L-hour: calc(var(--r-num) - var(--gap-hour));
+}
