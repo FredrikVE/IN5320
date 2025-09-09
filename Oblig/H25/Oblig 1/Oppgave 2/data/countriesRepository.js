@@ -7,7 +7,7 @@ export class CountriesRepository {
   }
 
   // Metode som henter, behandler og returnerer informasjon om landets navn og folketall
-  async  getCountryData(countryName) {
+  async getCountryData(countryName) {
     const query = String(countryName).trim();
     const population = await this.datasource.fetchPopTodayTomorrowRaw(query);
     const populationArray = population?.total_population;
