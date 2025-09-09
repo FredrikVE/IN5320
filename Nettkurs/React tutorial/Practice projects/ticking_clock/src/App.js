@@ -1,9 +1,9 @@
 import './styles/App.css';
-import Clock from './components/Clock';
+import AnalogClock from './components/AnalogClock';
 
 function App() {
   return (
-    <Clock/>
+    <AnalogClock/>
   );
 }
 
