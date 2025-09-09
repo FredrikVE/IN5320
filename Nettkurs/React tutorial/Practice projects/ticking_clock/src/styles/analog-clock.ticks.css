@@ -10,6 +10,13 @@
   border-radius: 1px;
 }
 
+.tick.small {
+  height: var(--tick-h);
+  background: rgba(200, 200, 200, 0.5); /* litt gråere for de små tick-stepsene */
+  width: calc(var(--tick-w) * 0.7);      /* små tick-step litt smalere */
+}
+
+
 .tick.big {
   height: var(--tick-big-h);
   background: #fff;
