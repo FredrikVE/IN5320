@@ -1,8 +1,9 @@
 import { useState, useEffect } from "react";
 import ClockNumbers from "../components/ClockNumbers";
 import ClockTicks from "../components/ClockTicks";
+import ClockHand from "../components/ClockHand";
 
-function AnalogClock() {
+export default function AnalogClock() {
   const [time, setTime] = useState(new Date());
 
   useEffect(() => {
@@ -25,15 +26,16 @@ function AnalogClock() {
         <ClockTicks />
 
         {/* visere */}
-        <div className="hand hour"   style={{ transform: `translateX(-50%) rotate(${hourDeg}deg)` }} />
-        <div className="hand minute" style={{ transform: `translateX(-50%) rotate(${minuteDeg}deg)` }} />
-        <div className="hand second" style={{ transform: `translateX(-50%) rotate(${secondDeg}deg)` }} />
+        <ClockHand type="hour" angle={hourDeg} />
+        <ClockHand type="minute" angle={minuteDeg} />
+        <ClockHand type="second" angle={secondDeg} />
 
+        {/* prikk i midten som visere "feste" for visere */}
         <div className="center-dot" />
+
+        {/* Digital klokke */}
         <div className="digital">{time.toLocaleTimeString()}</div>
       </div>
     </div>
   );
 }
-
-export default AnalogClock;
