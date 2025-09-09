@@ -1,0 +1,42 @@
+body {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #222;
+  color: #fff;
+  font-family: sans-serif;
+}
+
+.box {
+  width: 60px;
+  height: 60px;
+  background: cornflowerblue;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  color: white;
+}
+
+/* ulike transformasjoner */
+.translate {
+  transform: translate(10px, -80px); /* -y = oppover +y = nedover*/
+  background: orchid;
+}
+
+.rotate {
+  transform: rotate(45deg);
+  background: tomato;
+}
+
+.scale {
+  transform: scale(1.5);
+  background: goldenrod;
+}
+
+.combo {
+  transform: translate(50px, 0) rotate(30deg) scale(1.2);
+  background: mediumseagreen;
+}
