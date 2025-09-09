@@ -1,0 +1,57 @@
+body {
+
+    /* legger ting etter hverandre*/
+    display: flex;
+    flex-wrap: wrap;
+    gap: 2rem;
+
+    /*sentrerer body-innhold horisontalt*/
+    justify-content: center;
+
+    /* sentrerer ting vertikalt */
+    align-items: center;
+    height: 100vh; /* vh: viewport height = 100 % av skjermens høyde*/
+
+    background-color: black;
+}
+
+.box {
+    width: 60px;
+    height: 60px;
+    background-color: lightblue;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid white;
+    font-size: 12px;
+}
+
+
+.box1 {
+    position: relative;
+    top: -100px;
+    left: 10px;
+
+    background-color: tomato;
+
+}
+
+
+.box2 {
+    position: relative;
+    top: 100px;
+    left: -10px;
+
+    background-color: lime;
+
+}
+
+
+.box4 {
+  position: absolute; /* tas ut av "flow" og plasseres i forhold til nærmeste posisjonerte forelder */
+  top: 50px;          /* 50px ned fra toppen av body (fordi body er nærmeste "posisjonerte" container) */
+  right: 50px;        /* 50px inn fra høyre kant */
+  
+  background-color: yellow;
+}
