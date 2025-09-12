@@ -1,4 +1,4 @@
-* useEffect i React
+* useEffect()-hook i React
 
 useEffect er en React Hook som sier til React: "GJØR NOE KODE NÅR..." (velg ett):
 - Denne komponenten re-renderes
@@ -68,7 +68,7 @@ useEffect(() => {}, [verdi1, verdi2])
 - Rydde opp når en komponent unmountes
 
 
-* Cleanup function i useEffect
+* Cleanup function i useEffect()-hook
 
 En cleanup function er en retur-funksjon i useEffect som kjører NÅR (velg ett):
 - Komponenten unmountes (fjernes fra DOM)
