@@ -1,12 +1,12 @@
 # Sammenligning: ManualCounter vs AutoCounter
 
 ## ManualCounter()
-ManualCounter: kun useState
+<b>ManualCounter</b>: kun useState
 Brukes når state oppdateres direkte via brukerhandlinger
 Enklest, minst kode, mest effektivt
 
 ## AutoCounter()
-AutoCounter: useState + useEffect
+<b>AutoCounter:</b> useState + useEffect
 Brukes når du trenger å gjøre noe EKSTRA når state endres
 (logge, oppdatere document.title, starte timer, hente data osv.)
 
