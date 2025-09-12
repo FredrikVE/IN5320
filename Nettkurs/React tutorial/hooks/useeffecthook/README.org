@@ -5,7 +5,7 @@ useEffect er en React Hook som sier til React: "GJØR NOE KODE NÅR..." (velg et
 - Denne komponenten mountes
 - En verdi i state endres
 
-* Begreper i useEffect
+* Viktige komponentbegreper/syntaksbegreper for useEffect()
 
 #+begin_src js
 [] = dependency array
