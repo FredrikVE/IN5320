@@ -5,35 +5,19 @@ useEffect er en React Hook som sier til React: "GJØR NOE KODE NÅR..." (velg et
 - Denne komponenten mountes
 - En verdi i state endres
 
+* Begreper i useEffect
 
-#+begin_export html
-<table>
-  <thead>
-    <tr>
-      <th>Tegn</th>
-      <th>Begrep</th>
-      <th>Forklaring</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td>[]</td>
-      <td>Dependency array</td>
-      <td>Bestemmer når useEffect kjører (tom = bare ved mount).</td>
-    </tr>
-    <tr>
-      <td>()</td>
-      <td>Callback function</td>
-      <td>Funksjonen du gir som argument til useEffect.</td>
-    </tr>
-    <tr>
-      <td>{}</td>
-      <td>Function body</td>
-      <td>Koden inni callback-funksjonen som kjøres når effekten trigges.</td>
-    </tr>
-  </tbody>
-</table>
-#+end_export
+#+begin_src js
+[] = dependency array
+// Bestemmer når useEffect kjører (tom = bare ved mount)
+
+() = callback function
+// Funksjonen du gir som argument til useEffect
+
+{} = function body
+// Koden inni callback-funksjonen som kjøres når effekten trigges
+#+end_src
+
 
 
 ** Syntaks
