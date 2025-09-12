@@ -1,10 +1,13 @@
 import './App.css';
+import Counter from './components/CounterComponent';
+import People from './components/People';
 
-function App() {
+export default function App() {
   return (
-    <h1>Hello world</h1>
+    <div className='app-container'>
+      <People/>
+      <Counter/>
+    </div>
 
   );
 }
-
-export default App;
