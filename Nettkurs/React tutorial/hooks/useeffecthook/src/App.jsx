@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import MyComponent from './components/MyComponent'
 import './App.css'
 
 export default function App() {
@@ -6,7 +7,7 @@ export default function App() {
 
   return (
     <>
-      <h1>Hello world</h1>
+      <MyComponent/>
     </>
   )
 }

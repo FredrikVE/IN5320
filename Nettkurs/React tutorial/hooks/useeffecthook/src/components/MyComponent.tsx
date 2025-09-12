@@ -18,3 +18,23 @@
 
 
 import { useState, useEffect } from "react";
+
+
+export default function MyComponent() {
+
+    //deklarer hooks
+    const [height, setHeight] = useState(window.innerHeight);   //browser høyde
+    const [width, setWidth] = useState(window.innerWidth);      //browser bredde
+
+
+
+    return (
+        <>
+            <p>Window width: {width}</p>
+            <p>Window height: {height}</p>
+        </>
+    );
+
+
+
+}
