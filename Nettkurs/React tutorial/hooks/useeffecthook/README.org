@@ -50,7 +50,7 @@ useEffect(() => {})
 
 2.
 #+begin_src js
-useEffect(() => {}, [])
+useEffect(() => {}, [])     //merk at listen med avhengigheter er eksplistt tom
 // Kjører bare når komponenten mountes
 #+end_src
 
