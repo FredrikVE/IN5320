@@ -1,12 +1,37 @@
-# React + Vite
+# Sammenligning: ManualCounter vs AutoCounter
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## ManualCounter()
+ManualCounter: kun useState
+Brukes når state oppdateres direkte via brukerhandlinger
+Enklest, minst kode, mest effektivt
 
-Currently, two official plugins are available:
+## AutoCounter()
+AutoCounter: useState + useEffect
+Brukes når du trenger å gjøre noe EKSTRA når state endres
+(logge, oppdatere document.title, starte timer, hente data osv.)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
 
-## Expanding the ESLint configuration
-
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+<table>
+  <thead>
+    <tr>
+      <th>Komponent</th>
+      <th>Brukstilfelle</th>
+      <th>Fordeler</th>
+      <th>Ulemper</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td><b>ManualCounter</b></td>
+      <td>Når du bare trenger å oppdatere state via knapper/brukerhandlinger.</td>
+      <td>Enkelt, rent, lett å lese, mest effektivt.</td>
+      <td>Kan ikke reagere på state-endringer med sideeffekter.</td>
+    </tr>
+    <tr>
+      <td><b>AutoCounter</b></td>
+      <td>Når du vil gjøre noe hver gang state endres (f.eks. logge, oppdatere document.title, hente data).</td>
+      <td>Kraftig – kan håndtere sideeffekter og eksterne ressurser.</td>
+      <td>Mer kompleks, mer kode, unødvendig hvis du ikke faktisk har en sideeffekt.</td>
+    </tr>
+  </tbody>
+</table>
