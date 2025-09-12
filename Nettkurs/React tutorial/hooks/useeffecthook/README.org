@@ -1,0 +1,111 @@
+* useEffect i React
+
+useEffect er en React Hook som sier til React: "GJØR NOE KODE NÅR..." (velg ett):
+- Denne komponenten re-renderes
+- Denne komponenten mountes
+- En verdi i state endres
+
+
+#+begin_export html
+<table>
+  <thead>
+    <tr>
+      <th>Tegn</th>
+      <th>Begrep</th>
+      <th>Forklaring</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td>[]</td>
+      <td>Dependency array</td>
+      <td>Bestemmer når useEffect kjører (tom = bare ved mount).</td>
+    </tr>
+    <tr>
+      <td>()</td>
+      <td>Callback function</td>
+      <td>Funksjonen du gir som argument til useEffect.</td>
+    </tr>
+    <tr>
+      <td>{}</td>
+      <td>Function body</td>
+      <td>Koden inni callback-funksjonen som kjøres når effekten trigges.</td>
+    </tr>
+  </tbody>
+</table>
+#+end_export
+
+
+** Syntaks
+#+begin_src js
+useEffect(funksjon, [avhengigheter])
+#+end_src
+
+** Vanlige mønstre
+1. 
+#+begin_src js
+useEffect(() => {})
+// Kjører etter hver re-render
+#+end_src
+
+2.
+#+begin_src js
+useEffect(() => {}, [])
+// Kjører bare når komponenten mountes
+#+end_src
+
+3.
+#+begin_src js
+useEffect(() => {}, [verdi1, verdi2])
+// Kjører når komponenten mountes + når "verdi1" eller "verdi2" endres
+#+end_src
+
+** Typiske bruksområder
+- Legge til Event Listeners
+- Manipulere DOM
+- Subscriptions (sanntids-oppdateringer)
+- Hente data fra et API
+- Rydde opp når en komponent unmountes
+
+
+* Cleanup function i useEffect
+
+En cleanup function er en retur-funksjon i useEffect som kjører NÅR (velg ett):
+- Komponenten unmountes (fjernes fra DOM)
+- Før useEffect kjører på nytt (ved re-render med nye avhengigheter)
+
+** Syntaks
+#+begin_src js
+useEffect(() => {
+  // Kode som settes opp
+
+  return () => {
+    // Cleanup-kode (rydde opp)
+  }
+}, [avhengigheter])
+#+end_src
+
+** Eksempler
+1.
+#+begin_src js
+useEffect(() => {
+  const id = setInterval(() => console.log("tick"), 1000)
+  return () => clearInterval(id)   // Stopper intervallet ved unmount
+}, [])
+#+end_src
+
+2.
+#+begin_src js
+useEffect(() => {
+  window.addEventListener("resize", handleResize)
+  return () => window.removeEventListener("resize", handleResize)
+  // Rydder opp event listener når komponenten unmountes
+}, [])
+#+end_src
+
+** Typiske bruksområder for cleanup
+- Stoppe timere (setInterval, setTimeout)
+- Fjerne event listeners
+- Lukke websockets eller unsubscribe fra sanntids-tjenester
+- Avbryte API-kall (AbortController)
+- Rydde opp i data/state før komponent fjernes
