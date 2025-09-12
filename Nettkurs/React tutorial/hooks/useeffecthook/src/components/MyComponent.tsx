@@ -27,14 +27,40 @@ export default function MyComponent() {
     const [width, setWidth] = useState(window.innerWidth);      //browser bredde
 
 
+    //useEffect( () => {})
+    useEffect( () => {
+        window.addEventListener("resize", handleResize);
+        console.log("EVENT LISTENER ADDED");
 
-    return (
-        <>
-            <p>Window width: {width}</p>
-            <p>Window height: {height}</p>
-        </>
+
+         //Legger til en return for å bruke "cleanUp" når komponenten enten re-rendres eller unmountes
+        return () => {
+            window.removeEventListener("resize", handleResize);
+            console.log("EVENT LISTENER REMOVED");
+        }
+
+    }, 
+    //legger til tom dependancy array for å ikke legge til unødvenig mange eventlisteners.
+    //hvis vi ikke har tom dependancy array her, legges det til en ny E.L. HVER GANG browser endrer seg
+    []  //legger til tom dependany array for å kun legge til én eventlisteners.
+    );
+
+    useEffect(() => {
+        document.title = `Size: ${width} x ${height}`;
+    },
+    [width, height] //legger inn width og height i dependancy arrayet
     );
 
 
+    const handleResize = () => {
+        setHeight(window.innerHeight);
+        setWidth(window.innerWidth);
+    }
 
+    return (
+        <>
+            <p>Window width: {width}px</p>
+            <p>Window height: {height}px</p>
+        </>
+    );
 }
