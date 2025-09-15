@@ -1,3 +1,4 @@
+//src/components/ContinentFilter.js
 const ALL_CONTINENTS = [
   "Europe",
   "Africa",

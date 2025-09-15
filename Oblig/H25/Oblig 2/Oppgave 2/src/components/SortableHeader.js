@@ -1,13 +1,10 @@
+//src/components/SortableHeader.js
 export default function SortableHeader(props) {
-  var sortKey = props.sortKey;
-  var label = props.label;
-  var activeKey = props.activeKey;
-  var dir = props.dir;
-  var onClick = props.onClick;
+  const { sortKey, label, activeKey, dir, onClick } = props;
 
-  var isActive = activeKey === sortKey;
-  var aria = isActive ? (dir === "ASC" ? "ascending" : "descending") : "none";
-  var symbol = isActive ? (dir === "ASC" ? "▲" : "▼") : "↕";
+  const isActive = activeKey === sortKey;
+  const aria = isActive ? (dir === "ASC" ? "ascending" : "descending") : "none";
+  const symbol = isActive ? (dir === "ASC" ? "▲" : "▼") : "↕";
 
   return (
     <th scope="col" aria-sort={aria}>

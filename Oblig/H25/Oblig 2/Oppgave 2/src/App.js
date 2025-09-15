@@ -2,56 +2,35 @@ import { useState } from "react";
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
-import Pagination from "./components/Pagination"
+import Pagination from "./components/Pagination";
 import { useCountrySearch } from "./hooks/useCountrySearch";
 import ContinentFilter from "./components/ContinentFilter";
+import useSort from "./hooks/useSort";
+import useContinentFilter from "./hooks/useContinentFilter";
 
 export default function App() {
-  // Statevariabler
+  // State for søk, paginering og side
   const [search, setSearch] = useState("");
   const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
-  const [continents, setContinents] = useState([]);
-  const [order, setOrder] = useState("");
 
-  // Søkeparametere
-  const params = { page, pageSize, search, continents, order };
+  // Hooks for sortering og filter
+  const [order, toggleSort] = useSort();
+  const [continents, toggleContinent] = useContinentFilter();
 
-  // Henter {data, loading, error} med cutom-hooken som trigges når 'params' endres
+  // Bygg søkeparametere
+  const params = { 
+    page, 
+    pageSize, 
+    search, 
+    continents, 
+    order: order.key ? `${order.key}:${order.dir}` : "" 
+  };
+
+  // Hent data fra API
   const { data, loading, error } = useCountrySearch(params);
 
-
-  // Toggle ett kontinent. Funksjonen sendes inn i ContnentFilter.js der name kommer inn i parameteret.
-  function toggleContinent(name) {
-    setPage(1); // start på side 1 når filtre endres
-    
-    // Lag en kopi, finn index, legg til eller fjern
-    var list = continents.slice();
-    var i = list.indexOf(name);
-
-    if (i === -1) {
-      list.push(name);
-    } 
-    else {
-      list.splice(i, 1);
-    }
-    setContinents(list);
-  }
-  
-  function handleHeaderSort(key) {
-    var nextDir = "ASC";
-    if (order) {
-      var parts = order.split(":");
-      if (parts[0] === key && parts[1] === "ASC") {
-        nextDir = "DESC";
-      }
-    }
-    setOrder(key + ":" + nextDir);
-    setPage(1);
-  }
-
   return (
-    //Definerer en app-div som container for css-styling
     <div className="App">
       <h1 className="app-title">World Population by Country</h1>
       <p className="app-subtitle">
@@ -62,10 +41,13 @@ export default function App() {
       <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
 
       <div className="filters-row">
-        {/* kontinentfilter */}
+        {/* Kontinentfilter */}
         <ContinentFilter
           selected={continents}
-          onToggle={toggleContinent}
+          onToggle={(name) => {
+            toggleContinent(name);
+            setPage(1); // reset side når filter endres
+          }}
         />
       </div>
 
@@ -74,7 +56,11 @@ export default function App() {
         rows={data.results} 
         loading={loading} 
         error={error}
-        onSort={handleHeaderSort}     //send handler for header-klikk
+        order={order}
+        onSort={(key) => { 
+          toggleSort(key); 
+          setPage(1); 
+        }}     
       />
 
       {/* Sidevelger med next og previousknapp */}
@@ -84,14 +70,14 @@ export default function App() {
         onNext={() => setPage(page => page + 1)}
       />
 
-        {/* Dropdownmeny med antall elementer per side */}
-        <PageSize
-          value={pageSize}
-          onChange={(n) => { 
-            setPageSize(n); 
-            setPage(1);   // tilbake til side 1
-          }}
-        />
+      {/* Dropdownmeny med antall elementer per side */}
+      <PageSize
+        value={pageSize}
+        onChange={(n) => { 
+          setPageSize(n); 
+          setPage(1);   // tilbake til side 1
+        }}
+      />
     </div>
   );
 }

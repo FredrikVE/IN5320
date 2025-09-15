@@ -1,10 +1,6 @@
+//src/components/Table.js
 import SortableHeader from "./SortableHeader";
 
-function parseOrder(order) {
-  if (!order) return { key: null, dir: null };
-  var p = order.split(":");
-  return { key: p[0], dir: p[1] };
-}
 var formatPopulation = new Intl.NumberFormat();
 var formatPopulationGrowth = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
 
@@ -33,10 +29,11 @@ export default function Table({ rows, loading, error, order, onSort }) {
     );
   }
 
-  var { key: activeKey, dir } = parseOrder(order);
+  // Les direkte fra order-objektet
+  const { key: activeKey, dir } = order;
 
   function handleSortClick(e) {
-    var key = e.currentTarget.getAttribute("data-key");
+    const key = e.currentTarget.getAttribute("data-key");
     onSort(key);
   }
 
@@ -45,7 +42,8 @@ export default function Table({ rows, loading, error, order, onSort }) {
       <table className="infoTable">
         <thead>
           <tr>
-            <SortableHeader sortKey="Country"           
+            <SortableHeader 
+              sortKey="Country"           
               label="Country"           
               activeKey={activeKey} 
               dir={dir} 
@@ -55,9 +53,9 @@ export default function Table({ rows, loading, error, order, onSort }) {
             <SortableHeader
               sortKey="Continent"         
               label="Continent"        
-               activeKey={activeKey} 
-               dir={dir} 
-               onClick={handleSortClick}
+              activeKey={activeKey} 
+              dir={dir} 
+              onClick={handleSortClick}
             />
 
             <SortableHeader
@@ -75,20 +73,17 @@ export default function Table({ rows, loading, error, order, onSort }) {
               dir={dir} 
               onClick={handleSortClick}
             />
-            
           </tr>
         </thead>
         <tbody>
-          {rows.map(function (row) {
-            return (
-              <tr key={row.CountryCode}>
-                <td>{row.Country}</td>
-                <td>{row.Continent}</td>
-                <td>{formatPopulation.format(Number(row.Population))}</td>
-                <td>{formatPopulationGrowth.format(Number(row.PopulationGrowth))}</td>
-              </tr>
-            );
-          })}
+          {rows.map((row) => (
+            <tr key={row.CountryCode}>
+              <td>{row.Country}</td>
+              <td>{row.Continent}</td>
+              <td>{formatPopulation.format(Number(row.Population))}</td>
+              <td>{formatPopulationGrowth.format(Number(row.PopulationGrowth))}</td>
+            </tr>
+          ))}
         </tbody>
       </table>
     </div>

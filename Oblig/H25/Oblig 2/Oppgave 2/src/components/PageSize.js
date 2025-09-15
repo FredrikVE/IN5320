@@ -1,3 +1,4 @@
+//src/components/PageSize.js
 export default function PageSize({ value, onChange }) {
   return (
     <div className="page-size">
