@@ -1,3 +1,5 @@
+//src/data/urlParameterBuilder.js
+
 import { BASE_URL } from "./baseUrl";
 
 export function buildSearchParametersURL({ page, pageSize, search, continents, order }) {

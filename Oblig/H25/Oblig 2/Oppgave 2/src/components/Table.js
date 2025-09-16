@@ -1,8 +1,10 @@
-//src/components/Table.js
+// src/components/Table.js
 import SortableHeader from "./SortableHeader";
 
-var formatPopulation = new Intl.NumberFormat();
-var formatPopulationGrowth = new Intl.NumberFormat(undefined, { maximumFractionDigits: 2 });
+const formatPopulation = new Intl.NumberFormat();
+const formatPopulationGrowth = new Intl.NumberFormat(undefined, {
+  maximumFractionDigits: 2,
+});
 
 export default function Table({ rows, loading, error, order, onSort }) {
   if (loading) {
@@ -29,49 +31,48 @@ export default function Table({ rows, loading, error, order, onSort }) {
     );
   }
 
-  // Les direkte fra order-objektet
-  const { key: activeKey, dir } = order;
-
   function handleSortClick(e) {
     const key = e.currentTarget.getAttribute("data-key");
     onSort(key);
   }
 
   return (
-    <div id="results" className="table-wrap" role="region" aria-label="Search results">
+    <div
+      id="results"
+      className="table-wrap"
+      role="region"
+      aria-label="Search results"
+    >
       <table className="infoTable">
         <thead>
           <tr>
-            <SortableHeader 
-              sortKey="Country"           
-              label="Country"           
-              activeKey={activeKey} 
-              dir={dir} 
-              onClick={handleSortClick} 
-            />
-
             <SortableHeader
-              sortKey="Continent"         
-              label="Continent"        
-              activeKey={activeKey} 
-              dir={dir} 
-              onClick={handleSortClick}
+              columnKey="Country"
+              headerTitle="Country"
+              columnName={order.columnName}
+              sortingDirection={order.sortingDirection}
+              onSort={handleSortClick}
             />
-
             <SortableHeader
-              sortKey="Population"       
-              label="Population"        
-              activeKey={activeKey} 
-              dir={dir} 
-              onClick={handleSortClick} 
+              columnKey="Continent"
+              headerTitle="Continent"
+              columnName={order.columnName}
+              sortingDirection={order.sortingDirection}
+              onSort={handleSortClick}
             />
-
-            <SortableHeader 
-              sortKey="PopulationGrowth"  
-              label="Population Growth" 
-              activeKey={activeKey} 
-              dir={dir} 
-              onClick={handleSortClick}
+            <SortableHeader
+              columnKey="Population"
+              headerTitle="Population"
+              columnName={order.columnName}
+              sortingDirection={order.sortingDirection}
+              onSort={handleSortClick}
+            />
+            <SortableHeader
+              columnKey="PopulationGrowth"
+              headerTitle="Population Growth"
+              columnName={order.columnName}
+              sortingDirection={order.sortingDirection}
+              onSort={handleSortClick}
             />
           </tr>
         </thead>
@@ -81,7 +82,9 @@ export default function Table({ rows, loading, error, order, onSort }) {
               <td>{row.Country}</td>
               <td>{row.Continent}</td>
               <td>{formatPopulation.format(Number(row.Population))}</td>
-              <td>{formatPopulationGrowth.format(Number(row.PopulationGrowth))}</td>
+              <td>
+                {formatPopulationGrowth.format(Number(row.PopulationGrowth))}
+              </td>
             </tr>
           ))}
         </tbody>

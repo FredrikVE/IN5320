@@ -1,21 +1,18 @@
-//src/components/SortableHeader.js
-export default function SortableHeader(props) {
-  const { sortKey, label, activeKey, dir, onClick } = props;
+// src/components/SortableHeader.js
+export default function SortableHeader({ columnKey, headerTitle, columnName, sortingDirection, onSort }) {
 
-  const isActive = activeKey === sortKey;
-  const aria = isActive ? (dir === "ASC" ? "ascending" : "descending") : "none";
-  const symbol = isActive ? (dir === "ASC" ? "▲" : "▼") : "↕";
+  const directionIcon = columnName === columnKey && sortingDirection === "DESC" ? "▼" : "▲";
 
   return (
-    <th scope="col" aria-sort={aria}>
+    <th scope="col">
       <button
         type="button"
         className="th-btn"
-        data-key={sortKey}
-        onClick={onClick}
+        data-key={columnKey}
+        onClick={onSort}
       >
-        <span className="th-label">{label}</span>
-        <span className="th-caret" aria-hidden="true">{symbol}</span>
+        <span className="th-label">{headerTitle}</span>
+        <span className="th-caret">{directionIcon}</span>
       </button>
     </th>
   );

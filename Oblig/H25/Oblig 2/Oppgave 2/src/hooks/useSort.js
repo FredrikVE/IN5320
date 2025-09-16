@@ -1,15 +1,26 @@
-//src/hooks/useSort.js
+// src/hooks/useSort.js
 import { useState } from "react";
 
-export default function useSort(initialKey = null, initialDir = null) {
-  const [order, setOrder] = useState({ key: initialKey, dir: initialDir });
+export default function useSort(initialColumnID, initialDirection = "ASC") {
+  // state for å holde orden på sorteringsrekkefølgen
+  const [order, setOrder] = useState({
+    columnName: initialColumnID,
+    sortingDirection: initialDirection,
+  });
 
-  const toggleSort = (key) => {
+  const toggleSort = (clickedColumnID) => {
     setOrder((prev) => {
-      if (prev.key === key) {
-        return { key, dir: prev.dir === "ASC" ? "DESC" : "ASC" };
+
+      // Hvis bruker trykker på samme kolonne, så flippes det til det motsatte, for eks fra ASC til DESC
+      if (prev.columnName === clickedColumnID) {
+        const oppositeDirection = prev.sortingDirection === "ASC" ? "DESC" : "ASC";
+        return { columnName: clickedColumnID, sortingDirection: oppositeDirection };
+      } 
+
+      // Hvis ny kolonne trykkes på, så veksles retning til DESC fordi standardrettning er ASC
+      else {
+        return { columnName: clickedColumnID, sortingDirection: "DESC" };
       }
-      return { key, dir: "ASC" };
     });
   };
 

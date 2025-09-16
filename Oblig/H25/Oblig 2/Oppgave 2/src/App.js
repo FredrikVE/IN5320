@@ -15,7 +15,7 @@ export default function App() {
   const [pageSize, setPageSize] = useState(10);
 
   // Hooks for sortering og filter
-  const [order, toggleSort] = useSort();
+  const [order, toggleSort] = useSort("Country", "ASC");
   const [continents, toggleContinent] = useContinentFilter();
 
   // Bygg søkeparametere
@@ -24,7 +24,7 @@ export default function App() {
     pageSize, 
     search, 
     continents, 
-    order: order.key ? `${order.key}:${order.dir}` : "" 
+    order: `${order.columnName}:${order.sortingDirection}`
   };
 
   // Hent data fra API
@@ -53,7 +53,7 @@ export default function App() {
 
       {/* Tabell */}
       <Table 
-        rows={data.results} 
+        rows={data.results?? []} 
         loading={loading} 
         error={error}
         order={order}
