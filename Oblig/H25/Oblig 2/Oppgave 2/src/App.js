@@ -1,4 +1,5 @@
-import { useState } from "react";
+// src/App.js
+import { useEffect, useState } from "react";   // ← bruk useEffect for å synke pageCount
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
@@ -9,26 +10,29 @@ import useSort from "./hooks/useSort";
 import useContinentFilter from "./hooks/useContinentFilter";
 
 export default function App() {
-  // State for søk, paginering og side
   const [search, setSearch] = useState("");
-  const [page, setPage] = useState(1);
   const [pageSize, setPageSize] = useState(10);
 
-  // Hooks for sortering og filter
+  const [pager, setPager] = useState({ currentPage: 1, pageCount: 1 });
   const [order, toggleSort] = useSort("Country", "ASC");
   const [continents, toggleContinent] = useContinentFilter();
 
-  // Bygg søkeparametere
+  // Bygg parametre ved å bruke pager.page
   const params = { 
-    page, 
+    page: pager.currentPage,
     pageSize, 
     search, 
     continents, 
-    order: `${order.columnName}:${order.sortingDirection}`
+    order: `${order.columnName}:${order.sortingDirection}` //For eks Country:ASC eller Population:DESC
   };
 
-  // Hent data fra API
-  const { data, loading, error } = useCountrySearch(params);
+  // Hent data + total antall sider
+  const { searchResults, pageCount, loading, error } = useCountrySearch(params);
+
+  // Synk pageCount fra hook → inn i pager-state
+  useEffect(() => {
+    setPager(prev => ({ ...prev, pageCount }));
+  }, [pageCount]);
 
   return (
     <div className="App">
@@ -37,45 +41,40 @@ export default function App() {
         Search countries, filter by continent, and sort by clicking the column headers.
       </p>
 
-      {/* SearchBar */}
-      <SearchBar onSearch={(query) => { setSearch(query); setPage(1); }} />
+      <SearchBar onSearch={(query) => { setSearch(query); setPager(p => ({...p, currentPage: 1})); }} />
 
       <div className="filters-row">
-        {/* Kontinentfilter */}
         <ContinentFilter
           selected={continents}
           onToggle={(name) => {
             toggleContinent(name);
-            setPage(1); // reset side når filter endres
+            setPager(p => ({ ...p, currentPage: 1 })); // reset side ved filter
           }}
         />
       </div>
 
-      {/* Tabell */}
       <Table 
-        rows={data.results?? []} 
+        rows={searchResults ?? []} 
         loading={loading} 
         error={error}
         order={order}
         onSort={(key) => { 
           toggleSort(key); 
-          setPage(1); 
+          setPager(p => ({ ...p, currentPage: 1 })); // reset side ved sort
         }}     
       />
 
-      {/* Sidevelger med next og previousknapp */}
       <Pagination
-        pager={data.pager}
-        onPrev={() => setPage(page => Math.max(1, page - 1))}
-        onNext={() => setPage(page => page + 1)}
+        pager={pager} // ← gir hele pager-objektet
+        onPrev={() => setPager(p => ({ ...p, currentPage: Math.max(1, p.currentPage - 1) }))}
+        onNext={() => setPager(p => ({ ...p, currentPage: p.currentPage + 1 }))}
       />
 
-      {/* Dropdownmeny med antall elementer per side */}
       <PageSize
         value={pageSize}
         onChange={(n) => { 
           setPageSize(n); 
-          setPage(1);   // tilbake til side 1
+          setPager(p => ({ ...p, currentPage: 1 }));   // tilbake til side 1
         }}
       />
     </div>

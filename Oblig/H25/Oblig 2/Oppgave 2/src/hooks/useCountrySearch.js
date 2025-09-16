@@ -1,49 +1,55 @@
-//src/hooks/useCountrySearch.js
+// src/hooks/useCountrySearch.js
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
 
-// Lager en "customhook" som henter data om land fra API basert på søkeparametere
 export function useCountrySearch({ page, pageSize, search, continents, order }) {
-  
-  const [data, setData] = useState({ pager: null, results: [] });
+  const [searchResults, setSearchResults] = useState([]);
+  const [pageCount, setPageCount] = useState(1);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
 
-  // Kjør ny henting hver gang input-parametrene endrer seg
   useEffect(() => {
-    const controller = new AbortController();  // AbortController lar oss avbryte fetch ved param-endring eller når komponenten fjernes fra DOM
+    const controller = new AbortController();
     const { signal } = controller;
-
-    // Navngitt async-funksjon for å kunne bruke await inne i effekten
+  
     async function searchCountries() {
       setLoading(true);
       setError("");
 
       try {
-        const url = buildSearchParametersURL({ page, pageSize, search, continents, order }); // Lag URL med aktuelle kombinasjoner av av søkeparametere
-        const res = await fetch(url, { signal });  // Gjør HTTP-kall og send avbrytingssignal
+        const url = buildSearchParametersURL({ page, pageSize, search, continents, order });
+        const res = await fetch(url, { signal });
+
+        if (!res.ok) { 
+          throw new Error(`HTTP ${res.status}`);
+        }
+
+        const json = await res.json();        //definer JSON objekt med pagecount
+        const { 
+          results = [], 
+          pager: { pageCount = 1 } = {} 
+        } = json;
+
+        setSearchResults(results);
+        setPageCount(pageCount); // Bare trekk ut total-sider
+
         
-        if (!res.ok) throw new Error(`HTTP ${res.status}`); // Kast eventuell HTTP-feil inn i catch-blokken
-        
-        const json = await res.json();   // Parse JSON-responsen fra API-et
-        setData({ pager: json.pager, results: json.results ?? [] });   // Oppdater data i state (fallback til tom array hvis results mangler)
+        //setSearchResults(json.results ?? []);
+        //setPageCount(json.pager?.pageCount ?? 1); // Bare trekk ut total-sider
       } 
       
       catch (err) {
-        if (signal.aborted) return; // Hvis kallet ble avbrutt, gjør ingenting
-        setError(err.message || "Fetch error");  // Ellers: lagre feilmeldingen så UI kan vise den
+        if (!signal.aborted) setError(err.message || "Fetch error");
       } 
       
       finally {
-        if (!signal.aborted) setLoading(false); // Slå av "Loading…", men ikke hvis kallet ble avbrutt
+        if (!signal.aborted) setLoading(false);
       }
     }
 
-    searchCountries(); // utfør søk og hent land.
+    searchCountries();
+    return () => controller.abort();
+  }, [page, pageSize, search, continents, order]); //dependancy array for useEffect()
 
-    
-    return () => controller.abort(); // Cleanup ved å avbryte pågående fetch hvis parametere endres eller ved fjerning
-  }, [page, pageSize, search, continents, order]);  // Avhengigheter: når noen av disse endrer seg, kjøres effekten på nytt
-
-  return { data, loading, error };  // returner hookens states til de komponentene som bruker den
+  return { searchResults, pageCount, loading, error };
 }
