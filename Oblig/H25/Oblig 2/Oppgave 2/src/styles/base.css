@@ -27,7 +27,7 @@
   --accent-soft: #eefcf5;   /* fokus/checked bakgrunn */
 
   --hover-plain: #f0f0f0;   /* hover på th-knapp */
-  --hover-soft: #f4fbff;    /* hover på rader */
+  --hover-soft: #e1e7ea;    /* hover på rader */
 
   /* Feilmeldinger */
   --error: #7a1111;
@@ -54,7 +54,7 @@
 
   /* Tabell – zebra/tilstander */
   --zebra-color-odd:   rgb(255, 255, 255);
-  --zebra-color-even:  rgb(233, 232, 232);
+  --zebra-color-even:  rgb(245, 241, 241);
   --zebra-hover: var(--hover-soft);    /* hover på rad */
   --zebra-focus: var(--accent-soft);   /* focus-within på rad */
 
