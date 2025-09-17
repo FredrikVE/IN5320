@@ -97,25 +97,15 @@
 }
 
 /* Zebra + hover + focus */
+.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-color-odd); }
+.infoTable tbody tr:nth-child(even) { background: var(--zebra-color-even); }
 
-/* CHANGED: bruk riktige zebra-variabler */
-.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-color-odd); }   /* CHANGED */
-.infoTable tbody tr:nth-child(even) { background: var(--zebra-color-even); }  /* CHANGED */
-
-/* ADDED: smooth overgang på celler ved hover/focus */
-.infoTable tbody tr td { transition: background .15s ease-in-out; }     /* ADDED */
-
-/* ADDED: legg hover på CELLENE – vinner alltid over tr-bakgrunn */
-.infoTable tbody tr:hover td {                                           /* ADDED */
-  background: var(--zebra-hover);
-}
-
-/* ADDED: focus-within på cellene + behold outline på raden */
-.infoTable tbody tr:focus-within td {                                    /* ADDED */
-  background: var(--zebra-focus);
+.infoTable tbody tr:hover { 
+  background: var(--hover-soft); 
 }
 
 .infoTable tbody tr:focus-within {
   outline: 2px solid var(--accent);
   outline-offset: -2px;
+  background: var(--zebra-focus);
 }
