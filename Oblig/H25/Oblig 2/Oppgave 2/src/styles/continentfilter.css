@@ -1,3 +1,5 @@
+/*src/styles/continentfilter.css*/
+
 /* Fjern boksen rundt fieldset/legend */
 .continent-filter{
   border: none !important;     /* slå ned UA-border */

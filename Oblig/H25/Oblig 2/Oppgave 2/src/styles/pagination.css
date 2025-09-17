@@ -1,3 +1,5 @@
+/*src/styles/pagionation.css*/
+
 .pagination {
   display: flex;
   justify-content: center;
@@ -5,7 +7,11 @@
   gap: .75rem;
   margin-bottom: 1rem;
 }
-.pagination span { font-weight: 500; }
+
+.pagination span { 
+  font-weight: 500; 
+}
+
 .pagination-btn {
   padding: .4rem .9rem;
   border-radius: 6px;

@@ -2,10 +2,12 @@
 import { useState } from "react";
 
 export default function SearchBar( { onSearch } ) {
+
+    //Stateverdier for inputverdier
     const [inputValue, setInputValue ] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault(); // hindre reload
+        e.preventDefault();       // hindre reload
         onSearch(inputValue);    // sender verdien tilbake til App
     };
 
