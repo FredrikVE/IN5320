@@ -53,8 +53,8 @@
   --control-h: 44px;
 
   /* Tabell – zebra/tilstander */
-  --zebra-odd:   rgb(255, 255, 255);
-  --zebra-even:  rgb(233, 232, 232);
+  --zebra-color-odd:   rgb(255, 255, 255);
+  --zebra-color-even:  rgb(233, 232, 232);
   --zebra-hover: var(--hover-soft);    /* hover på rad */
   --zebra-focus: var(--accent-soft);   /* focus-within på rad */
 

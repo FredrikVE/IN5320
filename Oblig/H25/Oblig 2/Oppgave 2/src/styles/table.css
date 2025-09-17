@@ -97,8 +97,8 @@
 }
 
 /* Zebra + hover + focus */
-.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-odd); }
-.infoTable tbody tr:nth-child(even) { background: var(--zebra-even); }
+.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-color-odd); }
+.infoTable tbody tr:nth-child(even) { background: var(--zebra-color-even); }
 
 .infoTable tbody tr:hover { 
   background: black; 
