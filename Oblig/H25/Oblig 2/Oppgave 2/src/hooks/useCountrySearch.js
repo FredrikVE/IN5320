@@ -1,3 +1,12 @@
+/* DATASTRUKTUR PÅ API-SPØRRING
+
+{
+  "pager": {"page": 1, "pageCount": 1, "pageSize": 10, "total": 6},
+  "results": [{}]
+}
+
+*/
+
 // src/hooks/useCountrySearch.js
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
@@ -25,17 +34,22 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
         }
 
         const json = await res.json();        //definer JSON objekt med pagecount
+        console.log("json 1: ", json)
+
+        /*
         const { 
           results = [], 
           pager: { pageCount = 1 } = {} 
         } = json;
 
-        setSearchResults(results);
-        setPageCount(pageCount); // Bare trekk ut total-sider
+        console.log("json 2: ", json)
 
-        
-        //setSearchResults(json.results ?? []);
-        //setPageCount(json.pager?.pageCount ?? 1); // Bare trekk ut total-sider
+        setSearchResults(results);
+        setPageCount(pageCount); // Trekker kun ut så mange sider som pagecount bestemmer
+        */
+
+        setSearchResults(json.results ?? []); //Setter 
+        setPageCount(json.pager?.pageCount ?? 1); // Trekker kun ut så mange sider som pagecount bestemmer
       } 
       
       catch (err) {
@@ -49,6 +63,7 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
 
     searchCountries();
     return () => controller.abort();
+
   }, [page, pageSize, search, continents, order]); //dependancy array for useEffect()
 
   return { searchResults, pageCount, loading, error };

@@ -26,10 +26,10 @@ export default function App() {
     order: `${order.columnName}:${order.sortingDirection}` //For eks Country:ASC eller Population:DESC
   };
 
-  // Hent data + total antall sider
+  // Hent data og total antall sider
   const { searchResults, pageCount, loading, error } = useCountrySearch(params);
 
-  // Synk pageCount fra hook → inn i pager-state
+  // Synk pageCount fra hook og legg inn i pager-state
   useEffect(() => {
     setPager(prev => ({ ...prev, pageCount }));
   }, [pageCount]);

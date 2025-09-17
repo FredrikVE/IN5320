@@ -9,7 +9,7 @@ const formatPopulationGrowth = new Intl.NumberFormat(undefined, {
 export default function Table({ rows, loading, error, order, onSort }) {
   if (loading) {
     return (
-      <div className="table-wrap" aria-live="polite">
+      <div className="table-wrap">
         <p className="table-status">Loading…</p>
       </div>
     );
@@ -17,7 +17,7 @@ export default function Table({ rows, loading, error, order, onSort }) {
 
   if (error) {
     return (
-      <div className="table-wrap" aria-live="assertive">
+      <div className="table-wrap">
         <p className="table-error" role="alert">Error: {error}</p>
       </div>
     );
@@ -25,7 +25,7 @@ export default function Table({ rows, loading, error, order, onSort }) {
 
   if (!rows || rows.length === 0) {
     return (
-      <div className="table-wrap" aria-live="polite">
+      <div className="table-wrap">
         <p className="table-empty">No results.</p>
       </div>
     );
@@ -40,8 +40,6 @@ export default function Table({ rows, loading, error, order, onSort }) {
     <div
       id="results"
       className="table-wrap"
-      role="region"
-      aria-label="Search results"
     >
       <table className="infoTable">
         <thead>

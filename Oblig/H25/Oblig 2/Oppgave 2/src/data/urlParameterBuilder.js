@@ -1,9 +1,8 @@
 //src/data/urlParameterBuilder.js
-
 import { BASE_URL } from "./baseUrl";
 
 export function buildSearchParametersURL({ page, pageSize, search, continents, order }) {
-  let url = `${BASE_URL}?page=${page}&pageSize=${pageSize}`;
+  let url = `${BASE_URL}?page=${page}&pageSize=${pageSize}&paging=true`;
 
   // Legger til søkeparameter på URL hvis parameteret ikke er tomt
   const searchTerm = search.trim(); // Trimmer vekk potensiell white space
