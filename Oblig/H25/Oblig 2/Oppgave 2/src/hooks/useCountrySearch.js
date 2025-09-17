@@ -34,8 +34,7 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
         }
 
         const json = await res.json();        //definer JSON objekt med pagecount
-        console.log("json 1: ", json)
-
+        
         setSearchResults(json.results ?? []); // Oppdaterer state for søkeresultater fra API-spørring. Legger inn tom liste hvis søk feiler.
         setPageCount(json.pager?.pageCount ?? 1); // Trekker kun ut så mange sider som pagecount bestemmer
       } 

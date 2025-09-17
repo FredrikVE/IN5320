@@ -1,44 +1,28 @@
-/*src/styles/app.css*/
+/* src/styles/app.css */
+
+/* Appens root spacing */
 .App {
-  padding-bottom: 2rem;
-  padding-top: 2rem;
+  padding-top: var(--space-6);
+  padding-bottom: var(--space-6);
 }
 
-
-/* App-container: litt luft oppe/nede */
-.App {
-  padding-top: 2rem;
-  padding-bottom: 2rem;
-}
-
-/* Samme venstrekant/bredde som tabell/filtre */
-.page-header {
-  width: 80%;
-  margin: 0 auto 1rem;
-  text-align: center; /* bytt til left om du vil flukte med tabellen */
-}
-
-/* Tittel: responsiv, høy kontrast */
+/* Hoved tittel i appen */
 .app-title {
-  margin: 0 0 .25rem;
+  margin: 0 0 var(--space-1);
   font-weight: 800;
   line-height: 1.15;
-  color: #111;
+  color: var(--text);
   font-size: clamp(1.75rem, 1.2rem + 2vw, 2.5rem);
-  padding-bottom: 1rem;
+  padding-bottom: var(--space-4);
+  text-align: center;
 }
 
-/* Undertittel: roligere farge, god lesbarhet */
+/* Undertittel i appen */
 .app-subtitle {
-  margin: .5rem auto 0;
-  color: #555;
+  margin: var(--space-2) auto 0;
+  color: var(--text-muted);
   max-width: 70ch;
   font-size: 1rem;
   text-align: center;
-  padding-bottom: 1rem;
-}
-
-/* Små skjermer: litt mindre accent-strek */
-@media (max-width: 480px){
-  .app-title::after { width: 56px; height: 4px; }
+  padding-bottom: var(--space-4);
 }

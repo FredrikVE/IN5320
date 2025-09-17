@@ -1,123 +1,111 @@
-/*src/styles/table.css*/
+/* src/styles/table.css */
 
-/* Wrapper with scroll on small screens + subtle frame */
-.table-wrap{
-  width: 80%;
-  margin: 1rem auto;
-  overflow-x: auto;                 /* important for mobile */
-  border: 1px solid #eee;
-  border-radius: 12px;
-  background: #fff;
-  box-shadow: 0 2px 10px rgba(0,0,0,.04);
+/* Wrapper med scroll på små skjermer + subtil ramme */
+.table-wrap {
+  width: var(--content-w);
+  margin: var(--space-4) auto;
+  overflow-x: auto;
+  border: 1px solid var(--border-soft);
+  border-radius: var(--radius-xl);
+  background: var(--surface);
+  box-shadow: var(--shadow-sm);
 }
 
-/* Status / empty / error messages centered inside the wrapper */
+/* Status / tom / feil */
 .table-wrap .table-status,
 .table-wrap .table-empty,
-.table-wrap .table-error{
-  margin: 1rem;
-  padding: 1rem;
+.table-wrap .table-error {
+  margin: var(--space-4);
+  padding: var(--space-4);
   text-align: center;
 }
+
 .table-wrap .table-status,
-.table-wrap .table-empty{
-  color: #555;
-}
-.table-wrap .table-error{
-  color: #7a1111;
-  background: #ffecec;
-  border: 1px solid #f0b8b8;
-  border-radius: 8px;
+.table-wrap .table-empty {
+  color: var(--text-muted);
 }
 
-/* Base table */
-.infoTable{
+.table-wrap .table-error {
+  color: var(--error);
+  background: var(--error-bg);
+  border: 1px solid var(--error-border);
+  border-radius: var(--radius-md);
+}
+
+/* Grunntabell */
+.infoTable {
   width: 100%;
   border-collapse: collapse;
-  font-variant-numeric: tabular-nums;  /* prettier numeric columns */
+  font-variant-numeric: tabular-nums;
 }
 
-/* Header cells */
-.infoTable thead th{
-  position: sticky;     /* sticky header when wrapper scrolls */
+/* Headerceller */
+.infoTable thead th {
+  position: sticky;
   top: 0;
   z-index: 1;
-  background: #fafafa;
-  color: #222;
+  background: var(--surface-alt);
+  color: var(--text);
   text-align: left;
-  border-bottom: 1px solid #eee;
-
-  /* Let the button own the padding so headers align with cells */
-  padding: 0;
+  border-bottom: 1px solid var(--border-soft);
+  padding: 0; /* knappen eier paddingen */
 }
 
-/* Body and default cell padding */
+/* Standardcelle-paddding */
 .infoTable th,
-.infoTable td{
-  padding: .6rem .75rem;
-  border-bottom: 1px solid #eee;
+.infoTable td {
+  padding: .6rem var(--space-4);
+  border-bottom: 1px solid var(--border-soft);
   vertical-align: middle;
 }
 
-/* Clickable header button inside <th> */
-.th-btn{
+/* Klikkbar headerknapp */
+.th-btn {
   display: inline-flex;
   align-items: center;
   gap: .35rem;
-
-  /* make whole header cell clickable and match <td> padding */
   width: 100%;
-  padding: .6rem .75rem;
-
+  padding: .6rem var(--space-4);
   font: inherit;
   color: inherit;
   background: none;
   border: 0;
   cursor: pointer;
-  border-radius: 6px;
+  border-radius: var(--radius-sm);
 }
-.th-btn:hover{ background: #f0f0f0; }
-.th-btn:focus-visible{
-  outline: 2px solid var(--accent, #0a6);
+
+.th-btn:hover { 
+  background: var(--hover-plain); 
+}
+
+.th-btn:focus-visible {
+  outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
-.th-caret{ opacity: .65; font-size: .85em; }
 
-/* Right-align numeric columns (3rd and 4th) */
+.th-caret { opacity: .65; font-size: .85em; }
+
+/* Høyrejuster numeriske kolonner (3 og 4) */
 .infoTable td:nth-child(3),
-.infoTable td:nth-child(4){
+.infoTable td:nth-child(4) {
   text-align: right;
 }
+
 .infoTable thead th:nth-child(3) .th-btn,
-.infoTable thead th:nth-child(4) .th-btn{
-  justify-content: flex-end; /* place label + caret to the right */
+.infoTable thead th:nth-child(4) .th-btn {
+  justify-content: flex-end;
 }
 
 /* Zebra + hover + focus */
-.infoTable tbody tr:nth-child(even){ background: #fcfcfd; }
-.infoTable tbody tr:hover{ background: #f4fbff; }
-.infoTable tbody tr:focus-within{
-  outline: 2px solid var(--accent, #0a6);
+.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-odd); }
+.infoTable tbody tr:nth-child(even) { background: var(--zebra-even); }
+
+.infoTable tbody tr:hover { 
+  background: black; 
+}
+
+.infoTable tbody tr:focus-within {
+  outline: 2px solid var(--accent);
   outline-offset: -2px;
-  background: #eefcf5;
+  background: var(--zebra-focus);
 }
-
-/* Optional: row header if you use <th scope="row"> for first column */
-.infoTable tbody th[scope="row"]{
-  font-weight: 600;
-  text-align: left;
-}
-
-/* Screen-reader helper (keep in utilities if you have one) */
-.sr-only{
-  position: absolute;
-  width: 1px;
-  height: 1px;
-  padding: 0;
-  margin: -1px;
-  overflow: hidden;
-  clip: rect(0 0 0 0);
-  white-space: nowrap;
-  border: 0;
-}
-

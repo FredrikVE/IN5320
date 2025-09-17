@@ -1,41 +1,69 @@
-/*src/styles/base.css*/
-:root { 
-  font-family: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif; 
+:root {
+  /* Typografi */
+  --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+
+  /* Tekst */
+  --text: #111;
+  --text-muted: #555;
+  --placeholder: #6b7280;
+
+  /* Flater / bakgrunn */
+  --bg-app: #f7f7f7;
+  --surface: #fff;
+  --surface-alt: #fafafa;   /* sticky header */
+  --surface-soft: #fcfcfd;  /* zebra */
+
+  /* Border */
+  --border-soft: #eee;
+  --border-strong: #d0d7de;
+
+  /* Skygger */
+  --shadow-sm: 0 2px 10px rgba(0,0,0,.04);
+
+  /* Aksent / states */
+  --accent: #0a6;
+  --accent-hover: #0c7;
+  --accent-active: #086;
+  --accent-soft: #eefcf5;   /* fokus/checked bakgrunn */
+
+  --hover-plain: #f0f0f0;   /* hover på th-knapp */
+  --hover-soft: #f4fbff;    /* hover på rader */
+
+  /* Feilmeldinger */
+  --error: #7a1111;
+  --error-bg: #ffecec;
+  --error-border: #f0b8b8;
+
+  /* Radius */
+  --radius-sm: 6px;
+  --radius-md: 8px;
+  --radius-lg: 10px;
+  --radius-xl: 12px;
+
+  /* Spacing */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.25rem;
+  --space-6: 2rem;
+
+  /* Komponent-bredder/høyder */
+  --content-w: 80%;
+  --control-h: 44px;
+
+  /* Tabell – zebra/tilstander */
+  --zebra-odd:   rgb(255, 255, 255);
+  --zebra-even:  rgb(233, 232, 232);
+  --zebra-hover: var(--hover-soft);    /* hover på rad */
+  --zebra-focus: var(--accent-soft);   /* focus-within på rad */
+
 }
 
-body { 
-  margin: 0; 
-  background: #f7f7f7; 
-  color: #111; 
-}
+:root { font-family: var(--font-sans); }
 
-.wrap { 
-  max-width: 940px; 
-  margin: 2rem auto; 
-  background: #fff; 
-  padding: 1rem 1.25rem; 
-  border-radius: 12px; 
-  box-shadow: 0 2px 10px rgba(0,0,0,.04);
+body {
+  margin: 0;
+  background: var(--bg-app);
+  color: var(--text);
 }
-
-h1 { 
-  text-align: center; 
-  margin-top: 0; 
-}
-
-input[type="text"], input, select {
-  padding: .5rem .6rem; 
-  border-radius: 8px; 
-  border: 1px solid #ddd;
-}
-
-/* knapper – basis */
-button { 
-  padding: .5rem .8rem; 
-  border-radius: 8px; 
-  border: 1px solid #0a6; 
-  background: #0a6; 
-  color: #fff; 
-  cursor: pointer; 
-}
-button[disabled] { opacity: .5; cursor: default; }

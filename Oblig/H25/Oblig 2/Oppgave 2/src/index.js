@@ -1,7 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import "./styles/base.css";
-import "./styles/utilities.css";
 import "./styles/table.css";
 import "./styles/searchbar.css";
 import "./styles/continentfilter.css";

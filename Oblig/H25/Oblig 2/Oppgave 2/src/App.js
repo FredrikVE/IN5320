@@ -43,16 +43,14 @@ export default function App() {
 
       <SearchBar onSearch={(query) => { setSearch(query); setPager(p => ({...p, currentPage: 1})); }} />
 
-      <div className="filters-row">
-        <ContinentFilter
-          selected={continents}
-          onToggle={(name) => {
-            toggleContinent(name);
-            setPager(p => ({ ...p, currentPage: 1 })); // reset side ved filter
-          }}
-        />
-      </div>
-
+      <ContinentFilter
+        selected={continents}
+        onToggle={(name) => {
+          toggleContinent(name);
+          setPager(p => ({ ...p, currentPage: 1 })); // reset side ved filter
+        }}
+      />
+    
       <Table 
         rows={searchResults ?? []} 
         loading={loading} 

@@ -1,44 +1,41 @@
-/*src/styles/searchbar.css*/
+/* src/styles/searchbar.css */
 
-:root{
-  --control-h: 44px;
-  --accent: #0a6;
-  --accent-hover: #0c7;
-  --accent-active: #086;
-  --border-strong: #d0d7de;
-}
-
+/* Søkefelt som helhet */
 .searchbar {
   display: flex;
   align-items: center;
-  gap: .75rem;
-  margin: 1rem auto;
-  width: 80%;
-  justify-content: center;   /* ← var flex-start */
+  gap: var(--space-3);
+  margin: var(--space-4) auto;
+  width: var(--content-w);
+  justify-content: center;
 }
 
-/* INPUT */
+/* inputfelt */
 .searchbar input {
-  flex: 0 1 680px;           /* stor, men stopper rundt 680px */
+  flex: 0 1 680px;
   min-width: 280px;
   width: 100%;
   height: var(--control-h);
   box-sizing: border-box;
   padding: 10px 14px;
   font-size: 1rem;
-  color: #111;
-  background: #fff;
-  border-radius: 10px;
+  color: var(--text);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
   border: 2px solid var(--border-strong);
 }
-.searchbar input::placeholder { color: #6b7280; }
+
+.searchbar input::placeholder {
+  color: var(--placeholder);
+}
+
 .searchbar input:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
   border-color: var(--accent);
 }
 
-/* BUTTON */
+/* Søkeknapp */
 .searchbar button {
   height: var(--control-h);
   box-sizing: border-box;
@@ -48,19 +45,32 @@
   justify-content: center;
   font-size: 1rem;
   font-weight: 700;
-  border-radius: 10px;
+  border-radius: var(--radius-lg);
   border: 2px solid var(--accent);
   background: var(--accent);
   color: #fff;
   cursor: pointer;
   transition: background .15s, border-color .15s, transform .05s;
 }
-.searchbar button:hover { background: var(--accent-hover); border-color: var(--accent-hover); }
-.searchbar button:active { background: var(--accent-active); border-color: var(--accent-active); transform: translateY(1px); }
-.searchbar button:focus-visible { outline: 3px solid var(--accent); outline-offset: 2px; }
 
-/* Mobil: behold hel bredde */
-@media (max-width: 420px){
+.searchbar button:hover {
+  background: var(--accent-hover);
+  border-color: var(--accent-hover);
+}
+
+.searchbar button:active {
+  background: var(--accent-active);
+  border-color: var(--accent-active);
+  transform: translateY(1px);
+}
+
+.searchbar button:focus-visible {
+  outline: 3px solid var(--accent);
+  outline-offset: 2px;
+}
+
+/* Mobil */
+@media (max-width: 420px) {
   .searchbar { flex-direction: column; align-items: stretch; }
   .searchbar button { align-self: flex-start; }
 }
