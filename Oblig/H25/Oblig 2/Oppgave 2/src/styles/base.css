@@ -1,6 +1,7 @@
 :root {
   /* Typografi */
   --font-sans: system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  font-family: var(--font-sans);
 
   /* Tekst */
   --text: #111;
@@ -24,10 +25,9 @@
   --accent: #0a6;
   --accent-hover: #0c7;
   --accent-active: #086;
-  --accent-soft: #eefcf5;   /* fokus/checked bakgrunn */
-
-  --hover-plain: #f0f0f0;   /* hover på th-knapp */
-  --hover-soft: #e1e7ea;    /* hover på rader */
+  --accent-soft: #eefcf5;
+  --hover-plain: #f0f0f0;
+  --hover-soft: #e1e7ea;
 
   /* Feilmeldinger */
   --error: #7a1111;
@@ -53,14 +53,11 @@
   --control-h: 44px;
 
   /* Tabell – zebra/tilstander */
-  --zebra-color-odd:   rgb(255, 255, 255);
-  --zebra-color-even:  rgb(245, 241, 241);
-  --zebra-hover: var(--hover-soft);    /* hover på rad */
-  --zebra-focus: var(--accent-soft);   /* focus-within på rad */
-
+  --zebra-color-odd:  rgb(255, 255, 255);
+  --zebra-color-even: rgb(245, 241, 241);
+  --zebra-hover: var(--hover-soft);
+  --zebra-focus: var(--accent-soft);
 }
-
-:root { font-family: var(--font-sans); }
 
 body {
   margin: 0;
