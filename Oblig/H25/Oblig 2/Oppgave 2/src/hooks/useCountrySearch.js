@@ -36,19 +36,7 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
         const json = await res.json();        //definer JSON objekt med pagecount
         console.log("json 1: ", json)
 
-        /*
-        const { 
-          results = [], 
-          pager: { pageCount = 1 } = {} 
-        } = json;
-
-        console.log("json 2: ", json)
-
-        setSearchResults(results);
-        setPageCount(pageCount); // Trekker kun ut så mange sider som pagecount bestemmer
-        */
-
-        setSearchResults(json.results ?? []); //Setter 
+        setSearchResults(json.results ?? []); // Oppdaterer state for søkeresultater fra API-spørring. Legger inn tom liste hvis søk feiler.
         setPageCount(json.pager?.pageCount ?? 1); // Trekker kun ut så mange sider som pagecount bestemmer
       } 
       
@@ -62,9 +50,11 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
     }
 
     searchCountries();
+
+    // Cleanup-funksjon
     return () => controller.abort();
 
-  }, [page, pageSize, search, continents, order]); //dependancy array for useEffect()
+  }, [page, pageSize, search, continents, order]);    //dependancy array for useEffect()
 
-  return { searchResults, pageCount, loading, error };
+  return { searchResults, pageCount, loading, error };  // returner literal-objekt med resultater
 }
