@@ -3,11 +3,11 @@ import { useState } from "react";
 
 export default function SearchBar( { onSearch } ) {
 
-    //Stateverdier for inputverdier
+    // State for å holde på inputverdien mens brukeren skriver
     const [inputValue, setInputValue ] = useState("");
 
     const handleSubmit = (e) => {
-        e.preventDefault();       // hindre reload
+        e.preventDefault();       // hindrer at skjemaet refresher siden slik som er default for HTML-form
         onSearch(inputValue);    // sender verdien tilbake til App
     };
 
@@ -17,7 +17,7 @@ export default function SearchBar( { onSearch } ) {
             type="text"
             value={inputValue}
             onChange={(e)=> setInputValue(e.target.value)} //oppdater state for hvert tastetrykk
-            placeholder="Search country..."
+            placeholder="Search country..."             // Plassholdertekst som beskriver usecase
             />
             <button type="submit">Search</button>
         </form>
