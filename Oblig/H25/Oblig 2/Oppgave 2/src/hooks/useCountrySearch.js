@@ -2,6 +2,12 @@
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
 
+/* DATASTRUKTUR PÅ API-SPØRRING
+{
+  "pager": {"page": 1, "pageCount": 1, "pageSize": 10, "total": 6},
+  "results": [{}]
+}
+*/
 export function useCountrySearch(page, pageSize, search, continents, order) {
   const [searchResults, setSearchResults] = useState([]);
   const [pageCount, setPageCount] = useState(1);
@@ -9,52 +15,37 @@ export function useCountrySearch(page, pageSize, search, continents, order) {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    const controller = new AbortController();
-    const { signal } = controller;
-  
+    // async funksjon for å hente data fra API
     async function searchCountries() {
-      setLoading(true);
-      setError("");
+      setLoading(true);   // viser at vi laster
+      setError("");       // nullstill error hver gang vi søker på nytt
 
       try {
-        const url = buildSearchParametersURL({ page, pageSize, search, continents, order });
-        const res = await fetch(url, { signal });
+        // Forsøker å bygge ULR med aktuelle søkeparametere til API spørring
+        const url = buildSearchParametersURL(page, pageSize, search, continents, order);
+        const res = await fetch(url);   // fetcher fra API fra url bygget etter søkeparametere
 
-        if (!res.ok) { 
-          throw new Error(`HTTP ${res.status}`);
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}`);  // kast error hvis HTTP-status ikke er OK
         }
 
-        const json = await res.json();        //definer JSON objekt med pagecount
-        
-        setSearchResults(json.results ?? []); // Oppdaterer state for søkeresultater fra API-spørring. Legger inn tom liste hvis søk feiler.
-        setPageCount(json.pager?.pageCount ?? 1); // Trekker kun ut så mange sider som pagecount bestemmer
+        const json = await res.json();                // parser JSON fra API
+        setSearchResults(json.results ?? []);         // oppdater søkeresultatene med tom array som fallback
+        setPageCount(json.pager?.pageCount ?? 1);     // oppdater antall sider fra pager-objektet
       } 
-      
+
       catch (err) {
-        if (!signal.aborted) setError(err.message || "Fetch error");
+        setError(err.message); // oppdater state for error ved feil
       } 
-      
+
       finally {
-        if (!signal.aborted) setLoading(false);
+        setLoading(false); // oppdaterer loading til false til slutt.
       }
     }
 
-    searchCountries();
+    searchCountries(); // kjør søk når dependency-arrayen endrer seg
 
-    // Cleanup-funksjon
-    return () => controller.abort();
-
-  }, [page, pageSize, search, continents, order]);    //dependancy array for useEffect()
+  }, [page, pageSize, search, continents, order]);    // dependency array for useEffect()
 
   return [ searchResults, pageCount, loading, error ]; 
 }
-
-
-/* DATASTRUKTUR PÅ API-SPØRRING
-
-{
-  "pager": {"page": 1, "pageCount": 1, "pageSize": 10, "total": 6},
-  "results": [{}]
-}
-
-*/

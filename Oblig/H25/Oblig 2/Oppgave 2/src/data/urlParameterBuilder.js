@@ -1,7 +1,7 @@
 //src/data/urlParameterBuilder.js
 import { BASE_URL } from "./baseUrl";
 
-export function buildSearchParametersURL({ page, pageSize, search, continents, order }) {
+export function buildSearchParametersURL( page, pageSize, search, continents, order ) {
   let url = `${BASE_URL}?page=${page}&pageSize=${pageSize}&paging=true`;  //setter alltid paging til true i API-spørring
 
   // Legger til søkeparameter på URL hvis parameteret ikke er tomt
@@ -10,7 +10,7 @@ export function buildSearchParametersURL({ page, pageSize, search, continents, o
     url += `&search=${encodeURIComponent(searchTerm)}`;
   }
 
-  // Utvider ULR med kontinentsøkt hvis det finnes ett eller flere valgte kontinenter
+  // Utvider URL med kontinentsøk hvis det finnes ett eller flere valgte kontinenter
   const continentList = continents;
   if (continentList.length) {
     url += `&Continent=${continentList.map(encodeURIComponent).join(",")}`;
