@@ -18,7 +18,7 @@ export default function App() {
   const [columnName, sortingDirection, toggleSort] = useSort("Country", "ASC") //Standardsortering er alfabetisk sortering av land
   const [continents, toggleContinent] = useContinentFilter();
   const [searchResults, pageCount, loading, error] = useCountrySearch(       // Søk henter data fra API.
-    currentPage, pageSize, search, continents, `${columnName}:${sortingDirection}`
+    currentPage, pageSize, search, continents, `${columnName}:${sortingDirection}` //den siste er en streng på formen "Population:DESC"
   );
 
   // Returnerer komponentene på siden
@@ -58,15 +58,15 @@ export default function App() {
       <Pagination
         currentPage={currentPage}
         pageCount={pageCount}
-        onPrev={() => setCurrentPage((p) => Math.max(1, p - 1))}
-        onNext={() => setCurrentPage((p) => p + 1)}
+        onPrev={() => setCurrentPage((p) => Math.max(1, p - 1))}  // previous knapp går til den som er størst av 1 og p-1
+        onNext={() => setCurrentPage((p) => p + 1)}               // next knapp øker p med 1 slik at man går en side frem
       />
 
       <PageSize
         value={pageSize}
         onChange={(n) => {
-          setPageSize(n);
-          setCurrentPage(1); // tilbakestiller til side 1
+          setPageSize(n);           // oppdaterer pageSize
+          setCurrentPage(1);        // tilbakestiller til side 1
         }}
       />
     </div>

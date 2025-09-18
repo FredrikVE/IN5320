@@ -1,12 +1,3 @@
-/* DATASTRUKTUR PÅ API-SPØRRING
-
-{
-  "pager": {"page": 1, "pageCount": 1, "pageSize": 10, "total": 6},
-  "results": [{}]
-}
-
-*/
-
 // src/hooks/useCountrySearch.js
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
@@ -55,6 +46,15 @@ export function useCountrySearch(page, pageSize, search, continents, order) {
 
   }, [page, pageSize, search, continents, order]);    //dependancy array for useEffect()
 
-  //return { searchResults, pageCount, loading, error };  // returner literal-objekt med resultater
   return [ searchResults, pageCount, loading, error ]; 
 }
+
+
+/* DATASTRUKTUR PÅ API-SPØRRING
+
+{
+  "pager": {"page": 1, "pageCount": 1, "pageSize": 10, "total": 6},
+  "results": [{}]
+}
+
+*/
