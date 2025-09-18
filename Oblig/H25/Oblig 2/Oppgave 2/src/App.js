@@ -10,15 +10,18 @@ import useSort from "./hooks/useSort";
 import useContinentFilter from "./hooks/useContinentFilter";
 
 export default function App() {
+
+  // State variabler og settefunksjoner med tilhørende hooks
   const [search, setSearch] = useState("");
   const [pageSize, setPageSize] = useState(10);
-  const [currentPage, setCurrentPage] = useState(1);
-  const [order, toggleSort] = useSort("Country", "ASC");               //Standardsortering er alfabetisk sortering av land
+  const [currentPage, setCurrentPage] = useState(1);            
+  const [columnName, sortingDirection, toggleSort] = useSort("Country", "ASC") //Standardsortering er alfabetisk sortering av land
   const [continents, toggleContinent] = useContinentFilter();
   const [searchResults, pageCount, loading, error] = useCountrySearch(       // Søk henter data fra API.
-    currentPage, pageSize, search, continents, `${order.columnName}:${order.sortingDirection}`
+    currentPage, pageSize, search, continents, `${columnName}:${sortingDirection}`
   );
 
+  // Returnerer komponentene på siden
   return (
     <div className="App">
       <h1 className="app-title">World Population by Country</h1>
@@ -29,7 +32,7 @@ export default function App() {
       <SearchBar
         onSearch={(query) => {
           setSearch(query);
-          setCurrentPage(1); // reset side ved nytt søk
+          setCurrentPage(1); // resetter til første side ved nytt søk
         }}
       />
 
@@ -37,7 +40,7 @@ export default function App() {
         selected={continents}
         onToggle={(name) => {
           toggleContinent(name);
-          setCurrentPage(1); // reset side ved filter
+          setCurrentPage(1); // resetter til side 1 ved bruk av kontinentfilter
         }}
       />
 
@@ -45,10 +48,10 @@ export default function App() {
         rows={searchResults ?? []}
         loading={loading}
         error={error}
-        order={order}
+        order={{columnName, sortingDirection}}
         onSort={(key) => {
           toggleSort(key);
-          setCurrentPage(1); // reset side ved sort
+          setCurrentPage(1); // tilbakestiller til side 1 side ved sortering av kolonne
         }}
       />
 
@@ -63,7 +66,7 @@ export default function App() {
         value={pageSize}
         onChange={(n) => {
           setPageSize(n);
-          setCurrentPage(1); // tilbake til side 1
+          setCurrentPage(1); // tilbakestiller til side 1
         }}
       />
     </div>

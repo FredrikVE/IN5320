@@ -2,27 +2,25 @@
 import { useState } from "react";
 
 export default function useSort(initialColumnID, initialDirection) {
-  // state for å holde orden på sorteringsrekkefølgen
-  const [order, setOrder] = useState({
-    columnName: initialColumnID,
-    sortingDirection: initialDirection,
-  });
 
+  // stateverdier for å holde orden på sorteringsrekkefølgen
+  const [columnName, setColumnName] = useState(initialColumnID);
+  const [sortingDirection, setSortingDirection] = useState(initialDirection);
+
+  // funksjon for å "toggle" kolonnesortering mellom ASC og DESC
   const toggleSort = (clickedColumnID) => {
-    setOrder((prev) => {
-
+    if (columnName === clickedColumnID) {
       // Hvis bruker trykker på samme kolonne, så flippes det til det motsatte, for eks fra ASC til DESC
-      if (prev.columnName === clickedColumnID) {
-        const oppositeDirection = prev.sortingDirection === "ASC" ? "DESC" : "ASC";
-        return { columnName: clickedColumnID, sortingDirection: oppositeDirection };
-      } 
-
+      setSortingDirection((prev) => (prev === "ASC" ? "DESC" : "ASC"));
+    } 
+    
+    else {
       // Hvis ny kolonne trykkes på, så veksles retning til DESC fordi standardrettning er ASC
-      else {
-        return { columnName: clickedColumnID, sortingDirection: "DESC" };
-      }
-    });
+      setColumnName(clickedColumnID);
+      setSortingDirection("DESC");
+    }
   };
 
-  return [order, toggleSort];
+  // returner de som separate verdier
+  return [columnName, sortingDirection, toggleSort];
 }
