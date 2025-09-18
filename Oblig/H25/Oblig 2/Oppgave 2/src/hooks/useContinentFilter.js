@@ -11,7 +11,9 @@ export default function useContinentFilter() {
 
       if (i === -1) {
         list.push(name);
-      } else {
+      } 
+      
+      else {
         list.splice(i, 1);
       }
       return list;
