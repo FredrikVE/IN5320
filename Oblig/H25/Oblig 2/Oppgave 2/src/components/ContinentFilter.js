@@ -13,16 +13,18 @@ export default function ContinentFilter({ selected, onToggle }) {
     // område for checkbokser for kontinenter. Dette er kontinentfilter
     <fieldset className="continent-filter">
       
-      {ALL_CONTINENTS.map(function (c) {
+      {ALL_CONTINENTS.map((continent) => { // .map() returnerer en ny liste med et JSX-element per listeelement.
+
+        // inne i kontinentfilteret, returnerer vi en checkbox for hvert kontinent i arrayet.
         return (
-          //checkbox for å velge/avvelge et kontinent
-          <label key={c} className="check">
+          // checkbox for å velge/avvelge et kontinent
+          <label key={continent} className="check">
             <input
               type="checkbox"
-              checked={selected.includes(c)} // returnerer true hvis valgt kontinent finnes i selected-arrayen
-              onChange={() => onToggle(c)}  // kaller toggle-funksjonen fra parent når brukeren klikker
+              checked={selected.includes(continent)} // returnerer true hvis valgt kontinent finnes i selected-arrayen
+              onChange={() => onToggle(continent)}  // kaller toggle-funksjonen fra parent når brukeren klikker
             />
-            {c}
+            {continent}
           </label>
         );
       })}
