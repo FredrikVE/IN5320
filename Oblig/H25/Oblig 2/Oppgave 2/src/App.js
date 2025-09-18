@@ -1,5 +1,5 @@
 // src/App.js
-import { useEffect, useState } from "react";   // ← bruk useEffect for å synke pageCount
+import { useEffect, useState } from "react";
 import Table from "./components/Table";
 import SearchBar from "./components/SearchBar";
 import PageSize from "./components/PageSize";
@@ -53,7 +53,7 @@ export default function App() {
       />
 
       <Pagination
-        pager={pager} // ← gir hele pager-objektet
+        pager={pager} // gir hele pager-objektet
         onPrev={() => setPager(p => ({ ...p, currentPage: Math.max(1, p.currentPage - 1) }))}
         onNext={() => setPager(p => ({ ...p, currentPage: p.currentPage + 1 }))}
       />
