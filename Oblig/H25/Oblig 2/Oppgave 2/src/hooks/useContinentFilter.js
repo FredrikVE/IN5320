@@ -1,22 +1,26 @@
-// src/hooks/useContinentFilter.js
-import { useState } from "react";
+// src/hooks/useContinentFilter.js   // filsti og filnavn
+import { useState } from "react";    // importerer useState-hooken fra React
 
 export default function useContinentFilter() {
+
+  // state-variabel 'continents' intansieres som tom array
   const [continents, setContinents] = useState([]);
 
+  // arrow-funksjon for å slå et kontinent av/på i listen
   const toggleContinent = (name) => {
-    setContinents((prev) => {
-      const list = [...prev];
-      const i = list.indexOf(name);
+    setContinents((prev) => {           // oppdaterer state basert på forrige verdi
+      const list = [...prev];           // bruker spread operator til å lage nye kopi av den gamle arrayen slik at vi ikke å mutere direkte
+      const i = list.indexOf(name);     // finner index til kontinentet dersom det finnes i arrayen
 
-      if (i === -1) {
-        list.push(name);
+      if (i === -1) {                   // hvis kontinentet IKKE finnes i listen
+        list.push(name);                // legg det til på slutten av arrayen
       } 
       
-      else {
-        list.splice(i, 1);
+      else {                            // hvis kontinentet finnes i listen
+        list.splice(i, 1);              // fjern kontinentet fra arrayen med splice på indekspossisjon i. Antall elementer som slettes er 1.
       }
-      return list;
+      
+      return list;                      // returner den oppdaterte listen etter toggle slik at React oppdaterer state
     });
   }
 
