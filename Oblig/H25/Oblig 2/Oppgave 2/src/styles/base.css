@@ -13,8 +13,7 @@
   --bg-app: #f7f7f7;
   --surface: #fff;
   --table-header-color: #fafafa;   /* kolonneheaderfarge */
-  --surface-soft: #fcfcfd;  /* zebra */
-
+ 
   /* Border */
   --border-soft: #eee;
   --border-strong: #d0d7de;
@@ -46,8 +45,7 @@
   --space-2: .5rem;
   --space-3: .75rem;
   --space-4: 1rem;
-  --space-5: 1.25rem;
-  --space-6: 2rem;
+  --space-5: 2rem;
 
   /* Komponent-bredder/høyder */
   --content-w: 80%;
@@ -56,8 +54,6 @@
   /* Tabell – zebra/tilstander */
   --zebra-color-odd:  rgb(255, 255, 255);
   --zebra-color-even: rgb(245, 241, 241);
-  --zebra-hover: var(--hover-soft);
-  --zebra-focus: var(--accent-soft);
 }
 
 body {

@@ -2,8 +2,8 @@
 
 /* Appens root spacing */
 .App {
-  padding-top: var(--space-6);
-  padding-bottom: var(--space-6);
+  padding-top: var(--space-5);
+  padding-bottom: var(--space-5);
 }
 
 /* Hoved tittel i appen */
