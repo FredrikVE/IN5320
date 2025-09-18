@@ -24,5 +24,5 @@ export default function useContinentFilter() {
     });
   }
 
-  return [ continents, toggleContinent ];
+  return [ continents, toggleContinent ]; //rerunrerer en tuple med hookens stateverdi og updatefunksjon
 }
