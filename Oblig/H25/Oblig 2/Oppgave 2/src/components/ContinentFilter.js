@@ -11,6 +11,7 @@ const ALL_CONTINENTS = [
 export default function ContinentFilter({ selected, onToggle }) {
   return (
     // område for checkbokser for kontinenter. Dette er kontinentfilter
+    // bruker feildset-tag for å gruppere slik at skjermlesere lettere forstår innholdet.
     <fieldset className="continent-filter">
       
       {ALL_CONTINENTS.map((continent) => { // .map() returnerer en ny liste med et JSX-element per listeelement.
@@ -28,7 +29,6 @@ export default function ContinentFilter({ selected, onToggle }) {
           </label>
         );
       })}
- 
     </fieldset>
   );
 }
