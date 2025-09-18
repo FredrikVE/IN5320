@@ -1,5 +1,6 @@
 /* src/styles/pagination.css */
 
+/* pagineringsfelt sentrers og gis mellomrom */
 .pagination {
   display: flex;
   justify-content: center;
@@ -8,11 +9,13 @@
   margin-bottom: var(--space-4);
 }
 
+/* paginerings-tekst */
 .pagination span {
   font-weight: 500;
   color: var(--text);
 }
 
+/* Styler next- og previousknapper */
 .pagination-btn {
   padding: .4rem .9rem;
   border-radius: var(--radius-sm);
@@ -21,18 +24,20 @@
   color: #fff;
   font-size: .9rem;
   cursor: pointer;
-  transition: background .2s, border-color .2s, transform .1s;
 }
 
+/* Gir feedback når bruker hovrer over pagineringsknapper */
 .pagination-btn:hover {
   background: var(--accent-hover);
   border-color: var(--accent-hover);
 }
 
+/* gjør knapper litt mindre når de trykkes på */
 .pagination-btn:active {
   transform: scale(0.97);
 }
 
+/* Gir tydelig tastaturfokus ved "tabbing" */
 .pagination-btn:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;

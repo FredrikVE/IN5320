@@ -1,107 +1,108 @@
 /* src/styles/table.css */
 
-/* Wrapper med marging subtil ramme og scroll på små skjermer */
+/* Wrapper rundt tabellen – setter bredde, margin, scroll og ramme */
 .table-wrap {
-  width: var(--content-w);
-  margin: var(--space-4) auto;
-  overflow-x: auto;
-  border: 1px solid var(--border-soft);
-  border-radius: var(--radius-xl);
-  background: var(--surface);
-  box-shadow: var(--shadow-sm);
+  width: var(--content-w);                 /* maks bredde */
+  margin: var(--space-4) auto;             /* sentrert med margin */
+  overflow-x: auto;                        /* gjør tabellen scrollbar på små skjermer */
+  border: 1px solid var(--border-soft);    /* subtil ramme */
+  border-radius: var(--radius-xl);         /* avrundede hjørner */
+  background: var(--surface);              /* bakgrunnsfarge */
+  box-shadow: var(--shadow-sm);            /* subtil skygge */
 }
 
-
-/* statusfelter loadingstatur, tom-statur eller feilmelding */
+/* Statusfelt: "loading", "empty" eller "error" */
 .table-wrap .table-loading-status,
 .table-wrap .table-empty,
 .table-wrap .table-error {
-  margin: var(--space-4);
-  padding: var(--space-4);
-  text-align: center;
+  margin: var(--space-4);                  /* luft rundt */
+  padding: var(--space-4);                 /* innvendig padding */
+  text-align: center;                      /* sentrert tekst */
 }
 
+/* Grå farge for loading og tom-resultat */
 .table-wrap .table-loading-status,
 .table-wrap .table-empty {
   color: var(--text-muted);
 }
 
+/* Rødlig styling for feil */
 .table-wrap .table-error {
-  color: var(--error);
+  color: var(--error);                     
   background: var(--error-bg);
   border: 1px solid var(--error-border);
   border-radius: var(--radius-md);
 }
 
-/* Grunntabell */
+/* Grunnoppsett for tabellen */
 .infoTable {
-  width: 100%;
-  border-collapse: collapse;
-  font-variant-numeric: tabular-nums;
+  width: 100%;                             /* fyller wrapper */
+  border-collapse: collapse;               /* ingen doble kanter */
+  font-variant-numeric: tabular-nums;      /* jevne tallspalter */
 }
 
 /* Headerceller */
 .infoTable thead th {
-  position: sticky;
-  top: 0;
-  z-index: 1;
-  background: var(--surface-alt);
-  color: var(--text);
-  text-align: left;
-  border-bottom: 1px solid var(--border-soft);
-  padding: 0; /* knappen eier paddingen */
+  background: var(--surface-alt);          /* bakgrunnsfarge for header */
+  color: var(--text);                      /* tekstfarge */
+  padding: 0;                              /* knappene styrer padding */
 }
 
-/* Standardcelle-paddding */
+/* Standardcelle-padding (både th og td) */
 .infoTable th,
 .infoTable td {
   padding: .6rem var(--space-4);
   border-bottom: 1px solid var(--border-soft);
-  vertical-align: middle;
 }
 
-/* Klikkbar headerknapp */
+/* Header-knapp (gjør kolonneoverskrifter klikkbare) */
 .th-btn {
-  display: inline-flex;
-  align-items: center;
-  gap: .35rem;
-  width: 100%;
-  padding: .6rem var(--space-4);
-  font: inherit;
-  color: inherit;
-  background: none;
-  border: 0;
-  cursor: pointer;
-  border-radius: var(--radius-sm);
+  display: inline-flex;                    /* horisontalt flekslayout */
+  align-items: center;                     /* sentrer ikon/tekst vertikalt */
+  gap: .35rem;                             /* mellomrom mellom label og ikon */
+  
+  width: 100%;                             /* fyller hele cellen */
+  height: 100%;
+  padding: .6rem var(--space-4);           
+  font: inherit;                           /* arver font fra tabellen */
+  color: inherit;                          /* arver farge */
+  background: none;                        /* ingen bakgrunn */
+  border: 0;                               /* ingen kant */
+  cursor: pointer;                         /* pekerhånd ved hover */
+  border-radius: var(--radius-sm);         /* lett avrunding */
 }
 
+/* Hover-effekt på headerknapp */
 .th-btn:hover { 
   background: var(--hover-plain); 
 }
 
+/* Tastaturfokus (tabbing) på headerknapp */
 .th-btn:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
 
+
+/* Sorteringsikon i header (pil opp/ned) */
 .th-caret { 
-  opacity: .65;
-  font-size: .85em; 
+  opacity: .65;                            /* litt gjennomsiktig */
+  font-size: .85em;                        /* litt mindre enn tekst */
 }
 
-/* Verdiene i kolonne (1) og (2) er venstrejustert som standard */
-/* Høyrejuster kolonnenummer (3 og 4) */
+/* Tallkolonner høyrejusteres */
 .infoTable td:nth-child(3), 
 .infoTable td:nth-child(4) {
   text-align: right;
 }
 
+/* Header-knappene i tallkolonner høyrejusteres også */
 .infoTable thead th:nth-child(3) .th-btn,
 .infoTable thead th:nth-child(4) .th-btn {
   justify-content: flex-end;
 }
 
-/* Zebra + hover + focus */
+/* Radfarger: zebra-effekt + hover + fokus */
 .infoTable tbody tr:nth-child(odd)  { 
   background: var(--zebra-color-odd); 
 }
@@ -112,10 +113,4 @@
 
 .infoTable tbody tr:hover { 
   background: var(--hover-soft); 
-}
-
-.infoTable tbody tr:focus-within {
-  outline: 2px solid var(--accent);
-  outline-offset: -2px;
-  background: var(--zebra-focus);
 }

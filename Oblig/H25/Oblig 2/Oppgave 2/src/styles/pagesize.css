@@ -1,4 +1,6 @@
 /* src/styles/pagesize.css */
+
+/* Område for option-selector meny*/
 .page-size {
   display: flex;
   align-items: center;
@@ -9,11 +11,13 @@
   text-align: center;
 }
 
+/* Fremhever tekst som beskriver resultater per side */
 .page-size label {
   font-weight: 600;
   color: var(--text-muted);
 }
 
+/* Styler option-selector  */
 .page-size select {
   min-height: 40px;
   padding: 8px 10px;
@@ -23,6 +27,7 @@
   font-size: .95rem;
 }
 
+/* styler markering av option-selectior når den velges med tastatur med "tabbing" */
 .page-size select:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
