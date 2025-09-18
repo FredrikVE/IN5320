@@ -12,7 +12,7 @@
   /* Flater / bakgrunn */
   --bg-app: #f7f7f7;
   --surface: #fff;
-  --surface-alt: #fafafa;   /* sticky header */
+  --table-header-color: #fafafa;   /* kolonneheaderfarge */
   --surface-soft: #fcfcfd;  /* zebra */
 
   /* Border */
