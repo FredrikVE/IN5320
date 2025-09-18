@@ -24,5 +24,5 @@ export default function useContinentFilter() {
     });
   }
 
-  return [ continents, toggleContinent, setContinents ];
+  return [ continents, toggleContinent ];
 }
