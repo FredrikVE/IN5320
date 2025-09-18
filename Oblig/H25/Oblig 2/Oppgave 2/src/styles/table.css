@@ -1,6 +1,6 @@
 /* src/styles/table.css */
 
-/* Wrapper med scroll på små skjermer + subtil ramme */
+/* Wrapper med marging subtil ramme og scroll på små skjermer */
 .table-wrap {
   width: var(--content-w);
   margin: var(--space-4) auto;
@@ -11,8 +11,9 @@
   box-shadow: var(--shadow-sm);
 }
 
-/* Status / tom / feil */
-.table-wrap .table-status,
+
+/* statusfelter loadingstatur, tom-statur eller feilmelding */
+.table-wrap .table-loading-status,
 .table-wrap .table-empty,
 .table-wrap .table-error {
   margin: var(--space-4);
@@ -20,7 +21,7 @@
   text-align: center;
 }
 
-.table-wrap .table-status,
+.table-wrap .table-loading-status,
 .table-wrap .table-empty {
   color: var(--text-muted);
 }
@@ -84,10 +85,12 @@
 }
 
 .th-caret { 
-  opacity: .65; font-size: .85em; 
+  opacity: .65;
+  font-size: .85em; 
 }
 
-/* Høyrejuster numeriske kolonner (3 og 4) */
+/* Verdiene i kolonne (1) og (2) er venstrejustert som standard */
+/* Høyrejuster kolonnenummer (3 og 4) */
 .infoTable td:nth-child(3), 
 .infoTable td:nth-child(4) {
   text-align: right;

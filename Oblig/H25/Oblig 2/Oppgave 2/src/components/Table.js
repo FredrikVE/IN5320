@@ -12,7 +12,7 @@ export default function Table({ rows, loading, error, order, onSort }) {
   if (loading) {
     return (
       <div className="table-wrap">
-        <p className="table-status">Loading…</p>
+        <p className="table-loading-status">Loading…</p>
       </div>
     );
   }
@@ -44,6 +44,7 @@ export default function Table({ rows, loading, error, order, onSort }) {
 
   // Returnerer tabellstruktur
   return (
+    //wrapper tabell i en div for å gi tabellen mer padding
     <div className="table-wrap">
       <table className="infoTable">
         <thead>
