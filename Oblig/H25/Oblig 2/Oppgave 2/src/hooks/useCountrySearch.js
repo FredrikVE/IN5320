@@ -11,7 +11,7 @@
 import { useEffect, useState } from "react";
 import { buildSearchParametersURL } from "../data/urlParameterBuilder";
 
-export function useCountrySearch({ page, pageSize, search, continents, order }) {
+export function useCountrySearch(page, pageSize, search, continents, order) {
   const [searchResults, setSearchResults] = useState([]);
   const [pageCount, setPageCount] = useState(1);
   const [loading, setLoading] = useState(false);
@@ -55,5 +55,6 @@ export function useCountrySearch({ page, pageSize, search, continents, order }) 
 
   }, [page, pageSize, search, continents, order]);    //dependancy array for useEffect()
 
-  return { searchResults, pageCount, loading, error };  // returner literal-objekt med resultater
+  //return { searchResults, pageCount, loading, error };  // returner literal-objekt med resultater
+  return [ searchResults, pageCount, loading, error ]; 
 }

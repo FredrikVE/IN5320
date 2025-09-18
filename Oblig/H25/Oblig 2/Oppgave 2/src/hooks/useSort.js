@@ -1,7 +1,7 @@
 // src/hooks/useSort.js
 import { useState } from "react";
 
-export default function useSort(initialColumnID, initialDirection = "ASC") {
+export default function useSort(initialColumnID, initialDirection) {
   // state for å holde orden på sorteringsrekkefølgen
   const [order, setOrder] = useState({
     columnName: initialColumnID,

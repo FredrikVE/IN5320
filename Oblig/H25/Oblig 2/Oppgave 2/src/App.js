@@ -12,22 +12,12 @@ import useContinentFilter from "./hooks/useContinentFilter";
 export default function App() {
   const [search, setSearch] = useState("");
   const [pageSize, setPageSize] = useState(10);
-
   const [pager, setPager] = useState({ currentPage: 1, pageCount: 1 });
   const [order, toggleSort] = useSort("Country", "ASC");
   const [continents, toggleContinent] = useContinentFilter();
-
-  // Bygg parametre ved å bruke pager.page
-  const params = { 
-    page: pager.currentPage,
-    pageSize, 
-    search, 
-    continents, 
-    order: `${order.columnName}:${order.sortingDirection}` //For eks Country:ASC eller Population:DESC
-  };
-
-  // Hent data og total antall sider
-  const { searchResults, pageCount, loading, error } = useCountrySearch(params);
+  const [searchResults, pageCount, loading, error] = useCountrySearch(
+    pager.currentPage, pageSize, search, continents, `${order.columnName}:${order.sortingDirection}`
+  )
 
   // Synk pageCount fra hook og legg inn i pager-state
   useEffect(() => {
