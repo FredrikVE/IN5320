@@ -1,7 +1,6 @@
-//src/components/SearchBar.js
 import { useState } from "react";
 
-export default function SearchBar( { onSearch } ) {
+export function SearchBar( { onSearch } ) {
 
     // State for å holde på inputverdien mens brukeren skriver
     const [inputValue, setInputValue ] = useState("");

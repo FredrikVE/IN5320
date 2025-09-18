@@ -1,13 +1,12 @@
-// src/App.js
 import { useState } from "react";
-import Table from "./components/Table";
-import SearchBar from "./components/SearchBar";
-import PageSize from "./components/PageSize";
-import Pagination from "./components/Pagination";
+import { Table } from "./components/Table";
+import { SearchBar } from "./components/SearchBar";
+import { PageSize } from "./components/PageSize";
+import { Pagination } from "./components/Pagination";
 import { useCountrySearch } from "./hooks/useCountrySearch";
-import ContinentFilter from "./components/ContinentFilter";
-import useSort from "./hooks/useSort";
-import useContinentFilter from "./hooks/useContinentFilter";
+import { ContinentFilter } from "./components/ContinentFilter";
+import { useSort } from "./hooks/useSort";
+import { useContinentFilter } from "./hooks/useContinentFilter";
 
 export default function App() {
 

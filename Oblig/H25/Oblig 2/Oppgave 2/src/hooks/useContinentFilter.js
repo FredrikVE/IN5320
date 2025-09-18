@@ -1,7 +1,6 @@
-// src/hooks/useContinentFilter.js   // filsti og filnavn
 import { useState } from "react";    // importerer useState-hooken fra React
 
-export default function useContinentFilter() {
+export function useContinentFilter() {
 
   // state-variabel 'continents' intansieres som tom array
   const [continents, setContinents] = useState([]);

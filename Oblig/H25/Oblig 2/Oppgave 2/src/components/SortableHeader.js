@@ -1,5 +1,4 @@
-// src/components/SortableHeader.js
-export default function SortableHeader({ columnKey, headerTitle, columnName, sortingDirection, onSort }) {
+export function SortableHeader({ columnKey, headerTitle, columnName, sortingDirection, onSort }) {
 
   // hvis kolonnenavn er det samme som kolonne key og sorteringsretning er DESC - så peker pil nedover. 
   // Ellers peker pilikon i header oppover.

@@ -1,5 +1,4 @@
-// src/components/Pagination.js
-export default function Pagination({ currentPage, pageCount, onPrev, onNext }) {
+export function Pagination({ currentPage, pageCount, onPrev, onNext }) {
   if (!pageCount) return null; // ikke vis paginering hvis vi ikke har fått noe data fra API
 
   return (

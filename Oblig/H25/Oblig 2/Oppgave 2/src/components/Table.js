@@ -1,12 +1,11 @@
-// src/components/Table.js
-import SortableHeader from "./SortableHeader";
+import { SortableHeader } from "./SortableHeader";
 
 const formatPopulation = new Intl.NumberFormat();
 const formatPopulationGrowth = new Intl.NumberFormat(undefined, {
   maximumFractionDigits: 2,
 });
 
-export default function Table({ rows, loading, error, order, onSort }) {
+export function Table({ rows, loading, error, order, onSort }) {
 
   // Loadingmelding
   if (loading) {

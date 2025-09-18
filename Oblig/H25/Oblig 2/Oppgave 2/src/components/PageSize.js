@@ -1,5 +1,4 @@
-//src/components/PageSize.js
-export default function PageSize({ value, onChange }) {
+export function PageSize({ value, onChange }) {
   return (
     <div className="page-size">
       <label htmlFor="page-size">Results per page:</label>

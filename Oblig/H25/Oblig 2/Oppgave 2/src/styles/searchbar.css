@@ -1,5 +1,3 @@
-/* src/styles/searchbar.css */
-
 /* Søkefelt som helhet */
 .searchbar {
   display: flex;
@@ -69,10 +67,4 @@
 .searchbar button:focus-visible {
   outline: 3px solid var(--accent);
   outline-offset: 2px;
-}
-
-/* Mobil */
-@media (max-width: 420px) {
-  .searchbar { flex-direction: column; align-items: stretch; }
-  .searchbar button { align-self: flex-start; }
 }

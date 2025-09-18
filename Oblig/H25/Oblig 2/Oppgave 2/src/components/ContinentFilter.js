@@ -1,4 +1,3 @@
-//src/components/ContinentFilter.js
 const ALL_CONTINENTS = [
   "Europe",
   "Africa",
@@ -8,7 +7,7 @@ const ALL_CONTINENTS = [
   "Asia"
 ];
 
-export default function ContinentFilter({ selected, onToggle }) {
+export function ContinentFilter({ selected, onToggle }) {
   return (
     // område for checkbokser for kontinenter. Dette er kontinentfilter
     // bruker feildset-tag for å gruppere slik at skjermlesere lettere forstår innholdet.
