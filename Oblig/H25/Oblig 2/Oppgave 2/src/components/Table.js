@@ -7,6 +7,8 @@ const formatPopulationGrowth = new Intl.NumberFormat(undefined, {
 });
 
 export default function Table({ rows, loading, error, order, onSort }) {
+
+  // Loadingmelding
   if (loading) {
     return (
       <div className="table-wrap">
@@ -15,6 +17,7 @@ export default function Table({ rows, loading, error, order, onSort }) {
     );
   }
 
+  // Potensiell error-melding
   if (error) {
     return (
       <div className="table-wrap">
@@ -23,24 +26,25 @@ export default function Table({ rows, loading, error, order, onSort }) {
     );
   }
 
+  // Hvis tabellen er tom viser beskjed om "No results..."
   if (!rows || rows.length === 0) {
     return (
       <div className="table-wrap">
-        <p className="table-empty">No results.</p>
+        <p className="table-empty">No results...</p>
       </div>
     );
   }
 
-  function handleSortClick(e) {
+
+  // Handlefunksjon for klikk i sorteringsheaderknapp
+  const handleSortClick = (e) => {
     const key = e.currentTarget.getAttribute("data-key");
     onSort(key);
   }
 
+  // Returnerer tabellstruktur
   return (
-    <div
-      id="results"
-      className="table-wrap"
-    >
+    <div className="table-wrap">
       <table className="infoTable">
         <thead>
           <tr>

@@ -83,10 +83,12 @@
   outline-offset: 2px;
 }
 
-.th-caret { opacity: .65; font-size: .85em; }
+.th-caret { 
+  opacity: .65; font-size: .85em; 
+}
 
 /* Høyrejuster numeriske kolonner (3 og 4) */
-.infoTable td:nth-child(3),
+.infoTable td:nth-child(3), 
 .infoTable td:nth-child(4) {
   text-align: right;
 }
@@ -97,8 +99,13 @@
 }
 
 /* Zebra + hover + focus */
-.infoTable tbody tr:nth-child(odd)  { background: var(--zebra-color-odd); }
-.infoTable tbody tr:nth-child(even) { background: var(--zebra-color-even); }
+.infoTable tbody tr:nth-child(odd)  { 
+  background: var(--zebra-color-odd); 
+}
+
+.infoTable tbody tr:nth-child(even) { 
+  background: var(--zebra-color-even); 
+}
 
 .infoTable tbody tr:hover { 
   background: var(--hover-soft); 
