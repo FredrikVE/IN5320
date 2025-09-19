@@ -7,7 +7,10 @@ export function useDataSets() {
     const { loading, error, data } = useDataQuery(dataSetsQuery)
 
     useEffect(() => {
-        if (data) console.log("API response:", data)
+        if (data) {
+            console.log("API response:", data)
+        }
+        
     }, [data])
 
     return {
