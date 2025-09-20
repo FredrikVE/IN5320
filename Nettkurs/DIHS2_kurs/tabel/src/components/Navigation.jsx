@@ -1,3 +1,4 @@
+//src/components/Navigation.jsx
 import { Menu, MenuItem } from "@dhis2/ui";
 
 export function Navigation(props) {
