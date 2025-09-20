@@ -30,6 +30,7 @@ export function Browse() {
             </TableHead>
 
             <TableBody>
+                {/* Legg inn innhold i tabellen med .map()*/}
                 {rows.map(row => (
                     <TableRow key={row.id}>
                         <TableCell>{row.displayName}</TableCell>
@@ -38,12 +39,14 @@ export function Browse() {
                     </TableRow>
                 ))}
             </TableBody>
-
+            
+            {/*Table Foot */}
             <TableFoot>
                 <TableRow>
                     <TableCell colSpan="3">Hardkodet eksempel</TableCell>
                 </TableRow>
             </TableFoot>
+
         </Table>
     )
 }
