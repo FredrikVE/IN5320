@@ -10,6 +10,7 @@ export default function DataElementsTable({ elements = [] }) {
   if (!elements.length) return null
   return (
     <Table>
+
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display Name</TableCellHead>
@@ -17,6 +18,7 @@ export default function DataElementsTable({ elements = [] }) {
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>
       </TableHead>
+
       <TableBody>
         {elements.map(e => (
           <TableRow key={e.dataElement.id}>
@@ -28,6 +30,7 @@ export default function DataElementsTable({ elements = [] }) {
           </TableRow>
         ))}
       </TableBody>
+      
     </Table>
   )
 }
