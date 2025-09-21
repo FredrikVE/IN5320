@@ -4,7 +4,7 @@ export const dataSetsQuery = {
         resource: "dataSets",
         params: {
             fields: ["id", "displayName", "created"],
-            paging: false,
+            paging: true,
             order: 'asc:displayName',   // stabil rekkefølge
         },
     },

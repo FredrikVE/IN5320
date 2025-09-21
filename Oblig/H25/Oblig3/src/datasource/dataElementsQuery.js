@@ -4,6 +4,7 @@ export const dataElementsQuery = {
         resource: "dataSets",
         id: ({ id }) => id,
         params: {
+            paging: true,
             fields: [
                 //"id",
                 //'displayName',
