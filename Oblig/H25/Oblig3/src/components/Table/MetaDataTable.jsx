@@ -9,6 +9,7 @@ export default function DatasetMetadataTable({ dataset }) {
   if (!dataset) return null
   return (
     <Table>
+
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display Name</TableCellHead>
@@ -16,6 +17,7 @@ export default function DatasetMetadataTable({ dataset }) {
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>
       </TableHead>
+
       <TableBody>
         <TableRow>
           <TableCell>{dataset.displayName}</TableCell>
@@ -25,6 +27,7 @@ export default function DatasetMetadataTable({ dataset }) {
           </TableCell>
         </TableRow>
       </TableBody>
+      
     </Table>
   )
 }
