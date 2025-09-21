@@ -7,12 +7,12 @@ export default function DatasetsList({ dataSets = [], selectedId, onSelect }) {
     }
     return (
         <Menu>
-            {dataSets.map((ds) => (
+            {dataSets.map((dataSet) => (
                 <MenuItem
-                    key={ds.id}
-                    label={ds.displayName}
-                    active={ds.id === selectedId}
-                    onClick={() => onSelect?.(ds)}
+                    key={dataSet.id}
+                    label={dataSet.displayName}
+                    active={dataSet.id === selectedId}
+                    onClick={() => onSelect?.(dataSet)}
                 />
             ))}
         </Menu>
