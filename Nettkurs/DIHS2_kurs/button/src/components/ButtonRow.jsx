@@ -17,5 +17,5 @@ export default function ButtonRow({ onSelect }) {
                 Destructive button
             </Button>
         </div>
-    )
+    );
 }
