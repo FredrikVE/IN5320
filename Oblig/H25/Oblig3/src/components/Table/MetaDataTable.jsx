@@ -6,28 +6,29 @@ import {
 import { formatDateTime } from "../../utils/formatDate"
 
 export default function DatasetMetadataTable({ dataset }) {
-  if (!dataset) return null
-  return (
-    <Table>
+  if (dataset) {
+    return (
+      <Table>
 
-      <TableHead>
-        <TableRowHead>
-          <TableCellHead>Display Name</TableCellHead>
-          <TableCellHead>ID</TableCellHead>
-          <TableCellHead>Created</TableCellHead>
-        </TableRowHead>
-      </TableHead>
+        <TableHead>
+          <TableRowHead>
+            <TableCellHead>Display Name</TableCellHead>
+            <TableCellHead>ID</TableCellHead>
+            <TableCellHead>Created</TableCellHead>
+          </TableRowHead>
+        </TableHead>
 
-      <TableBody>
-        <TableRow>
-          <TableCell>{dataset.displayName}</TableCell>
-          <TableCell>{dataset.id}</TableCell>
-          <TableCell>
-            {formatDateTime(dataset.created)}
-          </TableCell>
-        </TableRow>
-      </TableBody>
-      
-    </Table>
-  )
+        <TableBody>
+          <TableRow>
+            <TableCell>{dataset.displayName}</TableCell>
+            <TableCell>{dataset.id}</TableCell>
+            <TableCell>
+              {formatDateTime(dataset.created)}
+            </TableCell>
+          </TableRow>
+        </TableBody>
+        
+      </Table>
+    )
+  }
 }

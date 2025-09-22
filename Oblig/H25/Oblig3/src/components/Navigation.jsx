@@ -1,10 +1,9 @@
-// src/components/Navigation.jsx
+//src/components/Navigation.jsx
 import { TabBar, Tab } from "@dhis2/ui"
-import styles from "../styles/navigation.module.css"
 
 export default function Navigation({ current, setCurrent }) {
     return (
-        <div className={styles.stickyTabs}>
+        <div>
             <TabBar>
                 <Tab selected={current === "datasets"} onClick={() => setCurrent("datasets")}>Datasets</Tab>
                 <Tab selected={current === "browse"} onClick={() => setCurrent("browse")}>Browse</Tab>

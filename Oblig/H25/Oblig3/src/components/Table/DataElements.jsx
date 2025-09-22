@@ -6,31 +6,32 @@ import {
 
 import { formatDateTime } from "../../utils/formatDate"
 
-export default function DataElementsTable({ elements = [] }) {
-  if (!elements.length) return null
-  return (
-    <Table>
+export default function DatasetSummaryTable({ elements = [] }) {
+  if (elements.length) {
+    return (
+      <Table>
 
-      <TableHead>
-        <TableRowHead>
-          <TableCellHead>Display Name</TableCellHead>
-          <TableCellHead>ID</TableCellHead>
-          <TableCellHead>Created</TableCellHead>
-        </TableRowHead>
-      </TableHead>
+        <TableHead>
+          <TableRowHead>
+            <TableCellHead>Display Name</TableCellHead>
+            <TableCellHead>ID</TableCellHead>
+            <TableCellHead>Created</TableCellHead>
+          </TableRowHead>
+        </TableHead>
 
-      <TableBody>
-        {elements.map(e => (
-          <TableRow key={e.dataElement.id}>
-            <TableCell>{e.dataElement.displayName}</TableCell>
-            <TableCell>{e.dataElement.id}</TableCell>
-            <TableCell>
-              {formatDateTime(e.dataElement.created)}
-            </TableCell>
-          </TableRow>
-        ))}
-      </TableBody>
-      
-    </Table>
-  )
+        <TableBody>
+          {elements.map(element => (
+            <TableRow key={element.dataElement.id}>
+              <TableCell>{element.dataElement.displayName}</TableCell>
+              <TableCell>{element.dataElement.id}</TableCell>
+              <TableCell>
+                {formatDateTime(element.dataElement.created)}
+              </TableCell>
+            </TableRow>
+          ))}
+        </TableBody>
+        
+      </Table>
+    )
+  }
 }
