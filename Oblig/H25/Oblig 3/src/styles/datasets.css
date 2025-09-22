@@ -10,9 +10,18 @@
 }
 
 .rightPane { 
-  min-width: 0; 
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.cardBody { 
-  padding: 16px; 
+
+.general-dataset-information {
+  padding: 20px;
+
+ }
+
+.dataset-content { 
+  padding: 20px;
+
 }

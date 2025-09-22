@@ -20,7 +20,7 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(TABS.DATASETS)
 
   return (
-    <div className="container">
+    <div className="app-container">
 
       <div className="page">
         <Navigation

@@ -4,6 +4,7 @@ import { CircularLoader, NoticeBox, Card } from "@dhis2/ui"
 import { useDataSets } from "../hooks/useDataSets"
 import DatasetsList from "../components/DatasetsList"
 import DatasetDetailsTable from "../components/DatasetDetailsTable"
+import DataElementsTable from "../components/DataElementsTable"
 
 export default function Datasets() {
   const { loading, error, list } = useDataSets()
@@ -42,11 +43,16 @@ export default function Datasets() {
         </div>
 
         <div className="rightPane">
-          <Card>
-            <div className="cardBody">
-              {selected && <DatasetDetailsTable dataset={selected} />}
-            </div>
+          <Card className="general-dataset-information">
+            <h2>General dataset information</h2>
+            {selected && <DatasetDetailsTable dataset={selected} />}
           </Card>
+
+          <Card className="dataset-content">
+            <h2>Elements in dataset</h2>
+            {selected && <DataElementsTable dataSetId={selected.id} />}
+          </Card>
+
         </div>
       </div>
     </div>
