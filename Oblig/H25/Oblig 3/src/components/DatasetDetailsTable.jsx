@@ -11,6 +11,7 @@ export default function DatasetDetailsTable({ dataset }) {
 
   return (
     <Table>
+
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
@@ -18,6 +19,7 @@ export default function DatasetDetailsTable({ dataset }) {
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>
       </TableHead>
+
       <TableBody>
         <TableRow>
           <TableCell>{displayName}</TableCell>
@@ -25,6 +27,7 @@ export default function DatasetDetailsTable({ dataset }) {
           <TableCell>{new Date(created).toLocaleString()}</TableCell>
         </TableRow>
       </TableBody>
+      
     </Table>
   )
 }
