@@ -4,7 +4,8 @@ export const metaDataElementsQuery = {
         resource: "dataSets",
         id: ({ id }) => id,
         params: {
-            paging: true,
+            //paging: true,
+            //order: "asc:displayName",
             fields: [
                 //"id",
                 //'displayName',
