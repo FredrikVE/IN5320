@@ -16,8 +16,13 @@ export default function Datasets() {
     }
   }, [list, selectedId])
 
-  if (loading) return <CircularLoader />
-  if (error)   return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
+  if (loading){
+    return <CircularLoader />
+  }
+
+  if (error) {
+    return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
+  }
 
   const selected = list.find(d => d.id === selectedId) || null
 
