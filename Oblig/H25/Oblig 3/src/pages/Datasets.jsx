@@ -14,7 +14,9 @@ export default function Datasets() {
     if (!selectedId && list.length) {
       setSelectedId(list[0].id)
     }
-  }, [list, selectedId])
+  }, 
+    [list, selectedId]
+  )
 
   if (loading){
     return <CircularLoader />
