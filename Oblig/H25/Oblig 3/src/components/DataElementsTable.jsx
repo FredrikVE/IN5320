@@ -10,22 +10,28 @@ export default function DataElementsTable({ dataSetId }) {
     { variables: { id: "" }, lazy: true }
   )
 
-  // re-run når id endrer seg (oppgavetekstens forventning)
+  // re-run når id endrer seg slik oppgaven ber om
   useEffect(() => {
     if (dataSetId) {
         refetch({ id: dataSetId }).catch(() => {})
     }
   }, [dataSetId, refetch])
 
-  if (!dataSetId) return null
-  if (loading && !data) return <CircularLoader />
-  if (error) return <span>Feil: {error.message}</span>
+  if (loading && !data) {
+    return <CircularLoader />
+
+  }
+
+  if (error) {
+    return <span>Feil: {error.message}</span>
+  }
 
   const elements = data?.dataSet?.dataSetElements?.map(x => x.dataElement) ?? []
   if (!elements.length) return <span>Ingen data elements.</span>
 
   return (
     <Table>
+
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
@@ -33,6 +39,7 @@ export default function DataElementsTable({ dataSetId }) {
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>
       </TableHead>
+
       <TableBody>
         {elements.map(el => (
           <TableRow key={el.id}>
@@ -42,6 +49,7 @@ export default function DataElementsTable({ dataSetId }) {
           </TableRow>
         ))}
       </TableBody>
+      
     </Table>
   )
 }

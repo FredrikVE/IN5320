@@ -6,16 +6,14 @@ import { dataSetsQuery } from "../data/dataSetsQueries"
 export function useDataSets() {
   const { data, loading, error } = useDataQuery(dataSetsQuery)
 
-  // Oppgaven ber om å console.log() returdataene
   useEffect(() => {
     if (data) {
-      // Merk: data.dataSets er API-svaret, som igjen har en "dataSets"-liste
-      // dvs: arrayen ligger på data.dataSets.dataSets
-      console.log("DHIS2 /dataSets response:", data)
+      // skriver ut API-respons til consoll slik oppgaven ber om
+      console.log("API-response", data);
     }
-  }, [data])
+  }, [data]);
 
   const list = data?.dataSets?.dataSets ?? []
 
-  return { loading, error, list }
+  return { loading, error, list } // returnerer data fra API
 }

@@ -1,10 +1,10 @@
 /* src/styles/datasets.css */
 
-/* To kolonner uten at noe strekkes i høyden */
+/* Orgnaiserer layout i to kolonner */
 .layout {
   display: flex;
   gap: 16px;
-  align-items: flex-start;   /* <- nøkkel: ikke strekk kolonnene i høyden */
+  align-items: flex-start;
 }
 
 .leftPane { 
@@ -13,14 +13,19 @@
 
 .rightPane { 
   flex: 1 1 auto; 
-  display: block; /* <- IKKE flex her */
+  display: block; /* Setter display til block her for å ikke flexe i dette tilfellet  */
 }  
+
+h2 {
+  margin-top: 0;
+}
 
 /* Litt luft mellom kortene i høyre kolonne */
 .general-dataset-information,
 .dataset-content { 
   margin-top: 16px; 
 }
+
 
 .general-dataset-information { 
   margin-top: 0; 
