@@ -9,6 +9,7 @@ export default function Datasets() {
   const { loading, error, list } = useDataSets()
   const [selectedId, setSelectedId] = useState(null)
 
+  // Auto-velg første dataset når lista er klar
   useEffect(() => {
     if (!selectedId && list.length) {
       setSelectedId(list[0].id)

@@ -1,19 +1,16 @@
 // src/components/DatasetsList.jsx
-import { Menu, MenuItem, NoticeBox } from "@dhis2/ui"
+import { Menu, MenuItem } from "@dhis2/ui"
 
-export default function DatasetsList({ items = [], selectedId, onSelect }) {
-  if (!items.length) {
-    return <NoticeBox title="Ingen data">Fant ingen datasets.</NoticeBox>
-  }
+export default function DatasetsList({ items, selectedId, onSelect }) {
 
   return (
     <Menu>
-      {items.map(ds => (
+      {items.map(dataset => (
         <MenuItem
-          key={ds.id}
-          label={ds.displayName}
-          active={ds.id === selectedId}
-          onClick={() => onSelect?.(ds)}
+          key={dataset.id}
+          label={dataset.displayName}
+          active={dataset.id === selectedId}
+          onClick={() => onSelect?.(dataset)}
         />
       ))}
     </Menu>
