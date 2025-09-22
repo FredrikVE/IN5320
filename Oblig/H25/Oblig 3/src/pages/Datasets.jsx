@@ -3,8 +3,8 @@ import { useState, useEffect } from "react"
 import { CircularLoader, NoticeBox, Card } from "@dhis2/ui"
 import { useDataSets } from "../hooks/useDataSets"
 import DatasetsList from "../components/DatasetsList"
-import DatasetDetailsTable from "../components/DatasetDetailsTable"
-import DataElementsTable from "../components/DataElementsTable"
+import GeneralDatasetInfoTable from "../components/GeneralDatasetInfoTable"
+import ElementsInDataSetTable from "../components/ElementsInDataSetTable"
 
 export default function Datasets() {
   const { loading, error, list } = useDataSets();
@@ -43,17 +43,14 @@ export default function Datasets() {
         <div className="rightPane">
           <Card className="general-dataset-information">
             <h2>General dataset information</h2>
-            {selected && <DatasetDetailsTable dataset={selected} />}
+            {selected && <GeneralDatasetInfoTable dataset={selected} />}
           </Card>
 
           <Card className="dataset-content">
             <h2>Elements in dataset</h2>
-            {selected && <DataElementsTable dataSetId={selected.id} />}
+            {selected && <ElementsInDataSetTable dataSetId={selected.id} />}
           </Card>
         </div>
-
-
-
       </div>
     </div>
   );

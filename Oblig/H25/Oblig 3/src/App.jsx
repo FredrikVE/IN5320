@@ -33,7 +33,6 @@ export default function App() {
         {activeTab === TABS.INSERT   && <Insert />}
       </Suspense>
 
-   
     </div>
   )
 }

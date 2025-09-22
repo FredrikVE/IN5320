@@ -4,7 +4,7 @@ import { useDataQuery } from "@dhis2/app-runtime"
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, CircularLoader } from "@dhis2/ui"
 import { dataElementsByDataSetQuery } from "../data/dataElementsByDataSetQuery"
 
-export default function DataElementsTable({ dataSetId }) {
+export default function ElementsInDataSetTable({ dataSetId }) {
   const { data, loading, error, refetch } = useDataQuery(
     dataElementsByDataSetQuery,
     { variables: { id: "" }, lazy: true }
@@ -49,7 +49,7 @@ export default function DataElementsTable({ dataSetId }) {
           </TableRow>
         ))}
       </TableBody>
-      
+
     </Table>
   )
 }
