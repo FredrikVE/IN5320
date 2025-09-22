@@ -24,7 +24,7 @@ export default function Datasets() {
     return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
   }
 
-  const selected = list.find(d => d.id === selectedId) || null
+  const selected = list.find(dataset => dataset.id === selectedId) || null
 
   return (
     <div>
