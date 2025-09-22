@@ -1,5 +1,5 @@
 //src/datasource/dataElementsQuery.js
-export const dataElementsQuery = {
+export const metaDataElementsQuery = {
     dataSet: {
         resource: "dataSets",
         id: ({ id }) => id,
@@ -8,7 +8,7 @@ export const dataElementsQuery = {
             fields: [
                 //"id",
                 //'displayName',
-                'created',
+                //'created',
                 "dataSetElements[dataElement[id,displayName,created]]"
             ],
         },

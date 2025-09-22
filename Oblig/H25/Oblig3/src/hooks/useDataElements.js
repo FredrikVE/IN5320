@@ -1,10 +1,10 @@
 // src/hooks/useDataElements.js
 import { useEffect } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
-import { dataElementsQuery } from "../datasource/dataElementsQuery"
+import { metaDataElementsQuery } from "../datasource/dataElementsQuery"
 
 export function useDataElements(dataSetId) {
-    const { data, loading, error, refetch } = useDataQuery(dataElementsQuery, {
+    const { data, loading, error, refetch } = useDataQuery(metaDataElementsQuery, {
         variables: { id: "" }, // dummy ved init
         lazy: true,
     })
