@@ -1,0 +1,14 @@
+/* src/styles/datasets.css */
+.split {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
+}
+
+.sidebar {
+  min-width: 240px;
+}
+
+.content {
+  min-width: 0;
+}

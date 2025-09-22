@@ -4,7 +4,9 @@ import Navigation from "./components/Navigation.jsx"
 import Browse from "./pages/Browse.jsx"
 import Insert from "./pages/Insert.jsx"
 import Datasets from "./pages/Datasets.jsx"
+
 import "./styles/App.module.css"
+import "./styles/datasets.css"
 
 const TABS = {
   BROWSE: "browse",
