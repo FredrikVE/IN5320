@@ -4,8 +4,6 @@ import {
   TableBody, TableRow, TableCell
 } from "@dhis2/ui"
 
-//import "../styles/datasets.css"
-
 export default function DatasetDetailsTable({ dataset }) {
   if (!dataset) return null
 
