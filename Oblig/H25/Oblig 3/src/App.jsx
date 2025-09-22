@@ -1,10 +1,12 @@
 // src/App.jsx
-import { useState } from "react"
+import { Suspense, useState } from "react"
+import { Center, CircularLoader } from "@dhis2/ui"
 import Navigation from "./components/Navigation.jsx"
 import Browse from "./pages/Browse.jsx"
 import Insert from "./pages/Insert.jsx"
 import Datasets from "./pages/Datasets.jsx"
 
+// Global CSS én gang her (som du ønsker)
 import "./styles/App.module.css"
 import "./styles/datasets.css"
 
@@ -15,23 +17,26 @@ const TABS = {
 }
 
 export default function App() {
-  const [activeTab, setActiveTab] = useState(TABS.BROWSE)
+  const [activeTab, setActiveTab] = useState(TABS.DATASETS)
 
   return (
-    <div className="app">
-      <aside className="sidebar">
+    <div className="container">
+
+      <div className="page">
         <Navigation
           activeTab={activeTab}
           onChangeTab={setActiveTab}
           TABS={TABS}
         />
-      </aside>
 
-      <main className="content">
-        {activeTab === TABS.BROWSE   && <Browse />}
-        {activeTab === TABS.INSERT   && <Insert />}
-        {activeTab === TABS.DATASETS && <Datasets />}
-      </main>
+        <Suspense fallback={
+          <Center><CircularLoader /></Center>}>
+          {activeTab === TABS.DATASETS && <Datasets />}
+          {activeTab === TABS.BROWSE   && <Browse />}
+          {activeTab === TABS.INSERT   && <Insert />}
+        </Suspense>
+
+      </div>
     </div>
   )
 }

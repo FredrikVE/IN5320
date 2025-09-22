@@ -1,6 +1,5 @@
 // src/pages/Datasets.jsx
-import { useState } from "react"
-//import { CircularLoader, NoticeBox, Card, CardBody } from "@dhis2/ui"
+import { useState, useEffect } from "react"
 import { CircularLoader, NoticeBox, Card } from "@dhis2/ui"
 import { useDataSets } from "../hooks/useDataSets"
 import DatasetsList from "../components/DatasetsList"
@@ -10,42 +9,42 @@ export default function Datasets() {
   const { loading, error, list } = useDataSets()
   const [selectedId, setSelectedId] = useState(null)
 
+  useEffect(() => {
+    if (!selectedId && list.length) {
+      setSelectedId(list[0].id)
+    }
+  }, [list, selectedId])
+
   if (loading) return <CircularLoader />
   if (error)   return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
 
   const selected = list.find(d => d.id === selectedId) || null
 
   return (
-    <>
+    <div>
       <h1>Datasets</h1>
 
-      <div className="split">
-        <aside className="sidebar">
+      <div className="layout">
+        <div className="leftPane">
           <Card>
-
+            <div className="cardBody">
               <DatasetsList
                 items={list}
                 selectedId={selectedId}
                 onSelect={(ds) => setSelectedId(ds.id)}
               />
-
+            </div>
           </Card>
-        </aside>
+        </div>
 
-        <section className="content">
+        <div className="rightPane">
           <Card>
-         
-              {!selected ? (
-                <NoticeBox title="Velg et dataset">
-                  Klikk i listen til venstre for å vise detaljer.
-                </NoticeBox>
-              ) : (
-                <DatasetDetailsTable dataset={selected} />
-              )}
-    
+            <div className="cardBody">
+              <DatasetDetailsTable dataset={selected} />
+            </div>
           </Card>
-        </section>
+        </div>
       </div>
-    </>
+    </div>
   )
 }
