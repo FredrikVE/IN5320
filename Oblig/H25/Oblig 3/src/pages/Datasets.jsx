@@ -7,23 +7,23 @@ import DatasetDetailsTable from "../components/DatasetDetailsTable"
 import DataElementsTable from "../components/DataElementsTable"
 
 export default function Datasets() {
-  const { loading, error, list } = useDataSets()
-  const [ selected, setSelected ] = useState(null) // <- holder hele objektet
+  const { loading, error, list } = useDataSets();
+  const [ selected, setSelected ] = useState(null);
 
   // autovelg første når lista er klar
   useEffect(() => {
     if (!selected && list.length) {
       setSelected(list[0])
     }
-  }, [list, selected])
+  }, [list, selected]);
 
   if (loading) { 
     return <CircularLoader /> 
-  }
+  };
 
   if (error) {
     return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
-  }
+  };
 
   return (
     <div>
@@ -56,5 +56,5 @@ export default function Datasets() {
         </div>
       </div>
     </div>
-  )
+  );
 }

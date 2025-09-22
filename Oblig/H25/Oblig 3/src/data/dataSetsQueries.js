@@ -1,4 +1,4 @@
-// src/data/queries.js
+// src/data/dataSetsQueries.js
 export const dataSetsQuery = {
   dataSets: {
     resource: "dataSets",

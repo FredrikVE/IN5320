@@ -1,27 +1,16 @@
 /* src/styles/datasets.css */
-.layout { 
-  display: grid; 
-  grid-template-columns: 280px 1fr; 
-  gap: 16px; 
+.layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 16px;
 }
 
-.leftPane { 
-  min-width: 240px; 
-}
-
-.rightPane { 
+.rightPane {
   display: flex;
   flex-direction: column;
   gap: 16px;
 }
 
-
-.general-dataset-information {
+.section {
   padding: 20px;
-
- }
-
-.dataset-content { 
-  padding: 20px;
-
 }

@@ -1,4 +1,4 @@
-// NY: data elements for ett dataset
+//src/data/dataElementsByDataSetQuery.js
 export const dataElementsByDataSetQuery = {
   dataSet: {
     resource: "dataSets",

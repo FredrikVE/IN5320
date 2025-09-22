@@ -1,7 +1,7 @@
 // src/hooks/useDataSets.js
 import { useEffect } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
-import { dataSetsQuery } from "../data/queries"
+import { dataSetsQuery } from "../data/dataSetsQueries"
 
 export function useDataSets() {
   const { data, loading, error } = useDataQuery(dataSetsQuery)

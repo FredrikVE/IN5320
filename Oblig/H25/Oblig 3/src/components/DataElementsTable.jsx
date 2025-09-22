@@ -1,10 +1,7 @@
 // src/components/DataElementsTable.jsx
 import { useEffect } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
-import {
-  Table, TableHead, TableRowHead, TableCellHead,
-  TableBody, TableRow, TableCell, CircularLoader
-} from "@dhis2/ui"
+import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, CircularLoader } from "@dhis2/ui"
 import { dataElementsByDataSetQuery } from "../data/dataElementsByDataSetQuery"
 
 export default function DataElementsTable({ dataSetId }) {

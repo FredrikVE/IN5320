@@ -6,8 +6,7 @@ import Browse from "./pages/Browse.jsx"
 import Insert from "./pages/Insert.jsx"
 import Datasets from "./pages/Datasets.jsx"
 
-// Global CSS én gang her (som du ønsker)
-import "./styles/App.module.css"
+import "./styles/App.css"
 import "./styles/datasets.css"
 
 const TABS = {
@@ -20,23 +19,21 @@ export default function App() {
   const [activeTab, setActiveTab] = useState(TABS.DATASETS)
 
   return (
-    <div className="app-container">
+    <div className="app">
+      <Navigation
+        activeTab={activeTab}
+        onChangeTab={setActiveTab}
+        TABS={TABS}
+      />
 
-      <div className="page">
-        <Navigation
-          activeTab={activeTab}
-          onChangeTab={setActiveTab}
-          TABS={TABS}
-        />
+      <Suspense 
+        fallback={<Center><CircularLoader /></Center>}>
+        {activeTab === TABS.DATASETS && <Datasets />}
+        {activeTab === TABS.BROWSE   && <Browse />}
+        {activeTab === TABS.INSERT   && <Insert />}
+      </Suspense>
 
-        <Suspense fallback={
-          <Center><CircularLoader /></Center>}>
-          {activeTab === TABS.DATASETS && <Datasets />}
-          {activeTab === TABS.BROWSE   && <Browse />}
-          {activeTab === TABS.INSERT   && <Insert />}
-        </Suspense>
-
-      </div>
+   
     </div>
   )
 }
