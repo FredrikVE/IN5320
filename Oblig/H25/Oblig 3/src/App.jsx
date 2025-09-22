@@ -1,33 +1,35 @@
-import { useDataQuery } from '@dhis2/app-runtime'
-import i18n from '@dhis2/d2-i18n'
-import React from 'react'
-import classes from './App.module.css'
-// './locales' will be populated after running start or build scripts
-import './locales'
+// src/App.jsx
+import { useState } from "react"
+import Navigation from "./components/Navigation.jsx"
+import Browse from "./pages/Browse.jsx"
+import Insert from "./pages/Insert.jsx"
+import Datasets from "./pages/Datasets.jsx"
+import "./styles/App.module.css"
 
-const query = {
-    me: {
-        resource: 'me',
-    },
+const TABS = {
+  BROWSE: "browse",
+  INSERT: "insert",
+  DATASETS: "datasets",
 }
 
-const MyApp = () => {
-    const { error, loading, data } = useDataQuery(query)
+export default function App() {
+  const [activeTab, setActiveTab] = useState(TABS.BROWSE)
 
-    if (error) {
-        return <span>{i18n.t('ERROR')}</span>
-    }
+  return (
+    <div className="app">
+      <aside className="sidebar">
+        <Navigation
+          activeTab={activeTab}
+          onChangeTab={setActiveTab}
+          TABS={TABS}
+        />
+      </aside>
 
-    if (loading) {
-        return <span>{i18n.t('Loading...')}</span>
-    }
-
-    return (
-        <div className={classes.container}>
-            <h1>{i18n.t('Hello {{name}}', { name: data.me.name })}</h1>
-            <h3>{i18n.t('Welcome to DHIS2!')}</h3>
-        </div>
-    )
+      <main className="content">
+        {activeTab === TABS.BROWSE   && <Browse />}
+        {activeTab === TABS.INSERT   && <Insert />}
+        {activeTab === TABS.DATASETS && <Datasets />}
+      </main>
+    </div>
+  )
 }
-
-export default MyApp
