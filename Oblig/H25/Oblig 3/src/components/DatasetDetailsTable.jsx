@@ -5,8 +5,7 @@ import {
 } from "@dhis2/ui"
 
 export default function DatasetDetailsTable({ dataset }) {
-  if (!dataset) return null
-
+ 
   const { displayName, id, created } = dataset
 
   return (

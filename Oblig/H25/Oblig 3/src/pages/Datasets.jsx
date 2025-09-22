@@ -7,26 +7,22 @@ import DatasetDetailsTable from "../components/DatasetDetailsTable"
 
 export default function Datasets() {
   const { loading, error, list } = useDataSets()
-  const [selectedId, setSelectedId] = useState(null)
+  const [ selected, setSelected ] = useState(null) // <- holder hele objektet
 
-  // Auto-velg første dataset når lista er klar
+  // autovelg første når lista er klar
   useEffect(() => {
-    if (!selectedId && list.length) {
-      setSelectedId(list[0].id)
+    if (!selected && list.length) {
+      setSelected(list[0])
     }
-  }, 
-    [list, selectedId]
-  )
+  }, [list, selected])
 
-  if (loading){
-    return <CircularLoader />
+  if (loading) { 
+    return <CircularLoader /> 
   }
 
   if (error) {
     return <NoticeBox error title="Feil ved henting">{error.message}</NoticeBox>
   }
-
-  const selected = list.find(dataset => dataset.id === selectedId) || null
 
   return (
     <div>
@@ -38,8 +34,8 @@ export default function Datasets() {
             <div className="cardBody">
               <DatasetsList
                 items={list}
-                selectedId={selectedId}
-                onSelect={(ds) => setSelectedId(ds.id)}
+                selectedId={selected?.id ?? null}
+                onSelect={(dataset) => setSelected(dataset)}
               />
             </div>
           </Card>
@@ -48,7 +44,7 @@ export default function Datasets() {
         <div className="rightPane">
           <Card>
             <div className="cardBody">
-              <DatasetDetailsTable dataset={selected} />
+              {selected && <DatasetDetailsTable dataset={selected} />}
             </div>
           </Card>
         </div>
