@@ -1,16 +1,27 @@
 /* src/styles/datasets.css */
+
+/* To kolonner uten at noe strekkes i høyden */
 .layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 16px;
-}
-
-.rightPane {
   display: flex;
-  flex-direction: column;
   gap: 16px;
+  align-items: flex-start;   /* <- nøkkel: ikke strekk kolonnene i høyden */
 }
 
-.section {
-  padding: 20px;
+.leftPane { 
+  flex: 0 0 clamp(200px, 24vw, 320px); 
+}
+
+.rightPane { 
+  flex: 1 1 auto; 
+  display: block; /* <- IKKE flex her */
+}  
+
+/* Litt luft mellom kortene i høyre kolonne */
+.general-dataset-information,
+.dataset-content { 
+  margin-top: 16px; 
+}
+
+.general-dataset-information { 
+  margin-top: 0; 
 }

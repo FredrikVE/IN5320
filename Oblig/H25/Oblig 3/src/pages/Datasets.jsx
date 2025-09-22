@@ -32,13 +32,11 @@ export default function Datasets() {
       <div className="layout">
         <div className="leftPane">
           <Card>
-            <div className="cardBody">
-              <DatasetsList
-                items={list}
-                selectedId={selected?.id ?? null}
-                onSelect={(dataset) => setSelected(dataset)}
-              />
-            </div>
+            <DatasetsList
+              items={list}
+              selectedId={selected?.id ?? null}
+              onSelect={(dataset) => setSelected(dataset)}
+            />
           </Card>
         </div>
 
@@ -52,8 +50,10 @@ export default function Datasets() {
             <h2>Elements in dataset</h2>
             {selected && <DataElementsTable dataSetId={selected.id} />}
           </Card>
-
         </div>
+
+
+
       </div>
     </div>
   );
