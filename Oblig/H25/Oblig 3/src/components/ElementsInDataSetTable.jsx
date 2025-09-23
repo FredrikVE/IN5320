@@ -18,9 +18,11 @@ export default function ElementsInDataSetTable({ dataSetId }) {
     return <NoticeBox title="Ingen dataelementer">Dette datasettet har ingen elementer....</NoticeBox>
   }
 
+  // returner et tabell-element per data-element i datasettet
   return (
     <Table>
 
+      {/* Tabell overskrifter */}
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
@@ -29,6 +31,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
         </TableRowHead>
       </TableHead>
 
+      {/* Tabellinnhold per rad */}
       <TableBody>
         {datasetElements.map(element => (
           <TableRow key={element.id}>
