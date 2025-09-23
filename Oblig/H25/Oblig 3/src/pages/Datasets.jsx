@@ -10,10 +10,10 @@ export default function Datasets() {
   const { loading, error, list } = useDataSets();
   const [ selected, setSelected ] = useState(null);
 
-  // autovelg første når lista er klar
+  
   useEffect(() => {
-    if (!selected && list.length) {
-      setSelected(list[0])
+    if (!selected && list.length) {   // hvis ingenting er valgt fra før og lista finnes
+      setSelected(list[0])            // Vises første dataset i rigth-pane når datasettene er lastet inn
     }
     }, [list]);
 
