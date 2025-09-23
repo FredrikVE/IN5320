@@ -2,7 +2,7 @@ import { useDataQuery } from '@dhis2/app-runtime'
 import { dataQuery } from '../data/queries'
 import { CircularLoader } from '@dhis2/ui'
 
-import { Table, TableBody, TableCell, TableCellHead, TableFoot, TableHead, TableRow, TableRowHead } from '@dhis2/ui'
+import { Table, TableBody, TableCell, TableCellHead, TableHead, TableRow, TableRowHead } from '@dhis2/ui'
 
 function mergeData(data) {
     return data.dataSets.dataSetElements.map(d => {

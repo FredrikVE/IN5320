@@ -7,4 +7,7 @@ export const dataSetsQuery = {
       paging: false,
     },
   },
+
+  //inn for datavalues
+  //bruk videre mergeData-funksjon
 }
