@@ -8,7 +8,10 @@
 }
 
 .leftPane { 
-  flex: 0 0 clamp(200px, 24vw, 320px); 
+  flex: 0 0 clamp(200px, 24vw, 320px);
+  overflow: scroll;                     /* Legg inn scrollbar */
+  scrollbar-width: thin;
+  max-height: 100vh;
 }
 
 .rightPane { 
