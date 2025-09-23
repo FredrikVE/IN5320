@@ -6,19 +6,24 @@ import Browse from "./pages/Browse.jsx"
 import Insert from "./pages/Insert.jsx"
 import Datasets from "./pages/Datasets.jsx"
 
+// Importerer css-filer
 import "./styles/App.css"
 import "./styles/datasets.css"
 
+// Objekt med navigasjonselementer
 const TABS = {
   BROWSE: "browse",
   INSERT: "insert",
   DATASETS: "datasets",
 }
 
+
+// App() fungerer som en main()
 export default function App() {
   const [activeTab, setActiveTab] = useState(TABS.DATASETS)
 
   return (
+    // legger appen som helhet inn i en div-wrapper for å gi alt litt padding i App.css
     <div className="app">
       <Navigation
         activeTab={activeTab}
@@ -26,6 +31,7 @@ export default function App() {
         TABS={TABS}
       />
 
+      {/* Suspense som setter circularloader frem til navigasjons-tab velges. */}
       <Suspense 
         fallback={<Center><CircularLoader /></Center>}>
         {activeTab === TABS.DATASETS && <Datasets />}

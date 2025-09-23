@@ -8,15 +8,17 @@ export function useDataElementsByDataSet(dataSetId) {
     const queryOptions = { variables: { id: dataSetId}, lazy: true };
     const { data, loading, error, refetch } = useDataQuery(dataElementsByDataSetQuery, queryOptions);
     
-    // step 7: refetch når id endres pga velding av nytt datasett i margen
+    // step 7: useEffect som refetcher når id endres pga valg av nytt datasett i marg-menyen
     useEffect(() => {
         if (dataSetId) {
-            refetch({ id: dataSetId })
+            refetch({ id: dataSetId });
         }
-    }, [dataSetId, refetch])
+    }, [dataSetId, refetch]);
     
     // nullsjekk og tom standardliste for å håndtere lazy/første render
-    const datasetElements = (data?.dataSet?.dataSetElements || []).map(dse => dse.dataElement)
+    const datasetElements = (data?.dataSet?.dataSetElements || []).map(
+        dataset => dataset.dataElement
+    );
         
-    return { loading, error, datasetElements }
+    return { loading, error, datasetElements };
 }

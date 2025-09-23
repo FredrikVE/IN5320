@@ -3,6 +3,7 @@ import { Menu, MenuItem } from "@dhis2/ui"
 
 export default function DatasetsList({ items, selectedId, onSelect }) {
 
+  // Return en meny med meny-elementer for hvert datasett.
   return (
     <Menu>
       {items.map(dataset => (
@@ -14,5 +15,5 @@ export default function DatasetsList({ items, selectedId, onSelect }) {
         />
       ))}
     </Menu>
-  )
+  );
 }
