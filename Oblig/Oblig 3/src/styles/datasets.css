@@ -1,6 +1,4 @@
-/* src/styles/datasets.css */
-
-/* Orgnaiserer layout i to kolonner */
+/* Orgnaiserer layout i to kolonner for venstre scrollmeny og hovedinnhold på høyre side */
 .layout {
   display: flex;
   gap: 16px;
@@ -11,7 +9,7 @@
   flex: 0 0 clamp(200px, 24vw, 320px);
   overflow: scroll;                     /* Legg inn scrollbar */
   scrollbar-width: thin;
-  max-height: 100vh;
+  max-height: 100vh;                  /*fyll hele høyden*/
 }
 
 .rightPane { 
