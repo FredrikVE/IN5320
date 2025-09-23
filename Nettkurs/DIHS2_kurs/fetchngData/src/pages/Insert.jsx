@@ -1,12 +1,4 @@
-import {
-    ReactFinalForm,
-    InputFieldFF,
-    Button,
-    SingleSelectFieldFF,
-    hasValue,
-    number,
-    composeValidators,
-} from '@dhis2/ui'
+import { ReactFinalForm, InputFieldFF, Button, SingleSelectFieldFF, hasValue, number, composeValidators } from '@dhis2/ui'
 
 export default function Insert(props) {
     function onSubmit(formInput) {
