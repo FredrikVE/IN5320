@@ -4,9 +4,9 @@ import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, Tab
 import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"
 
 export default function ElementsInDataSetTable({ dataSetId }) {
-  const { isLoading, error, datasetElements } = useDataElementsByDataSet(dataSetId)
+  const { loading, error, datasetElements } = useDataElementsByDataSet(dataSetId)
 
-  if (isLoading) {
+  if (loading) {
     return <CircularLoader />
   }
 

@@ -8,16 +8,15 @@ export function useDataElementsByDataSet(dataSetId) {
     const queryOptions = { variables: { id: dataSetId}, lazy: true };
     const { data, loading, error, refetch } = useDataQuery(dataElementsByDataSetQuery, queryOptions);
     
-    // Oppgaven: refetch når id endres
+    // step 7: refetch når id endres pga velding av nytt datasett i margen
     useEffect(() => {
         if (dataSetId) {
             refetch({ id: dataSetId })
         }
     }, [dataSetId, refetch])
     
+    // nullsjekk og tom standardliste for å håndtere lazy/første render
     const datasetElements = (data?.dataSet?.dataSetElements || []).map(dse => dse.dataElement)
-    
-    // Vis loader inntil første data finnes (enkelt å forstå i komponenten)
-    const isLoading = loading && !data
-    return { isLoading, error, datasetElements }
+        
+    return { loading, error, datasetElements }
 }
