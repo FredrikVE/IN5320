@@ -2,12 +2,8 @@ import { Suspense, useState } from "react"
 import { Center, CircularLoader } from "@dhis2/ui"
 import Navigation from "./components/Navigation.jsx"
 import Browse from "./pages/Browse.jsx"
-//import Insert from "./pages/Insert.jsx"
-//import Datasets from "./pages/Datasets.jsx"
 
 // Importerer css-filer
-//import "./styles/App.css"
-//import "./styles/datasets.css"
 import "./App.module.css";
 
 // Objekt med navigasjonselementer
@@ -20,7 +16,7 @@ const TABS = {
 
 // App() fungerer som en main()
 export default function App() {
-  const [activeTab, setActiveTab] = useState(TABS.DATASETS)
+  const [activeTab, setActiveTab] = useState(TABS.BROWSE)
 
   return (
     // legger appen som helhet inn i en div-wrapper for å gi alt litt padding i App.css

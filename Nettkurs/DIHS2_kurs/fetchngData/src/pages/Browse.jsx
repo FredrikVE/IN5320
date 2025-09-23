@@ -1,25 +1,5 @@
 import { useDataQuery } from '@dhis2/app-runtime'
-
-const dataQuery = {
-    dataSets: {
-        resource: 'dataSets/aLpVgfXiz0f',
-        params: {
-            fields: [
-                'name',
-                'id',
-                'dataSetElements[dataElement[id, displayName]',
-            ],
-        },
-    },
-    dataValueSets: {
-        resource: 'dataValueSets',
-        params: {
-            orgUnit: 'KiheEgvUZ0i',
-            dataSet: 'aLpVgfXiz0f',
-            period: '2020',
-        },
-    },
-}
+import { dataQuery } from '../data/queries'
 
 function mergeData(data) {
     return data.dataSets.dataSetElements.map(d => {
