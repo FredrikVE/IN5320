@@ -2,9 +2,8 @@
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell } from "@dhis2/ui"
 
 export default function GeneralDatasetInfoTable({ dataset }) {
- 
-  const { displayName, id, created } = dataset
-
+  
+  // returner tabellelement med generell informasjon om valgt datasett
   return (
     <Table>
 
@@ -20,9 +19,9 @@ export default function GeneralDatasetInfoTable({ dataset }) {
       {/* Tabellinnhold per rad */}
       <TableBody>
         <TableRow>
-          <TableCell>{displayName}</TableCell>
-          <TableCell>{id}</TableCell>
-          <TableCell>{new Date(created).toLocaleString()}</TableCell>
+          <TableCell>{dataset.displayName}</TableCell>
+          <TableCell>{dataset.id}</TableCell>
+          <TableCell>{new Date(dataset.created).toLocaleString()}</TableCell>
         </TableRow>
       </TableBody>
       
