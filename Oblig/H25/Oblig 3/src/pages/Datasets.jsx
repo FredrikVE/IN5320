@@ -16,7 +16,6 @@ export default function Datasets() {
       setSelected(list[0])
     }
     }, [list]);
-  //}, [list, selected]);
 
   if (loading) { 
     return <CircularLoader /> 
