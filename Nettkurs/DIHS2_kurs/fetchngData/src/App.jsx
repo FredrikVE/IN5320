@@ -2,6 +2,7 @@ import { Suspense, useState } from "react"
 import { Center, CircularLoader } from "@dhis2/ui"
 import Navigation from "./components/Navigation.jsx"
 import Browse from "./pages/Browse.jsx"
+import Insert from "./pages/Insert.jsx"
 
 // Importerer css-filer
 import "./App.module.css";
@@ -10,7 +11,6 @@ import "./App.module.css";
 const TABS = {
   BROWSE: "browse",
   INSERT: "insert",
-  DATASETS: "datasets",
 }
 
 
@@ -30,7 +30,6 @@ export default function App() {
       {/* Suspense som setter circularloader frem til navigasjons-tab velges. */}
       <Suspense 
         fallback={<Center><CircularLoader /></Center>}>
-        {activeTab === TABS.DATASETS && <Datasets />}
         {activeTab === TABS.BROWSE   && <Browse />}
         {activeTab === TABS.INSERT   && <Insert />}
       </Suspense>

@@ -5,14 +5,6 @@ export default function Navigation({ activeTab, onChangeTab, TABS }) {
   return (
     <TabBar>
 
-      {/*Tab for datasets */}
-      <Tab
-        selected={activeTab === TABS.DATASETS}
-        onClick={() => onChangeTab(TABS.DATASETS)}
-      >
-        Datasets
-      </Tab>
-
       {/*Tab for browse */}
       <Tab
         selected={activeTab === TABS.BROWSE}
