@@ -1,4 +1,3 @@
-// src/hooks/useDataElementsByDataSet.js
 // Datahook for å hente dataelementer for API til "step 7"
 import { useEffect } from "react"
 import { useDataQuery } from "@dhis2/app-runtime"
@@ -20,5 +19,5 @@ export function useDataElementsByDataSet(dataSetId) {
         dataset => dataset.dataElement
     );
         
-    return { loading, error, datasetElements };
+    return { loading, error, datasetElements }; // Returerer objekt-litteral med tilstander for data, loading og error
 }

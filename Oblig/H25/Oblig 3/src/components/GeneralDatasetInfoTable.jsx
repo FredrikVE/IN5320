@@ -1,4 +1,3 @@
-// src/components/DatasetDetailsTable.jsx
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell } from "@dhis2/ui"
 
 export default function GeneralDatasetInfoTable({ dataset }) {

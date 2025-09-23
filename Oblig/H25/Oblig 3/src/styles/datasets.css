@@ -13,7 +13,6 @@
 
 .rightPane { 
   flex: 1 1 auto; 
-  /*display: block;*/ /* Setter display til block her for å ikke flexe i dette tilfellet  */
 }  
 
 h2 {
@@ -26,7 +25,6 @@ h2 {
 .dataset-content { 
   margin-top: 16px; 
 }
-
 
 .general-dataset-information { 
   margin-top: 0; 

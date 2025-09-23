@@ -1,4 +1,3 @@
-// src/components/DatasetsList.jsx
 import { Menu, MenuItem } from "@dhis2/ui"
 
 export default function DatasetsList({ items, selectedId, onSelect }) {

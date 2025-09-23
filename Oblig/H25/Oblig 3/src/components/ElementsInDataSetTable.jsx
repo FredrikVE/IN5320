@@ -1,4 +1,3 @@
-// src/components/ElementsInDataSetTable.jsx
 // Tabell for å vise elementene i datasettet jf step 7
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, NoticeBox, CircularLoader } from "@dhis2/ui"
 import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"

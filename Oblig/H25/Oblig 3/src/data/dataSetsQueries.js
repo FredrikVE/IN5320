@@ -1,4 +1,3 @@
-// src/data/dataSetsQueries.js
 // ordinær query for steg 3 - 5
 export const dataSetsQuery = {
   dataSets: {
