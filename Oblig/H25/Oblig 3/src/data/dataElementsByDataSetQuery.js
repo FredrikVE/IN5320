@@ -7,6 +7,7 @@ export const dataElementsByDataSetQuery = {
     params: {
       fields: ["dataSetElements[dataElement[id,displayName,created]]"],
       paging: false,
+      //order: "asc: displayName"
     },
   },
 }

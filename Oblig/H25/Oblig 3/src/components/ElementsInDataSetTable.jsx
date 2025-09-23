@@ -1,4 +1,4 @@
-// src/components/DataElementsTable.jsx
+// src/components/ElementsInDataSetTable.jsx
 
 // utvidelse for steg 7
 import { useEffect } from "react"
@@ -9,15 +9,13 @@ import { dataElementsByDataSetQuery } from "../data/dataElementsByDataSetQuery"
 export default function ElementsInDataSetTable({ dataSetId }) {
 
   //Utfører spørring til API for å hente dataelementer.
-  const queryOptions = { variables: { id: "" }, 
-    //lazy: true 
-  }
+  const queryOptions = { variables: { id: dataSetId}, lazy: true }
   const { data, loading, error, refetch } = useDataQuery(dataElementsByDataSetQuery, queryOptions)
 
   // UseEffect-hook for refetche når id endrer seg slik oppgaven ber om
   useEffect(() => {
     if (dataSetId) {
-        refetch({ id: dataSetId }).catch(() => {})
+        refetch({ id: dataSetId})
     }
   }, [dataSetId, refetch])
 
@@ -29,8 +27,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
     return <NoticeBox error title="Kunne ikke hente dataelementer">{error.message}</NoticeBox>
   }
 
-  //let elements = []
-  let elements = data.dataSet.dataSetElements.map(dataset => dataset.dataElement)
+  const elements = (data?.dataSet?.dataSetElements || []).map(dataset => dataset.dataElement)
 
 
   if (!elements.length) { 
