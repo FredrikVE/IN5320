@@ -15,7 +15,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
   }
 
   if (!datasetElements.length) {
-    return <NoticeBox title="Ingen dataelementer">Dette datasettet har ingen elementer.</NoticeBox>
+    return <NoticeBox title="Ingen dataelementer">Dette datasettet har ingen elementer....</NoticeBox>
   }
 
   return (
@@ -30,11 +30,11 @@ export default function ElementsInDataSetTable({ dataSetId }) {
       </TableHead>
 
       <TableBody>
-        {datasetElements.map(el => (
-          <TableRow key={el.id}>
-            <TableCell>{el.displayName}</TableCell>
-            <TableCell>{el.id}</TableCell>
-            <TableCell>{new Date(el.created).toLocaleString()}</TableCell>
+        {datasetElements.map(element => (
+          <TableRow key={element.id}>
+            <TableCell>{element.displayName}</TableCell>
+            <TableCell>{element.id}</TableCell>
+            <TableCell>{new Date(element.created).toLocaleString()}</TableCell>
           </TableRow>
         ))}
       </TableBody>
