@@ -1,4 +1,5 @@
 // src/components/Navigation.jsx
+// navigasjon til navigerings-tab for steg 2
 import { TabBar, Tab } from "@dhis2/ui"
 
 export default function Navigation({ activeTab, onChangeTab, TABS }) {

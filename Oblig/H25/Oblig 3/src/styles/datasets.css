@@ -13,11 +13,12 @@
 
 .rightPane { 
   flex: 1 1 auto; 
-  display: block; /* Setter display til block her for å ikke flexe i dette tilfellet  */
+  /*display: block;*/ /* Setter display til block her for å ikke flexe i dette tilfellet  */
 }  
 
 h2 {
   margin-top: 0;
+  color: #4682B4;
 }
 
 /* Litt luft mellom kortene i høyre kolonne */
