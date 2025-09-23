@@ -1,25 +1,12 @@
 // src/components/ElementsInDataSetTable.jsx
-
-// utvidelse for steg 7
-import { useEffect } from "react"
-import { useDataQuery } from "@dhis2/app-runtime"
+// Tabell for å vise elementene i datasettet jf step 7
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, NoticeBox, CircularLoader } from "@dhis2/ui"
-import { dataElementsByDataSetQuery } from "../data/dataElementsByDataSetQuery"
+import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"
 
 export default function ElementsInDataSetTable({ dataSetId }) {
+  const { isLoading, error, datasetElements } = useDataElementsByDataSet(dataSetId)
 
-  //Utfører spørring til API for å hente dataelementer.
-  const queryOptions = { variables: { id: dataSetId}, lazy: true }
-  const { data, loading, error, refetch } = useDataQuery(dataElementsByDataSetQuery, queryOptions)
-
-  // UseEffect-hook for refetche når id endrer seg slik oppgaven ber om
-  useEffect(() => {
-    if (dataSetId) {
-        refetch({ id: dataSetId})
-    }
-  }, [dataSetId, refetch])
-
-  if (loading && !data) {
+  if (isLoading) {
     return <CircularLoader />
   }
 
@@ -27,10 +14,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
     return <NoticeBox error title="Kunne ikke hente dataelementer">{error.message}</NoticeBox>
   }
 
-  const elements = (data?.dataSet?.dataSetElements || []).map(dataset => dataset.dataElement)
-
-
-  if (!elements.length) { 
+  if (!datasetElements.length) {
     return <NoticeBox title="Ingen dataelementer">Dette datasettet har ingen elementer.</NoticeBox>
   }
 
@@ -46,7 +30,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
       </TableHead>
 
       <TableBody>
-        {elements.map(el => (
+        {datasetElements.map(el => (
           <TableRow key={el.id}>
             <TableCell>{el.displayName}</TableCell>
             <TableCell>{el.id}</TableCell>
