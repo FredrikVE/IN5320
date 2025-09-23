@@ -30,6 +30,8 @@ export default function Datasets() {
       <h1>Datasets</h1>
 
       <div className="layout">
+
+        {/* Marg med liste over datasett */}
         <div className="leftPane">
           <Card>
             <DatasetsList
@@ -40,6 +42,7 @@ export default function Datasets() {
           </Card>
         </div>
 
+        {/* Hovedområde til høyre på skjerm som viser informasjon om valgt datasett */}
         <div className="rightPane">
           <Card className="general-dataset-information">
             <h2>General dataset information</h2>
