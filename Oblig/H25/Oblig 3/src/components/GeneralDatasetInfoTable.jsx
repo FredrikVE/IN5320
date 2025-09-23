@@ -8,6 +8,7 @@ export default function GeneralDatasetInfoTable({ dataset }) {
   return (
     <Table>
 
+      {/* Tabell overskrifter */}
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
@@ -16,6 +17,7 @@ export default function GeneralDatasetInfoTable({ dataset }) {
         </TableRowHead>
       </TableHead>
 
+      {/* Tabellinnhold per rad */}
       <TableBody>
         <TableRow>
           <TableCell>{displayName}</TableCell>
