@@ -1,3 +1,4 @@
+//src/pages/Browse.jsx
 import { useState, useEffect } from "react"
 import { Card, CircularLoader, NoticeBox } from "@dhis2/ui"
 import { useDataSets } from "../hooks/useDataSets"

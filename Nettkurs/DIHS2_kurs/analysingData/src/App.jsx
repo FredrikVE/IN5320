@@ -1,3 +1,4 @@
+//src/App.jsx
 import { Suspense, useState } from "react"
 import { Center, CircularLoader } from "@dhis2/ui"
 import Navigation from "./components/Navigation.jsx"

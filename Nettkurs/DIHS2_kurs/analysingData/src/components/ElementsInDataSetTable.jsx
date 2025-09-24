@@ -1,3 +1,5 @@
+//Denne er sykt vibe codet dritt men ok..
+//src/components/ElementsInDataSetTable.jsx
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, NoticeBox, CircularLoader } from "@dhis2/ui"
 import { useDataQuery } from "@dhis2/app-runtime"
 import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"

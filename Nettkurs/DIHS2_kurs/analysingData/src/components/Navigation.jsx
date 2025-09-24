@@ -1,3 +1,4 @@
+//src/components/Navigation.jsx
 import { TabBar, Tab } from "@dhis2/ui"
 
 export default function Navigation({ activeTab, onChangeTab, TABS }) {
