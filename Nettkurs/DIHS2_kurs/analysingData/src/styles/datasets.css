@@ -1,0 +1,32 @@
+/* Orgnaiserer layout i to kolonner for venstre scrollmeny og hovedinnhold på høyre side */
+.layout {
+  display: flex;
+  gap: 16px;
+  align-items: flex-start;
+}
+
+.leftPane { 
+  flex: 0 0 clamp(200px, 24vw, 320px);
+  overflow: scroll;                     /* Legg inn scrollbar */
+  scrollbar-width: thin;
+  max-height: 100vh;                  /*fyll hele høyden*/
+}
+
+.rightPane { 
+  flex: 1 1 auto; 
+}  
+
+h2 {
+  margin-top: 0;
+  color: #4682B4;
+}
+
+/* Litt luft mellom kortene i høyre kolonne */
+.general-dataset-information,
+.dataset-content { 
+  margin-top: 16px; 
+}
+
+.general-dataset-information { 
+  margin-top: 0; 
+}
