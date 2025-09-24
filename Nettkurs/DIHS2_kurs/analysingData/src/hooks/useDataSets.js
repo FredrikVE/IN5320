@@ -5,7 +5,11 @@ import { dataSetsQuery } from "../data/dataSetsQuery"
 export function useDataSets() {
   const { data, loading, error } = useDataQuery(dataSetsQuery)
 
-  useEffect(() => { if (data) console.log("Datasets:", data) }, [data])
+  useEffect(() => { 
+    if (data) { 
+      console.log("Datasets:", data)
+    }
+  }, [data])
 
   const list = data?.dataSets?.dataSets ?? []
   return { loading, error, list }

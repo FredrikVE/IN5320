@@ -5,12 +5,12 @@ import { dataElementsByDataSetQuery } from "../data/dataElementsByDataSetQuery"
 export function useDataElementsByDataSet(dataSetId) {
   const { data, loading, error, refetch } = useDataQuery(
     dataElementsByDataSetQuery,
-    { variables: { id: dataSetId }, lazy: true }
+    { variables: { dataSetId }, lazy: true }
   )
 
   useEffect(() => { 
     if (dataSetId) {
-        refetch({ id: dataSetId }) }
+        refetch({ dataSetId }) }
     }, 
     [dataSetId, refetch])
 
