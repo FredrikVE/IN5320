@@ -1,17 +1,17 @@
 import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, NoticeBox, CircularLoader } from "@dhis2/ui"
 import { useDataQuery } from "@dhis2/app-runtime"
 import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"
-import { dataValuesQuery, DEFAULT_OU, DEFAULT_PE } from "../data/dataValuesQuery"
+import { dataValuesQuery } from "../data/dataValuesQuery"
 
 export default function ElementsInDataSetTable({ dataSetId }) {
   const { loading, error, datasetElements } = useDataElementsByDataSet(dataSetId)
 
+  //burde denne være inni en hook??
   const {
-    data: dvsData,
+    data: dataValues,
     loading: dvsLoading,
     error: dvsError,
-  } = useDataQuery(dataValuesQuery, {
-    variables: { dataSet: dataSetId, orgUnit: DEFAULT_OU, period: DEFAULT_PE },
+  } = useDataQuery(dataValuesQuery, {variables: { dataSetId },
   })
 
   if (loading || dvsLoading) return <CircularLoader />
@@ -29,7 +29,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
 
   // Oppslag: { dataElementId: value }
   const valuesByDeId = Object.fromEntries(
-    (dvsData?.dvs?.dataValues ?? []).map(v => [v.dataElement, v.value])
+    (dataValues?.dvs?.dataValues ?? []).map(v => [v.dataElement, v.value])
   )
 
   return (
@@ -37,7 +37,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
-          <TableCellHead>Verdi ({DEFAULT_OU}, {DEFAULT_PE})</TableCellHead>
+          <TableCellHead>Verdi ()</TableCellHead>
           <TableCellHead>ID</TableCellHead>
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>
