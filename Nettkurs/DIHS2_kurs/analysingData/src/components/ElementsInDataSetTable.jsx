@@ -1,20 +1,39 @@
-//Denne er sykt vibe codet dritt men ok..
-//src/components/ElementsInDataSetTable.jsx
-import { Table, TableHead, TableRowHead, TableCellHead, TableBody, TableRow, TableCell, NoticeBox, CircularLoader } from "@dhis2/ui"
+// src/components/ElementsInDataSetTable.jsx
+import React, { useEffect } from "react"
+import {
+  Table, TableHead, TableRowHead, TableCellHead,
+  TableBody, TableRow, TableCell, NoticeBox, CircularLoader,
+} from "@dhis2/ui"
 import { useDataQuery } from "@dhis2/app-runtime"
 import { useDataElementsByDataSet } from "../hooks/useDataElementsByDataSet"
 import { dataValuesQuery } from "../data/dataValuesQuery"
 
-export default function ElementsInDataSetTable({ dataSetId }) {
+export default function ElementsInDataSetTable({ dataSetId, orgUnitId, period }) {
   const { loading, error, datasetElements } = useDataElementsByDataSet(dataSetId)
 
-  //burde denne være inni en hook??
+  // Hent dataValueSets KUN når alle variabler er klare
   const {
     data: dataValues,
     loading: dvsLoading,
     error: dvsError,
-  } = useDataQuery(dataValuesQuery, {variables: { dataSetId },
-  })
+    refetch,
+  } = useDataQuery(dataValuesQuery, { lazy: true })
+
+  const ready = Boolean(dataSetId && orgUnitId && period)
+
+  useEffect(() => {
+    if (ready) {
+      refetch({ dataSet: dataSetId, orgUnit: orgUnitId, period, children: true })
+    }
+  }, [ready, dataSetId, orgUnitId, period, refetch])
+
+  if (!ready) {
+    return (
+      <NoticeBox title="Velg filter">
+        Velg både organisation unit og period for å hente verdier.
+      </NoticeBox>
+    )
+  }
 
   if (loading || dvsLoading) return <CircularLoader />
   if (error || dvsError) {
@@ -26,7 +45,21 @@ export default function ElementsInDataSetTable({ dataSetId }) {
   }
 
   if (!datasetElements.length) {
-    return <NoticeBox title="Ingen dataelementer">Dette datasettet har ingen elementer.</NoticeBox>
+    return (
+      <NoticeBox title="Ingen dataelementer">
+        Dette datasettet har ingen elementer.
+      </NoticeBox>
+    )
+  }
+
+  // Ingen verdier i responsen
+  if (!dataValues?.dvs?.dataValues?.length) {
+    return (
+      <NoticeBox title={`Ingen verdier for ${period}`}>
+        Ingen dataValues funnet for valgt dataset, org unit (inkl. underenheter) og periode.
+        Prøv en annen periode eller org unit.
+      </NoticeBox>
+    )
   }
 
   // Oppslag: { dataElementId: value }
@@ -39,7 +72,7 @@ export default function ElementsInDataSetTable({ dataSetId }) {
       <TableHead>
         <TableRowHead>
           <TableCellHead>Display name</TableCellHead>
-          <TableCellHead>Verdi ()</TableCellHead>
+          <TableCellHead>Verdi ({period})</TableCellHead>
           <TableCellHead>ID</TableCellHead>
           <TableCellHead>Created</TableCellHead>
         </TableRowHead>

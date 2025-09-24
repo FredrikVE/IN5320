@@ -1,11 +1,10 @@
-//src/data/dataElementsByDataSetQuery.js
+// src/data/dataElementsByDataSetQuery.js
 export const dataElementsByDataSetQuery = {
   dataSet: {
     resource: "dataSets",
-    id: ({ id }) => id,
+    id: ({ dataSetId }) => dataSetId,
     params: {
       fields: ["dataSetElements[dataElement[id,displayName,created]]"],
-      paging: false,
     },
   },
 }
