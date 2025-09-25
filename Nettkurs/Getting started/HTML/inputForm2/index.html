@@ -1,0 +1,17 @@
+<!--NB!!!! HUSK ALLTID PÅ "name-attributt" når man bruker input-tags!!! -->
+
+<form action="/api/users" method="post">
+  <label for="name">Name</label>
+  <input type="text" name="name" id="name" required>
+  <br>
+
+  <label for="password">Password</label>
+  <input type="password" name="password" id="password" required>
+  <br>
+
+  <label for="picture">Picture</label>
+  <input type="file" name="picture" id="picture" accept="image/*">
+  <br>
+
+  <input type="submit" value="Register account">
+</form>
