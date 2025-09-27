@@ -1,45 +1,33 @@
-This project was bootstrapped with [DHIS2 Application Platform](https://github.com/dhis2/app-platform).
+# README IN5320 Oblig 3
 
-## Available Scripts
+## Oppgavebeskrivelse
 
-In the project directory, you can run:
+Denne oppgaven er en DHIS2-applikasjon som henter datasett og metadata fra DHIS2-API-et og er en videreføring av DHIS2-oppgavene knyttet til IN5320 sitt nettkurs om DHIS2-plattformen.  
+Den mest relevante delen av koden i denne oppgaven er knyttet til **Datasets-taben** som henter datasettene i API-et, og viser disse i en liste.  
 
-### `yarn start`
+Når brukeren velger et datasett i margmenyen på venstre side, vises datasettes detaljer i en tabell med `id`, `displayName` og `created`.  
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+Oppgaven er utvidet slik at også "step 6" og "step 7" er implementert. Dette betyr at når brukeren velger et datasett, så vises ikke bare den generelle informasjonen om datasettet i sidens hovedinnholdsområde, men også metadataene som datasettet består av. Se bilde under:
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+![Arkitekturdiagram](src/images/AppUI.png)
 
-### `yarn test`
 
-Launches the test runner and runs all available tests found in `/src`.<br />
+## Modularisering av koden
 
-See the section about [running tests](https://platform.dhis2.nu/#/scripts/test) for more information.
+Filstrukturen i koden er modularisert på denne måten
 
-### `yarn build`
+```Bash
+src
+├── components/
+├── data/
+├── hooks/
+├── locales/
+├── pages/
+├── styles/
+└── App.jsx
+```
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.<br />
-A deployable `.zip` file can be found in `build/bundle`!
+## Arkitektur
+![Arkitekturdiagram](src/images/ARKITEKTUR.png)
 
-See the section about [building](https://platform.dhis2.nu/#/scripts/build) for more information.
-
-### `yarn deploy`
-
-Deploys the built app in the `build` folder to a running DHIS2 instance.<br />
-This command will prompt you to enter a server URL as well as the username and password of a DHIS2 user with the App Management authority.<br/>
-You must run `yarn build` before running `yarn deploy`.<br />
-
-See the section about [deploying](https://platform.dhis2.nu/#/scripts/deploy) for more information.
-
-## Learn More
-
-You can learn more about the platform in the [DHIS2 Application Platform Documentation](https://platform.dhis2.nu/).
-
-You can learn more about the runtime in the [DHIS2 Application Runtime Documentation](https://runtime.dhis2.nu/).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
