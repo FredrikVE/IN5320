@@ -16,8 +16,6 @@ const TABS = {
   DATASETS: "datasets",
 }
 
-
-// App() fungerer som en main()
 export default function App() {
   const [activeTab, setActiveTab] = useState(TABS.DATASETS)
 
