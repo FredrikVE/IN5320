@@ -7,53 +7,55 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-    <div clssName="fjell-info">
-         <h2>Info om fjell</h2>
-        <table id="mountain-table">
-            <tr>
-                <th>Navn</th>
-                <th>Høyde (moh)</th>
-                <th>Først besteget</th>
-            </tr>
-
-            <tr>
-                <td>Mount Everest</td>
-                <td>8848</td>
-                <td>1953</td>
-            </tr>
-
-            <tr>
+    <main>
+        <div clssName="fjell-info">
+            <h2>Info om fjell</h2>
+            <table id="mountain-table">
                 <tr>
-                <td>K2</td>
-                <td>8611</td>
-                <td>1954</td>
-            </tr>
+                    <th>Navn</th>
+                    <th>Høyde (moh)</th>
+                    <th>Først besteget</th>
+                </tr>
 
-            <tr>
                 <tr>
-                <td>Kanchenjunga</td>
-                <td>8611</td>
-                <td>1954</td>
-            </tr>
-          
-        </table>
-    </div>
+                    <td>Mount Everest</td>
+                    <td>8848</td>
+                    <td>1953</td>
+                </tr>
 
-    <div class="add-mountain">
-        <form id="add-mountain-form">
-            <input type="text" id="inputnavn" placeholder="Navn" required>
-            <br>
+                <tr>
+                    <tr>
+                    <td>K2</td>
+                    <td>8611</td>
+                    <td>1954</td>
+                </tr>
 
-            <input type="number" id="inputhoyde" placeholder="Høyde" required>
-            <br>
-
-            <input type="number" id="inputaar" placeholder="År først besteget" required>
-            <br>
+                <tr>
+                    <tr>
+                    <td>Kanchenjunga</td>
+                    <td>8611</td>
+                    <td>1954</td>
+                </tr>
             
-            <button type="submit">Legg til fjell</button>
-        </form>
-    </div>
+            </table>
+        </div>
+
+        <div class="add-mountain">
+            <form id="add-mountain-form">
+                <input type="text" id="inputnavn" placeholder="Navn" required>
+                <br>
+
+                <input type="number" id="inputhoyde" placeholder="Høyde" required>
+                <br>
+
+                <input type="number" id="inputaar" placeholder="År først besteget" required>
+                <br>
+                
+                <button type="submit">Legg til fjell</button>
+            </form>
+        </div>
+    </main>
+    
 
     <script src="script.js"></script>
 
