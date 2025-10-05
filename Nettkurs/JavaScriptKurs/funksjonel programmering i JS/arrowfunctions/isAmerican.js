@@ -1,5 +1,4 @@
-import assert from "assert"; // hvis du bruker ES Modules
-// const assert = require("assert"); // hvis du bruker CommonJS
+import assert from "assert";
 
 const isAmerican = (inputString) => {
   if (inputString.toLowerCase().includes("awesome")) {
