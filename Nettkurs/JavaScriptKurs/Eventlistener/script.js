@@ -6,7 +6,7 @@ const form = document.querySelector("#add-mountain-form")
 const table = document.querySelector("#mountain-table")
 
 
-form.addEventListener("submit", (e) =>{
+form.addEventListener("submit", (e) => {
     e.preventDefault();     //hindrer siden i å laste på nytt
 
     //henter verdiene fra inputfeletene med .querySelector() og .value!
