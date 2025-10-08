@@ -1,0 +1,10 @@
+.analytics-grid {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 12px;
+}
+.indicator-card { padding: 12px; }
+.indicator-header { display:flex; justify-content: space-between; align-items:center; }
+.indicator-body .value { font-size: 22px; font-weight: 600; }
+.ts-card { margin-top: 16px; padding: 12px; }

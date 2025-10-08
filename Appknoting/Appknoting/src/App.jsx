@@ -1,33 +1,32 @@
-import { useDataQuery } from '@dhis2/app-runtime'
-import i18n from '@dhis2/d2-i18n'
-import React from 'react'
-import classes from './App.module.css'
-// './locales' will be populated after running start or build scripts
-import './locales'
+import { Suspense, useState } from "react";
+import { Center, CircularLoader } from "@dhis2/ui";
+import Navigation from "./components/Navigation.jsx";
+import Inspect from "./pages/Inspect.jsx";
+import Planner from "./pages/Planner.jsx";
+import Analytics from "./pages/Analytics.jsx";
 
-const query = {
-    me: {
-        resource: 'me',
-    },
+import "./styles/App.css";
+import "./styles/planner.css";
+import "./styles/analytics.css";
+
+const TABS = {
+  INSPECT: "inspect",
+  PLANNER: "planner",
+  ANALYTICS: "analytics",
+};
+
+export default function App() {
+  const [activeTab, setActiveTab] = useState(TABS.INSPECT);
+
+  return (
+    <div className="app">
+      <Navigation activeTab={activeTab} onChangeTab={setActiveTab} TABS={TABS} />
+
+      <Suspense fallback={<Center><CircularLoader /></Center>}>
+        {activeTab === TABS.INSPECT && <Inspect />}
+        {activeTab === TABS.PLANNER && <Planner />}
+        {activeTab === TABS.ANALYTICS && <Analytics />}
+      </Suspense>
+    </div>
+  );
 }
-
-const MyApp = () => {
-    const { error, loading, data } = useDataQuery(query)
-
-    if (error) {
-        return <span>{i18n.t('ERROR')}</span>
-    }
-
-    if (loading) {
-        return <span>{i18n.t('Loading...')}</span>
-    }
-
-    return (
-        <div className={classes.container}>
-            <h1>{i18n.t('Hello {{name}}', { name: data.me.name })}</h1>
-            <h3>{i18n.t('Welcome to DHIS2!')}</h3>
-        </div>
-    )
-}
-
-export default MyApp
