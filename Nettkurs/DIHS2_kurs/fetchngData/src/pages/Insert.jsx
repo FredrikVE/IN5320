@@ -1,3 +1,4 @@
+//src/pages/Insert.jsx
 import { ReactFinalForm, InputFieldFF, Button, SingleSelectFieldFF, hasValue, number, composeValidators } from '@dhis2/ui'
 
 export default function Insert(props) {

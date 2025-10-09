@@ -1,3 +1,4 @@
+//src/data/queries.js
 export const dataQuery = {
     dataSets: {
         resource: 'dataSets/aLpVgfXiz0f',
