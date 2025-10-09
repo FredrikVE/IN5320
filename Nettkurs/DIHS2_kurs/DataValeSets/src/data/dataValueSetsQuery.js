@@ -1,5 +1,5 @@
 // Henter dataverdier for et gitt datasett
-// src/data/dataValueSetsQuery.js
+//src/data/dataValueSetsQuery.js
 export const dataValueSetsQuery = {
     dataValueSets: {
         resource: 'dataValueSets',
