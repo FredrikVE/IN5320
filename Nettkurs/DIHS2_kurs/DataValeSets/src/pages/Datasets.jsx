@@ -9,6 +9,9 @@ import ElementsInDataSetTable from "../components/ElementsInDataSetTable"
 export default function Datasets() {
   const { loading, error, list } = useDataSets();
   const [selected, setSelected] = useState(null);
+
+  //Jambalaya Cluster (Jj1IUjjPaWf).
+  //const [orgUnitId, setOrgUnitId] = useState("Jj1IUjjPaWf"); // Jambalaya Cluster default
   const [orgUnitId, setOrgUnitId] = useState("ImspTQPwCqd"); // Sierra Leone default
   const [period, setPeriod] = useState("202209"); // September 2022 default
 
@@ -40,15 +43,21 @@ export default function Datasets() {
             <h2>General dataset information</h2>
             {selected && <GeneralDatasetInfoTable dataset={selected} />}
 
-            <div style={{ marginTop: 16 }}>
+            <div>
+
               <SingleSelect selected={orgUnitId} onChange={({ selected }) => setOrgUnitId(selected)} label="Organisation unit">
+                
+                {/*Drop down for å velge distrikt */}
                 <SingleSelectOption label="Sierra Leone" value="ImspTQPwCqd" />
                 <SingleSelectOption label="Bo District" value="qOdWr69J2Cr" />
               </SingleSelect>
+
+              {/*Drop down for å velge periode */}
               <SingleSelect selected={period} onChange={({ selected }) => setPeriod(selected)} label="Period">
                 <SingleSelectOption label="September 2022" value="202209" />
                 <SingleSelectOption label="October 2022" value="202210" />
               </SingleSelect>
+
             </div>
           </Card>
 

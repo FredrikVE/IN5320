@@ -8,8 +8,10 @@ export function useDataValues(dataSetId, orgUnitId, period) {
     const { data, loading, error, refetch } = useDataQuery(dataValueSetsQuery, queryOptions)
 
     useEffect(() => {
+        //if (data) {
         if (dataSetId && orgUnitId && period) {
             refetch({ dataSetId, orgUnitId, period })
+            console.log("Datavalue-set-response: ", data)
         }
     }, [dataSetId, orgUnitId, period, refetch])
 
