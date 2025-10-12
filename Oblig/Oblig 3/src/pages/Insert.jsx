@@ -1,3 +1,4 @@
+//src/pages/Insert.jsx
 import { NoticeBox } from "@dhis2/ui"
 
 // Legger inn en plassholder for Insert-taben bare for å gi litt "feel" for hvordan tab-navigeringen fungerer
