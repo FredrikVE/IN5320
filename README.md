@@ -28,67 +28,32 @@ will have experience with developing software in a team.
 
 ### Mandatory assignments
 
-<table style="width:100%; border-collapse: collapse;">
 
-  <tr>
-    <th style="text-align:left; padding: 8px;">Assignment</th>
-    <th style="text-align:left; padding: 8px;">Description</th>
-    <th style="text-align:left; padding: 8px;">Image</th>
-  </tr>
+## Selected Work Completed During the Course
 
-  <!-- Assignment 1 -->
-  <tr>
-    <td style="vertical-align: top; padding: 8px;">
-      <strong>Assignment 1</strong><br>
-      CV in HTML & CSS + Vanilla JavaScript
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      For the first assignment, I created a personal CV using semantic HTML and custom CSS,
-      focusing on clean structure, responsive design, and accessibility.<br>
-      I also practiced basic vanilla JavaScript to add simple interactive elements.
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      <img src="images/oblig_1_cv.png" alt="HTML/CSS CV" style="max-width:250px;" />
-    </td>
-  </tr>
+#### Assignment 1: CV in HTML & CSS + Introductory Vanilla JavaScript
 
-  <!-- Assignment 2 -->
-  <tr>
-    <td style="vertical-align: top; padding: 8px;">
-      <strong>Assignment 2</strong><br>
-      React Web App (DHIS2 API)
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      In this assignment, I developed a React-based web application that retrieves
-      country information from the DHIS2 API. The app displays the data in a dynamic table
-      with sorting and filtering, and strengthened my understanding of API integration,
-      state management, and React component architecture.
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      <img src="images/Oblig2_react_app.png" alt="React app fetching country data"
-           style="max-width:250px;" />
-    </td>
-  </tr>
+For the first assignment, I created a personal CV using semantic HTML and custom CSS, focusing on clean structure, responsive design, and accessibility. I also practiced basic vanilla JavaScript to add simple interactive elements.
 
-  <!-- Assignment 3 -->
-  <tr>
-    <td style="vertical-align: top; padding: 8px;">
-      <strong>Assignment 3</strong><br>
-      DHIS2 Metadata Exploration App
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      For the final assignment, I built a custom DHIS2 application capable of fetching datasets
-      from the DHIS2 Health API. The app allows users to explore and inspect metadata such as
-      data elements, categories, and organization units. This project deepened my experience
-      with the DHIS2 App Platform, API structures, and system architecture.
-    </td>
-    <td style="vertical-align: top; padding: 8px;">
-      <div><strong>Application UI:</strong></div>
-      <img src="images/AppUI.png" alt="DHIS2 app UI" style="max-width:250px; margin: 6px 0;" />
-      <div><strong>System Architecture:</strong></div>
-      <img src="images/ARKITEKTUR.png" alt="DHIS2 architecture"
-           style="max-width:250px; margin: 6px 0;" />
-    </td>
-  </tr>
+<img src="images/oblig_1_cv.png" alt="HTML/CSS CV" />
 
-</table>
+
+#### Assignment 2: React Web Application Fetching Country Data from the DHIS2 API
+
+In this assignment, I developed a React-based web application that retrieves country information from the DHIS2 API. The app displays the data in a dynamic table and includes sorting, filtering, and user-friendly presentation. The work strengthened my understanding of API integration, state management, and React components.
+
+<img src="images/Oblig2_react_app.png" alt="React app fetching country data" />
+
+
+#### Assignment 3: DHIS2 Application for Exploring Health Data Metadata
+
+For the final assignment, I built a custom DHIS2 application capable of fetching datasets from the DHIS2 Health API. The app allows users to explore and inspect related metadata such as data elements, categories, and organization units.
+The project deepened my experience with the DHIS2 App Platform, API structures, and application architecture.
+
+Application UI:
+
+<img src="images/AppUI.png" alt="DHIS2 app UI" />
+
+System Architecture:
+
+<img src="images/ARKITEKTUR.png" alt="DHIS2 metadata app architecture" />
