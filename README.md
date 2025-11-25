@@ -35,25 +35,25 @@ will have experience with developing software in a team.
 
 For the first assignment, I created a personal CV using semantic HTML and custom CSS, focusing on clean structure, responsive design, and accessibility. I also practiced basic vanilla JavaScript to add simple interactive elements.
 
-<img src="images/oblig_1_cv.png" alt="HTML/CSS CV" />
+![HTML/CSS CV](images/oblig_1_cv.png)
 
 
 #### Assignment 2: React Web Application Fetching Country Data from the DHIS2 API
 
 In this assignment, I developed a React-based web application that retrieves country information from the DHIS2 API. The app displays the data in a dynamic table and includes sorting, filtering, and user-friendly presentation. The work strengthened my understanding of API integration, state management, and React components.
 
-<img src="images/Oblig2_react_app.png" alt="React app fetching country data" />
+![React app fetching country data](images/Oblig2_react_app.png)
 
 
 #### Assignment 3: DHIS2 Application for Exploring Health Data Metadata
 
-For the final assignment, I built a custom DHIS2 application capable of fetching datasets from the DHIS2 Health API. The app allows users to explore and inspect related metadata such as data elements, categories, and organization units.
+For the final assignment, I built a custom DHIS2 application capable of fetching datasets from the DHIS2 Health API. The app allows users to explore and inspect related metadata such as data elements, categories, and organization units.  
 The project deepened my experience with the DHIS2 App Platform, API structures, and application architecture.
 
 Application UI:
 
-<img src="images/AppUI.png" alt="DHIS2 app UI" />
+![DHIS2 app UI](images/AppUI.png)
 
 System Architecture:
 
-<img src="images/ARKITEKTUR.png" alt="DHIS2 metadata app architecture" />
+![DHIS2 metadata app architecture](images/ARKITEKTUR.png)
