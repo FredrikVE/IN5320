@@ -26,37 +26,6 @@ will have experience with developing software in a team.
 
 ## Selected Work Completed During the Course
 
-
-
-# **Group Project – Student Productivity App**
-
-### **Description**
-
-
-
-**Home Screen:**  
-
-![Home Screen](images/projectimages/homescreen.png)
-
-<br><br>
-
-**Planner:**  
-
-![Planner](images/projectimages/planner.png)
-
-<br><br>
-
-**Progress:** 
-
-![Progress](images/projectimages/progress.png)
-
-<br><br>
-
-**Register:** 
-
-![Register](images/projectimages/register.png)
-
-
 ### Mandatory assignments
 
 <table style="width:100%; border-collapse: collapse;">
