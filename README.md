@@ -87,12 +87,10 @@ will have experience with developing software in a team.
       with the DHIS2 App Platform, API structures, and system architecture.
     </td>
     <td style="vertical-align: top; padding: 8px;">
-     
+      <div><strong>Application UI:</strong></div>
       <img src="Images/AppUI.png" alt="DHIS2 app UI"
            style="max-width:100%; width:320px; height:auto; margin: 6px 0;" />
-
-      <br>
-      
+      <div><strong>System Architecture:</strong></div>
       <img src="Images/ARKITEKTUR.png" alt="DHIS2 architecture"
            style="max-width:100%; width:320px; height:auto; margin: 6px 0;" />
     </td>
