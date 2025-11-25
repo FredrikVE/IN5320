@@ -26,37 +26,43 @@ will have experience with developing software in a team.
 
 ## Selected Work Completed During the Course
 
-<table style="width:100%; border-collapse: collapse;">
+<table style="width:100%; border-collapse: collapse; table-layout: fixed;">
+
+  <colgroup>
+    <col style="width:20%;">
+    <col style="width:40%;">
+    <col style="width:40%;">
+  </colgroup>
 
   <tr>
     <th style="text-align:left; padding: 8px;">Assignment</th>
     <th style="text-align:left; padding: 8px;">Description</th>
-    <th style="text-align:left; padding: 8px;">Image</th>
+    <th style="text-align:left; padding: 8px;">Screen shot</th>
   </tr>
 
   <!-- Assignment 1 -->
   <tr>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       <strong>Assignment 1</strong><br>
       CV in HTML &amp; CSS + Vanilla JavaScript
     </td>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       For the first assignment, I created a personal CV using semantic HTML and custom CSS,
       focusing on clean structure, responsive design, and accessibility.<br>
       I also practiced basic vanilla JavaScript to add simple interactive elements.
     </td>
     <td style="vertical-align: top; padding: 8px;">
-      <img src="Images/oblig_1_cv.png" alt="HTML/CSS CV" style="max-width:250px;" />
+      <img src="Images/oblig_1_cv.png" alt="HTML/CSS CV" style="max-width:100%; width:320px; height:auto;" />
     </td>
   </tr>
 
   <!-- Assignment 2 -->
   <tr>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       <strong>Assignment 2</strong><br>
       React Web App (DHIS2 API)
     </td>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       In this assignment, I developed a React-based web application that retrieves
       country information from the DHIS2 API. The app displays the data in a dynamic table
       with sorting and filtering, and strengthened my understanding of API integration,
@@ -64,17 +70,17 @@ will have experience with developing software in a team.
     </td>
     <td style="vertical-align: top; padding: 8px;">
       <img src="Images/Oblig2_react_app.png" alt="React app fetching country data"
-           style="max-width:250px;" />
+           style="max-width:100%; width:320px; height:auto;" />
     </td>
   </tr>
 
   <!-- Assignment 3 -->
   <tr>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       <strong>Assignment 3</strong><br>
       DHIS2 Metadata Exploration App
     </td>
-    <td style="vertical-align: top; padding: 8px;">
+    <td style="vertical-align: top; padding: 8px; word-wrap: break-word;">
       For the final assignment, I built a custom DHIS2 application capable of fetching datasets
       from the DHIS2 Health API. The app allows users to explore and inspect metadata such as
       data elements, categories, and organization units. This project deepened my experience
@@ -82,11 +88,14 @@ will have experience with developing software in a team.
     </td>
     <td style="vertical-align: top; padding: 8px;">
       <div><strong>Application UI:</strong></div>
-      <img src="Images/AppUI.png" alt="DHIS2 app UI" style="max-width:250px; margin: 6px 0;" />
+      <img src="Images/AppUI.png" alt="DHIS2 app UI"
+           style="max-width:100%; width:320px; height:auto; margin: 6px 0;" />
       <div><strong>System Architecture:</strong></div>
-      <img src="Images/ARKITEKTUR.png" alt="DHIS2 architecture" style="max-width:250px; margin: 6px 0;" />
+      <img src="Images/ARKITEKTUR.png" alt="DHIS2 architecture"
+           style="max-width:100%; width:320px; height:auto; margin: 6px 0;" />
     </td>
   </tr>
 
 </table>
+
 
